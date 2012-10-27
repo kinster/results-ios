@@ -10,6 +10,8 @@
 
 @implementation CustomTableCell
 
+@synthesize position, name, badge;
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];

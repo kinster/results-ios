@@ -8,18 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Club : NSObject {
-    NSString *name;
-    NSString *badge;
-    NSArray *teams;
-}
+@interface Club : NSObject
 
-- (void)setName:(NSString *)newName;
-- (void)setBadge:(NSString *)newBadge;
-- (void)setTeams:(NSArray *)teams;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *badge;
+@property (nonatomic, copy) NSArray *teams;
 
-- (NSString *)name;
-- (NSString *)badge;
-- (NSArray *)teams;
+
+-(id)initWithName:(NSString *)name AndBadge:(NSString *)badge;
+-(id)initWithName:(NSString *)name;
 
 @end

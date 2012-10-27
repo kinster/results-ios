@@ -7,12 +7,16 @@
 //
 
 #import "ResultsAppDelegate.h"
+#import "ResultsViewController.h"
 
 @implementation ResultsAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    UIViewController *resultsViewController = [[ResultsViewController alloc] init];
+    [self.window addSubview:[resultsViewController view]];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 							

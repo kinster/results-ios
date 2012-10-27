@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ResultsViewController : UIViewController
+@class CustomTableCell;
+
+@interface ResultsViewController : UITableViewController
+
+@property (nonatomic, copy) NSMutableArray *clubList;
 
 @end

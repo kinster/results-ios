@@ -9,5 +9,12 @@
 #import "League.h"
 
 @implementation League
-
+-(id)initWithName:(NSString *)name {
+    self = [super init];
+    if (self) {
+        _name = name;
+        return self;
+    }
+    return nil;
+}
 @end

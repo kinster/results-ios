@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface League : NSObject
-
+    @property (nonatomic, copy) NSString *name;
+    -(id)initWithName:(NSString *)name;
 @end

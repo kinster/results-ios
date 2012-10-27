@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ClubDetailsViewController : UITableViewController
+@class Club;
 
+@interface ClubDetailsViewController : UIViewController
+@property (strong, nonatomic) Club *club;
+@property (weak, nonatomic) IBOutlet UILabel *position;
+@property (weak, nonatomic) IBOutlet UIImageView *badge;
+@property (weak, nonatomic) IBOutlet UILabel *name;
 @end

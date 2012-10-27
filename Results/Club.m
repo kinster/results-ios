@@ -10,28 +10,18 @@
 
 @implementation Club
 
-- (void)setName:(NSString *)newName {
-    name = newName;
+@synthesize teams;
+
+-(id)initWithName:(NSString *)name AndBadge:(NSString *)badge {
+    if (self = [super init]) {
+        _name = name;
+        _badge = badge;
+    }
+    return self;
 }
 
-- (void)setBadge:(NSString *)newBadge {
-    badge = newBadge;
-}
-
-- (void)setTeams:(NSArray *)newTeams {
-    teams = newTeams;
-}
-
-- (NSString *)name {
-    return name;
-}
-
-- (NSString *)badge {
-    return badge;
-}
-
-- (NSArray *)teams {
-    return teams;
+-(id)initWithName:(NSString *)name {
+    return [self initWithName:name AndBadge:nil];
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ResultsAppDelegate : UIResponder <UIApplicationDelegate>
+@interface ResultsAppDelegate : UIResponder <UITableViewDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
