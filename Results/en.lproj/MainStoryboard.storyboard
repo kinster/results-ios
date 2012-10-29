@@ -11,37 +11,12 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="JzI-hx-qgI">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="tUv-Cd-V1A" userLabel="Header View">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="117"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="2012-2013 U11s 9v9" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nwh-jq-5VY">
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="29" id="j41-HW-90K"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="garforthleague.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="xwx-aJ-AfN">
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="89" id="ebT-xd-kdl"/>
-                                    </constraints>
-                                </imageView>
-                            </subviews>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstItem="xwx-aJ-AfN" firstAttribute="trailing" secondItem="tUv-Cd-V1A" secondAttribute="trailing" type="default" id="23q-gN-fqD"/>
-                                <constraint firstItem="Nwh-jq-5VY" firstAttribute="leading" secondItem="tUv-Cd-V1A" secondAttribute="leading" type="default" id="8MP-7h-Bfv"/>
-                                <constraint firstItem="xwx-aJ-AfN" firstAttribute="top" secondItem="tUv-Cd-V1A" secondAttribute="top" type="default" id="QWd-RX-dLX"/>
-                                <constraint firstItem="xwx-aJ-AfN" firstAttribute="leading" secondItem="tUv-Cd-V1A" secondAttribute="leading" type="default" id="aGK-fq-7NS"/>
-                                <constraint firstItem="Nwh-jq-5VY" firstAttribute="trailing" secondItem="tUv-Cd-V1A" secondAttribute="trailing" type="default" id="dhR-ld-0nf"/>
-                                <constraint firstItem="Nwh-jq-5VY" firstAttribute="bottom" secondItem="tUv-Cd-V1A" secondAttribute="bottom" type="default" id="jfj-AN-PXn"/>
-                            </constraints>
-                        </view>
+                        <imageView key="tableHeaderView" userInteractionEnabled="NO" contentMode="scaleToFill" image="garforthleague.jpg" id="xwx-aJ-AfN" userLabel="League Logo Header">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
+                        </imageView>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" restorationIdentifier="" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CustomClubCell" rowHeight="44" id="MF6-d8-FWy" userLabel="Custom Table Cell" customClass="CustomTableCell">
-                                <rect key="frame" x="0.0" y="153" width="320" height="46"/>
+                                <rect key="frame" x="0.0" y="125" width="320" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="10" y="1" width="280" height="43"/>
@@ -84,12 +59,12 @@
                                 </view>
                                 <constraints>
                                     <constraint firstItem="sY4-t1-JoF" firstAttribute="leading" secondItem="MF6-d8-FWy" secondAttribute="leading" constant="10" id="FIz-42-toY"/>
+                                    <constraint firstItem="pc1-iT-tBC" firstAttribute="leading" secondItem="MF6-d8-FWy" secondAttribute="leading" constant="44" id="G6s-94-YFL"/>
                                     <constraint firstItem="sY4-t1-JoF" firstAttribute="top" secondItem="MF6-d8-FWy" secondAttribute="top" constant="5" id="Hls-yE-qFh"/>
                                     <constraint firstItem="pc1-iT-tBC" firstAttribute="bottom" secondItem="sY4-t1-JoF" secondAttribute="bottom" type="default" id="KRW-tv-51b"/>
                                     <constraint firstItem="Opj-Oj-0fU" firstAttribute="leading" secondItem="pc1-iT-tBC" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="f1J-vF-1Zg"/>
                                     <constraint firstItem="Opj-Oj-0fU" firstAttribute="top" secondItem="MF6-d8-FWy" secondAttribute="top" constant="4" id="fkX-c0-NJv"/>
                                     <constraint firstItem="AGI-ev-iwS" firstAttribute="leading" secondItem="MF6-d8-FWy" secondAttribute="leading" constant="89" id="hHp-bF-Sa0"/>
-                                    <constraint firstItem="pc1-iT-tBC" firstAttribute="leading" secondItem="MF6-d8-FWy" secondAttribute="leading" constant="44" id="nWB-Kv-msj"/>
                                     <constraint firstItem="pc1-iT-tBC" firstAttribute="top" secondItem="sY4-t1-JoF" secondAttribute="top" type="default" id="vdg-eq-9q6"/>
                                     <constraint firstItem="AGI-ev-iwS" firstAttribute="top" secondItem="MF6-d8-FWy" secondAttribute="top" constant="21" id="xoK-RG-g2i"/>
                                 </constraints>
@@ -108,6 +83,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My League" id="KQp-Y1-tBG"/>
+                    <connections>
+                        <outlet property="leagueLogo" destination="xwx-aJ-AfN" id="y2q-tw-Mhh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
@@ -182,6 +160,33 @@
     <resources>
         <image name="garforthleague.jpg" width="385" height="100"/>
     </resources>
+    <classes>
+        <class className="ClubDetailsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ClubDetailsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="badge" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="position" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="CustomTableCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomTableCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="badge" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="position" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="ResultsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ResultsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="leagueLogo" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

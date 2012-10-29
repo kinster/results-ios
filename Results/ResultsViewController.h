@@ -11,7 +11,8 @@
 @class CustomTableCell;
 
 @interface ResultsViewController : UITableViewController
-
+@property (nonatomic, retain) IBOutlet UIImageView *leagueLogo;
+@property (copy, nonatomic) NSString *leagueName;
 @property (nonatomic, copy) NSMutableArray *clubList;
 
 @end
