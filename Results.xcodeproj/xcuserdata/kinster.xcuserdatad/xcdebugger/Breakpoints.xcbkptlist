@@ -8,13 +8,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "CustomTableCell.h"
-         timestampString = "372787286.194778"
+         timestampString = "373254742.4652"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "16"
-         endingLineNumber = "16"
-         landmarkName = "@interface CustomTableCell"
-         landmarkType = "2">
+         startingLineNumber = "21"
+         endingLineNumber = "21"
+         landmarkName = "points"
+         landmarkType = "19">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -34,11 +34,24 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Results/ResultsViewController.m"
-         timestampString = "373238235.768514"
+         timestampString = "373254742.4652"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "102"
-         endingLineNumber = "102"
+         startingLineNumber = "129"
+         endingLineNumber = "129"
+         landmarkName = "-tableView:cellForRowAtIndexPath:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Results/ResultsViewController.m"
+         timestampString = "373254742.4652"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "125"
+         endingLineNumber = "125"
          landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>

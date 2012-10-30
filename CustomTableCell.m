@@ -10,7 +10,7 @@
 
 @implementation CustomTableCell
 
-@synthesize position, name, badge;
+@synthesize position, name, badge, wins, draws, losses;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

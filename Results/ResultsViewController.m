@@ -48,26 +48,46 @@
         NSString *seasonNameJson = [jsonSeason objectForKey:@"name"];
         NSString *leagueLogoJson = [league objectForKey:@"logo"];
         NSString *leagueNameJson = [league objectForKey:@"name"];
-        
+
+        NSDictionary *jsonTeam = [jsonObjects objectForKey:@"team"];
+        NSString *teamName = [jsonTeam objectForKey:@"name"];
+
         NSURL *imageUrl = [NSURL URLWithString:leagueLogoJson];
         NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
         
         leagueLogo.image = [[UIImage alloc]initWithData:imageData];
         
-        [self setLeagueName:[leagueNameJson stringByAppendingFormat:@" %@",seasonNameJson]];
+        [self setLeagueName:[leagueNameJson stringByAppendingFormat:@" %@ %@",seasonNameJson, teamName]];
         
         NSLog(@"league: %@ %@ %@", leagueLogoJson, leagueNameJson, seasonNameJson);
-        
-        NSArray *jsonArray = [jsonObjects objectForKey:@"clubs"];
-        for (NSDictionary *object in jsonArray) {
-            if ([object isKindOfClass:[NSDictionary class]]) {
-                NSString *name = [object objectForKey:@"name"];
-                NSString *badge = [object objectForKey:@"badge"];
-                NSLog(@"Club team: %@ %@", name, badge);
-                club = [[Club alloc] initWithName:name AndBadge:badge];
-                [clubList addObject: club];
-            } else {
-                NSLog(@"%s", "Not a dictionary");
+
+        NSArray *jsonLeagueDetails = [jsonObjects objectForKey:@"league_season_club_teams"];
+        for (NSDictionary *entry in jsonLeagueDetails) {
+            NSString *clubId = [entry objectForKey:@"club_id"];
+            // get the club team now
+            NSString *wins = [entry objectForKey:@"wins"];
+            NSString *draws = [entry objectForKey:@"draws"];
+            NSString *losses = [entry objectForKey:@"losses"];
+            NSString *goalsFor = [entry objectForKey:@"goals_for"];
+            NSString *goalsAgainst = [entry objectForKey:@"goals_against"];
+            NSString *goalDiff = [entry objectForKey:@"goals_diff"];
+            NSString *points = [entry objectForKey:@"points"];
+            NSLog(@"%@ %@ %@ %@ %@ %@", clubId, wins, draws, losses, goalsFor, goalsAgainst);
+
+            
+            NSArray *clubs = [jsonObjects objectForKey:@"clubs"];
+            for (NSDictionary *clubEntry in clubs) {
+                if ([clubEntry isKindOfClass:[NSDictionary class]]) {
+                    NSString *clubEntryId = [clubEntry objectForKey:@"id"];
+                    if (clubId == clubEntryId) {
+                        NSString *name = [clubEntry objectForKey:@"name"];
+                        NSString *badge = [clubEntry objectForKey:@"badge"];
+                        club = [[Club alloc] initWithName:name AndBadge:badge AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:goalsFor AndGoalsAgainst:goalsAgainst AndGoalDiff:goalDiff AndPoints:points];
+                        [clubList addObject: club];
+                    }
+                } else {
+                    NSLog(@"%s", "Not a dictionary");
+                }
             }
         }
     }
@@ -96,11 +116,25 @@
     NSURL *imageUrl = [NSURL URLWithString:[[clubList objectAtIndex:indexPath.row]badge]];
     NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
     
+    Club *club = [clubList objectAtIndex:indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.position.text = [NSString stringWithFormat:@"%d", indexPath.row+1];
     cell.badge.image = [[UIImage alloc]initWithData:imageData];
-    cell.name.text = [[clubList objectAtIndex:indexPath.row]name];
-    
+    cell.name.text = [club name];
+    NSString *wins = [NSString stringWithFormat:@"%d", club.wins.intValue];
+    NSString *draws = [NSString stringWithFormat:@"%d", club.draws.intValue];
+    NSString *losses = [NSString stringWithFormat:@"%d", club.losses.intValue];
+    NSString *goalsFor = [NSString stringWithFormat:@"%d", club.goalsFor.intValue];
+    NSString *goalsAgainst = [NSString stringWithFormat:@"%d", club.goalsAgainst.intValue];
+    NSString *goalDiff = [NSString stringWithFormat:@"%d", club.goalDiff.intValue];
+    NSString *points = [NSString stringWithFormat:@"%d", club.points.intValue];
+    cell.wins.text = wins;
+    cell.draws.text = draws;
+    cell.losses.text = losses;
+    cell.goalsFor.text = goalsFor;
+    cell.goalsAgainst.text = goalsAgainst;
+    cell.goalDiff.text = goalDiff;
+    cell.points.text = points;
     return cell;
 }
 
