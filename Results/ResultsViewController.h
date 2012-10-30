@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ClubDetailsViewController.h"
 
 @class CustomTableCell;
 
@@ -14,5 +15,5 @@
 @property (nonatomic, retain) IBOutlet UIImageView *leagueLogo;
 @property (copy, nonatomic) NSString *leagueName;
 @property (nonatomic, copy) NSMutableArray *clubList;
-
+@property (strong, nonatomic) ClubDetailsViewController *clubDetailsViewController;
 @end

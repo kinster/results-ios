@@ -17,7 +17,7 @@
 
 @implementation ResultsViewController
 
-@synthesize clubList, leagueLogo, leagueName;
+@synthesize clubList, leagueLogo, leagueName, clubDetailsViewController;
 
 - (void)viewDidLoad
 {
@@ -113,7 +113,6 @@
     if (cell == nil) {
         cell = [[CustomTableCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-
     NSURL *imageUrl = [NSURL URLWithString:[[clubList objectAtIndex:indexPath.row]badge]];
     NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
     
@@ -181,4 +180,16 @@
     return nil;
 }
 
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"In accessoryButtonTappedForRowWithIndexPath");
+    NSLog(@"%d", indexPath.row);
+    Club *selectedClub = [clubList objectAtIndex:indexPath.row];
+    NSLog(@"%@", selectedClub.name);
+
+    if (clubDetailsViewController == nil) {
+        clubDetailsViewController = [[ClubDetailsViewController alloc] initWithNibName:@"ClubDetailsController" bundle:nil];
+    }
+    [clubDetailsViewController setClub:selectedClub];
+    [self performSegueWithIdentifier:@"ShowClubDetails" sender:selectedClub];
+}
 @end
