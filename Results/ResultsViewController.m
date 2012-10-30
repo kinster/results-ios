@@ -77,11 +77,12 @@
             
             NSArray *clubs = [jsonObjects objectForKey:@"clubs"];
             for (NSDictionary *clubEntry in clubs) {
-                if ([clubEntry isKindOfClass:[NSDictionary class]]) {
+               if ([clubEntry isKindOfClass:[NSDictionary class]]) {
                     NSString *clubEntryId = [clubEntry objectForKey:@"id"];
                     if (clubId == clubEntryId) {
                         NSString *name = [clubEntry objectForKey:@"name"];
                         NSString *badge = [clubEntry objectForKey:@"badge"];
+                        NSLog(@"Club: %@ %@", name,  badge);
                         club = [[Club alloc] initWithName:name AndBadge:badge AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:goalsFor AndGoalsAgainst:goalsAgainst AndGoalDiff:goalDiff AndPoints:points];
                         [clubList addObject: club];
                     }
