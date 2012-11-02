@@ -15,17 +15,44 @@
 
 @implementation ClubDetailsViewController
 
-@synthesize position, name, badge, club;
+@synthesize position, name, badge, club, teamId;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    name.text = club.name;
     
-    NSURL *imageUrl = [NSURL URLWithString:club.badge];
+    NSError *error;
+    
+    NSString *restfulUrl = [[NSString alloc]initWithFormat:@"http://localhost:3000/leagues/1/seasons/1/divisions/1/teams/"];
+    
+    NSString *urlString = [restfulUrl stringByAppendingFormat:@"%@%@", teamId, @".json"];
+
+    NSLog(@"%@", urlString);
+    
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    
+    NSDictionary *jsonTeam = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+
+    NSLog(@"jsonTeam: %@", jsonTeam);
+    
+    NSDictionary *clubJson = [jsonTeam objectForKey:@"club"];
+    
+    NSLog(@"%@", clubJson);
+    
+    NSString *clubBadgeJson = [clubJson objectForKey:@"badge"];
+    NSString *clubNameJson = [clubJson objectForKey:@"name"];
+    
+    name.text = clubNameJson;
+    
+    NSURL *imageUrl = [NSURL URLWithString:clubBadgeJson];
     NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
     
     badge.image = [[UIImage alloc]initWithData:imageData];
 
+    
+    
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  

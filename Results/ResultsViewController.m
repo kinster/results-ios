@@ -28,7 +28,7 @@
     
     NSError *error;
 
-    NSString *urlString = [NSString stringWithFormat:@"http://localhost:3000/leagues/1/league_seasons/1/league_season_divisions/1.json"];
+    NSString *urlString = [NSString stringWithFormat:@"http://localhost:3000/leagues/1/seasons/1/divisions/1.json"];
     
     NSLog(@"%@", urlString);
     
@@ -43,6 +43,7 @@
     } else {
         NSLog(@"How many? %d", [jsonTeams count]);
         for (NSDictionary *team in jsonTeams) {
+            NSString *teamId = [team objectForKey:@"id"];
             NSString *wins = [team objectForKey:@"wins"];
             NSString *draws = [team objectForKey:@"draws"];
             NSString *losses = [team objectForKey:@"losses"];
@@ -71,59 +72,10 @@
 
             [self setLeagueName:[leagueNameJson stringByAppendingFormat:@" %@ %@",seasonName, divisionName]];
 
-            club = [[Club alloc] initWithName:clubName AndBadge:badge AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:goalsFor AndGoalsAgainst:goalsAgainst AndGoalDiff:goalDiff AndPoints:points];
+            club = [[Club alloc] initWithName:clubName AndBadge:badge AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:goalsFor AndGoalsAgainst:goalsAgainst AndGoalDiff:goalDiff AndPoints:points AndTeamId:teamId];
             [clubList addObject: club];
 
         }
-//        NSDictionary *jsonLeagueSeason = [jsonObjects objectForKey:@"league_season"];
-//        NSDictionary *league = [jsonLeagueSeason objectForKey:@"league"];
-//        NSDictionary *jsonSeason = [jsonLeagueSeason objectForKey:@"season"];
-//        NSString *seasonNameJson = [jsonSeason objectForKey:@"name"];
-//        NSString *leagueLogoJson = [league objectForKey:@"logo"];
-//        NSString *leagueNameJson = [league objectForKey:@"name"];
-//
-//        NSDictionary *jsonTeam = [jsonObjects objectForKey:@"team"];
-//        NSString *teamName = [jsonTeam objectForKey:@"name"];
-//
-//        NSURL *imageUrl = [NSURL URLWithString:leagueLogoJson];
-//        NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
-//        
-//        leagueLogo.image = [[UIImage alloc]initWithData:imageData];
-//        
-//        [self setLeagueName:[leagueNameJson stringByAppendingFormat:@" %@ %@",seasonNameJson, teamName]];
-//        
-//        NSLog(@"league: %@ %@ %@", leagueLogoJson, leagueNameJson, seasonNameJson);
-//
-//        NSArray *jsonLeagueDetails = [jsonObjects objectForKey:@"league_season_club_teams"];
-//        for (NSDictionary *entry in jsonLeagueDetails) {
-//            NSString *clubId = [entry objectForKey:@"club_id"];
-//            // get the club team now
-//            NSString *wins = [entry objectForKey:@"wins"];
-//            NSString *draws = [entry objectForKey:@"draws"];
-//            NSString *losses = [entry objectForKey:@"losses"];
-//            NSString *goalsFor = [entry objectForKey:@"goals_for"];
-//            NSString *goalsAgainst = [entry objectForKey:@"goals_against"];
-//            NSString *goalDiff = [entry objectForKey:@"goals_diff"];
-//            NSString *points = [entry objectForKey:@"points"];
-//            NSLog(@"%@ %@ %@ %@ %@ %@", clubId, wins, draws, losses, goalsFor, goalsAgainst);
-//
-//            
-//            NSArray *clubs = [jsonObjects objectForKey:@"clubs"];
-//            for (NSDictionary *clubEntry in clubs) {
-//               if ([clubEntry isKindOfClass:[NSDictionary class]]) {
-//                    NSString *clubEntryId = [clubEntry objectForKey:@"id"];
-//                    if (clubId == clubEntryId) {
-//                        NSString *name = [clubEntry objectForKey:@"name"];
-//                        NSString *badge = [clubEntry objectForKey:@"badge"];
-//                        NSLog(@"Club: %@ %@", name,  badge);
-//                        club = [[Club alloc] initWithName:name AndBadge:badge AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:goalsFor AndGoalsAgainst:goalsAgainst AndGoalDiff:goalDiff AndPoints:points];
-//                        [clubList addObject: club];
-//                    }
-//                } else {
-//                    NSLog(@"%s", "Not a dictionary");
-//                }
-//            }
-//        }
     }
     [self setLeagueLogo:leagueLogo];
     NSLog(@"League set: %@ %@", leagueName, leagueLogo);
@@ -190,13 +142,20 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSLog(@"In prepareForSegue");
     
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    NSLog(@"%d", indexPath.row);
+    Club *selectedClub = [clubList objectAtIndex:indexPath.row];
+
     if ([[segue identifier] isEqualToString:@"ShowClubDetails"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSLog(@"%d", indexPath.row);
-        Club *selectedClub = [clubList objectAtIndex:indexPath.row];
         NSLog(@"%@", selectedClub.name);
         NSLog(@"%@", segue.destinationViewController);
-        [segue.destinationViewController setClub:selectedClub];
+        UITabBarController *tabBarViewController = [segue destinationViewController];
+        ClubDetailsViewController *clubDetailsViewController = [tabBarViewController.viewControllers objectAtIndex:0];
+        [clubDetailsViewController setTeamId:selectedClub.teamId];
+//        [segue.destinationViewController setClub:selectedClub];
+
+    } else {
+//        [segue.destinationViewController setTeamId:selectedClub.teamId];
     }
 }
 
@@ -218,11 +177,12 @@
     NSLog(@"%d", indexPath.row);
     Club *selectedClub = [clubList objectAtIndex:indexPath.row];
     NSLog(@"%@", selectedClub.name);
+    NSLog(@"%@", selectedClub.teamId);
 
     if (clubDetailsViewController == nil) {
         clubDetailsViewController = [[ClubDetailsViewController alloc] initWithNibName:@"ClubDetailsController" bundle:nil];
     }
-    [clubDetailsViewController setClub:selectedClub];
-    [self performSegueWithIdentifier:@"ShowClubDetails" sender:selectedClub];
+    [clubDetailsViewController setTeamId:selectedClub.teamId];
+    [self performSegueWithIdentifier:@"ShowClubDetails" sender:selectedClub.teamId];
 }
 @end

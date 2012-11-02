@@ -12,7 +12,7 @@
 
 @synthesize teams;
 
-- (id) initWithName:(NSString *)name AndBadge:(NSString *)badge AndWins:(NSString *)wins AndDraws:(NSString *)draws AndLosses:(NSString *)losses AndGoalsFor:(NSString *)goalsFor AndGoalsAgainst:(NSString *)goalsAgainst AndGoalDiff:(NSString *)goalDiff AndPoints:(NSString *)points {
+- (id) initWithName:(NSString *)name AndBadge:(NSString *)badge AndWins:(NSString *)wins AndDraws:(NSString *)draws AndLosses:(NSString *)losses AndGoalsFor:(NSString *)goalsFor AndGoalsAgainst:(NSString *)goalsAgainst AndGoalDiff:(NSString *)goalDiff AndPoints:(NSString *)points AndTeamId:(NSString *)teamId {
     if (self = [super init]) {
         _name = name;
         _badge = badge;
@@ -23,12 +23,13 @@
         _goalsAgainst = goalsAgainst;
         _goalDiff = goalDiff;
         _points = points;
+        _teamId = teamId;
     }
     return self;
 }
 
 - (id)initWithName:(NSString *)name AndBadge:(NSString *)badge {
-    return [self initWithName:name AndBadge:badge AndWins:nil AndDraws:nil AndLosses:nil AndGoalsFor:nil AndGoalsAgainst:nil AndGoalDiff:nil AndPoints:nil];
+    return [self initWithName:name AndBadge:badge AndWins:nil AndDraws:nil AndLosses:nil AndGoalsFor:nil AndGoalsAgainst:nil AndGoalDiff:nil AndPoints:nil AndTeamId:nil];
 }
 
 - (id)initWithName:(NSString *)name {
