@@ -4,12 +4,13 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
     </dependencies>
     <scenes>
-        <!--Results View Controller - My League-->
+        <!--Results View Controller - Table-->
         <scene sceneID="5">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
                 <viewController id="2" customClass="ResultsViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="JzI-hx-qgI">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <imageView key="tableHeaderView" userInteractionEnabled="NO" contentMode="scaleToFill" image="garforthleague.jpg" id="xwx-aJ-AfN" userLabel="League Logo Header">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
@@ -155,14 +156,14 @@
                             <outlet property="delegate" destination="2" id="fhQ-JZ-fcP"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My League" id="KQp-Y1-tBG"/>
+                    <tabBarItem key="tabBarItem" title="Table" id="ri3-ER-AMy"/>
+                    <navigationItem key="navigationItem" id="KQp-Y1-tBG"/>
                     <connections>
                         <outlet property="leagueLogo" destination="xwx-aJ-AfN" id="y2q-tw-Mhh"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1038" y="-579"/>
+            <point key="canvasLocation" x="1351" y="-1359"/>
         </scene>
         <!--Club Details View Controller - Details-->
         <scene sceneID="Pz2-7r-XVW">
@@ -206,42 +207,89 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MEr-U9-2OR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2291" y="-635"/>
+            <point key="canvasLocation" x="2529" y="-1391"/>
         </scene>
-        <!--Table View Controller - Fixtures-->
-        <scene sceneID="Uuz-EZ-aV0">
+        <!--All Fixtures Table View Controller-->
+        <scene sceneID="ZkQ-p8-boI">
             <objects>
-                <tableViewController id="YDJ-2M-16F" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="O6a-PW-ppe">
+                <tableViewController id="gj8-5t-UbE" userLabel="All Fixtures Table View Controller" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="b5W-ZF-OmL" userLabel="Fixtures Table View">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="eQ3-aM-y1G">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="NCd-7R-pUU" detailTextLabel="lcR-cO-pU8" style="IBUITableViewCellStyleSubtitle" id="ebK-DF-rFj">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCd-7R-pUU">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcR-cO-pU8">
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="YDJ-2M-16F" id="skb-rY-CE1"/>
-                            <outlet property="delegate" destination="YDJ-2M-16F" id="OCh-QH-GZA"/>
+                            <outlet property="dataSource" destination="gj8-5t-UbE" id="L9A-Eg-9dW"/>
+                            <outlet property="delegate" destination="gj8-5t-UbE" id="72Y-V1-eGt"/>
                         </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Fixtures" id="Wrb-ey-Gou"/>
+                    <navigationItem key="navigationItem" id="vi5-sB-iEX"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jXa-Rf-3br" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1471" y="-454"/>
+        </scene>
+        <!--Selected Fixtures Controller-->
+        <scene sceneID="Uuz-EZ-aV0">
+            <objects>
+                <tableViewController id="YDJ-2M-16F" userLabel="Selected Fixtures Controller" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="O6a-PW-ppe" userLabel="Selected Fixtures Table View">
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="dA6-fn-rfZ" style="IBUITableViewCellStyleDefault" id="eQ3-aM-y1G">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dA6-fn-rfZ">
+                                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Fixtures" id="HNd-dM-6ar"/>
                     <navigationItem key="navigationItem" id="S0m-Cy-Vbs"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hP8-8d-0Ea" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2087" y="70"/>
+            <point key="canvasLocation" x="2602" y="-480"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HaC-s5-57r">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B1X-kn-88j" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="Fw3-Ty-sJl" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="AnW-rn-oIw">
@@ -254,12 +302,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="2" kind="relationship" relationship="rootViewController" id="ybj-GY-SlH"/>
+                        <segue destination="kmb-uQ-a1F" kind="relationship" relationship="rootViewController" id="DaH-Fi-uDh"/>
+                        <segue destination="kmb-uQ-a1F" kind="push" id="3uU-cG-al5"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="B1X-kn-88j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="512" y="-579"/>
+            <point key="canvasLocation" x="112" y="-1457"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="2mv-dN-YNo">
@@ -281,53 +329,42 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5tN-Pb-VDt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1555" y="-583"/>
+            <point key="canvasLocation" x="1954" y="-1003"/>
+        </scene>
+        <!--Tab Bar Controller - My League-->
+        <scene sceneID="VxH-ha-kaa">
+            <objects>
+                <tabBarController id="kmb-uQ-a1F" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="My League" id="ZPL-y7-JZO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="TpU-ea-kaO">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="2" kind="relationship" relationship="viewControllers" id="22i-Oj-E8f"/>
+                        <segue destination="gj8-5t-UbE" kind="push" id="fZd-1U-fw9"/>
+                        <segue destination="gj8-5t-UbE" kind="relationship" relationship="viewControllers" id="r3A-qp-ILi"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZMa-Ps-y4U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="763" y="-864"/>
         </scene>
     </scenes>
     <resources>
         <image name="garforthleague.jpg" width="385" height="100"/>
     </resources>
-    <classes>
-        <class className="ClubDetailsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ClubDetailsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="badge" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="position" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="CustomTableCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomTableCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="badge" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="draws" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="goalDiff" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="goalsAgainst" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="goalsFor" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="losses" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="points" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="position" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="wins" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="ResultsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ResultsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="leagueLogo" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="p4r-yj-Uj0"/>
+        <segue reference="DaH-Fi-uDh"/>
+        <segue reference="r3A-qp-ILi"/>
+        <segue reference="5a1-bO-Ti6"/>
         <segue reference="sL5-TG-7Hf"/>
     </inferredMetricsTieBreakers>
 </document>

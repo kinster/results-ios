@@ -63,6 +63,7 @@
             NSString *seasonName = [season objectForKey:@"name"];
             NSDictionary *division = [leagueSeasonDivision objectForKey:@"division"];
             NSString *divisionName = [division objectForKey:@"name"];
+            NSString *leagueSeasonDivisionId = [leagueSeasonDivision objectForKey:@"id"];
             NSLog(@"%@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@", wins, draws, losses, goalsFor, goalsAgainst, goalDiff, points, badge, clubName, leagueNameJson, divisionName, leagueLogoJson, seasonName);
             
             NSURL *imageUrl = [NSURL URLWithString:leagueLogoJson];

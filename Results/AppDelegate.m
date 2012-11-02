@@ -6,10 +6,12 @@
 //  Copyright (c) 2012 Kinman Li. All rights reserved.
 //
 
-#import "ResultsAppDelegate.h"
+#import "AppDelegate.h"
 #import "ResultsViewController.h"
 
-@implementation ResultsAppDelegate
+@implementation AppDelegate
+
+@synthesize tabBarController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

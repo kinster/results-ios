@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ResultsViewController.h"
+#import "FixturesViewController.h"
 
-@interface ResultsAppDelegate : UIResponder <UITableViewDelegate>
+@interface AppDelegate : UIResponder <UITableViewDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) UITabBarController *tabBarController;
 
 @end
