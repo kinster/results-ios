@@ -28,7 +28,7 @@
     
     NSError *error;
 
-    NSString *urlString = [NSString stringWithFormat:@"http://localhost:3000/league_season_teams/1.json"];
+    NSString *urlString = [NSString stringWithFormat:@"http://localhost:3000/leagues/1/league_seasons/1/league_season_divisions/1.json"];
     
     NSLog(@"%@", urlString);
     
@@ -36,61 +36,94 @@
     
     NSData *data = [NSData dataWithContentsOfURL:url];
 
-    NSDictionary *jsonObjects = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+    NSDictionary *jsonTeams = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
     
-    if (!jsonObjects) {
+    if (!jsonTeams) {
         NSLog(@"%@", error);
     } else {
-        NSLog(@"How many? %d", [jsonObjects count]);
-        NSDictionary *jsonLeagueSeason = [jsonObjects objectForKey:@"league_season"];
-        NSDictionary *league = [jsonLeagueSeason objectForKey:@"league"];
-        NSDictionary *jsonSeason = [jsonLeagueSeason objectForKey:@"season"];
-        NSString *seasonNameJson = [jsonSeason objectForKey:@"name"];
-        NSString *leagueLogoJson = [league objectForKey:@"logo"];
-        NSString *leagueNameJson = [league objectForKey:@"name"];
-
-        NSDictionary *jsonTeam = [jsonObjects objectForKey:@"team"];
-        NSString *teamName = [jsonTeam objectForKey:@"name"];
-
-        NSURL *imageUrl = [NSURL URLWithString:leagueLogoJson];
-        NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
-        
-        leagueLogo.image = [[UIImage alloc]initWithData:imageData];
-        
-        [self setLeagueName:[leagueNameJson stringByAppendingFormat:@" %@ %@",seasonNameJson, teamName]];
-        
-        NSLog(@"league: %@ %@ %@", leagueLogoJson, leagueNameJson, seasonNameJson);
-
-        NSArray *jsonLeagueDetails = [jsonObjects objectForKey:@"league_season_club_teams"];
-        for (NSDictionary *entry in jsonLeagueDetails) {
-            NSString *clubId = [entry objectForKey:@"club_id"];
-            // get the club team now
-            NSString *wins = [entry objectForKey:@"wins"];
-            NSString *draws = [entry objectForKey:@"draws"];
-            NSString *losses = [entry objectForKey:@"losses"];
-            NSString *goalsFor = [entry objectForKey:@"goals_for"];
-            NSString *goalsAgainst = [entry objectForKey:@"goals_against"];
-            NSString *goalDiff = [entry objectForKey:@"goals_diff"];
-            NSString *points = [entry objectForKey:@"points"];
-            NSLog(@"%@ %@ %@ %@ %@ %@", clubId, wins, draws, losses, goalsFor, goalsAgainst);
-
+        NSLog(@"How many? %d", [jsonTeams count]);
+        for (NSDictionary *team in jsonTeams) {
+            NSString *wins = [team objectForKey:@"wins"];
+            NSString *draws = [team objectForKey:@"draws"];
+            NSString *losses = [team objectForKey:@"losses"];
+            NSString *goalsFor = [team objectForKey:@"goals_for"];
+            NSString *goalsAgainst = [team objectForKey:@"goals_against"];
+            NSString *goalDiff = [team objectForKey:@"goal_diff"];
+            NSString *points = [team objectForKey:@"points"];
+            NSDictionary *clubJson = [team objectForKey:@"club"];
+            NSString *badge = [clubJson objectForKey:@"badge"];
+            NSString *clubName = [clubJson objectForKey:@"name"];
+            NSDictionary *leagueSeasonDivision = [team objectForKey:@"league_season_division"];
+            NSDictionary *leagueSeason = [leagueSeasonDivision objectForKey:@"league_season"];
+            NSDictionary *league = [leagueSeason objectForKey:@"league"];
+            NSDictionary *season = [leagueSeason objectForKey:@"season"];
+            NSString *leagueNameJson = [league objectForKey:@"name"];
+            NSString *leagueLogoJson = [league objectForKey:@"logo"];
+            NSString *seasonName = [season objectForKey:@"name"];
+            NSDictionary *division = [leagueSeasonDivision objectForKey:@"division"];
+            NSString *divisionName = [division objectForKey:@"name"];
+            NSLog(@"%@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@", wins, draws, losses, goalsFor, goalsAgainst, goalDiff, points, badge, clubName, leagueNameJson, divisionName, leagueLogoJson, seasonName);
             
-            NSArray *clubs = [jsonObjects objectForKey:@"clubs"];
-            for (NSDictionary *clubEntry in clubs) {
-               if ([clubEntry isKindOfClass:[NSDictionary class]]) {
-                    NSString *clubEntryId = [clubEntry objectForKey:@"id"];
-                    if (clubId == clubEntryId) {
-                        NSString *name = [clubEntry objectForKey:@"name"];
-                        NSString *badge = [clubEntry objectForKey:@"badge"];
-                        NSLog(@"Club: %@ %@", name,  badge);
-                        club = [[Club alloc] initWithName:name AndBadge:badge AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:goalsFor AndGoalsAgainst:goalsAgainst AndGoalDiff:goalDiff AndPoints:points];
-                        [clubList addObject: club];
-                    }
-                } else {
-                    NSLog(@"%s", "Not a dictionary");
-                }
-            }
+            NSURL *imageUrl = [NSURL URLWithString:leagueLogoJson];
+            NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
+
+            leagueLogo.image = [[UIImage alloc]initWithData:imageData];
+
+            [self setLeagueName:[leagueNameJson stringByAppendingFormat:@" %@ %@",seasonName, divisionName]];
+
+            club = [[Club alloc] initWithName:clubName AndBadge:badge AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:goalsFor AndGoalsAgainst:goalsAgainst AndGoalDiff:goalDiff AndPoints:points];
+            [clubList addObject: club];
+
         }
+//        NSDictionary *jsonLeagueSeason = [jsonObjects objectForKey:@"league_season"];
+//        NSDictionary *league = [jsonLeagueSeason objectForKey:@"league"];
+//        NSDictionary *jsonSeason = [jsonLeagueSeason objectForKey:@"season"];
+//        NSString *seasonNameJson = [jsonSeason objectForKey:@"name"];
+//        NSString *leagueLogoJson = [league objectForKey:@"logo"];
+//        NSString *leagueNameJson = [league objectForKey:@"name"];
+//
+//        NSDictionary *jsonTeam = [jsonObjects objectForKey:@"team"];
+//        NSString *teamName = [jsonTeam objectForKey:@"name"];
+//
+//        NSURL *imageUrl = [NSURL URLWithString:leagueLogoJson];
+//        NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
+//        
+//        leagueLogo.image = [[UIImage alloc]initWithData:imageData];
+//        
+//        [self setLeagueName:[leagueNameJson stringByAppendingFormat:@" %@ %@",seasonNameJson, teamName]];
+//        
+//        NSLog(@"league: %@ %@ %@", leagueLogoJson, leagueNameJson, seasonNameJson);
+//
+//        NSArray *jsonLeagueDetails = [jsonObjects objectForKey:@"league_season_club_teams"];
+//        for (NSDictionary *entry in jsonLeagueDetails) {
+//            NSString *clubId = [entry objectForKey:@"club_id"];
+//            // get the club team now
+//            NSString *wins = [entry objectForKey:@"wins"];
+//            NSString *draws = [entry objectForKey:@"draws"];
+//            NSString *losses = [entry objectForKey:@"losses"];
+//            NSString *goalsFor = [entry objectForKey:@"goals_for"];
+//            NSString *goalsAgainst = [entry objectForKey:@"goals_against"];
+//            NSString *goalDiff = [entry objectForKey:@"goals_diff"];
+//            NSString *points = [entry objectForKey:@"points"];
+//            NSLog(@"%@ %@ %@ %@ %@ %@", clubId, wins, draws, losses, goalsFor, goalsAgainst);
+//
+//            
+//            NSArray *clubs = [jsonObjects objectForKey:@"clubs"];
+//            for (NSDictionary *clubEntry in clubs) {
+//               if ([clubEntry isKindOfClass:[NSDictionary class]]) {
+//                    NSString *clubEntryId = [clubEntry objectForKey:@"id"];
+//                    if (clubId == clubEntryId) {
+//                        NSString *name = [clubEntry objectForKey:@"name"];
+//                        NSString *badge = [clubEntry objectForKey:@"badge"];
+//                        NSLog(@"Club: %@ %@", name,  badge);
+//                        club = [[Club alloc] initWithName:name AndBadge:badge AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:goalsFor AndGoalsAgainst:goalsAgainst AndGoalDiff:goalDiff AndPoints:points];
+//                        [clubList addObject: club];
+//                    }
+//                } else {
+//                    NSLog(@"%s", "Not a dictionary");
+//                }
+//            }
+//        }
     }
     [self setLeagueLogo:leagueLogo];
     NSLog(@"League set: %@ %@", leagueName, leagueLogo);
