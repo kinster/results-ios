@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Fw3-Ty-sJl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="kmb-uQ-a1F">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
     </dependencies>
     <scenes>
-        <!--Results View Controller - Table-->
+        <!--League Table View Controller - League Table-->
         <scene sceneID="5">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
-                <viewController id="2" customClass="ResultsViewController" sceneMemberID="viewController">
+                <viewController id="2" customClass="LeagueTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="JzI-hx-qgI">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -16,7 +15,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
                         </imageView>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="" selectionStyle="none" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="CustomClubCell" rowHeight="44" id="MF6-d8-FWy" userLabel="Custom Table Cell" customClass="CustomTableCell">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="" selectionStyle="none" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="CustomTeamCell" rowHeight="44" id="MF6-d8-FWy" userLabel="Custom Table Cell" customClass="CustomTableCell">
                                 <rect key="frame" x="0.0" y="125" width="320" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -147,7 +146,7 @@
                                     <outlet property="points" destination="ojB-hY-ISr" id="oGc-cn-fa9"/>
                                     <outlet property="position" destination="sY4-t1-JoF" id="b0i-oW-BS2"/>
                                     <outlet property="wins" destination="Idl-qE-Vgm" id="jEC-e2-6BZ"/>
-                                    <segue destination="QNM-An-m3I" kind="push" identifier="ShowClubDetails" id="uek-XR-YTQ"/>
+                                    <segue destination="QNM-An-m3I" kind="push" identifier="ShowTeamDetails" id="uek-XR-YTQ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -156,21 +155,21 @@
                             <outlet property="delegate" destination="2" id="fhQ-JZ-fcP"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Table" id="ri3-ER-AMy"/>
-                    <navigationItem key="navigationItem" id="KQp-Y1-tBG"/>
+                    <navigationItem key="navigationItem" title="League Table" id="KQp-Y1-tBG"/>
                     <connections>
                         <outlet property="leagueLogo" destination="xwx-aJ-AfN" id="y2q-tw-Mhh"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1351" y="-1359"/>
+            <point key="canvasLocation" x="1623" y="-1351"/>
         </scene>
-        <!--Club Details View Controller - Details-->
+        <!--Team Details View Controller - Team Details-->
         <scene sceneID="Pz2-7r-XVW">
             <objects>
-                <viewController id="bl9-Jn-mfe" customClass="ClubDetailsViewController" sceneMemberID="viewController">
+                <viewController id="bl9-Jn-mfe" customClass="TeamDetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a8L-7u-bal">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RC2-53-lT5" userLabel="Name">
@@ -197,8 +196,9 @@
                             <constraint firstItem="OWd-zP-XSH" firstAttribute="top" secondItem="RC2-53-lT5" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="h9S-uf-MPX"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Details" id="4xX-gO-gAp"/>
-                    <navigationItem key="navigationItem" id="suH-Ef-pLW"/>
+                    <navigationItem key="navigationItem" title="Team Details" id="suH-Ef-pLW"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="badge" destination="OWd-zP-XSH" id="xrd-1Q-FNf"/>
                         <outlet property="name" destination="RC2-53-lT5" id="Wmj-4J-WIW"/>
@@ -207,7 +207,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MEr-U9-2OR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2529" y="-1391"/>
+            <point key="canvasLocation" x="3581" y="-1391"/>
         </scene>
         <!--All Fixtures Table View Controller-->
         <scene sceneID="ZkQ-p8-boI">
@@ -245,19 +245,18 @@
                             <outlet property="delegate" destination="gj8-5t-UbE" id="72Y-V1-eGt"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Fixtures" id="Wrb-ey-Gou"/>
-                    <navigationItem key="navigationItem" id="vi5-sB-iEX"/>
+                    <navigationItem key="navigationItem" title="League Fixtures" id="vi5-sB-iEX"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jXa-Rf-3br" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1471" y="-454"/>
+            <point key="canvasLocation" x="1609" y="-464"/>
         </scene>
         <!--Selected Fixtures Controller-->
         <scene sceneID="Uuz-EZ-aV0">
             <objects>
                 <tableViewController id="YDJ-2M-16F" userLabel="Selected Fixtures Controller" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="O6a-PW-ppe" userLabel="Selected Fixtures Table View">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="499"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -284,57 +283,35 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hP8-8d-0Ea" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2602" y="-480"/>
+            <point key="canvasLocation" x="3528" y="-484"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="HaC-s5-57r">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="B1X-kn-88j" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController id="Fw3-Ty-sJl" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AnW-rn-oIw">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="RWa-9e-tRW">
-                        <rect key="frame" x="0.0" y="416" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
-                    <connections>
-                        <segue destination="kmb-uQ-a1F" kind="relationship" relationship="rootViewController" id="DaH-Fi-uDh"/>
-                        <segue destination="kmb-uQ-a1F" kind="push" id="3uU-cG-al5"/>
-                    </connections>
-                </navigationController>
-            </objects>
-            <point key="canvasLocation" x="112" y="-1457"/>
-        </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar Controller - Details-->
         <scene sceneID="2mv-dN-YNo">
             <objects>
-                <tabBarController id="QNM-An-m3I" sceneMemberID="viewController">
+                <tabBarController wantsFullScreenLayout="YES" hidesBottomBarWhenPushed="YES" id="QNM-An-m3I" userLabel="Tab Bar Controller - Details" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="u0g-6L-FnZ"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="4xg-m0-UfO">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="bl9-Jn-mfe" kind="relationship" relationship="viewControllers" id="5a1-bO-Ti6"/>
-                        <segue destination="bl9-Jn-mfe" kind="push" identifier="ShowClubDetails" id="p4r-yj-Uj0"/>
-                        <segue destination="YDJ-2M-16F" kind="push" id="Oqm-9e-nBv"/>
+                        <segue destination="vL5-fE-Ifu" kind="relationship" relationship="viewControllers" id="5a1-bO-Ti6"/>
+                        <segue destination="vL5-fE-Ifu" kind="push" identifier="ShowTeamDetails" id="p4r-yj-Uj0"/>
+                        <segue destination="YDJ-2M-16F" kind="push" identifier="ShowTeamFixtures" id="Oqm-9e-nBv"/>
                         <segue destination="YDJ-2M-16F" kind="relationship" relationship="viewControllers" id="sL5-TG-7Hf"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5tN-Pb-VDt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1954" y="-1003"/>
+            <point key="canvasLocation" x="2236" y="-1385"/>
         </scene>
-        <!--Tab Bar Controller - My League-->
+        <!--Tab Bar Controller - Front Screen-->
         <scene sceneID="VxH-ha-kaa">
             <objects>
-                <tabBarController id="kmb-uQ-a1F" sceneMemberID="viewController">
+                <tabBarController id="kmb-uQ-a1F" userLabel="Tab Bar Controller - Front Screen" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="My League" id="ZPL-y7-JZO"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -343,28 +320,124 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="2" kind="relationship" relationship="viewControllers" id="22i-Oj-E8f"/>
-                        <segue destination="gj8-5t-UbE" kind="push" id="fZd-1U-fw9"/>
-                        <segue destination="gj8-5t-UbE" kind="relationship" relationship="viewControllers" id="r3A-qp-ILi"/>
+                        <segue destination="fF4-7g-Q3o" kind="relationship" relationship="viewControllers" id="22i-Oj-E8f"/>
+                        <segue destination="gfy-gS-hhz" kind="push" id="fZd-1U-fw9"/>
+                        <segue destination="gfy-gS-hhz" kind="relationship" relationship="viewControllers" id="r3A-qp-ILi"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMa-Ps-y4U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="763" y="-864"/>
+            <point key="canvasLocation" x="260" y="-1306"/>
+        </scene>
+        <!--Navigation Controller - Table-->
+        <scene sceneID="92X-NH-K6H">
+            <objects>
+                <navigationController id="fF4-7g-Q3o" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Table" id="ri3-ER-AMy"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vvH-Oh-V50">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2" kind="relationship" relationship="rootViewController" id="OSX-uS-Ycs"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dn0-0H-NXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="923" y="-1461"/>
+        </scene>
+        <!--Navigation Controller - Fixtures-->
+        <scene sceneID="ZM4-bi-QvD">
+            <objects>
+                <navigationController id="gfy-gS-hhz" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Fixtures" id="Wrb-ey-Gou"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="I1I-w2-sYC"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1s8-oP-Kmu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="gj8-5t-UbE" kind="relationship" relationship="rootViewController" id="jP3-bF-Mob"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nop-ft-yiw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="929" y="-464"/>
+        </scene>
+        <!--Navigation Controller - Details-->
+        <scene sceneID="vk1-25-F7e">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="vL5-fE-Ifu" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Details" id="4xX-gO-gAp"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="9wA-HN-yev"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ecz-zq-7Pt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bl9-Jn-mfe" kind="relationship" relationship="rootViewController" id="Bso-xV-Reg"/>
+                        <segue destination="bl9-Jn-mfe" kind="push" identifier="ShowTeamDetails" id="agi-be-Sbn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UAx-Tn-6he" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3055" y="-1391"/>
         </scene>
     </scenes>
     <resources>
         <image name="garforthleague.jpg" width="385" height="100"/>
     </resources>
+    <classes>
+        <class className="CustomTableCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomTableCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="badge" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="draws" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="goalDiff" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="goalsAgainst" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="goalsFor" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="losses" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="points" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="position" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="wins" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="LeagueTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="leagueLogo" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="TeamDetailsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeamDetailsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="badge" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="position" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="DaH-Fi-uDh"/>
         <segue reference="r3A-qp-ILi"/>
-        <segue reference="5a1-bO-Ti6"/>
-        <segue reference="sL5-TG-7Hf"/>
+        <segue reference="Oqm-9e-nBv"/>
+        <segue reference="p4r-yj-Uj0"/>
+        <segue reference="agi-be-Sbn"/>
     </inferredMetricsTieBreakers>
 </document>

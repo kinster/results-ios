@@ -1,58 +1,54 @@
 //
-//  ClubDetailsViewController.m
+//  FixturesViewController.m
 //  Results
 //
-//  Created by Kinman Li on 25/10/2012.
+//  Created by Kinman Li on 02/11/2012.
 //  Copyright (c) 2012 Kinman Li. All rights reserved.
 //
 
-#import "ClubDetailsViewController.h"
-#import "Club.h"
+#import "LeagueFixturesViewController.h"
 
-@interface ClubDetailsViewController ()
+@interface LeagueFixturesViewController ()
 
 @end
 
-@implementation ClubDetailsViewController
 
-@synthesize position, name, badge, club, teamId;
+@implementation LeagueFixturesViewController
 
-- (void)viewDidLoad {
+@synthesize leagueSeasonDivisionId;
+
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    
+    NSLog(@"LeagueFixturesViewController");
     
     NSError *error;
     
-    NSString *restfulUrl = [[NSString alloc]initWithFormat:@"http://localhost:3000/leagues/1/seasons/1/divisions/1/teams/"];
+    NSString *restfulUrl = [[NSString alloc]initWithFormat:@"http://localhost:3000/leagues/1/seasons/1/divisions/"];
     
-    NSString *urlString = [restfulUrl stringByAppendingFormat:@"%@%@", teamId, @".json"];
-
+    NSString *urlString = [restfulUrl stringByAppendingFormat:@"%@%@", leagueSeasonDivisionId, @"/fixtures.json"];
+    
     NSLog(@"%@", urlString);
     
     NSURL *url = [NSURL URLWithString:urlString];
     
     NSData *data = [NSData dataWithContentsOfURL:url];
     
-    NSDictionary *jsonTeam = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+    NSDictionary *jsonFixtures = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+    
+    NSLog(@"jsonFixtures: %@", jsonFixtures);
+    
 
-    NSLog(@"jsonTeam: %@", jsonTeam);
-    
-    NSDictionary *clubJson = [jsonTeam objectForKey:@"club"];
-    
-    NSLog(@"%@", clubJson);
-    
-    NSString *clubBadgeJson = [clubJson objectForKey:@"badge"];
-    NSString *clubNameJson = [clubJson objectForKey:@"name"];
-    
-    name.text = clubNameJson;
-    
-    NSURL *imageUrl = [NSURL URLWithString:clubBadgeJson];
-    NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
-    
-    badge.image = [[UIImage alloc]initWithData:imageData];
-
-    
-    
-    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -64,6 +60,32 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+#warning Potentially incomplete method implementation.
+    // Return the number of sections.
+    return 0;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+#warning Incomplete method implementation.
+    // Return the number of rows in the section.
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    // Configure the cell...
+    
+    return cell;
 }
 
 /*

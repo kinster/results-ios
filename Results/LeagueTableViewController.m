@@ -6,25 +6,36 @@
 //  Copyright (c) 2012 Kinman Li. All rights reserved.
 //
 
-#import "ResultsViewController.h"
-#import "Club.h"
+#import "LeagueTableViewController.h"
+#import "Team.h"
 #import "CustomTableCell.h"
-#import "ClubDetailsViewController.h"
+#import "TeamDetailsViewController.h"
 
-@interface ResultsViewController ()
+@interface LeagueTableViewController ()
 
 @end
 
-@implementation ResultsViewController
+@implementation LeagueTableViewController
 
-@synthesize clubList, leagueLogo, leagueName, clubDetailsViewController;
+@synthesize teamList, leagueLogo, leagueName;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        //edit
+        self.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:0];
+        self.tabBarItem.title = @"League Table";
+        //end edit
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    clubList = [[NSMutableArray alloc] init];
-    Club *club = nil;
+    teamList = [[NSMutableArray alloc] init];
+    Team *team = nil;
     
     NSError *error;
 
@@ -42,19 +53,19 @@
         NSLog(@"%@", error);
     } else {
         NSLog(@"How many? %d", [jsonTeams count]);
-        for (NSDictionary *team in jsonTeams) {
-            NSString *teamId = [team objectForKey:@"id"];
-            NSString *wins = [team objectForKey:@"wins"];
-            NSString *draws = [team objectForKey:@"draws"];
-            NSString *losses = [team objectForKey:@"losses"];
-            NSString *goalsFor = [team objectForKey:@"goals_for"];
-            NSString *goalsAgainst = [team objectForKey:@"goals_against"];
-            NSString *goalDiff = [team objectForKey:@"goal_diff"];
-            NSString *points = [team objectForKey:@"points"];
-            NSDictionary *clubJson = [team objectForKey:@"club"];
-            NSString *badge = [clubJson objectForKey:@"badge"];
+        for (NSDictionary *teamJson in jsonTeams) {
+            NSString *teamId = [teamJson objectForKey:@"id"];
+            NSString *wins = [teamJson objectForKey:@"wins"];
+            NSString *draws = [teamJson objectForKey:@"draws"];
+            NSString *losses = [teamJson objectForKey:@"losses"];
+            NSString *goalsFor = [teamJson objectForKey:@"goals_for"];
+            NSString *goalsAgainst = [teamJson objectForKey:@"goals_against"];
+            NSString *goalDiff = [teamJson objectForKey:@"goal_diff"];
+            NSString *points = [teamJson objectForKey:@"points"];
+            NSDictionary *clubJson = [teamJson objectForKey:@"club"];
+            NSString *clubBadge = [clubJson objectForKey:@"badge"];
             NSString *clubName = [clubJson objectForKey:@"name"];
-            NSDictionary *leagueSeasonDivision = [team objectForKey:@"league_season_division"];
+            NSDictionary *leagueSeasonDivision = [teamJson objectForKey:@"league_season_division"];
             NSDictionary *leagueSeason = [leagueSeasonDivision objectForKey:@"league_season"];
             NSDictionary *league = [leagueSeason objectForKey:@"league"];
             NSDictionary *season = [leagueSeason objectForKey:@"season"];
@@ -64,7 +75,7 @@
             NSDictionary *division = [leagueSeasonDivision objectForKey:@"division"];
             NSString *divisionName = [division objectForKey:@"name"];
             NSString *leagueSeasonDivisionId = [leagueSeasonDivision objectForKey:@"id"];
-            NSLog(@"%@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@", wins, draws, losses, goalsFor, goalsAgainst, goalDiff, points, badge, clubName, leagueNameJson, divisionName, leagueLogoJson, seasonName);
+            NSLog(@"%@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@", wins, draws, losses, goalsFor, goalsAgainst, goalDiff, points, clubBadge, clubName, leagueNameJson, divisionName, leagueLogoJson, seasonName);
             
             NSURL *imageUrl = [NSURL URLWithString:leagueLogoJson];
             NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
@@ -73,8 +84,8 @@
 
             [self setLeagueName:[leagueNameJson stringByAppendingFormat:@" %@ %@",seasonName, divisionName]];
 
-            club = [[Club alloc] initWithName:clubName AndBadge:badge AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:goalsFor AndGoalsAgainst:goalsAgainst AndGoalDiff:goalDiff AndPoints:points AndTeamId:teamId];
-            [clubList addObject: club];
+            team = [[Team alloc] initWithClubName:clubName AndClubBadge:clubBadge AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:goalsFor AndGoalsAgainst:goalsAgainst AndGoalDiff:goalDiff AndPoints:points AndTeamId:teamId];
+            [teamList addObject: team];
 
         }
     }
@@ -88,32 +99,32 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [clubList count];
+    return [teamList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString *CellIdentifier = @"CustomClubCell";
+    NSString *CellIdentifier = @"CustomTeamCell";
     
     CustomTableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[CustomTableCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    NSURL *imageUrl = [NSURL URLWithString:[[clubList objectAtIndex:indexPath.row]badge]];
+    NSURL *imageUrl = [NSURL URLWithString:[[teamList objectAtIndex:indexPath.row]clubBadge]];
     NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
     
-    Club *club = [clubList objectAtIndex:indexPath.row];
+    Team *team = [teamList objectAtIndex:indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.position.text = [NSString stringWithFormat:@"%d", indexPath.row+1];
     cell.badge.image = [[UIImage alloc]initWithData:imageData];
-    cell.name.text = [club name];
-    NSString *wins = [NSString stringWithFormat:@"%d", club.wins.intValue];
-    NSString *draws = [NSString stringWithFormat:@"%d", club.draws.intValue];
-    NSString *losses = [NSString stringWithFormat:@"%d", club.losses.intValue];
-    NSString *goalsFor = [NSString stringWithFormat:@"%d", club.goalsFor.intValue];
-    NSString *goalsAgainst = [NSString stringWithFormat:@"%d", club.goalsAgainst.intValue];
-    NSString *goalDiff = [NSString stringWithFormat:@"%d", club.goalDiff.intValue];
-    NSString *points = [NSString stringWithFormat:@"%d", club.points.intValue];
+    cell.name.text = [team clubName];
+    NSString *wins = [NSString stringWithFormat:@"%d", team.wins.intValue];
+    NSString *draws = [NSString stringWithFormat:@"%d", team.draws.intValue];
+    NSString *losses = [NSString stringWithFormat:@"%d", team.losses.intValue];
+    NSString *goalsFor = [NSString stringWithFormat:@"%d", team.goalsFor.intValue];
+    NSString *goalsAgainst = [NSString stringWithFormat:@"%d", team.goalsAgainst.intValue];
+    NSString *goalDiff = [NSString stringWithFormat:@"%d", team.goalDiff.intValue];
+    NSString *points = [NSString stringWithFormat:@"%d", team.points.intValue];
     cell.wins.text = wins;
     cell.draws.text = draws;
     cell.losses.text = losses;
@@ -145,18 +156,18 @@
     
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     NSLog(@"%d", indexPath.row);
-    Club *selectedClub = [clubList objectAtIndex:indexPath.row];
+    Team *team = [teamList objectAtIndex:indexPath.row];
 
-    if ([[segue identifier] isEqualToString:@"ShowClubDetails"]) {
-        NSLog(@"%@", selectedClub.name);
+    if ([[segue identifier] isEqualToString:@"ShowTeamDetails"]) {
+        NSLog(@"%@", team.clubName);
         NSLog(@"%@", segue.destinationViewController);
-        UITabBarController *tabBarViewController = [segue destinationViewController];
-        ClubDetailsViewController *clubDetailsViewController = [tabBarViewController.viewControllers objectAtIndex:0];
-        [clubDetailsViewController setTeamId:selectedClub.teamId];
-//        [segue.destinationViewController setClub:selectedClub];
+        UINavigationController *navigationController = [segue destinationViewController];
+        
 
-    } else {
-//        [segue.destinationViewController setTeamId:selectedClub.teamId];
+        UITabBarController *tabBarViewController = [navigationController.viewControllers objectAtIndex:0];
+        TeamDetailsViewController *teamDetailsViewController = [tabBarViewController.viewControllers objectAtIndex:0];
+        [teamDetailsViewController setTeamId:team.teamId];
+//        [segue.destinationViewController setClub:selectedClub];
     }
 }
 
@@ -176,14 +187,14 @@
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"In accessoryButtonTappedForRowWithIndexPath");
     NSLog(@"%d", indexPath.row);
-    Club *selectedClub = [clubList objectAtIndex:indexPath.row];
-    NSLog(@"%@", selectedClub.name);
-    NSLog(@"%@", selectedClub.teamId);
+    Team *team = [teamList objectAtIndex:indexPath.row];
+    NSLog(@"%@", team.clubName);
+    NSLog(@"%@", team.teamId);
 
-    if (clubDetailsViewController == nil) {
-        clubDetailsViewController = [[ClubDetailsViewController alloc] initWithNibName:@"ClubDetailsController" bundle:nil];
-    }
-    [clubDetailsViewController setTeamId:selectedClub.teamId];
-    [self performSegueWithIdentifier:@"ShowClubDetails" sender:selectedClub.teamId];
+//    if (teamDetailsViewController == nil) {
+//        teamDetailsViewController = [[TeamDetailsViewController alloc] initWithNibName:@"ClubDetailsController" bundle:nil];
+//    }
+//    [teamDetailsViewController setTeamId:team.teamId];
+//    [self performSegueWithIdentifier:@"ShowTeamDetails" sender:team.teamId];
 }
 @end

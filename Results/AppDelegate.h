@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ResultsViewController.h"
-#import "FixturesViewController.h"
+#import "LeagueTableViewController.h"
+#import "LeagueFixturesViewController.h"
 
 @interface AppDelegate : UIResponder <UITableViewDelegate>
 

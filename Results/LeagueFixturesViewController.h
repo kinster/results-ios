@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FixturesViewController : UITableViewController
+@interface LeagueFixturesViewController : UITableViewController
 @property (weak, nonatomic) NSString *leagueSeasonDivisionId;
 @end
