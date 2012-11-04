@@ -8,98 +8,100 @@
         <scene sceneID="5">
             <objects>
                 <viewController title="League Table" id="2" customClass="LeagueTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="JzI-hx-qgI">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="25" sectionHeaderHeight="22" sectionFooterHeight="22" id="8L3-DS-B2W">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <imageView key="tableHeaderView" userInteractionEnabled="NO" contentMode="scaleToFill" image="garforthleague.jpg" id="xwx-aJ-AfN" userLabel="League Logo Header">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <imageView key="tableHeaderView" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="garforthleague.jpg" id="LkB-Ud-y2s">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="83"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="" selectionStyle="none" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="CustomTeamCell" rowHeight="44" id="MF6-d8-FWy" userLabel="Custom Table Cell" customClass="CustomTableCell">
-                                <rect key="frame" x="0.0" y="125" width="320" height="46"/>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="CustomCellRestorationId" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CustomTableCell" rowHeight="25" id="Dwl-Iw-EaS" userLabel="Team Cell" customClass="CustomTableCell">
+                                <rect key="frame" x="0.0" y="105" width="320" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="10" y="1" width="267" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="24"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="P" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sY4-t1-JoF">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lTh-Pa-Cly" userLabel="Position">
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="35" id="qcQ-th-NVp"/>
-                                                <constraint firstAttribute="height" constant="35" id="tyN-af-QRl"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pc1-iT-tBC">
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="35" id="IQj-q4-tOz"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="168" translatesAutoresizingMaskIntoConstraints="NO" id="Opj-Oj-0fU" userLabel="Team Name">
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="Sos-hi-YNz"/>
-                                                <constraint firstAttribute="width" constant="168" id="VXa-YA-gaq"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="W" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Idl-qE-Vgm" userLabel="Wins">
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="20" id="Hhm-q6-pKY"/>
-                                                <constraint firstAttribute="height" constant="19" id="idL-s7-etL"/>
+                                                <constraint firstAttribute="height" constant="25" id="7Ee-ng-3Xo"/>
+                                                <constraint firstAttribute="width" constant="25" id="AVc-eq-pcQ"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="D" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUN-jl-BwV" userLabel="Draws">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Manchester United" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Dc-HI-Guj" userLabel="Team">
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="24" id="ayL-RY-6xs"/>
+                                                <constraint firstAttribute="width" constant="100" id="sCj-U8-pjs"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="L" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Vi-w8-OHe" userLabel="Losses">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="10" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpH-C5-aEf" userLabel="Played">
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="20" id="Mhe-03-W6W"/>
+                                                <constraint firstAttribute="width" constant="20" id="49G-ts-W0P"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="GF" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CAG-CM-kk6" userLabel="Goals For">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="10" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dI-UA-yfe" userLabel="Wins">
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="20" id="9gQ-ip-B1W"/>
+                                                <constraint firstAttribute="width" constant="20" id="rJh-jj-33D"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="GA" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ot-1R-RU3" userLabel="Goals Against">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="10" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjq-A9-th3" userLabel="Draw">
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="20" id="NPL-ln-Dyt"/>
+                                                <constraint firstAttribute="width" constant="20" id="HIo-HQ-Ssn"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="GD" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I1g-SW-qg1" userLabel="Goals Diff">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="10" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dds-dh-XT3" userLabel="Losses">
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="20" id="qF1-jv-G81"/>
+                                                <constraint firstAttribute="width" constant="20" id="bPA-0m-Jp7"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="P" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ojB-hY-ISr" userLabel="Points">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="10" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vh1-Da-wkh" userLabel="Goals For">
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="35" id="1bK-dy-iye"/>
-                                                <constraint firstAttribute="width" constant="35" id="FdD-3t-HUj"/>
+                                                <constraint firstAttribute="width" constant="20" id="7YV-EC-yKc"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="10" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yeN-jG-1Ve" userLabel="Goals Against">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="9rU-2z-d8O"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="10" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5OO-rP-Zx6" userLabel="Goal Difference">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="j3J-ZG-A3p"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="10" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r0K-EW-lHH" userLabel="Points">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="G2F-EH-2Uf"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
@@ -107,58 +109,57 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="Idl-qE-Vgm" firstAttribute="leading" secondItem="MF6-d8-FWy" secondAttribute="leading" constant="118" id="0um-U3-YYw"/>
-                                    <constraint firstItem="pc1-iT-tBC" firstAttribute="bottom" secondItem="sY4-t1-JoF" secondAttribute="bottom" type="default" id="5UB-Wx-d71"/>
-                                    <constraint firstItem="ojB-hY-ISr" firstAttribute="top" secondItem="Opj-Oj-0fU" secondAttribute="top" type="default" id="C38-WQ-H0a"/>
-                                    <constraint firstItem="CAG-CM-kk6" firstAttribute="top" secondItem="5Vi-w8-OHe" secondAttribute="top" type="default" id="Cd7-Q1-QCH"/>
-                                    <constraint firstAttribute="trailing" secondItem="5ot-1R-RU3" secondAttribute="trailing" constant="104" id="Clo-pe-xlP"/>
-                                    <constraint firstItem="5Vi-w8-OHe" firstAttribute="top" secondItem="dUN-jl-BwV" secondAttribute="top" type="default" id="DTv-cn-W38"/>
-                                    <constraint firstItem="CAG-CM-kk6" firstAttribute="top" secondItem="5ot-1R-RU3" secondAttribute="top" type="default" id="Dob-1L-wPm"/>
-                                    <constraint firstItem="sY4-t1-JoF" firstAttribute="leading" secondItem="MF6-d8-FWy" secondAttribute="leading" constant="10" id="FIz-42-toY"/>
-                                    <constraint firstItem="Idl-qE-Vgm" firstAttribute="top" secondItem="MF6-d8-FWy" secondAttribute="top" constant="22" id="Fmx-bi-mu1"/>
-                                    <constraint firstItem="pc1-iT-tBC" firstAttribute="leading" secondItem="MF6-d8-FWy" secondAttribute="leading" constant="44" id="G6s-94-YFL"/>
-                                    <constraint firstItem="I1g-SW-qg1" firstAttribute="top" secondItem="5ot-1R-RU3" secondAttribute="top" type="default" id="G7m-wg-Ad8"/>
-                                    <constraint firstItem="CAG-CM-kk6" firstAttribute="baseline" secondItem="5Vi-w8-OHe" secondAttribute="baseline" type="default" id="IKM-fu-sW2"/>
-                                    <constraint firstItem="dUN-jl-BwV" firstAttribute="baseline" secondItem="5Vi-w8-OHe" secondAttribute="baseline" type="default" id="LLZ-SJ-xEt"/>
-                                    <constraint firstItem="I1g-SW-qg1" firstAttribute="baseline" secondItem="5ot-1R-RU3" secondAttribute="baseline" type="default" id="MSF-tu-Z8a"/>
-                                    <constraint firstItem="dUN-jl-BwV" firstAttribute="baseline" secondItem="Idl-qE-Vgm" secondAttribute="baseline" type="default" id="MgE-wm-5ic"/>
-                                    <constraint firstItem="Opj-Oj-0fU" firstAttribute="top" secondItem="MF6-d8-FWy" secondAttribute="top" constant="4" id="awl-Id-DEN"/>
-                                    <constraint firstAttribute="trailing" secondItem="CAG-CM-kk6" secondAttribute="trailing" constant="123" id="bIk-rN-KUp"/>
-                                    <constraint firstItem="5Vi-w8-OHe" firstAttribute="leading" secondItem="MF6-d8-FWy" secondAttribute="leading" constant="158" id="cgW-Jj-hMV"/>
-                                    <constraint firstItem="Opj-Oj-0fU" firstAttribute="leading" secondItem="pc1-iT-tBC" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="f1J-vF-1Zg"/>
-                                    <constraint firstAttribute="trailing" secondItem="I1g-SW-qg1" secondAttribute="trailing" constant="85" id="gH4-Nz-doe"/>
-                                    <constraint firstItem="sY4-t1-JoF" firstAttribute="top" secondItem="MF6-d8-FWy" secondAttribute="top" constant="5" id="hIJ-4n-K46"/>
-                                    <constraint firstItem="dUN-jl-BwV" firstAttribute="top" secondItem="Idl-qE-Vgm" secondAttribute="top" type="default" id="l0T-cu-2ie"/>
-                                    <constraint firstItem="dUN-jl-BwV" firstAttribute="leading" secondItem="MF6-d8-FWy" secondAttribute="leading" constant="135" id="oKE-71-nr5"/>
-                                    <constraint firstItem="CAG-CM-kk6" firstAttribute="baseline" secondItem="5ot-1R-RU3" secondAttribute="baseline" type="default" id="p44-zq-6O3"/>
-                                    <constraint firstAttribute="trailing" secondItem="ojB-hY-ISr" secondAttribute="trailing" constant="47" id="tcl-ro-aSr"/>
-                                    <constraint firstItem="pc1-iT-tBC" firstAttribute="top" secondItem="sY4-t1-JoF" secondAttribute="top" type="default" id="vdg-eq-9q6"/>
+                                    <constraint firstItem="lTh-Pa-Cly" firstAttribute="baseline" secondItem="0Dc-HI-Guj" secondAttribute="baseline" type="default" id="2E2-xO-WeK"/>
+                                    <constraint firstItem="Dds-dh-XT3" firstAttribute="top" secondItem="Vh1-Da-wkh" secondAttribute="top" type="default" id="57O-WM-naI"/>
+                                    <constraint firstItem="r0K-EW-lHH" firstAttribute="leading" secondItem="Dwl-Iw-EaS" secondAttribute="leading" constant="272" id="58k-mL-NtC"/>
+                                    <constraint firstItem="yeN-jG-1Ve" firstAttribute="top" secondItem="5OO-rP-Zx6" secondAttribute="top" type="default" id="8aA-0l-ZQ0"/>
+                                    <constraint firstItem="mpH-C5-aEf" firstAttribute="top" secondItem="0Dc-HI-Guj" secondAttribute="top" type="default" id="ANd-1A-woA"/>
+                                    <constraint firstItem="7dI-UA-yfe" firstAttribute="top" secondItem="bjq-A9-th3" secondAttribute="top" type="default" id="B01-DZ-kT5"/>
+                                    <constraint firstItem="bjq-A9-th3" firstAttribute="baseline" secondItem="Dds-dh-XT3" secondAttribute="baseline" type="default" id="DQc-8K-Kk7"/>
+                                    <constraint firstItem="0Dc-HI-Guj" firstAttribute="baseline" secondItem="mpH-C5-aEf" secondAttribute="baseline" type="default" id="EhB-EA-hes"/>
+                                    <constraint firstItem="7dI-UA-yfe" firstAttribute="leading" secondItem="Dwl-Iw-EaS" secondAttribute="leading" constant="152" id="Ic0-1z-njB"/>
+                                    <constraint firstItem="bjq-A9-th3" firstAttribute="top" secondItem="Dds-dh-XT3" secondAttribute="top" type="default" id="J3A-fy-tMj"/>
+                                    <constraint firstItem="lTh-Pa-Cly" firstAttribute="leading" secondItem="Dwl-Iw-EaS" secondAttribute="leading" constant="-1" id="JkY-c8-nm0"/>
+                                    <constraint firstItem="Vh1-Da-wkh" firstAttribute="leading" secondItem="Dwl-Iw-EaS" secondAttribute="leading" constant="212" id="Jrg-MK-XXP"/>
+                                    <constraint firstItem="5OO-rP-Zx6" firstAttribute="leading" secondItem="Dwl-Iw-EaS" secondAttribute="leading" constant="252" id="NVJ-R2-69D"/>
+                                    <constraint firstItem="0Dc-HI-Guj" firstAttribute="leading" secondItem="Dwl-Iw-EaS" secondAttribute="leading" constant="31" id="SSH-7O-Ojj"/>
+                                    <constraint firstItem="Dds-dh-XT3" firstAttribute="baseline" secondItem="Vh1-Da-wkh" secondAttribute="baseline" type="default" id="U39-FB-jB4"/>
+                                    <constraint firstItem="mpH-C5-aEf" firstAttribute="leading" secondItem="Dwl-Iw-EaS" secondAttribute="leading" constant="132" id="VFK-7g-IRJ"/>
+                                    <constraint firstItem="yeN-jG-1Ve" firstAttribute="leading" secondItem="Dwl-Iw-EaS" secondAttribute="leading" constant="232" id="WEB-PC-At2"/>
+                                    <constraint firstItem="mpH-C5-aEf" firstAttribute="baseline" secondItem="7dI-UA-yfe" secondAttribute="baseline" type="default" id="hyI-Af-iYF"/>
+                                    <constraint firstItem="5OO-rP-Zx6" firstAttribute="top" secondItem="r0K-EW-lHH" secondAttribute="top" type="default" id="iB4-BU-MqV"/>
+                                    <constraint firstItem="Vh1-Da-wkh" firstAttribute="baseline" secondItem="yeN-jG-1Ve" secondAttribute="baseline" type="default" id="jTZ-26-C5z"/>
+                                    <constraint firstItem="bjq-A9-th3" firstAttribute="leading" secondItem="Dwl-Iw-EaS" secondAttribute="leading" constant="172" id="kCg-eR-01z"/>
+                                    <constraint firstItem="yeN-jG-1Ve" firstAttribute="baseline" secondItem="5OO-rP-Zx6" secondAttribute="baseline" type="default" id="nTc-fb-uBR"/>
+                                    <constraint firstItem="Dds-dh-XT3" firstAttribute="leading" secondItem="Dwl-Iw-EaS" secondAttribute="leading" constant="192" id="nne-fD-RqU"/>
+                                    <constraint firstItem="mpH-C5-aEf" firstAttribute="top" secondItem="7dI-UA-yfe" secondAttribute="top" type="default" id="o8a-k6-Io0"/>
+                                    <constraint firstItem="lTh-Pa-Cly" firstAttribute="top" secondItem="0Dc-HI-Guj" secondAttribute="top" type="default" id="oCy-74-V6m"/>
+                                    <constraint firstItem="7dI-UA-yfe" firstAttribute="baseline" secondItem="bjq-A9-th3" secondAttribute="baseline" type="default" id="p6v-mQ-Ah5"/>
+                                    <constraint firstItem="Vh1-Da-wkh" firstAttribute="top" secondItem="yeN-jG-1Ve" secondAttribute="top" type="default" id="s8y-L2-fvO"/>
+                                    <constraint firstItem="lTh-Pa-Cly" firstAttribute="top" secondItem="Dwl-Iw-EaS" secondAttribute="top" constant="-1" id="tEg-3N-LOg"/>
+                                    <constraint firstItem="5OO-rP-Zx6" firstAttribute="baseline" secondItem="r0K-EW-lHH" secondAttribute="baseline" type="default" id="u03-6F-wbH"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="Position" destination="sY4-t1-JoF" id="eBD-BC-ro6"/>
-                                    <outlet property="badge" destination="pc1-iT-tBC" id="FhD-bK-if8"/>
-                                    <outlet property="draws" destination="dUN-jl-BwV" id="ZSq-Te-LFI"/>
-                                    <outlet property="goalDiff" destination="I1g-SW-qg1" id="w1X-Tr-oPa"/>
-                                    <outlet property="goalsAgainst" destination="5ot-1R-RU3" id="5pP-al-CXF"/>
-                                    <outlet property="goalsFor" destination="CAG-CM-kk6" id="Wea-l2-5ri"/>
-                                    <outlet property="losses" destination="5Vi-w8-OHe" id="aDE-v6-dpD"/>
-                                    <outlet property="name" destination="Opj-Oj-0fU" id="HsQ-vk-TvY"/>
-                                    <outlet property="points" destination="ojB-hY-ISr" id="oGc-cn-fa9"/>
-                                    <outlet property="position" destination="sY4-t1-JoF" id="b0i-oW-BS2"/>
-                                    <outlet property="wins" destination="Idl-qE-Vgm" id="jEC-e2-6BZ"/>
-                                    <segue destination="QNM-An-m3I" kind="push" identifier="ShowTeamDetails" id="uek-XR-YTQ"/>
+                                    <outlet property="draws" destination="bjq-A9-th3" id="hOg-J5-bpE"/>
+                                    <outlet property="goalDiff" destination="5OO-rP-Zx6" id="deQ-zU-bAu"/>
+                                    <outlet property="goalsAgainst" destination="yeN-jG-1Ve" id="w7V-Is-pnc"/>
+                                    <outlet property="goalsFor" destination="Vh1-Da-wkh" id="oS1-6Q-0HW"/>
+                                    <outlet property="losses" destination="Dds-dh-XT3" id="uta-O0-DJo"/>
+                                    <outlet property="played" destination="mpH-C5-aEf" id="SNl-CZ-gaF"/>
+                                    <outlet property="points" destination="r0K-EW-lHH" id="hle-BI-XWA"/>
+                                    <outlet property="position" destination="lTh-Pa-Cly" id="YTc-OA-u2L"/>
+                                    <outlet property="team" destination="0Dc-HI-Guj" id="GKq-fs-Cez"/>
+                                    <outlet property="wins" destination="7dI-UA-yfe" id="c71-jb-afV"/>
+                                    <segue destination="QNM-An-m3I" kind="push" identifier="ShowTeamDetails" id="5cE-fr-f8L"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="2" id="vvH-1q-dyd"/>
-                            <outlet property="delegate" destination="2" id="fhQ-JZ-fcP"/>
+                            <outlet property="dataSource" destination="2" id="MNx-47-Ajl"/>
+                            <outlet property="delegate" destination="2" id="YAb-nm-Gub"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="League Table" id="KQp-Y1-tBG"/>
-                    <connections>
-                        <outlet property="leagueLogo" destination="xwx-aJ-AfN" id="y2q-tw-Mhh"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
@@ -486,15 +487,15 @@
         <class className="CustomTableCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomTableCell.h"/>
             <relationships>
-                <relationship kind="outlet" name="badge" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="draws" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="goalDiff" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="goalsAgainst" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="goalsFor" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="losses" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="played" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="points" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="position" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="team" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="wins" candidateClass="UILabel"/>
             </relationships>
         </class>
@@ -537,9 +538,9 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="fZd-1U-fw9"/>
-        <segue reference="7N1-By-uRD"/>
-        <segue reference="p4r-yj-Uj0"/>
         <segue reference="Oqm-9e-nBv"/>
+        <segue reference="p4r-yj-Uj0"/>
         <segue reference="agi-be-Sbn"/>
+        <segue reference="7N1-By-uRD"/>
     </inferredMetricsTieBreakers>
 </document>

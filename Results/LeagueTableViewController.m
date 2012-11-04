@@ -94,20 +94,23 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString *CellIdentifier = @"CustomTeamCell";
+    NSString *CellIdentifier = @"CustomTableCell";
     
     CustomTableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    NSLog(@"CustomTableCell: %@", cell);
     if (cell == nil) {
+        NSLog(@"CustomTableCell is nil: %@", cell);
         cell = [[CustomTableCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        NSLog(@"CustomTableCell is not nil: %@", cell);
     }
-    NSURL *imageUrl = [NSURL URLWithString:[[teamList objectAtIndex:indexPath.row]clubBadge]];
-    NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
+//    NSURL *imageUrl = [NSURL URLWithString:[[teamList objectAtIndex:indexPath.row]clubBadge]];
+//    NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
     
     Team *team = [teamList objectAtIndex:indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.position.text = [NSString stringWithFormat:@"%d", indexPath.row+1];
-    cell.badge.image = [[UIImage alloc]initWithData:imageData];
-    cell.name.text = [team clubName];
+//    cell.badge.image = [[UIImage alloc]initWithData:imageData];
+    cell.team.text = [team clubName];
     NSString *wins = [NSString stringWithFormat:@"%d", team.wins.intValue];
     NSString *draws = [NSString stringWithFormat:@"%d", team.draws.intValue];
     NSString *losses = [NSString stringWithFormat:@"%d", team.losses.intValue];
@@ -122,6 +125,7 @@
     cell.goalsAgainst.text = goalsAgainst;
     cell.goalDiff.text = goalDiff;
     cell.points.text = points;
+    NSLog(@"Team cell: %@ %@", cell.team.text, [team clubName]);
     return cell;
 }
 
