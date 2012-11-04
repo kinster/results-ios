@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface LeagueFixturesViewController : UITableViewController
+@property (nonatomic, copy) NSMutableArray *fixtureList;
 @property (weak, nonatomic) NSString *leagueSeasonDivisionId;
 @end

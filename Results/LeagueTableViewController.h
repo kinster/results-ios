@@ -15,4 +15,5 @@
 @property (nonatomic, retain) IBOutlet UIImageView *leagueLogo;
 @property (copy, nonatomic) NSString *leagueName;
 @property (nonatomic, copy) NSMutableArray *teamList;
+@property (nonatomic, assign) int leagueSeasonDivisionId;
 @end

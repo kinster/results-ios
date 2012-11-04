@@ -17,18 +17,7 @@
 
 @implementation LeagueTableViewController
 
-@synthesize teamList, leagueLogo, leagueName;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        //edit
-        self.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:0];
-        self.tabBarItem.title = @"League Table";
-        //end edit
-    }
-    return self;
-}
+@synthesize teamList, leagueLogo, leagueName, leagueSeasonDivisionId;
 
 - (void)viewDidLoad
 {
@@ -74,7 +63,8 @@
             NSString *seasonName = [season objectForKey:@"name"];
             NSDictionary *division = [leagueSeasonDivision objectForKey:@"division"];
             NSString *divisionName = [division objectForKey:@"name"];
-            NSString *leagueSeasonDivisionId = [leagueSeasonDivision objectForKey:@"id"];
+            NSInteger leagueSeasonDivisionIdJson = [[leagueSeasonDivision objectForKey:@"id"] integerValue];
+            [self setLeagueSeasonDivisionId:leagueSeasonDivisionIdJson];
             NSLog(@"%@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@", wins, draws, losses, goalsFor, goalsAgainst, goalDiff, points, clubBadge, clubName, leagueNameJson, divisionName, leagueLogoJson, seasonName);
             
             NSURL *imageUrl = [NSURL URLWithString:leagueLogoJson];
@@ -157,17 +147,18 @@
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     NSLog(@"%d", indexPath.row);
     Team *team = [teamList objectAtIndex:indexPath.row];
+    UINavigationController *navigationController = [segue destinationViewController];
+    UITabBarController *tabBarViewController = [navigationController.viewControllers objectAtIndex:0];
 
     if ([[segue identifier] isEqualToString:@"ShowTeamDetails"]) {
         NSLog(@"%@", team.clubName);
         NSLog(@"%@", segue.destinationViewController);
-        UINavigationController *navigationController = [segue destinationViewController];
-        
-
-        UITabBarController *tabBarViewController = [navigationController.viewControllers objectAtIndex:0];
         TeamDetailsViewController *teamDetailsViewController = [tabBarViewController.viewControllers objectAtIndex:0];
         [teamDetailsViewController setTeamId:team.teamId];
-//        [segue.destinationViewController setClub:selectedClub];
+    } else if ([[segue identifier] isEqualToString:@"ShowTeamFixtures"]) {
+        NSLog(@"Team Fixtures");
+        TeamDetailsViewController *teamDetailsViewController = [tabBarViewController.viewControllers objectAtIndex:1];
+        [teamDetailsViewController setTeamId:team.teamId];
     }
 }
 

@@ -7,6 +7,9 @@
 //
 
 #import "LeagueFixturesViewController.h"
+#import "LeagueFixtureDetailsViewController.h"
+#import "Team.h"
+#import "Fixture.h"
 
 @interface LeagueFixturesViewController ()
 
@@ -15,7 +18,7 @@
 
 @implementation LeagueFixturesViewController
 
-@synthesize leagueSeasonDivisionId;
+@synthesize leagueSeasonDivisionId, fixtureList;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -32,11 +35,13 @@
     
     NSLog(@"LeagueFixturesViewController");
     
+    fixtureList = [[NSMutableArray alloc] init];
+
     NSError *error;
     
     NSString *restfulUrl = [[NSString alloc]initWithFormat:@"http://localhost:3000/leagues/1/seasons/1/divisions/"];
     
-    NSString *urlString = [restfulUrl stringByAppendingFormat:@"%@%@", leagueSeasonDivisionId, @"/fixtures.json"];
+    NSString *urlString = [restfulUrl stringByAppendingFormat:@"%d%@", 1, @"/fixtures.json"];
     
     NSLog(@"%@", urlString);
     
@@ -48,7 +53,30 @@
     
     NSLog(@"jsonFixtures: %@", jsonFixtures);
     
+    for (NSDictionary *fixtureEntry in jsonFixtures) {
 
+        NSString *fixtureIdJson = [fixtureEntry objectForKey:@"id"];
+
+        NSString *dateTimeJson = [fixtureEntry objectForKey:@"date_time_short"];
+        NSString *locationJson = [fixtureEntry objectForKey:@"location"];
+
+        NSDictionary *homeTeamJson = [fixtureEntry objectForKey:@"home_club_team"];
+        NSDictionary *homeClubJson = [homeTeamJson objectForKey:@"club"];
+        NSString *homeBadge = [homeClubJson objectForKey:@"badge"];
+        NSString *homeName = [homeClubJson objectForKey:@"name"];
+        
+        NSDictionary *awayTeamJson = [fixtureEntry objectForKey:@"away_club_team"];
+        NSDictionary *awayClubJson = [awayTeamJson objectForKey:@"club"];
+        NSString *awayBadge = [awayClubJson objectForKey:@"badge"];
+        NSString *awayName = [awayClubJson objectForKey:@"name"];
+
+        Team *homeTeam = [[Team alloc] initWithClubName:homeName AndClubBadge:homeBadge];
+        Team *awayTeam = [[Team alloc] initWithClubName:awayName AndClubBadge:awayBadge];
+
+        Fixture *fixture = [[Fixture alloc] initWithIdDateTimeLocationHomeAway:fixtureIdJson AndDateTime:dateTimeJson AndLocation:locationJson AndHomeTeam:homeTeam andAwayTeam:awayTeam];
+        
+        [fixtureList addObject:fixture];
+    }
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -64,27 +92,31 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 0;
+    return [fixtureList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"LeagueFixtureCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+
+    Fixture *fixture = [fixtureList objectAtIndex:indexPath.row];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    NSString *mainLabelText = [NSString stringWithFormat:@"%@ v %@", fixture.homeTeam.clubName, fixture.awayTeam.clubName];
+    NSString *subText = [NSString  stringWithFormat:@"%@ (%@)", fixture.dateTime, fixture.location];
+    cell.textLabel.text = mainLabelText;
+    cell.detailTextLabel.text = subText;
     return cell;
 }
 
@@ -138,6 +170,22 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSLog(@"In prepareForSegue");
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    NSLog(@"%d", indexPath.row);
+    Fixture *fixture = [fixtureList objectAtIndex:indexPath.row];
+    LeagueFixtureDetailsViewController *destinationController = [segue destinationViewController];
+    
+    if ([[segue identifier] isEqualToString:@"ShowLeagueFixtureDetails"]) {
+        NSLog(@"Fixture id: %@", fixture.fixtureId);
+        NSLog(@"%@", segue.destinationViewController);
+
+        [destinationController setFixtureId:fixture.fixtureId];
+    }
 }
 
 @end
