@@ -17,7 +17,7 @@
 
 @implementation LeagueTableViewController
 
-@synthesize teamList, leagueLogo, leagueName, leagueSeasonDivisionId;
+@synthesize teamList, leagueLogo, leagueName, leagueSeasonDivisionId, leagueLogoUrl;
 
 - (void)viewDidLoad
 {
@@ -44,6 +44,7 @@
         NSLog(@"How many? %d", [jsonTeams count]);
         for (NSDictionary *teamJson in jsonTeams) {
             NSString *teamId = [teamJson objectForKey:@"id"];
+            NSString *played = [teamJson objectForKey:@"played"];
             NSString *wins = [teamJson objectForKey:@"wins"];
             NSString *draws = [teamJson objectForKey:@"draws"];
             NSString *losses = [teamJson objectForKey:@"losses"];
@@ -67,20 +68,27 @@
             [self setLeagueSeasonDivisionId:leagueSeasonDivisionIdJson];
             NSLog(@"%@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@", wins, draws, losses, goalsFor, goalsAgainst, goalDiff, points, clubBadge, clubName, leagueNameJson, divisionName, leagueLogoJson, seasonName);
             
-            NSURL *imageUrl = [NSURL URLWithString:leagueLogoJson];
-            NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
-
-            leagueLogo.image = [[UIImage alloc]initWithData:imageData];
+            NSLog(@"league logo:%@", leagueLogoJson);
+            [self setLeagueLogoUrl:leagueLogoJson];
+//            NSURL *imageUrl = [NSURL URLWithString:leagueLogoJson];
+//            NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
+//
+//            leagueLogo.image = [[UIImage alloc]initWithData:imageData];
 
             [self setLeagueName:[leagueNameJson stringByAppendingFormat:@" %@ %@",seasonName, divisionName]];
 
-            team = [[Team alloc] initWithClubName:clubName AndClubBadge:clubBadge AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:goalsFor AndGoalsAgainst:goalsAgainst AndGoalDiff:goalDiff AndPoints:points AndTeamId:teamId];
+            team = [[Team alloc] initWithClubName:clubName AndClubBadge:clubBadge AndPlayed:played AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:goalsFor AndGoalsAgainst:goalsAgainst AndGoalDiff:goalDiff AndPoints:points AndTeamId:teamId];
             [teamList addObject: team];
 
         }
     }
-    [self setLeagueLogo:leagueLogo];
+//    [self setLeagueLogo:leagueLogo];
     NSLog(@"League set: %@ %@", leagueName, leagueLogo);
+//    NSURL *imageUrl = [NSURL URLWithString:leagueLogoUrl];
+//    NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
+//    UIImage *image = [[UIImage alloc]initWithData:imageData];
+//    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+//    [self setLeagueLogo:imageView];
     [self loadView];
 }
 
@@ -97,11 +105,8 @@
     NSString *CellIdentifier = @"CustomTableCell";
     
     CustomTableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    NSLog(@"CustomTableCell: %@", cell);
     if (cell == nil) {
-        NSLog(@"CustomTableCell is nil: %@", cell);
         cell = [[CustomTableCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        NSLog(@"CustomTableCell is not nil: %@", cell);
     }
 //    NSURL *imageUrl = [NSURL URLWithString:[[teamList objectAtIndex:indexPath.row]clubBadge]];
 //    NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
@@ -111,6 +116,7 @@
     cell.position.text = [NSString stringWithFormat:@"%d", indexPath.row+1];
 //    cell.badge.image = [[UIImage alloc]initWithData:imageData];
     cell.team.text = [team clubName];
+    NSString *played = [NSString stringWithFormat:@"%d", team.played.intValue];
     NSString *wins = [NSString stringWithFormat:@"%d", team.wins.intValue];
     NSString *draws = [NSString stringWithFormat:@"%d", team.draws.intValue];
     NSString *losses = [NSString stringWithFormat:@"%d", team.losses.intValue];
@@ -118,6 +124,7 @@
     NSString *goalsAgainst = [NSString stringWithFormat:@"%d", team.goalsAgainst.intValue];
     NSString *goalDiff = [NSString stringWithFormat:@"%d", team.goalDiff.intValue];
     NSString *points = [NSString stringWithFormat:@"%d", team.points.intValue];
+    cell.played.text = played;
     cell.wins.text = wins;
     cell.draws.text = draws;
     cell.losses.text = losses;
@@ -125,7 +132,6 @@
     cell.goalsAgainst.text = goalsAgainst;
     cell.goalDiff.text = goalDiff;
     cell.points.text = points;
-    NSLog(@"Team cell: %@ %@", cell.team.text, [team clubName]);
     return cell;
 }
 
@@ -171,20 +177,20 @@
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    NSLog(@"League logo: %@", leagueLogo);
-    UIImage *myImage = [UIImage imageNamed:@"garforthleague.jpg"];
-    // create the imageView with the image in it
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:myImage];
-    imageView.frame = CGRectMake(0,0,320,144);
+    NSLog(@"viewForHeaderInSection League logo: %@", leagueLogoUrl);
+//    NSURL *imageUrl = [NSURL URLWithString:leagueLogoUrl];
+//    NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];    
+//    UIImage *image = [[UIImage alloc]initWithData:imageData];
+//    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
     return nil;
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"In accessoryButtonTappedForRowWithIndexPath");
-    NSLog(@"%d", indexPath.row);
-    Team *team = [teamList objectAtIndex:indexPath.row];
-    NSLog(@"%@", team.clubName);
-    NSLog(@"%@", team.teamId);
+//    NSLog(@"In accessoryButtonTappedForRowWithIndexPath");
+//    NSLog(@"%d", indexPath.row);
+//    Team *team = [teamList objectAtIndex:indexPath.row];
+//    NSLog(@"%@", team.clubName);
+//    NSLog(@"%@", team.teamId);
 
 //    if (teamDetailsViewController == nil) {
 //        teamDetailsViewController = [[TeamDetailsViewController alloc] initWithNibName:@"ClubDetailsController" bundle:nil];

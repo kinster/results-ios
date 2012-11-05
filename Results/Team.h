@@ -11,6 +11,7 @@
 @interface Team : NSObject
 @property (nonatomic, copy) NSString *clubName;
 @property (nonatomic, copy) NSString *clubBadge;
+@property (nonatomic, copy) NSString *played;
 @property (nonatomic, copy) NSString *wins;
 @property (nonatomic, copy) NSString *draws;
 @property (nonatomic, copy) NSString *losses;
@@ -20,7 +21,7 @@
 @property (nonatomic, copy) NSString *points;
 @property (nonatomic, copy) NSString *teamId;
 
--(id)initWithClubName:(NSString *)clubName AndClubBadge:(NSString *)clubBadge AndWins:(NSString *)wins AndDraws:(NSString *) draws AndLosses:(NSString *)losses AndGoalsFor:(NSString *)goalsFor AndGoalsAgainst:(NSString *)goalsAgainst AndGoalDiff:(NSString *)goalDiff AndPoints:(NSString *)points AndTeamId:(NSString *)teamId;
+-(id)initWithClubName:(NSString *)clubName AndClubBadge:(NSString *)clubBadge AndPlayed:(NSString *)played AndWins:(NSString *)wins AndDraws:(NSString *) draws AndLosses:(NSString *)losses AndGoalsFor:(NSString *)goalsFor AndGoalsAgainst:(NSString *)goalsAgainst AndGoalDiff:(NSString *)goalDiff AndPoints:(NSString *)points AndTeamId:(NSString *)teamId;
 -(id)initWithClubName:(NSString *)clubName AndClubBadge:(NSString *)clubBadge;
 -(id)initWithClubName:(NSString *)clubName;
 @end

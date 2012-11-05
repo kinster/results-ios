@@ -12,8 +12,9 @@
 @class CustomTableCell;
 
 @interface LeagueTableViewController : UITableViewController
-@property (nonatomic, retain) IBOutlet UIImageView *leagueLogo;
+@property (nonatomic, copy) IBOutlet UIImageView *leagueLogo;
 @property (copy, nonatomic) NSString *leagueName;
 @property (nonatomic, copy) NSMutableArray *teamList;
 @property (nonatomic, assign) int leagueSeasonDivisionId;
+@property (nonatomic, copy) NSString *leagueLogoUrl;
 @end

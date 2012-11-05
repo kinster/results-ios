@@ -21,7 +21,7 @@
     
     NSError *error = nil;
     
-    NSLog(@"LeagueFixtureDetailsViewController");
+    NSLog(@"LeagueFixtureDetailsViewController for fixture id %@", fixtureId);
     NSString *fixtureUrl = [NSString stringWithFormat:@"%s%@%s", "http://localhost:3000/leagues/1/seasons/1/divisions/1/fixtures/", fixtureId, ".json"];
     
     NSLog(@"fixtureUrl: %@", fixtureUrl);

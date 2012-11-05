@@ -10,10 +10,11 @@
 
 @implementation Fixture
 
-- (id)initWithIdDateTimeLocationHomeAway:(NSString *)fixtureId AndDateTime:(NSString *)dateTime AndLocation:(NSString *)location AndHomeTeam:(Team *)homeTeam andAwayTeam:(Team *)awayTeam {
+- (id)initWithIdDateTimeLocationHomeAway:(NSString *)fixtureId AndDate:(NSString *)date AndTime:(NSString *)time AndLocation:(NSString *)location AndHomeTeam:(Team *)homeTeam andAwayTeam:(Team *)awayTeam {
     if (self = [super init]) {
         _fixtureId = fixtureId;
-        _dateTime = dateTime;
+        _date = date;
+        
         _location = location;
         _homeTeam = homeTeam;
         _awayTeam = awayTeam;

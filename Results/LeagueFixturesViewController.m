@@ -10,6 +10,7 @@
 #import "LeagueFixtureDetailsViewController.h"
 #import "Team.h"
 #import "Fixture.h"
+#import "CustomFixtureCell.h"
 
 @interface LeagueFixturesViewController ()
 
@@ -57,7 +58,8 @@
 
         NSString *fixtureIdJson = [fixtureEntry objectForKey:@"id"];
 
-        NSString *dateTimeJson = [fixtureEntry objectForKey:@"date_time_short"];
+        NSString *dateJson = [fixtureEntry objectForKey:@"date_short"];
+        NSString *timeJson = [fixtureEntry objectForKey:@"time_short"];
         NSString *locationJson = [fixtureEntry objectForKey:@"location"];
 
         NSDictionary *homeTeamJson = [fixtureEntry objectForKey:@"home_club_team"];
@@ -73,7 +75,7 @@
         Team *homeTeam = [[Team alloc] initWithClubName:homeName AndClubBadge:homeBadge];
         Team *awayTeam = [[Team alloc] initWithClubName:awayName AndClubBadge:awayBadge];
 
-        Fixture *fixture = [[Fixture alloc] initWithIdDateTimeLocationHomeAway:fixtureIdJson AndDateTime:dateTimeJson AndLocation:locationJson AndHomeTeam:homeTeam andAwayTeam:awayTeam];
+        Fixture *fixture = [[Fixture alloc] initWithIdDateTimeLocationHomeAway:fixtureIdJson AndDate:dateJson AndTime:timeJson AndLocation:locationJson AndHomeTeam:homeTeam andAwayTeam:awayTeam];
         
         [fixtureList addObject:fixture];
     }
@@ -104,19 +106,21 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"LeagueFixtureCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"CustomFixtureCell";
+    CustomFixtureCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[CustomFixtureCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
 
     Fixture *fixture = [fixtureList objectAtIndex:indexPath.row];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    NSString *mainLabelText = [NSString stringWithFormat:@"%@ v %@", fixture.homeTeam.clubName, fixture.awayTeam.clubName];
-    NSString *subText = [NSString  stringWithFormat:@"%@ (%@)", fixture.dateTime, fixture.location];
-    cell.textLabel.text = mainLabelText;
-    cell.detailTextLabel.text = subText;
+//    NSString *mainLabelText = [NSString stringWithFormat:@"%@ v %@", fixture.homeTeam.clubName, fixture.awayTeam.clubName];
+//    NSString *subText = [NSString  stringWithFormat:@"%@ (%@)", fixture.dateTime, fixture.location];
+    cell.homeTeam.text = fixture.homeTeam.clubName;
+    cell.awayTeam.text = fixture.awayTeam.clubName;
+    cell.date.text = fixture.date;
+//    cell.textLabel.text = mainLabelText;
+//    cell.detailTextLabel.text = subText;
     return cell;
 }
 

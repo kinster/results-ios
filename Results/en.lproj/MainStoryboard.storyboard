@@ -12,7 +12,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <imageView key="tableHeaderView" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="garforthleague.jpg" id="LkB-Ud-y2s">
+                        <imageView key="tableHeaderView" userInteractionEnabled="NO" contentMode="scaleAspectFit" id="LkB-Ud-y2s" userLabel="Header Image">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="83"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -214,33 +214,71 @@
         <scene sceneID="ZkQ-p8-boI">
             <objects>
                 <tableViewController title="League Fixtures" id="gj8-5t-UbE" userLabel="All Fixtures Table View Controller" customClass="LeagueFixturesViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="b5W-ZF-OmL" userLabel="Fixtures Table View">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="25" sectionHeaderHeight="22" sectionFooterHeight="22" id="b5W-ZF-OmL" userLabel="Fixtures Table View">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LeagueFixtureCell" textLabel="NCd-7R-pUU" detailTextLabel="lcR-cO-pU8" style="IBUITableViewCellStyleSubtitle" id="ebK-DF-rFj">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="CustomCellRestorationId" selectionStyle="none" indentationWidth="10" reuseIdentifier="CustomFixtureCell" rowHeight="25" id="sGN-ZT-rp3" userLabel="Fixture Cell" customClass="CustomFixtureCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="24"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCd-7R-pUU">
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="61V-f3-L6v" userLabel="Date">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="61" id="YP4-kK-vz6"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcR-cO-pU8">
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Manchester United" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qXO-gQ-Q3R" userLabel="Home Team">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="110" id="QEo-9P-Zao"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="v" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h5U-kO-zhe" userLabel="v">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="l9D-UK-0qz"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Manchester United" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hl-wU-unD" userLabel="Away Team">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="110" id="3Ws-bv-btH"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <constraints>
+                                    <constraint firstItem="qXO-gQ-Q3R" firstAttribute="leading" secondItem="sGN-ZT-rp3" secondAttribute="leading" constant="65" id="7Bl-wI-jkl"/>
+                                    <constraint firstItem="h5U-kO-zhe" firstAttribute="top" secondItem="sGN-ZT-rp3" secondAttribute="top" type="default" id="EnH-eM-JvK"/>
+                                    <constraint firstItem="qXO-gQ-Q3R" firstAttribute="bottom" secondItem="sGN-ZT-rp3" secondAttribute="bottom" type="default" id="Fou-tX-qB6"/>
+                                    <constraint firstItem="61V-f3-L6v" firstAttribute="bottom" secondItem="sGN-ZT-rp3" secondAttribute="bottom" type="default" id="Fp5-bR-CWa"/>
+                                    <constraint firstItem="qXO-gQ-Q3R" firstAttribute="top" secondItem="sGN-ZT-rp3" secondAttribute="top" type="default" id="KCO-Al-SUY"/>
+                                    <constraint firstItem="2hl-wU-unD" firstAttribute="top" secondItem="sGN-ZT-rp3" secondAttribute="top" type="default" id="Kks-yM-cmE"/>
+                                    <constraint firstItem="61V-f3-L6v" firstAttribute="top" secondItem="sGN-ZT-rp3" secondAttribute="top" type="default" id="MSL-Md-eC1"/>
+                                    <constraint firstAttribute="trailing" secondItem="2hl-wU-unD" secondAttribute="trailing" constant="2" id="OJH-4M-Qxk"/>
+                                    <constraint firstItem="2hl-wU-unD" firstAttribute="bottom" secondItem="sGN-ZT-rp3" secondAttribute="bottom" type="default" id="UJD-Ai-cKh"/>
+                                    <constraint firstItem="h5U-kO-zhe" firstAttribute="leading" secondItem="qXO-gQ-Q3R" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Wpf-Eu-9yi"/>
+                                    <constraint firstItem="61V-f3-L6v" firstAttribute="leading" secondItem="sGN-ZT-rp3" secondAttribute="leading" constant="2" id="cqH-ec-fma"/>
+                                    <constraint firstItem="h5U-kO-zhe" firstAttribute="bottom" secondItem="sGN-ZT-rp3" secondAttribute="bottom" type="default" id="pqq-4F-js2"/>
+                                </constraints>
                                 <connections>
-                                    <segue destination="VOo-3e-Q1E" kind="push" identifier="ShowLeagueFixtureDetails" id="Bp0-PS-GJx"/>
+                                    <outlet property="awayTeam" destination="2hl-wU-unD" id="LPo-tY-k8D"/>
+                                    <outlet property="date" destination="61V-f3-L6v" id="gzF-5v-xRZ"/>
+                                    <outlet property="homeTeam" destination="qXO-gQ-Q3R" id="bXs-DC-aQ2"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -254,84 +292,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jXa-Rf-3br" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1450" y="-589"/>
-        </scene>
-        <!--League Fixture Details View Controller-->
-        <scene sceneID="P8t-py-rrd">
-            <objects>
-                <viewController id="VOo-3e-Q1E" customClass="LeagueFixtureDetailsViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="CtS-A6-xs2">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Home Team" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BqB-vz-KK6">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Away Team" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iDZ-5r-XcK">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="v" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5t2-hI-XOQ">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7IN-XZ-YSC">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Location" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="onp-Yw-foU">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iZ6-eo-veV">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="bZn-do-eLB"/>
-                                    <constraint firstAttribute="width" constant="50" id="zyy-kl-x7s"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0eN-Tr-WLW">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="mbT-rK-xZe"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="onp-Yw-foU" firstAttribute="centerX" secondItem="7IN-XZ-YSC" secondAttribute="centerX" type="default" id="3sd-VM-zj7"/>
-                            <constraint firstAttribute="bottom" secondItem="0eN-Tr-WLW" secondAttribute="bottom" constant="99" id="8CQ-85-d1y"/>
-                            <constraint firstItem="iDZ-5r-XcK" firstAttribute="leading" secondItem="CtS-A6-xs2" secondAttribute="leading" constant="117" id="9UG-DD-lYv"/>
-                            <constraint firstItem="iZ6-eo-veV" firstAttribute="centerX" secondItem="onp-Yw-foU" secondAttribute="centerX" type="default" id="BZQ-Ob-W4Z"/>
-                            <constraint firstItem="onp-Yw-foU" firstAttribute="top" secondItem="7IN-XZ-YSC" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="CFW-S3-HVE"/>
-                            <constraint firstItem="BqB-vz-KK6" firstAttribute="centerX" secondItem="iZ6-eo-veV" secondAttribute="centerX" type="default" id="D3j-zT-84D"/>
-                            <constraint firstItem="0eN-Tr-WLW" firstAttribute="trailing" secondItem="iZ6-eo-veV" secondAttribute="trailing" type="default" id="GVp-Pv-A5B"/>
-                            <constraint firstItem="BqB-vz-KK6" firstAttribute="top" secondItem="CtS-A6-xs2" secondAttribute="top" constant="167" id="HHG-VT-8uf"/>
-                            <constraint firstItem="0eN-Tr-WLW" firstAttribute="leading" secondItem="iZ6-eo-veV" secondAttribute="leading" type="default" id="OsB-7V-5Zz"/>
-                            <constraint firstItem="5t2-hI-XOQ" firstAttribute="top" secondItem="CtS-A6-xs2" secondAttribute="top" constant="190" id="a8P-wP-euI"/>
-                            <constraint firstItem="iZ6-eo-veV" firstAttribute="top" secondItem="CtS-A6-xs2" secondAttribute="top" constant="103" id="euy-sO-6JV"/>
-                            <constraint firstItem="iDZ-5r-XcK" firstAttribute="leading" secondItem="BqB-vz-KK6" secondAttribute="leading" type="default" id="pA1-Ex-lNq"/>
-                            <constraint firstItem="iDZ-5r-XcK" firstAttribute="top" secondItem="CtS-A6-xs2" secondAttribute="top" constant="216" id="tlL-gG-3Hr"/>
-                            <constraint firstItem="7IN-XZ-YSC" firstAttribute="top" secondItem="CtS-A6-xs2" secondAttribute="top" constant="20" symbolic="YES" type="default" id="udP-i5-qel"/>
-                            <constraint firstItem="5t2-hI-XOQ" firstAttribute="centerX" secondItem="BqB-vz-KK6" secondAttribute="centerX" type="default" id="xoE-Kv-tbW"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="hIn-po-2pM"/>
-                    <connections>
-                        <outlet property="awayBadge" destination="0eN-Tr-WLW" id="5ds-C0-0Lp"/>
-                        <outlet property="awayTeam" destination="iDZ-5r-XcK" id="m2M-y8-4Rw"/>
-                        <outlet property="dateTime" destination="7IN-XZ-YSC" id="R3X-me-t9T"/>
-                        <outlet property="homeBadge" destination="iZ6-eo-veV" id="ei4-kB-Pp2"/>
-                        <outlet property="homeTeam" destination="BqB-vz-KK6" id="fSf-0I-G9L"/>
-                        <outlet property="location" destination="onp-Yw-foU" id="MXn-5j-qQf"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lAv-M7-nE0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2059" y="-518"/>
         </scene>
         <!--Selected Fixtures Controller-->
         <scene sceneID="Uuz-EZ-aV0">
@@ -480,10 +440,15 @@
             <point key="canvasLocation" x="3055" y="-1391"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="garforthleague.jpg" width="385" height="100"/>
-    </resources>
     <classes>
+        <class className="CustomFixtureCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomFixtureCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="awayTeam" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="date" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="homeTeam" candidateClass="UILabel"/>
+            </relationships>
+        </class>
         <class className="CustomTableCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomTableCell.h"/>
             <relationships>
@@ -497,17 +462,6 @@
                 <relationship kind="outlet" name="position" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="team" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="wins" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="LeagueFixtureDetailsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueFixtureDetailsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="awayBadge" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="awayTeam" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="dateTime" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="homeBadge" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="homeTeam" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="location" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="LeagueFixturesViewController" superclassName="UITableViewController">
@@ -537,10 +491,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="fZd-1U-fw9"/>
         <segue reference="Oqm-9e-nBv"/>
+        <segue reference="fZd-1U-fw9"/>
+        <segue reference="7N1-By-uRD"/>
         <segue reference="p4r-yj-Uj0"/>
         <segue reference="agi-be-Sbn"/>
-        <segue reference="7N1-By-uRD"/>
     </inferredMetricsTieBreakers>
 </document>

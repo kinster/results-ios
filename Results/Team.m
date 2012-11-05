@@ -10,10 +10,11 @@
 
 @implementation Team
 
-- (id) initWithClubName:(NSString *)clubName AndClubBadge:(NSString *)clubBadge AndWins:(NSString *)wins AndDraws:(NSString *)draws AndLosses:(NSString *)losses AndGoalsFor:(NSString *)goalsFor AndGoalsAgainst:(NSString *)goalsAgainst AndGoalDiff:(NSString *)goalDiff AndPoints:(NSString *)points AndTeamId:(NSString *)teamId {
+- (id) initWithClubName:(NSString *)clubName AndClubBadge:(NSString *)clubBadge AndPlayed:(NSString *)played AndWins:(NSString *)wins AndDraws:(NSString *)draws AndLosses:(NSString *)losses AndGoalsFor:(NSString *)goalsFor AndGoalsAgainst:(NSString *)goalsAgainst AndGoalDiff:(NSString *)goalDiff AndPoints:(NSString *)points AndTeamId:(NSString *)teamId {
     if (self = [super init]) {
         _clubName = clubName;
         _clubBadge = clubBadge;
+        _played = played;
         _wins = wins;
         _draws = draws;
         _losses = losses;
@@ -27,7 +28,7 @@
 }
 
 - (id)initWithClubName:(NSString *)clubName AndClubBadge:(NSString *)clubBadge {
-    return [self initWithClubName:clubName AndClubBadge:clubBadge AndWins:nil AndDraws:nil AndLosses:nil AndGoalsFor:nil AndGoalsAgainst:nil AndGoalDiff:nil AndPoints:nil AndTeamId:nil];
+    return [self initWithClubName:clubName AndClubBadge:clubBadge AndPlayed:nil AndWins:nil AndDraws:nil AndLosses:nil AndGoalsFor:nil AndGoalsAgainst:nil AndGoalDiff:nil AndPoints:nil AndTeamId:nil];
 }
 
 - (id)initWithClubName:(NSString *)clubName {
