@@ -24,6 +24,8 @@
 		4B09D8D61633495E00A0A477 /* ClubModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B09D8D41633495E00A0A477 /* ClubModel.xcdatamodeld */; };
 		4B0E1B4516471E340010CA22 /* CustomFixtureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B0E1B4416471E340010CA22 /* CustomFixtureCell.xib */; };
 		4B0E1B4916471EA20010CA22 /* CustomFixtureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E1B4816471EA20010CA22 /* CustomFixtureCell.m */; };
+		4B0E1B4B16473ACB0010CA22 /* CustomResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B0E1B4A16473ACB0010CA22 /* CustomResultCell.xib */; };
+		4B0E1B4E16473B190010CA22 /* CustomResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E1B4D16473B180010CA22 /* CustomResultCell.m */; };
 		4B40DB731637DF46008F264C /* League.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B40DB721637DF46008F264C /* League.m */; };
 		4B7AF2E316396AF300D092D4 /* TeamDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7AF2E216396AF300D092D4 /* TeamDetailsViewController.m */; };
 		4BC86C1616442FC6007B51BE /* LeagueFixturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC86C1516442FC6007B51BE /* LeagueFixturesViewController.m */; };
@@ -60,6 +62,9 @@
 		4B0E1B4416471E340010CA22 /* CustomFixtureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomFixtureCell.xib; sourceTree = "<group>"; };
 		4B0E1B4716471EA20010CA22 /* CustomFixtureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomFixtureCell.h; sourceTree = "<group>"; };
 		4B0E1B4816471EA20010CA22 /* CustomFixtureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomFixtureCell.m; sourceTree = "<group>"; };
+		4B0E1B4A16473ACB0010CA22 /* CustomResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomResultCell.xib; path = ../CustomResultCell.xib; sourceTree = "<group>"; };
+		4B0E1B4C16473B180010CA22 /* CustomResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomResultCell.h; sourceTree = "<group>"; };
+		4B0E1B4D16473B180010CA22 /* CustomResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomResultCell.m; sourceTree = "<group>"; };
 		4B40DB711637DF46008F264C /* League.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = League.h; sourceTree = "<group>"; };
 		4B40DB721637DF46008F264C /* League.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = League.m; sourceTree = "<group>"; };
 		4B7AF2E116396AF300D092D4 /* TeamDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamDetailsViewController.h; sourceTree = "<group>"; };
@@ -148,6 +153,9 @@
 				4B0E1B4416471E340010CA22 /* CustomFixtureCell.xib */,
 				4B0E1B4716471EA20010CA22 /* CustomFixtureCell.h */,
 				4B0E1B4816471EA20010CA22 /* CustomFixtureCell.m */,
+				4B0E1B4A16473ACB0010CA22 /* CustomResultCell.xib */,
+				4B0E1B4C16473B180010CA22 /* CustomResultCell.h */,
+				4B0E1B4D16473B180010CA22 /* CustomResultCell.m */,
 				4B09D8D41633495E00A0A477 /* ClubModel.xcdatamodeld */,
 				4B09D8A51632F56900A0A477 /* Supporting Files */,
 			);
@@ -229,6 +237,7 @@
 				4B09D8CF1633125500A0A477 /* garforthleague.jpg in Resources */,
 				4BE0E2CC16345CF9000D061F /* CustomTableCell.xib in Resources */,
 				4B0E1B4516471E340010CA22 /* CustomFixtureCell.xib in Resources */,
+				4B0E1B4B16473ACB0010CA22 /* CustomResultCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +262,7 @@
 				4BDBEE161645A087001F3F77 /* Fixture.m in Sources */,
 				4BDBEE1A1645B2CF001F3F77 /* LeagueFixtureDetailsViewController.m in Sources */,
 				4B0E1B4916471EA20010CA22 /* CustomFixtureCell.m in Sources */,
+				4B0E1B4E16473B190010CA22 /* CustomResultCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

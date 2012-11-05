@@ -9,10 +9,10 @@
             <objects>
                 <viewController title="League Table" id="2" customClass="LeagueTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="25" sectionHeaderHeight="22" sectionFooterHeight="22" id="8L3-DS-B2W">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <imageView key="tableHeaderView" userInteractionEnabled="NO" contentMode="scaleAspectFit" id="LkB-Ud-y2s" userLabel="Header Image">
+                        <imageView key="tableHeaderView" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="garforthleague.jpg" id="LkB-Ud-y2s" userLabel="Header Image">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="83"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -163,14 +163,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1623" y="-1351"/>
+            <point key="canvasLocation" x="1478" y="-1399"/>
         </scene>
         <!--Team Details View Controller - Team Details-->
         <scene sceneID="Pz2-7r-XVW">
             <objects>
                 <viewController id="bl9-Jn-mfe" customClass="TeamDetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a8L-7u-bal">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RC2-53-lT5" userLabel="Name">
@@ -215,7 +215,7 @@
             <objects>
                 <tableViewController title="League Fixtures" id="gj8-5t-UbE" userLabel="All Fixtures Table View Controller" customClass="LeagueFixturesViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="25" sectionHeaderHeight="22" sectionFooterHeight="22" id="b5W-ZF-OmL" userLabel="Fixtures Table View">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -291,14 +291,14 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jXa-Rf-3br" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1450" y="-589"/>
+            <point key="canvasLocation" x="1976" y="-589"/>
         </scene>
         <!--Selected Fixtures Controller-->
         <scene sceneID="Uuz-EZ-aV0">
             <objects>
                 <tableViewController id="YDJ-2M-16F" userLabel="Selected Fixtures Controller" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="O6a-PW-ppe" userLabel="Selected Fixtures Table View">
-                        <rect key="frame" x="0.0" y="20" width="320" height="499"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="411"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -330,7 +330,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hP8-8d-0Ea" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3528" y="-484"/>
+            <point key="canvasLocation" x="4054" y="-484"/>
         </scene>
         <!--Tab Bar Controller - Details-->
         <scene sceneID="2mv-dN-YNo">
@@ -353,7 +353,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5tN-Pb-VDt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2236" y="-1385"/>
+            <point key="canvasLocation" x="2019" y="-1386"/>
         </scene>
         <!--Tab Bar Controller - Front Screen-->
         <scene sceneID="VxH-ha-kaa">
@@ -370,11 +370,13 @@
                         <segue destination="fF4-7g-Q3o" kind="relationship" relationship="viewControllers" id="22i-Oj-E8f"/>
                         <segue destination="gfy-gS-hhz" kind="push" identifier="ShowLeagueFixtures" id="fZd-1U-fw9"/>
                         <segue destination="gfy-gS-hhz" kind="relationship" relationship="viewControllers" id="r3A-qp-ILi"/>
+                        <segue destination="J1T-G1-Sfb" kind="push" id="QAy-HJ-Rrt"/>
+                        <segue destination="J1T-G1-Sfb" kind="relationship" relationship="viewControllers" id="Txo-Kk-GI5"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMa-Ps-y4U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="260" y="-1306"/>
+            <point key="canvasLocation" x="-884" y="-1354"/>
         </scene>
         <!--Navigation Controller - Table-->
         <scene sceneID="92X-NH-K6H">
@@ -393,7 +395,90 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dn0-0H-NXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="923" y="-1461"/>
+            <point key="canvasLocation" x="51" y="-1609"/>
+        </scene>
+        <!--Table View Controller - League Results-->
+        <scene sceneID="j9H-fu-BoZ">
+            <objects>
+                <tableViewController id="Vph-Ee-EfJ" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="25" sectionHeaderHeight="22" sectionFooterHeight="22" id="t28-HX-UvX">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="CustomCellRestorationId" selectionStyle="none" indentationWidth="10" reuseIdentifier="CustomResultCell" rowHeight="25" id="09H-ov-knF" userLabel="Result Cell" customClass="CustomResultCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="24"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i18-zI-MYg" userLabel="Date">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="61" id="OVe-ui-02l"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Manchester United" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sKc-sm-7pN" userLabel="Home Team">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="110" id="xkz-zy-Ug0"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="v" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x5c-L9-kuc" userLabel="v">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="LDQ-eb-7h7"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Manchester United" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u2i-O4-bzb" userLabel="Away Team">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="110" id="35C-bM-9oh"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="x5c-L9-kuc" firstAttribute="top" secondItem="09H-ov-knF" secondAttribute="top" type="default" id="2uv-pj-rm6"/>
+                                    <constraint firstItem="x5c-L9-kuc" firstAttribute="leading" secondItem="sKc-sm-7pN" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="FfK-kZ-Cyn"/>
+                                    <constraint firstItem="sKc-sm-7pN" firstAttribute="leading" secondItem="09H-ov-knF" secondAttribute="leading" constant="65" id="RuV-kl-rzH"/>
+                                    <constraint firstItem="i18-zI-MYg" firstAttribute="bottom" secondItem="09H-ov-knF" secondAttribute="bottom" type="default" id="SD7-In-10E"/>
+                                    <constraint firstItem="u2i-O4-bzb" firstAttribute="bottom" secondItem="09H-ov-knF" secondAttribute="bottom" type="default" id="bwu-Kn-dsj"/>
+                                    <constraint firstItem="sKc-sm-7pN" firstAttribute="top" secondItem="09H-ov-knF" secondAttribute="top" type="default" id="cSb-h2-6QE"/>
+                                    <constraint firstItem="sKc-sm-7pN" firstAttribute="bottom" secondItem="09H-ov-knF" secondAttribute="bottom" type="default" id="k4F-Fi-gg8"/>
+                                    <constraint firstAttribute="trailing" secondItem="u2i-O4-bzb" secondAttribute="trailing" constant="2" id="nEA-JC-jiw"/>
+                                    <constraint firstItem="x5c-L9-kuc" firstAttribute="bottom" secondItem="09H-ov-knF" secondAttribute="bottom" type="default" id="qGU-Dv-fka"/>
+                                    <constraint firstItem="i18-zI-MYg" firstAttribute="top" secondItem="09H-ov-knF" secondAttribute="top" type="default" id="uan-Ju-3u1"/>
+                                    <constraint firstItem="u2i-O4-bzb" firstAttribute="top" secondItem="09H-ov-knF" secondAttribute="top" type="default" id="wVf-UP-gAg"/>
+                                    <constraint firstItem="i18-zI-MYg" firstAttribute="leading" secondItem="09H-ov-knF" secondAttribute="leading" constant="2" id="xG2-oc-2aC"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="awayTeam" destination="u2i-O4-bzb" id="dUZ-0A-CRJ"/>
+                                    <outlet property="date" destination="i18-zI-MYg" id="pJW-24-Cq7"/>
+                                    <outlet property="homeTeam" destination="sKc-sm-7pN" id="csq-fs-Ovt"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Vph-Ee-EfJ" id="XV1-hH-7gc"/>
+                            <outlet property="delegate" destination="Vph-Ee-EfJ" id="rIN-cL-X31"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="League Results" id="xtX-fD-xhG"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ogY-QG-W75" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="269" y="-261"/>
         </scene>
         <!--Navigation Controller - Fixtures-->
         <scene sceneID="ZM4-bi-QvD">
@@ -414,7 +499,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nop-ft-yiw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="905" y="-691"/>
+            <point key="canvasLocation" x="1331" y="-622"/>
         </scene>
         <!--Navigation Controller - Details-->
         <scene sceneID="vk1-25-F7e">
@@ -439,10 +524,41 @@
             </objects>
             <point key="canvasLocation" x="3055" y="-1391"/>
         </scene>
+        <!--Navigation Controller - Results-->
+        <scene sceneID="Jzp-bA-0z5">
+            <objects>
+                <navigationController id="J1T-G1-Sfb" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Results" id="xJE-kD-a01"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="N8x-8Y-J40"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bTP-gg-6oD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Vph-Ee-EfJ" kind="relationship" relationship="rootViewController" id="fA9-te-7z3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iSs-7R-Xh7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-649" y="-353"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="garforthleague.jpg" width="385" height="100"/>
+    </resources>
     <classes>
         <class className="CustomFixtureCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomFixtureCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="awayTeam" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="date" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="homeTeam" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="CustomResultCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomResultCell.h"/>
             <relationships>
                 <relationship kind="outlet" name="awayTeam" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="date" candidateClass="UILabel"/>
@@ -488,10 +604,11 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Oqm-9e-nBv"/>
+        <segue reference="Txo-Kk-GI5"/>
         <segue reference="fZd-1U-fw9"/>
         <segue reference="7N1-By-uRD"/>
         <segue reference="p4r-yj-Uj0"/>
