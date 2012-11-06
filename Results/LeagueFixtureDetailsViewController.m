@@ -59,8 +59,7 @@
     self.awayBadge.image = [[UIImage alloc]initWithData:imageAwayData];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

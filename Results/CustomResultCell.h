@@ -12,4 +12,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *date;
 @property (weak, nonatomic) IBOutlet UILabel *homeTeam;
 @property (weak, nonatomic) IBOutlet UILabel *awayTeam;
+@property (weak, nonatomic) IBOutlet UILabel *score;
 @end

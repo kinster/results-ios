@@ -19,8 +19,7 @@
 
 @synthesize teamList, leagueLogo, leagueName, leagueSeasonDivisionId, leagueLogoUrl;
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     teamList = [[NSMutableArray alloc] init];
@@ -56,39 +55,6 @@
             NSString *gd = [teamJson objectForKey:@"gd"];
             NSLog(@"pos: %@", position);
             NSLog(@"gf: %@", gf);
-
-//            NSString *teamId = [teamJson objectForKey:@"id"];
-//            NSString *played = [teamJson objectForKey:@"played"];
-//            NSString *wins = [teamJson objectForKey:@"wins"];
-//            NSString *draws = [teamJson objectForKey:@"draws"];
-//            NSString *losses = [teamJson objectForKey:@"losses"];
-//            NSString *goalsFor = [teamJson objectForKey:@"goals_for"];
-//            NSString *goalsAgainst = [teamJson objectForKey:@"goals_against"];
-//            NSString *goalDiff = [teamJson objectForKey:@"goal_diff"];
-//            NSString *points = [teamJson objectForKey:@"points"];
-//            NSDictionary *clubJson = [teamJson objectForKey:@"club"];
-//            NSString *clubBadge = [clubJson objectForKey:@"badge"];
-//            NSString *clubName = [clubJson objectForKey:@"name"];
-//            NSDictionary *leagueSeasonDivision = [teamJson objectForKey:@"league_season_division"];
-//            NSDictionary *leagueSeason = [leagueSeasonDivision objectForKey:@"league_season"];
-//            NSDictionary *league = [leagueSeason objectForKey:@"league"];
-//            NSDictionary *season = [leagueSeason objectForKey:@"season"];
-//            NSString *leagueNameJson = [league objectForKey:@"name"];
-//            NSString *leagueLogoJson = [league objectForKey:@"logo"];
-//            NSString *seasonName = [season objectForKey:@"name"];
-//            NSDictionary *division = [leagueSeasonDivision objectForKey:@"division"];
-//            NSString *divisionName = [division objectForKey:@"name"];
-//            NSInteger leagueSeasonDivisionIdJson = [[leagueSeasonDivision objectForKey:@"id"] integerValue];
-//            [self setLeagueSeasonDivisionId:leagueSeasonDivisionIdJson];
-//            NSLog(@"%@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@", wins, draws, losses, goalsFor, goalsAgainst, goalDiff, points, clubBadge, clubName, leagueNameJson, divisionName, leagueLogoJson, seasonName);
-//            
-//            NSLog(@"league logo:%@", leagueLogoJson);
-//            [self setLeagueLogoUrl:leagueLogoJson];
-//
-//
-//            [self setLeagueName:[leagueNameJson stringByAppendingFormat:@" %@ %@",seasonName, divisionName]];
-
-//            team = [[Team alloc] initWithClubName:name AndClubBadge:nil AndPlayed:played AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:gf AndGoalsAgainst:ga AndGoalDiff:gd AndPoints:points AndTeamId:nil];
             
             team = [[Team alloc] initWithTeamName:name AndPosition:position AndPlayed:played AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:gf AndGoalsAgainst:ga AndGoalDiff:gd AndPoints:points];
             [teamList addObject: team];
@@ -157,8 +123,7 @@
     [[self tableView] reloadData];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

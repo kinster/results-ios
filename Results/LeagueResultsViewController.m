@@ -1,25 +1,22 @@
 //
-//  FixturesViewController.m
+//  LeagueResultsViewController.m
 //  Results
 //
-//  Created by Kinman Li on 02/11/2012.
+//  Created by Kinman Li on 06/11/2012.
 //  Copyright (c) 2012 Kinman Li. All rights reserved.
 //
 
-#import "LeagueFixturesViewController.h"
-#import "LeagueFixtureDetailsViewController.h"
-#import "Team.h"
-#import "Fixture.h"
-#import "CustomFixtureCell.h"
+#import "LeagueResultsViewController.h"
+#import "Result.h"
+#import "CustomResultCell.h"
 
-@interface LeagueFixturesViewController ()
+@interface LeagueResultsViewController ()
 
 @end
 
+@implementation LeagueResultsViewController
 
-@implementation LeagueFixturesViewController
-
-@synthesize leagueSeasonDivisionId, fixtureList;
+@synthesize resultsList;
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -34,13 +31,13 @@
     
     NSLog(@"LeagueFixturesViewController");
     
-    fixtureList = [[NSMutableArray alloc] init];
-
+    resultsList = [[NSMutableArray alloc] init];
+    
     NSError *error;
     
     NSString *restfulUrl = [[NSString alloc]initWithFormat:@"http://localhost:3000/leagues/1/seasons/1/divisions/"];
     
-    NSString *urlString = [restfulUrl stringByAppendingFormat:@"%d%@", 1, @"/fixtures.json"];
+    NSString *urlString = [restfulUrl stringByAppendingFormat:@"%d%@", 1, @"/results.json"];
     
     NSLog(@"%@", urlString);
     
@@ -48,23 +45,23 @@
     
     NSData *data = [NSData dataWithContentsOfURL:url];
     
-    NSDictionary *jsonFixtures = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+    NSDictionary *jsonResults = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
     
-    NSLog(@"jsonFixtures: %@", jsonFixtures);
+    NSLog(@"jsonResults: %@", jsonResults);
     
-    for (NSDictionary *fixtureEntry in jsonFixtures) {
-
-        NSString *type = [fixtureEntry objectForKey:@"type"];
-        NSString *dateTime = [fixtureEntry objectForKey:@"date_time"];
-        NSString *homeTeam = [fixtureEntry objectForKey:@"home_team"];
-        NSString *awayTeam = [fixtureEntry objectForKey:@"away_team"];
-        NSString *location = [fixtureEntry objectForKey:@"location"];
-        NSString *competition = [fixtureEntry objectForKey:@"competition"];
-        NSString *statusNote = [fixtureEntry objectForKey:@"status_note"];
-
-        Fixture *fixture = [[Fixture alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndAwayTeam:awayTeam AndLocation:location AndCompetition:competition AndStatusNote:statusNote];
+    for (NSDictionary *resultEntry in jsonResults) {
         
-        [fixtureList addObject:fixture];
+        NSString *type = [resultEntry objectForKey:@"type"];
+        NSString *dateTime = [resultEntry objectForKey:@"date_time"];
+        NSString *homeTeam = [resultEntry objectForKey:@"home_team"];
+        NSString *score = [resultEntry objectForKey:@"score"];
+        NSString *awayTeam = [resultEntry objectForKey:@"away_team"];
+        NSString *competition = [resultEntry objectForKey:@"competition"];
+        NSString *statusNote = [resultEntry objectForKey:@"status_note"];
+        
+        Result *result = [[Result alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndScore:score AndAwayTeam:awayTeam AndLocation:nil AndCompetition:competition AndStatusNote:statusNote];
+        
+        [resultsList addObject:result];
     }
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -79,27 +76,30 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    return [fixtureList count];
+    return [resultsList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"CustomFixtureCell";
-    CustomFixtureCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
+    
+    // Configure the cell...
+    static NSString *CellIdentifier = @"CustomResultCell";
+//    CustomResultCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    CustomResultCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
     if (cell == nil) {
-        cell = [[CustomFixtureCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[CustomResultCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-
-    Fixture *fixture = [fixtureList objectAtIndex:indexPath.row];
-    cell.homeTeam.text = fixture.hTeam;
-    cell.awayTeam.text = fixture.aTeam;
-    cell.date.text = fixture.dateTime;
+    
+    Result *result = [resultsList objectAtIndex:indexPath.row];
+    cell.date.text = result.dateTime;
+    cell.homeTeam.text = result.homeTeam;
+    cell.score.text = result.score;
+    cell.awayTeam.text = result.awayTeam;
+    
     return cell;
 }
 
@@ -138,6 +138,8 @@
 }
 */
 
+#pragma mark - Table view delegate
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.
     /*
@@ -146,22 +148,6 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSLog(@"In prepareForSegue");
-    
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    NSLog(@"%d", indexPath.row);
-    Fixture *fixture = [fixtureList objectAtIndex:indexPath.row];
-    LeagueFixtureDetailsViewController *destinationController = [segue destinationViewController];
-    
-    if ([[segue identifier] isEqualToString:@"ShowLeagueFixtureDetails"]) {
-        NSLog(@"Fixture id: %@", fixture.fixtureId);
-        NSLog(@"%@", segue.destinationViewController);
-
-        [destinationController setFixtureId:fixture.fixtureId];
-    }
 }
 
 @end

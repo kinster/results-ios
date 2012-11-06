@@ -16,5 +16,4 @@
 @property (weak, nonatomic) IBOutlet UILabel *homeTeam;
 @property (weak, nonatomic) IBOutlet UILabel *awayTeam;
 @property (weak, nonatomic) IBOutlet UIImageView *awayBadge;
-
 @end
