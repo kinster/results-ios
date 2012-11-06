@@ -56,26 +56,36 @@
     
     for (NSDictionary *fixtureEntry in jsonFixtures) {
 
-        NSString *fixtureIdJson = [fixtureEntry objectForKey:@"id"];
+        NSString *type = [fixtureEntry objectForKey:@"type"];
+        NSString *dateTime = [fixtureEntry objectForKey:@"date_time"];
+        NSString *homeTeam = [fixtureEntry objectForKey:@"home_team"];
+        NSString *awayTeam = [fixtureEntry objectForKey:@"away_team"];
+        NSString *location = [fixtureEntry objectForKey:@"location"];
+        NSString *competition = [fixtureEntry objectForKey:@"competition"];
+        NSString *statusNote = [fixtureEntry objectForKey:@"status_note"];
 
-        NSString *dateJson = [fixtureEntry objectForKey:@"date_short"];
-        NSString *timeJson = [fixtureEntry objectForKey:@"time_short"];
-        NSString *locationJson = [fixtureEntry objectForKey:@"location"];
+//        NSString *fixtureIdJson = [fixtureEntry objectForKey:@"id"];
+//
+//        NSString *dateJson = [fixtureEntry objectForKey:@"date_short"];
+//        NSString *timeJson = [fixtureEntry objectForKey:@"time_short"];
+//        NSString *locationJson = [fixtureEntry objectForKey:@"location"];
+//
+//        NSDictionary *homeTeamJson = [fixtureEntry objectForKey:@"home_club_team"];
+//        NSDictionary *homeClubJson = [homeTeamJson objectForKey:@"club"];
+//        NSString *homeBadge = [homeClubJson objectForKey:@"badge"];
+//        NSString *homeName = [homeClubJson objectForKey:@"name"];
+//        
+//        NSDictionary *awayTeamJson = [fixtureEntry objectForKey:@"away_club_team"];
+//        NSDictionary *awayClubJson = [awayTeamJson objectForKey:@"club"];
+//        NSString *awayBadge = [awayClubJson objectForKey:@"badge"];
+//        NSString *awayName = [awayClubJson objectForKey:@"name"];
+//
+//        Team *homeTeam = [[Team alloc] initWithClubName:homeName AndClubBadge:homeBadge];
+//        Team *awayTeam = [[Team alloc] initWithClubName:awayName AndClubBadge:awayBadge];
 
-        NSDictionary *homeTeamJson = [fixtureEntry objectForKey:@"home_club_team"];
-        NSDictionary *homeClubJson = [homeTeamJson objectForKey:@"club"];
-        NSString *homeBadge = [homeClubJson objectForKey:@"badge"];
-        NSString *homeName = [homeClubJson objectForKey:@"name"];
+//        Fixture *fixture = [[Fixture alloc] initWithIdDateTimeLocationHomeAway:fixtureIdJson AndDate:dateJson AndTime:timeJson AndLocation:locationJson AndHomeTeam:homeTeam andAwayTeam:awayTeam];
         
-        NSDictionary *awayTeamJson = [fixtureEntry objectForKey:@"away_club_team"];
-        NSDictionary *awayClubJson = [awayTeamJson objectForKey:@"club"];
-        NSString *awayBadge = [awayClubJson objectForKey:@"badge"];
-        NSString *awayName = [awayClubJson objectForKey:@"name"];
-
-        Team *homeTeam = [[Team alloc] initWithClubName:homeName AndClubBadge:homeBadge];
-        Team *awayTeam = [[Team alloc] initWithClubName:awayName AndClubBadge:awayBadge];
-
-        Fixture *fixture = [[Fixture alloc] initWithIdDateTimeLocationHomeAway:fixtureIdJson AndDate:dateJson AndTime:timeJson AndLocation:locationJson AndHomeTeam:homeTeam andAwayTeam:awayTeam];
+        Fixture *fixture = [[Fixture alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndAwayTeam:awayTeam AndLocation:location AndCompetition:competition AndStatusNote:statusNote];
         
         [fixtureList addObject:fixture];
     }
@@ -114,13 +124,9 @@
     }
 
     Fixture *fixture = [fixtureList objectAtIndex:indexPath.row];
-//    NSString *mainLabelText = [NSString stringWithFormat:@"%@ v %@", fixture.homeTeam.clubName, fixture.awayTeam.clubName];
-//    NSString *subText = [NSString  stringWithFormat:@"%@ (%@)", fixture.dateTime, fixture.location];
-    cell.homeTeam.text = fixture.homeTeam.clubName;
-    cell.awayTeam.text = fixture.awayTeam.clubName;
-    cell.date.text = fixture.date;
-//    cell.textLabel.text = mainLabelText;
-//    cell.detailTextLabel.text = subText;
+    cell.homeTeam.text = fixture.hTeam;
+    cell.awayTeam.text = fixture.aTeam;
+    cell.date.text = fixture.dateTime;
     return cell;
 }
 

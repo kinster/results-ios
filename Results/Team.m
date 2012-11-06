@@ -27,6 +27,23 @@
     return self;
 }
 
+- (id) initWithTeamName:(NSString *)name AndPosition:(NSString *)position AndPlayed:(NSString *)played AndWins:(NSString *)wins AndDraws:(NSString *)draws AndLosses:(NSString *)losses AndGoalsFor:(NSString *)gf AndGoalsAgainst:(NSString *)ga AndGoalDiff:(NSString *)gd AndPoints:(NSString *)points {
+    if (self = [super init]) {
+        _position = position;
+        _name = name;
+        _played = played;
+        _wins = wins;
+        _draws = draws;
+        _losses = losses;
+        _goalsFor = gf;
+        _goalsAgainst = ga;
+        _goalDiff = gd;
+        _points = points;
+        
+    }
+    return self;
+}
+
 - (id)initWithClubName:(NSString *)clubName AndClubBadge:(NSString *)clubBadge {
     return [self initWithClubName:clubName AndClubBadge:clubBadge AndPlayed:nil AndWins:nil AndDraws:nil AndLosses:nil AndGoalsFor:nil AndGoalsAgainst:nil AndGoalDiff:nil AndPoints:nil AndTeamId:nil];
 }
@@ -34,4 +51,5 @@
 - (id)initWithClubName:(NSString *)clubName {
     return [self initWithClubName:clubName AndClubBadge:nil];
 }
+
 @end

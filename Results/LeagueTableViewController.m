@@ -27,7 +27,8 @@
     Team *team = nil;
     
     NSError *error;
-
+    
+    // current garforth league U11s 9v9 hard coded
     NSString *urlString = [NSString stringWithFormat:@"http://localhost:3000/leagues/1/seasons/1/divisions/1.json"];
     
     NSLog(@"%@", urlString);
@@ -43,41 +44,53 @@
     } else {
         NSLog(@"How many? %d", [jsonTeams count]);
         for (NSDictionary *teamJson in jsonTeams) {
-            NSString *teamId = [teamJson objectForKey:@"id"];
+            NSString *position = [teamJson objectForKey:@"position"];
+            NSString *name = [teamJson objectForKey:@"name"];
             NSString *played = [teamJson objectForKey:@"played"];
             NSString *wins = [teamJson objectForKey:@"wins"];
             NSString *draws = [teamJson objectForKey:@"draws"];
             NSString *losses = [teamJson objectForKey:@"losses"];
-            NSString *goalsFor = [teamJson objectForKey:@"goals_for"];
-            NSString *goalsAgainst = [teamJson objectForKey:@"goals_against"];
-            NSString *goalDiff = [teamJson objectForKey:@"goal_diff"];
             NSString *points = [teamJson objectForKey:@"points"];
-            NSDictionary *clubJson = [teamJson objectForKey:@"club"];
-            NSString *clubBadge = [clubJson objectForKey:@"badge"];
-            NSString *clubName = [clubJson objectForKey:@"name"];
-            NSDictionary *leagueSeasonDivision = [teamJson objectForKey:@"league_season_division"];
-            NSDictionary *leagueSeason = [leagueSeasonDivision objectForKey:@"league_season"];
-            NSDictionary *league = [leagueSeason objectForKey:@"league"];
-            NSDictionary *season = [leagueSeason objectForKey:@"season"];
-            NSString *leagueNameJson = [league objectForKey:@"name"];
-            NSString *leagueLogoJson = [league objectForKey:@"logo"];
-            NSString *seasonName = [season objectForKey:@"name"];
-            NSDictionary *division = [leagueSeasonDivision objectForKey:@"division"];
-            NSString *divisionName = [division objectForKey:@"name"];
-            NSInteger leagueSeasonDivisionIdJson = [[leagueSeasonDivision objectForKey:@"id"] integerValue];
-            [self setLeagueSeasonDivisionId:leagueSeasonDivisionIdJson];
-            NSLog(@"%@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@", wins, draws, losses, goalsFor, goalsAgainst, goalDiff, points, clubBadge, clubName, leagueNameJson, divisionName, leagueLogoJson, seasonName);
-            
-            NSLog(@"league logo:%@", leagueLogoJson);
-            [self setLeagueLogoUrl:leagueLogoJson];
-//            NSURL *imageUrl = [NSURL URLWithString:leagueLogoJson];
-//            NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
+            NSString *gf = [teamJson objectForKey:@"gf"];
+            NSString *ga = [teamJson objectForKey:@"ga"];
+            NSString *gd = [teamJson objectForKey:@"gd"];
+            NSLog(@"pos: %@", position);
+            NSLog(@"gf: %@", gf);
+
+//            NSString *teamId = [teamJson objectForKey:@"id"];
+//            NSString *played = [teamJson objectForKey:@"played"];
+//            NSString *wins = [teamJson objectForKey:@"wins"];
+//            NSString *draws = [teamJson objectForKey:@"draws"];
+//            NSString *losses = [teamJson objectForKey:@"losses"];
+//            NSString *goalsFor = [teamJson objectForKey:@"goals_for"];
+//            NSString *goalsAgainst = [teamJson objectForKey:@"goals_against"];
+//            NSString *goalDiff = [teamJson objectForKey:@"goal_diff"];
+//            NSString *points = [teamJson objectForKey:@"points"];
+//            NSDictionary *clubJson = [teamJson objectForKey:@"club"];
+//            NSString *clubBadge = [clubJson objectForKey:@"badge"];
+//            NSString *clubName = [clubJson objectForKey:@"name"];
+//            NSDictionary *leagueSeasonDivision = [teamJson objectForKey:@"league_season_division"];
+//            NSDictionary *leagueSeason = [leagueSeasonDivision objectForKey:@"league_season"];
+//            NSDictionary *league = [leagueSeason objectForKey:@"league"];
+//            NSDictionary *season = [leagueSeason objectForKey:@"season"];
+//            NSString *leagueNameJson = [league objectForKey:@"name"];
+//            NSString *leagueLogoJson = [league objectForKey:@"logo"];
+//            NSString *seasonName = [season objectForKey:@"name"];
+//            NSDictionary *division = [leagueSeasonDivision objectForKey:@"division"];
+//            NSString *divisionName = [division objectForKey:@"name"];
+//            NSInteger leagueSeasonDivisionIdJson = [[leagueSeasonDivision objectForKey:@"id"] integerValue];
+//            [self setLeagueSeasonDivisionId:leagueSeasonDivisionIdJson];
+//            NSLog(@"%@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@", wins, draws, losses, goalsFor, goalsAgainst, goalDiff, points, clubBadge, clubName, leagueNameJson, divisionName, leagueLogoJson, seasonName);
+//            
+//            NSLog(@"league logo:%@", leagueLogoJson);
+//            [self setLeagueLogoUrl:leagueLogoJson];
 //
-//            leagueLogo.image = [[UIImage alloc]initWithData:imageData];
+//
+//            [self setLeagueName:[leagueNameJson stringByAppendingFormat:@" %@ %@",seasonName, divisionName]];
 
-            [self setLeagueName:[leagueNameJson stringByAppendingFormat:@" %@ %@",seasonName, divisionName]];
-
-            team = [[Team alloc] initWithClubName:clubName AndClubBadge:clubBadge AndPlayed:played AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:goalsFor AndGoalsAgainst:goalsAgainst AndGoalDiff:goalDiff AndPoints:points AndTeamId:teamId];
+//            team = [[Team alloc] initWithClubName:name AndClubBadge:nil AndPlayed:played AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:gf AndGoalsAgainst:ga AndGoalDiff:gd AndPoints:points AndTeamId:nil];
+            
+            team = [[Team alloc] initWithTeamName:name AndPosition:position AndPlayed:played AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:gf AndGoalsAgainst:ga AndGoalDiff:gd AndPoints:points];
             [teamList addObject: team];
 
         }
@@ -113,25 +126,24 @@
     
     Team *team = [teamList objectAtIndex:indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.position.text = [NSString stringWithFormat:@"%d", indexPath.row+1];
 //    cell.badge.image = [[UIImage alloc]initWithData:imageData];
-    cell.team.text = [team clubName];
-    NSString *played = [NSString stringWithFormat:@"%d", team.played.intValue];
-    NSString *wins = [NSString stringWithFormat:@"%d", team.wins.intValue];
-    NSString *draws = [NSString stringWithFormat:@"%d", team.draws.intValue];
-    NSString *losses = [NSString stringWithFormat:@"%d", team.losses.intValue];
-    NSString *goalsFor = [NSString stringWithFormat:@"%d", team.goalsFor.intValue];
-    NSString *goalsAgainst = [NSString stringWithFormat:@"%d", team.goalsAgainst.intValue];
-    NSString *goalDiff = [NSString stringWithFormat:@"%d", team.goalDiff.intValue];
-    NSString *points = [NSString stringWithFormat:@"%d", team.points.intValue];
-    cell.played.text = played;
-    cell.wins.text = wins;
-    cell.draws.text = draws;
-    cell.losses.text = losses;
-    cell.goalsFor.text = goalsFor;
-    cell.goalsAgainst.text = goalsAgainst;
-    cell.goalDiff.text = goalDiff;
-    cell.points.text = points;
+//    NSString *wins = [NSString stringWithFormat:@"%d", team.wins.intValue];
+//    NSString *draws = [NSString stringWithFormat:@"%d", team.draws.intValue];
+//    NSString *losses = [NSString stringWithFormat:@"%d", team.losses.intValue];
+//    NSString *goalsFor = [NSString stringWithFormat:@"%d", team.goalsFor.intValue];
+//    NSString *goalsAgainst = [NSString stringWithFormat:@"%d", team.goalsAgainst.intValue];
+//    NSString *goalDiff = [NSString stringWithFormat:@"%d", team.goalDiff.intValue];
+//    NSString *points = [NSString stringWithFormat:@"%d", team.points.intValue];
+    cell.position.text = [team position];
+    cell.team.text = [team name];
+    cell.played.text = [team played];
+    cell.wins.text = [team wins];
+    cell.draws.text = [team draws];
+    cell.losses.text = [team losses];
+    cell.goalsFor.text = [team goalsFor];
+    cell.goalsAgainst.text = [team goalsAgainst];
+    cell.goalDiff.text = [team goalDiff];
+    cell.points.text = [team points];
     return cell;
 }
 

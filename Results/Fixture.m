@@ -21,4 +21,17 @@
     }
     return self;
 }
+
+- (id)initWithType:(NSString *)type AndDateTime:(NSString *)dateTime AndHomeTeam:(NSString *)homeTeam AndAwayTeam:(NSString *)awayTeam AndLocation:(NSString *)location AndCompetition:(NSString *)competition AndStatusNote:(NSString *)statusNote {
+    if (self = [super init]) {
+        _type = type;
+        _dateTime = dateTime;
+        _hTeam = homeTeam;
+        _aTeam = awayTeam;
+        _location = location;
+        _competition = competition;
+        _statusNote = statusNote;
+    }
+    return self;
+}
 @end

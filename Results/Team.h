@@ -20,8 +20,13 @@
 @property (nonatomic, copy) NSString *goalDiff;
 @property (nonatomic, copy) NSString *points;
 @property (nonatomic, copy) NSString *teamId;
+@property (nonatomic, copy) NSString *position;
+@property (nonatomic, copy) NSString *name;
 
 -(id)initWithClubName:(NSString *)clubName AndClubBadge:(NSString *)clubBadge AndPlayed:(NSString *)played AndWins:(NSString *)wins AndDraws:(NSString *) draws AndLosses:(NSString *)losses AndGoalsFor:(NSString *)goalsFor AndGoalsAgainst:(NSString *)goalsAgainst AndGoalDiff:(NSString *)goalDiff AndPoints:(NSString *)points AndTeamId:(NSString *)teamId;
 -(id)initWithClubName:(NSString *)clubName AndClubBadge:(NSString *)clubBadge;
 -(id)initWithClubName:(NSString *)clubName;
+
+-(id)initWithTeamName:(NSString *)name AndPosition:(NSString *)position AndPlayed:(NSString *)played AndWins:(NSString *)wins AndDraws:(NSString *) draws AndLosses:(NSString *)losses AndGoalsFor:(NSString *)gf AndGoalsAgainst:(NSString *)ga AndGoalDiff:(NSString *)gd AndPoints:(NSString *)points;
+
 @end
