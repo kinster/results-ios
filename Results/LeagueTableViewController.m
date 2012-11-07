@@ -17,11 +17,12 @@
 
 @implementation LeagueTableViewController
 
-@synthesize teamList, leagueLogo, leagueName, leagueSeasonDivisionId, leagueLogoUrl;
+@synthesize teamList, leagueLogo, leagueName, leagueSeasonDivisionId, leagueLogoUrl, divisionId;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
     teamList = [[NSMutableArray alloc] init];
     Team *team = nil;
     

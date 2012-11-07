@@ -1,15 +1,15 @@
 //
-//  League.h
+//  Season.h
 //  Results
 //
-//  Created by Kinman Li on 24/10/2012.
+//  Created by Kinman Li on 07/11/2012.
 //  Copyright (c) 2012 Kinman Li. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface League : NSObject
+@interface Season : NSObject
 @property (nonatomic, copy) NSString *theId;
 @property (nonatomic, copy) NSString *name;
--(id)initWithIdAndName:(NSString *)theId AndName:(NSString *)theName;
+-(id)initWithIdAndName:(NSString *)theId AndName:(NSString *)name;
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "LeaguesViewController.h"
 #import "LeagueTableViewController.h"
 #import "LeagueFixturesViewController.h"
 
@@ -18,7 +19,8 @@
 {
     // Override point for customization after application launch.
 
-    UIViewController *leagueTableViewController = [[LeagueTableViewController alloc] init];
+    UIViewController *leaguesViewController = [[LeaguesViewController alloc] init];
+//    UIViewController *leagueTableViewController = [[LeagueTableViewController alloc] init];
 //    UIViewController *leagueFixturesViewController = [[LeagueFixturesViewController alloc] init];
 //    
 //    NSArray *viewControllersArray = [[NSArray alloc] initWithObjects:leagueTableViewController, leagueFixturesViewController, nil];
@@ -28,7 +30,7 @@
 //    
 //    self.window.rootViewController = tabBarController;
     
-    [self.window addSubview:[leagueTableViewController view]];
+    [self.window addSubview:[leaguesViewController view]];
     [self.window makeKeyAndVisible];
     return YES;
 }
