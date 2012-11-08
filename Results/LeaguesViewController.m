@@ -35,7 +35,7 @@
 
     NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
     NSString* jsonServer = [infoDict objectForKey:@"jsonServer"];
-    NSString *urlString = [jsonServer stringByAppendingFormat:@"%@", @"/leagues.json"];
+    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues.json"];
     NSLog(@"%@", urlString);
 
     NSURL *url = [NSURL URLWithString:urlString];

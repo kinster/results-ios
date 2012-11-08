@@ -27,7 +27,7 @@
     return self;
 }
 
-- (id) initWithTeamName:(NSString *)name AndPosition:(NSString *)position AndPlayed:(NSString *)played AndWins:(NSString *)wins AndDraws:(NSString *)draws AndLosses:(NSString *)losses AndGoalsFor:(NSString *)gf AndGoalsAgainst:(NSString *)ga AndGoalDiff:(NSString *)gd AndPoints:(NSString *)points {
+- (id) initWithTeam:(NSString *)name AndPosition:(NSString *)position AndPlayed:(NSString *)played AndWins:(NSString *)wins AndDraws:(NSString *)draws AndLosses:(NSString *)losses AndGoalsFor:(NSString *)gf AndGoalsAgainst:(NSString *)ga AndGoalDiff:(NSString *)gd AndPoints:(NSString *)points AndId:(NSString *)theId {
     if (self = [super init]) {
         _position = position;
         _name = name;
@@ -39,7 +39,7 @@
         _goalsAgainst = ga;
         _goalDiff = gd;
         _points = points;
-        
+        _teamId = theId;
     }
     return self;
 }

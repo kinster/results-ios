@@ -12,7 +12,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <imageView key="tableHeaderView" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="garforthleague.jpg" id="LkB-Ud-y2s" userLabel="Header Image">
+                        <imageView key="tableHeaderView" userInteractionEnabled="NO" contentMode="scaleAspectFit" id="LkB-Ud-y2s" userLabel="Header Image">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="83"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -170,7 +170,7 @@
             <objects>
                 <viewController id="bl9-Jn-mfe" customClass="TeamDetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a8L-7u-bal">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="411"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RC2-53-lT5" userLabel="Name">
@@ -197,9 +197,8 @@
                             <constraint firstItem="OWd-zP-XSH" firstAttribute="top" secondItem="RC2-53-lT5" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="h9S-uf-MPX"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="8s5-Bi-GuG"/>
                     <navigationItem key="navigationItem" title="Team Details" id="suH-Ef-pLW"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="badge" destination="OWd-zP-XSH" id="xrd-1Q-FNf"/>
                         <outlet property="name" destination="RC2-53-lT5" id="Wmj-4J-WIW"/>
@@ -330,7 +329,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hP8-8d-0Ea" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4054" y="-484"/>
+            <point key="canvasLocation" x="4666" y="-2408"/>
         </scene>
         <!--Tab Bar Controller - Details-->
         <scene sceneID="2mv-dN-YNo">
@@ -345,10 +344,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="vL5-fE-Ifu" kind="relationship" relationship="viewControllers" id="5a1-bO-Ti6"/>
-                        <segue destination="vL5-fE-Ifu" kind="push" identifier="ShowTeamDetails" id="p4r-yj-Uj0"/>
                         <segue destination="YDJ-2M-16F" kind="push" identifier="ShowTeamFixtures" id="Oqm-9e-nBv"/>
                         <segue destination="YDJ-2M-16F" kind="relationship" relationship="viewControllers" id="sL5-TG-7Hf"/>
+                        <segue destination="bl9-Jn-mfe" kind="push" identifier="ShowTeamDetails" id="I0z-TZ-dbN"/>
+                        <segue destination="bl9-Jn-mfe" kind="relationship" relationship="viewControllers" id="daN-fv-q2d"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5tN-Pb-VDt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -626,29 +625,6 @@
             </objects>
             <point key="canvasLocation" x="1491" y="-2568"/>
         </scene>
-        <!--Navigation Controller - Details-->
-        <scene sceneID="vk1-25-F7e">
-            <objects>
-                <navigationController navigationBarHidden="YES" id="vL5-fE-Ifu" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Details" id="4xX-gO-gAp"/>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="9wA-HN-yev"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ecz-zq-7Pt">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="bl9-Jn-mfe" kind="relationship" relationship="rootViewController" id="Bso-xV-Reg"/>
-                        <segue destination="bl9-Jn-mfe" kind="push" identifier="ShowTeamDetails" id="agi-be-Sbn"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UAx-Tn-6he" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4633" y="-1391"/>
-        </scene>
         <!--Navigation Controller - Results-->
         <scene sceneID="Jzp-bA-0z5">
             <objects>
@@ -689,9 +665,6 @@
             <point key="canvasLocation" x="-1420" y="-2620"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="garforthleague.jpg" width="385" height="100"/>
-    </resources>
     <classes>
         <class className="CustomFixtureCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomFixtureCell.h"/>
@@ -724,6 +697,9 @@
                 <relationship kind="outlet" name="team" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="wins" candidateClass="UILabel"/>
             </relationships>
+        </class>
+        <class className="LeagueDivisionsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueDivisionsViewController.h"/>
         </class>
         <class className="LeagueFixturesViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueFixturesViewController.h"/>
@@ -761,12 +737,11 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="p4r-yj-Uj0"/>
-        <segue reference="QAy-HJ-Rrt"/>
-        <segue reference="r3A-qp-ILi"/>
-        <segue reference="pqm-yi-r4t"/>
         <segue reference="jP3-bF-Mob"/>
+        <segue reference="r3A-qp-ILi"/>
+        <segue reference="QAy-HJ-Rrt"/>
         <segue reference="Oqm-9e-nBv"/>
-        <segue reference="agi-be-Sbn"/>
+        <segue reference="I0z-TZ-dbN"/>
+        <segue reference="pqm-yi-r4t"/>
     </inferredMetricsTieBreakers>
 </document>

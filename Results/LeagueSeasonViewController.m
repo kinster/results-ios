@@ -33,7 +33,7 @@
     
     NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
     NSString* jsonServer = [infoDict objectForKey:@"jsonServer"];
-    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/%@", leagueId, @"seasons.json"];
+    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons.json", leagueId];
     NSLog(@"%@", urlString);
     
     NSURL *url = [NSURL URLWithString:urlString];
@@ -78,7 +78,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"SeasonCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
@@ -100,9 +100,11 @@
     Season *season = [seasonsList objectAtIndex:indexPath.row];
     //    UINavigationController *navigationController = [segue destinationViewController];
     
-    if ([[segue identifier] isEqualToString:@"ShowTable"]) {
+    if ([[segue identifier] isEqualToString:@"ShowDivisions"]) {
         LeagueDivisionsViewController *viewController = [segue destinationViewController];
-//        [viewController setLeagueId:league.theId];
+        [viewController setLeagueId:leagueId];
+        [viewController setSeasonId:season.theId];
+        NSLog(@"%@ - %@", leagueId, season.theId);
     }
 }
 /*

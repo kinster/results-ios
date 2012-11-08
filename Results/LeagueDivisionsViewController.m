@@ -16,7 +16,7 @@
 
 @implementation LeagueDivisionsViewController
 
-@synthesize leagueId, divisionsList;
+@synthesize leagueId, seasonId, divisionsList;
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -31,31 +31,29 @@
 
     NSError *error;
     
-    NSString *restfulUrl = [[NSString alloc]initWithFormat:@"http://localhost:3000/leagues/"];
-    
-    NSString *urlString = [restfulUrl stringByAppendingFormat:@"%@%@", [self leagueId], @".json"];
-    
-    NSLog(@"LeagueDetailsViewController: %@", urlString);
+    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
+    NSString* jsonServer = [infoDict objectForKey:@"jsonServer"];
+    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@.json", leagueId, seasonId];
+    NSLog(@"%@", urlString);
     
     NSURL *url = [NSURL URLWithString:urlString];
-    
     NSData *data = [NSData dataWithContentsOfURL:url];
-    
-    NSDictionary *leagueDivisions = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-    
+    NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+
     divisionsList = [[NSMutableArray alloc] init];
     Division *division = nil;
-    for (NSDictionary *leagueDivision in leagueDivisions) {
-        NSString *divisionId = [leagueDivision objectForKey:@"id"];
-        NSString *divisionName = [leagueDivision objectForKey:@"name"];
-        division = [[Division alloc] initWithIdAndName:divisionId AndName:divisionName];
+    
+    for (NSDictionary *entry in jsonData) {
+        NSString *theId = [entry objectForKey:@"id"];
+        NSString *theName = [entry objectForKey:@"name"];
+        division = [[Division alloc] initWithIdAndName:theId AndName:theName];
         
         [divisionsList addObject: division];
     }
-
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -85,9 +83,9 @@
     }
     
     Division *division = [divisionsList objectAtIndex:indexPath.row];
-    NSLog(@"division: %@ %@", division.divisionId, division.divisionName);
+    NSLog(@"division: %@ %@", division.theId, division.name);
     
-    cell.textLabel.text = [division divisionName];
+    cell.textLabel.text = [division name];
     
     return cell;
 }
@@ -99,56 +97,53 @@
     NSLog(@"%d", indexPath.row);
     Division *division = [divisionsList objectAtIndex:indexPath.row];
     UITabBarController *tabBarController = [segue destinationViewController];
-    
-    if ([[segue identifier] isEqualToString:@"ShowDivision"]) {
-        LeagueTableViewController *leagueTableViewController = [tabBarController.viewControllers objectAtIndex:0];
-        [leagueTableViewController setDivisionId:[division divisionId]];
+    UINavigationController *navController = [tabBarController.viewControllers objectAtIndex:0];
+    if ([[segue identifier] isEqualToString:@"ShowTable"]) {
+        LeagueTableViewController *viewController = [navController.viewControllers objectAtIndex:0];
+        [viewController setLeagueId:leagueId];
+        [viewController setSeasonId:seasonId];
+        [viewController setDivisionId:division.theId];
     }
 }
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ }
+ else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];

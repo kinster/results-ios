@@ -17,58 +17,46 @@
 
 @implementation LeagueTableViewController
 
-@synthesize teamList, leagueLogo, leagueName, leagueSeasonDivisionId, leagueLogoUrl, divisionId;
+@synthesize teamList, leagueLogo, leagueName, leagueSeasonDivisionId, leagueLogoUrl, leagueId, seasonId, divisionId;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    teamList = [[NSMutableArray alloc] init];
-    Team *team = nil;
-    
     NSError *error;
     
-    // current garforth league U11s 9v9 hard coded
-    NSString *urlString = [NSString stringWithFormat:@"http://localhost:3000/leagues/1/seasons/1/divisions/1.json"];
-    
+    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
+    NSString* jsonServer = [infoDict objectForKey:@"jsonServer"];
+    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@.json", leagueId, seasonId, divisionId];
     NSLog(@"%@", urlString);
     
     NSURL *url = [NSURL URLWithString:urlString];
-    
     NSData *data = [NSData dataWithContentsOfURL:url];
-
-    NSDictionary *jsonTeams = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+    NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
     
-    if (!jsonTeams) {
-        NSLog(@"%@", error);
-    } else {
-        NSLog(@"How many? %d", [jsonTeams count]);
-        for (NSDictionary *teamJson in jsonTeams) {
-            NSString *position = [teamJson objectForKey:@"position"];
-            NSString *name = [teamJson objectForKey:@"name"];
-            NSString *played = [teamJson objectForKey:@"played"];
-            NSString *wins = [teamJson objectForKey:@"wins"];
-            NSString *draws = [teamJson objectForKey:@"draws"];
-            NSString *losses = [teamJson objectForKey:@"losses"];
-            NSString *points = [teamJson objectForKey:@"points"];
-            NSString *gf = [teamJson objectForKey:@"gf"];
-            NSString *ga = [teamJson objectForKey:@"ga"];
-            NSString *gd = [teamJson objectForKey:@"gd"];
-            NSLog(@"pos: %@", position);
-            NSLog(@"gf: %@", gf);
-            
-            team = [[Team alloc] initWithTeamName:name AndPosition:position AndPlayed:played AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:gf AndGoalsAgainst:ga AndGoalDiff:gd AndPoints:points];
-            [teamList addObject: team];
+    teamList = [[NSMutableArray alloc] init];
+    Team *team = nil;
+    
+    for (NSDictionary *entry in jsonData) {
+        NSString *position = [entry objectForKey:@"position"];
+        NSString *name = [entry objectForKey:@"name"];
+        NSString *played = [entry objectForKey:@"played"];
+        NSString *wins = [entry objectForKey:@"wins"];
+        NSString *draws = [entry objectForKey:@"draws"];
+        NSString *losses = [entry objectForKey:@"losses"];
+        NSString *points = [entry objectForKey:@"points"];
+        NSString *gf = [entry objectForKey:@"gf"];
+        NSString *ga = [entry objectForKey:@"ga"];
+        NSString *gd = [entry objectForKey:@"gd"];
+        NSString *teamId = [entry objectForKey:@"id"];
+        NSLog(@"pos: %@", position);
+        NSLog(@"gf: %@", gf);
+        
+        team = [[Team alloc] initWithTeam:name AndPosition:position AndPlayed:played AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:gf AndGoalsAgainst:ga AndGoalDiff:gd AndPoints:points AndId:teamId];
+        [teamList addObject: team];
 
-        }
     }
-//    [self setLeagueLogo:leagueLogo];
-    NSLog(@"League set: %@ %@", leagueName, leagueLogo);
-//    NSURL *imageUrl = [NSURL URLWithString:leagueLogoUrl];
-//    NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
-//    UIImage *image = [[UIImage alloc]initWithData:imageData];
-//    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-//    [self setLeagueLogo:imageView];
+
     [self loadView];
 }
 
@@ -88,19 +76,9 @@
     if (cell == nil) {
         cell = [[CustomTableCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-//    NSURL *imageUrl = [NSURL URLWithString:[[teamList objectAtIndex:indexPath.row]clubBadge]];
-//    NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
-    
+
     Team *team = [teamList objectAtIndex:indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//    cell.badge.image = [[UIImage alloc]initWithData:imageData];
-//    NSString *wins = [NSString stringWithFormat:@"%d", team.wins.intValue];
-//    NSString *draws = [NSString stringWithFormat:@"%d", team.draws.intValue];
-//    NSString *losses = [NSString stringWithFormat:@"%d", team.losses.intValue];
-//    NSString *goalsFor = [NSString stringWithFormat:@"%d", team.goalsFor.intValue];
-//    NSString *goalsAgainst = [NSString stringWithFormat:@"%d", team.goalsAgainst.intValue];
-//    NSString *goalDiff = [NSString stringWithFormat:@"%d", team.goalDiff.intValue];
-//    NSString *points = [NSString stringWithFormat:@"%d", team.points.intValue];
     cell.position.text = [team position];
     cell.team.text = [team name];
     cell.played.text = [team played];
@@ -135,17 +113,22 @@
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     NSLog(@"%d", indexPath.row);
     Team *team = [teamList objectAtIndex:indexPath.row];
-    UINavigationController *navigationController = [segue destinationViewController];
-    UITabBarController *tabBarViewController = [navigationController.viewControllers objectAtIndex:0];
+    UITabBarController *tabBarViewController = [segue destinationViewController];
 
     if ([[segue identifier] isEqualToString:@"ShowTeamDetails"]) {
-        NSLog(@"%@", team.clubName);
         NSLog(@"%@", segue.destinationViewController);
-        TeamDetailsViewController *teamDetailsViewController = [tabBarViewController.viewControllers objectAtIndex:0];
+        TeamDetailsViewController *teamDetailsViewController = [tabBarViewController.viewControllers objectAtIndex:1];
+        NSLog(@"%@", teamDetailsViewController.class);
+        [teamDetailsViewController setLeagueId:leagueId];
+        [teamDetailsViewController setSeasonId:seasonId];
+        [teamDetailsViewController setDivisionId:divisionId];
         [teamDetailsViewController setTeamId:team.teamId];
     } else if ([[segue identifier] isEqualToString:@"ShowTeamFixtures"]) {
         NSLog(@"Team Fixtures");
-        TeamDetailsViewController *teamDetailsViewController = [tabBarViewController.viewControllers objectAtIndex:1];
+        TeamDetailsViewController *teamDetailsViewController = [tabBarViewController.viewControllers objectAtIndex:0];
+        [teamDetailsViewController setLeagueId:leagueId];
+        [teamDetailsViewController setSeasonId:seasonId];
+        [teamDetailsViewController setDivisionId:divisionId];
         [teamDetailsViewController setTeamId:team.teamId];
     }
 }

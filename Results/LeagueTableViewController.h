@@ -17,5 +17,7 @@
 @property (nonatomic, copy) NSMutableArray *teamList;
 @property (nonatomic, assign) int leagueSeasonDivisionId;
 @property (nonatomic, copy) NSString *leagueLogoUrl;
+@property (nonatomic, copy) NSString *leagueId;
+@property (nonatomic, copy) NSString *seasonId;
 @property (nonatomic, copy) NSString *divisionId;
 @end

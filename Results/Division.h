@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface Division : NSObject
-@property (nonatomic, copy) NSString *divisionId;
-@property (nonatomic, copy) NSString *divisionName;
--(id)initWithIdAndName:(NSString *)divisionId AndName:(NSString *)divisionName;
+@property (nonatomic, copy) NSString *theId;
+@property (nonatomic, copy) NSString *name;
+-(id)initWithIdAndName:(NSString *)theId AndName:(NSString *)name;
 @end

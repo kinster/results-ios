@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface TeamDetailsViewController : UIViewController
+@property (weak, nonatomic) NSString *leagueId;
+@property (weak, nonatomic) NSString *seasonId;
+@property (weak, nonatomic) NSString *divisionId;
 @property (weak, nonatomic) NSString *teamId;
 @property (weak, nonatomic) IBOutlet UILabel *position;
 @property (weak, nonatomic) IBOutlet UIImageView *badge;

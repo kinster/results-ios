@@ -9,10 +9,10 @@
 #import "Division.h"
 
 @implementation Division
-- (id)initWithIdAndName:(NSString *)divisionId AndName:(NSString *)divisionName {
+- (id)initWithIdAndName:(NSString *)theId AndName:(NSString *)name {
     if (self = [super init]) {
-        _divisionId = divisionId;
-        _divisionName = divisionName;
+        _theId = theId;
+        _name = name;
         return self;
     }
     return self;

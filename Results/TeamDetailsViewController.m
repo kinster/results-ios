@@ -15,43 +15,27 @@
 
 @implementation TeamDetailsViewController
 
-@synthesize position, name, badge, teamId;
+@synthesize position, name, badge, leagueId, seasonId, divisionId, teamId;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     NSError *error;
     
-    NSString *restfulUrl = [[NSString alloc]initWithFormat:@"http://localhost:3000/leagues/1/seasons/1/divisions/1/teams/"];
-    
-    NSString *urlString = [restfulUrl stringByAppendingFormat:@"%@%@", teamId, @".json"];
-
+    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
+    NSString* jsonServer = [infoDict objectForKey:@"jsonServer"];
+    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@.json", leagueId, seasonId, divisionId, teamId];
     NSLog(@"%@", urlString);
     
     NSURL *url = [NSURL URLWithString:urlString];
-    
     NSData *data = [NSData dataWithContentsOfURL:url];
-    
-    NSDictionary *jsonTeam = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+    NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
 
-    NSLog(@"jsonTeam: %@", jsonTeam);
-    
-    NSDictionary *clubJson = [jsonTeam objectForKey:@"club"];
-    
-    NSLog(@"%@", clubJson);
-    
-    NSString *clubBadgeJson = [clubJson objectForKey:@"badge"];
-    NSString *clubNameJson = [clubJson objectForKey:@"name"];
-    
-    name.text = clubNameJson;
-    
-    NSURL *imageUrl = [NSURL URLWithString:clubBadgeJson];
-    NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
-    
-    badge.image = [[UIImage alloc]initWithData:imageData];
 
+    NSLog(@"jsonData: %@", jsonData);
     
     
+    name.text = @"data here";
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
