@@ -31,6 +31,7 @@
 		4B4C236016494D7A00F5A694 /* Result.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C235F16494D7A00F5A694 /* Result.m */; };
 		4B570083164A9980004BCF9B /* LeaguesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B570082164A9980004BCF9B /* LeaguesViewController.m */; };
 		4B57008A164AA20A004BCF9B /* Division.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B570089164AA20A004BCF9B /* Division.m */; };
+		4B79E0E3164D6014009B8389 /* TeamFixturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B79E0E2164D6014009B8389 /* TeamFixturesViewController.m */; };
 		4B7AF2E316396AF300D092D4 /* TeamDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7AF2E216396AF300D092D4 /* TeamDetailsViewController.m */; };
 		4B84517E164B0E54002EB85F /* Season.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B84517D164B0E54002EB85F /* Season.m */; };
 		4B845182164B0F11002EB85F /* LeagueSeasonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B845181164B0F11002EB85F /* LeagueSeasonViewController.m */; };
@@ -82,6 +83,8 @@
 		4B570082164A9980004BCF9B /* LeaguesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaguesViewController.m; sourceTree = "<group>"; };
 		4B570088164AA20A004BCF9B /* Division.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Division.h; sourceTree = "<group>"; };
 		4B570089164AA20A004BCF9B /* Division.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Division.m; sourceTree = "<group>"; };
+		4B79E0E1164D6014009B8389 /* TeamFixturesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamFixturesViewController.h; sourceTree = "<group>"; };
+		4B79E0E2164D6014009B8389 /* TeamFixturesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamFixturesViewController.m; sourceTree = "<group>"; };
 		4B7AF2E116396AF300D092D4 /* TeamDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamDetailsViewController.h; sourceTree = "<group>"; };
 		4B7AF2E216396AF300D092D4 /* TeamDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamDetailsViewController.m; sourceTree = "<group>"; };
 		4B84517C164B0E54002EB85F /* Season.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Season.h; sourceTree = "<group>"; };
@@ -182,6 +185,8 @@
 				4BDBEE191645B2CF001F3F77 /* LeagueFixtureDetailsViewController.m */,
 				4B4C235A16494D0600F5A694 /* LeagueResultsViewController.h */,
 				4B4C235B16494D0600F5A694 /* LeagueResultsViewController.m */,
+				4B79E0E1164D6014009B8389 /* TeamFixturesViewController.h */,
+				4B79E0E2164D6014009B8389 /* TeamFixturesViewController.m */,
 				4BE0E2CB16345CF9000D061F /* CustomTableCell.xib */,
 				4BF55D851634A83600926CDC /* CustomTableCell.h */,
 				4BF55D861634A83600926CDC /* CustomTableCell.m */,
@@ -305,6 +310,7 @@
 				4B84517E164B0E54002EB85F /* Season.m in Sources */,
 				4B845182164B0F11002EB85F /* LeagueSeasonViewController.m in Sources */,
 				4BA8EA79164B1A3500785401 /* LeagueDivisionsViewController.m in Sources */,
+				4B79E0E3164D6014009B8389 /* TeamFixturesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

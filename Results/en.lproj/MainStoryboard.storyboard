@@ -164,7 +164,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1757" y="-2419"/>
+            <point key="canvasLocation" x="1829" y="-2499"/>
         </scene>
         <!--Team Details View Controller - Team Details-->
         <scene sceneID="Pz2-7r-XVW">
@@ -198,7 +198,7 @@
                             <constraint firstItem="OWd-zP-XSH" firstAttribute="top" secondItem="RC2-53-lT5" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="h9S-uf-MPX"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="8s5-Bi-GuG"/>
+                    <tabBarItem key="tabBarItem" title="Details" id="8s5-Bi-GuG"/>
                     <navigationItem key="navigationItem" title="Team Details" id="suH-Ef-pLW"/>
                     <connections>
                         <outlet property="badge" destination="OWd-zP-XSH" id="xrd-1Q-FNf"/>
@@ -208,51 +208,51 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MEr-U9-2OR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5159" y="-1391"/>
+            <point key="canvasLocation" x="3515" y="-2384"/>
         </scene>
         <!--All Fixtures Table View Controller-->
         <scene sceneID="ZkQ-p8-boI">
             <objects>
                 <tableViewController title="League Fixtures" id="gj8-5t-UbE" userLabel="All Fixtures Table View Controller" customClass="LeagueFixturesViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="25" sectionHeaderHeight="22" sectionFooterHeight="22" id="b5W-ZF-OmL" userLabel="Fixtures Table View">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="42" sectionHeaderHeight="22" sectionFooterHeight="22" id="b5W-ZF-OmL" userLabel="Fixtures Table View">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="CustomCellRestorationId" selectionStyle="none" indentationWidth="10" reuseIdentifier="CustomFixtureCell" rowHeight="25" id="sGN-ZT-rp3" userLabel="Fixture Cell" customClass="CustomFixtureCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="25"/>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="CustomCellRestorationId" selectionStyle="none" indentationWidth="10" reuseIdentifier="CustomFixtureCell" rowHeight="42" id="1IH-cN-H0w" userLabel="Fixture Cell Wide" customClass="CustomFixtureCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="24"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="61V-f3-L6v" userLabel="Date">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date Time" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="61" translatesAutoresizingMaskIntoConstraints="NO" id="o4X-Pr-2oW" userLabel="Date">
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="61" id="YP4-kK-vz6"/>
+                                                <constraint firstAttribute="width" constant="61" id="dnB-b8-H7k"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Manchester United" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qXO-gQ-Q3R" userLabel="Home Team">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Manchester United" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="82" translatesAutoresizingMaskIntoConstraints="NO" id="549-ch-wtb" userLabel="Home Team">
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="110" id="QEo-9P-Zao"/>
+                                                <constraint firstAttribute="width" constant="82" id="x6h-KH-HFA"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="v" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h5U-kO-zhe" userLabel="v">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="v" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fil-a9-OgZ" userLabel="Score">
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="20" id="l9D-UK-0qz"/>
+                                                <constraint firstAttribute="width" constant="51" id="end-0W-m2x"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Manchester United" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hl-wU-unD" userLabel="Away Team">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Manchester United" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="82" translatesAutoresizingMaskIntoConstraints="NO" id="ILM-AR-Tjy" userLabel="Away Team">
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="110" id="3Ws-bv-btH"/>
+                                                <constraint firstAttribute="width" constant="82" id="5yE-1W-imN"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -262,23 +262,23 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="qXO-gQ-Q3R" firstAttribute="leading" secondItem="sGN-ZT-rp3" secondAttribute="leading" constant="65" id="7Bl-wI-jkl"/>
-                                    <constraint firstItem="h5U-kO-zhe" firstAttribute="top" secondItem="sGN-ZT-rp3" secondAttribute="top" type="default" id="EnH-eM-JvK"/>
-                                    <constraint firstItem="qXO-gQ-Q3R" firstAttribute="bottom" secondItem="sGN-ZT-rp3" secondAttribute="bottom" type="default" id="Fou-tX-qB6"/>
-                                    <constraint firstItem="61V-f3-L6v" firstAttribute="bottom" secondItem="sGN-ZT-rp3" secondAttribute="bottom" type="default" id="Fp5-bR-CWa"/>
-                                    <constraint firstItem="qXO-gQ-Q3R" firstAttribute="top" secondItem="sGN-ZT-rp3" secondAttribute="top" type="default" id="KCO-Al-SUY"/>
-                                    <constraint firstItem="2hl-wU-unD" firstAttribute="top" secondItem="sGN-ZT-rp3" secondAttribute="top" type="default" id="Kks-yM-cmE"/>
-                                    <constraint firstItem="61V-f3-L6v" firstAttribute="top" secondItem="sGN-ZT-rp3" secondAttribute="top" type="default" id="MSL-Md-eC1"/>
-                                    <constraint firstAttribute="trailing" secondItem="2hl-wU-unD" secondAttribute="trailing" constant="2" id="OJH-4M-Qxk"/>
-                                    <constraint firstItem="2hl-wU-unD" firstAttribute="bottom" secondItem="sGN-ZT-rp3" secondAttribute="bottom" type="default" id="UJD-Ai-cKh"/>
-                                    <constraint firstItem="h5U-kO-zhe" firstAttribute="leading" secondItem="qXO-gQ-Q3R" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Wpf-Eu-9yi"/>
-                                    <constraint firstItem="61V-f3-L6v" firstAttribute="leading" secondItem="sGN-ZT-rp3" secondAttribute="leading" constant="2" id="cqH-ec-fma"/>
-                                    <constraint firstItem="h5U-kO-zhe" firstAttribute="bottom" secondItem="sGN-ZT-rp3" secondAttribute="bottom" type="default" id="pqq-4F-js2"/>
+                                    <constraint firstItem="549-ch-wtb" firstAttribute="bottom" secondItem="1IH-cN-H0w" secondAttribute="bottom" type="default" id="DvY-Dy-RHo"/>
+                                    <constraint firstItem="o4X-Pr-2oW" firstAttribute="leading" secondItem="1IH-cN-H0w" secondAttribute="leading" constant="2" id="Dy7-4f-9Sa"/>
+                                    <constraint firstItem="ILM-AR-Tjy" firstAttribute="top" secondItem="1IH-cN-H0w" secondAttribute="top" type="default" id="G4H-dp-2kW"/>
+                                    <constraint firstItem="o4X-Pr-2oW" firstAttribute="top" secondItem="1IH-cN-H0w" secondAttribute="top" type="default" id="GaJ-cf-ghJ"/>
+                                    <constraint firstItem="549-ch-wtb" firstAttribute="leading" secondItem="1IH-cN-H0w" secondAttribute="leading" constant="65" id="P5d-Yq-BeX"/>
+                                    <constraint firstAttribute="trailing" secondItem="ILM-AR-Tjy" secondAttribute="trailing" constant="3" id="RQt-6B-Ko5"/>
+                                    <constraint firstAttribute="trailing" secondItem="Fil-a9-OgZ" secondAttribute="trailing" constant="105" id="ect-NK-yP1"/>
+                                    <constraint firstItem="Fil-a9-OgZ" firstAttribute="top" secondItem="1IH-cN-H0w" secondAttribute="top" type="default" id="n0Y-IY-ZM7"/>
+                                    <constraint firstItem="Fil-a9-OgZ" firstAttribute="bottom" secondItem="1IH-cN-H0w" secondAttribute="bottom" type="default" id="nMO-LX-DRF"/>
+                                    <constraint firstItem="o4X-Pr-2oW" firstAttribute="bottom" secondItem="1IH-cN-H0w" secondAttribute="bottom" type="default" id="nzV-ka-Ujb"/>
+                                    <constraint firstItem="549-ch-wtb" firstAttribute="top" secondItem="1IH-cN-H0w" secondAttribute="top" type="default" id="q2X-Fv-cNV"/>
+                                    <constraint firstItem="ILM-AR-Tjy" firstAttribute="bottom" secondItem="1IH-cN-H0w" secondAttribute="bottom" type="default" id="sV4-no-Ej2"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="awayTeam" destination="2hl-wU-unD" id="LPo-tY-k8D"/>
-                                    <outlet property="date" destination="61V-f3-L6v" id="gzF-5v-xRZ"/>
-                                    <outlet property="homeTeam" destination="qXO-gQ-Q3R" id="bXs-DC-aQ2"/>
+                                    <outlet property="awayTeam" destination="ILM-AR-Tjy" id="yfM-wG-PIt"/>
+                                    <outlet property="date" destination="o4X-Pr-2oW" id="EPy-mg-V9z"/>
+                                    <outlet property="homeTeam" destination="549-ch-wtb" id="JB8-AZ-WI9"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -294,35 +294,107 @@
             </objects>
             <point key="canvasLocation" x="1477" y="-1885"/>
         </scene>
+        <!--Table View Controller - Results-->
+        <scene sceneID="yDC-v9-84S">
+            <objects>
+                <tableViewController id="DbK-vW-75d" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="zBT-el-yAY">
+                        <rect key="frame" x="0.0" y="20" width="320" height="411"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="zR1-YC-J8B">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="DbK-vW-75d" id="tQ2-Du-0dt"/>
+                            <outlet property="delegate" destination="DbK-vW-75d" id="1pF-PC-YFZ"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Results" id="tnG-9C-UyE"/>
+                    <navigationItem key="navigationItem" id="D8S-dU-fgt"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="djl-SI-xiP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3351" y="-1070"/>
+        </scene>
         <!--Selected Fixtures Controller-->
         <scene sceneID="Uuz-EZ-aV0">
             <objects>
-                <tableViewController id="YDJ-2M-16F" userLabel="Selected Fixtures Controller" sceneMemberID="viewController">
+                <tableViewController id="YDJ-2M-16F" userLabel="Selected Fixtures Controller" customClass="TeamFixturesViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="O6a-PW-ppe" userLabel="Selected Fixtures Table View">
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TeamFixtureCell" textLabel="dA6-fn-rfZ" detailTextLabel="sHB-XX-InK" style="IBUITableViewCellStyleSubtitle" id="eQ3-aM-y1G">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="CustomCellRestorationId" selectionStyle="none" indentationWidth="10" reuseIdentifier="CustomFixtureCell" rowHeight="42" id="nxO-Ct-nUk" userLabel="Fixture Cell Wide" customClass="CustomFixtureCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dA6-fn-rfZ">
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date Time" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="61" translatesAutoresizingMaskIntoConstraints="NO" id="gQK-Ty-E99" userLabel="Date">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="61" id="BkJ-Ep-VMD"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sHB-XX-InK">
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Manchester United" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="82" translatesAutoresizingMaskIntoConstraints="NO" id="JPa-c4-LSL" userLabel="Home Team">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="82" id="kB9-lZ-usX"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="v" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ecD-U5-DYq" userLabel="Score">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="51" id="vP6-rJ-D2F"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Manchester United" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="82" translatesAutoresizingMaskIntoConstraints="NO" id="Rpr-OM-hvi" userLabel="Away Team">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="82" id="aH6-dT-hfP"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <constraints>
+                                    <constraint firstItem="JPa-c4-LSL" firstAttribute="top" secondItem="nxO-Ct-nUk" secondAttribute="top" type="default" id="7Lk-9V-Xoa"/>
+                                    <constraint firstItem="Rpr-OM-hvi" firstAttribute="bottom" secondItem="nxO-Ct-nUk" secondAttribute="bottom" type="default" id="Drm-HY-8yq"/>
+                                    <constraint firstItem="Rpr-OM-hvi" firstAttribute="trailing" secondItem="nxO-Ct-nUk" secondAttribute="trailing" type="default" id="EDk-cG-ElD"/>
+                                    <constraint firstItem="gQK-Ty-E99" firstAttribute="bottom" secondItem="nxO-Ct-nUk" secondAttribute="bottom" type="default" id="HY6-Pe-Yc7"/>
+                                    <constraint firstItem="ecD-U5-DYq" firstAttribute="top" secondItem="nxO-Ct-nUk" secondAttribute="top" type="default" id="Hjj-Ma-g8L"/>
+                                    <constraint firstItem="ecD-U5-DYq" firstAttribute="bottom" secondItem="nxO-Ct-nUk" secondAttribute="bottom" type="default" id="JXi-D6-XJD"/>
+                                    <constraint firstItem="JPa-c4-LSL" firstAttribute="leading" secondItem="nxO-Ct-nUk" secondAttribute="leading" constant="65" id="jnN-h6-tah"/>
+                                    <constraint firstItem="JPa-c4-LSL" firstAttribute="bottom" secondItem="nxO-Ct-nUk" secondAttribute="bottom" type="default" id="luo-HB-Z36"/>
+                                    <constraint firstItem="Rpr-OM-hvi" firstAttribute="top" secondItem="nxO-Ct-nUk" secondAttribute="top" type="default" id="oqc-cS-Nl1"/>
+                                    <constraint firstItem="gQK-Ty-E99" firstAttribute="leading" secondItem="nxO-Ct-nUk" secondAttribute="leading" constant="2" id="u3j-BW-Bqo"/>
+                                    <constraint firstAttribute="trailing" secondItem="ecD-U5-DYq" secondAttribute="trailing" constant="105" id="w5w-be-N6u"/>
+                                    <constraint firstItem="gQK-Ty-E99" firstAttribute="top" secondItem="nxO-Ct-nUk" secondAttribute="top" type="default" id="xgv-tA-tjI"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="awayTeam" destination="Rpr-OM-hvi" id="rWS-Je-bmi"/>
+                                    <outlet property="date" destination="gQK-Ty-E99" id="uyK-QM-VhK"/>
+                                    <outlet property="homeTeam" destination="JPa-c4-LSL" id="hHv-e3-jfy"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                     </tableView>
@@ -331,7 +403,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hP8-8d-0Ea" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4666" y="-2408"/>
+            <point key="canvasLocation" x="3324" y="-1773"/>
         </scene>
         <!--Tab Bar Controller - Details-->
         <scene sceneID="2mv-dN-YNo">
@@ -346,10 +418,12 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="YDJ-2M-16F" kind="push" identifier="ShowTeamFixtures" id="Oqm-9e-nBv"/>
-                        <segue destination="YDJ-2M-16F" kind="relationship" relationship="viewControllers" id="sL5-TG-7Hf"/>
-                        <segue destination="bl9-Jn-mfe" kind="push" identifier="ShowTeamDetails" id="I0z-TZ-dbN"/>
                         <segue destination="bl9-Jn-mfe" kind="relationship" relationship="viewControllers" id="daN-fv-q2d"/>
+                        <segue destination="YDJ-2M-16F" kind="relationship" relationship="viewControllers" id="XWQ-h0-uKd"/>
+                        <segue destination="DbK-vW-75d" kind="relationship" relationship="viewControllers" id="uxb-Wb-1Vx"/>
+                        <segue destination="bl9-Jn-mfe" kind="push" identifier="ShowTeamDetails" id="nlu-6i-a2D"/>
+                        <segue destination="YDJ-2M-16F" kind="push" identifier="ShowTeamFixtures" id="T6K-d0-73O"/>
+                        <segue destination="DbK-vW-75d" kind="push" identifier="ShowTeamResults" id="IJU-ed-kPq"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5tN-Pb-VDt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -608,16 +682,86 @@
             <point key="canvasLocation" x="-1420" y="-2620"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="CustomFixtureCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomFixtureCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="awayTeam" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="date" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="homeTeam" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="CustomResultCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomResultCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="awayTeam" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="date" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="homeTeam" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="score" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="CustomTableCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomTableCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="draws" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="goalDiff" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="goalsAgainst" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="goalsFor" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="losses" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="played" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="points" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="position" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="team" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="wins" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="LeagueDivisionsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueDivisionsViewController.h"/>
+        </class>
+        <class className="LeagueFixturesViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueFixturesViewController.h"/>
+        </class>
+        <class className="LeagueResultsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueResultsViewController.h"/>
+        </class>
+        <class className="LeagueSeasonViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueSeasonViewController.h"/>
+        </class>
+        <class className="LeagueTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="leagueLogo" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="LeaguesViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeaguesViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="TeamDetailsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeamDetailsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="badge" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="position" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TeamFixturesViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeamFixturesViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="I0z-TZ-dbN"/>
-        <segue reference="PTE-gE-9LN"/>
         <segue reference="48v-hn-n4L"/>
         <segue reference="j4u-PF-byw"/>
-        <segue reference="Oqm-9e-nBv"/>
+        <segue reference="PTE-gE-9LN"/>
+        <segue reference="IJU-ed-kPq"/>
+        <segue reference="nlu-6i-a2D"/>
+        <segue reference="T6K-d0-73O"/>
     </inferredMetricsTieBreakers>
 </document>

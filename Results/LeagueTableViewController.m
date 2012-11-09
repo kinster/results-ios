@@ -10,6 +10,7 @@
 #import "Team.h"
 #import "CustomTableCell.h"
 #import "TeamDetailsViewController.h"
+#import "TeamFixturesViewController.h"
 
 @interface LeagueTableViewController ()
 
@@ -116,20 +117,20 @@
     UITabBarController *tabBarViewController = [segue destinationViewController];
 
     if ([[segue identifier] isEqualToString:@"ShowTeamDetails"]) {
-        NSLog(@"%@", segue.destinationViewController);
-        TeamDetailsViewController *teamDetailsViewController = [tabBarViewController.viewControllers objectAtIndex:1];
+        TeamDetailsViewController *teamDetailsViewController = [tabBarViewController.viewControllers objectAtIndex:0];
         NSLog(@"%@", teamDetailsViewController.class);
         [teamDetailsViewController setLeagueId:leagueId];
         [teamDetailsViewController setSeasonId:seasonId];
         [teamDetailsViewController setDivisionId:divisionId];
         [teamDetailsViewController setTeamId:team.teamId];
-    } else if ([[segue identifier] isEqualToString:@"ShowTeamFixtures"]) {
         NSLog(@"Team Fixtures");
-        TeamDetailsViewController *teamDetailsViewController = [tabBarViewController.viewControllers objectAtIndex:0];
-        [teamDetailsViewController setLeagueId:leagueId];
-        [teamDetailsViewController setSeasonId:seasonId];
-        [teamDetailsViewController setDivisionId:divisionId];
-        [teamDetailsViewController setTeamId:team.teamId];
+        TeamFixturesViewController *teamFixturesController = [tabBarViewController.viewControllers objectAtIndex:1];
+        [teamFixturesController setLeagueId:leagueId];
+        [teamFixturesController setSeasonId:seasonId];
+        [teamFixturesController setDivisionId:divisionId];
+        [teamFixturesController setTeamId:team.teamId];
+        NSLog(@"LeagueTableViewController %@ %@ %@ %@", leagueId, seasonId, divisionId, team.teamId);
+
     }
 }
 
