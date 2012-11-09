@@ -31,38 +31,35 @@
     
     NSLog(@"LeagueFixturesViewController");
     
-    resultsList = [[NSMutableArray alloc] init];
-    
     NSError *error;
     
-    NSString *restfulUrl = [[NSString alloc]initWithFormat:@"http://localhost:3000/leagues/1/seasons/1/divisions/"];
-    
-    NSString *urlString = [restfulUrl stringByAppendingFormat:@"%d%@", 1, @"/results.json"];
-    
+    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
+    NSString* jsonServer = [infoDict objectForKey:@"jsonServer"];
+    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/results.json", leagueId, seasonId, divisionId];
     NSLog(@"%@", urlString);
     
     NSURL *url = [NSURL URLWithString:urlString];
-    
     NSData *data = [NSData dataWithContentsOfURL:url];
+    NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
     
-    NSDictionary *jsonResults = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+    resultsList = [[NSMutableArray alloc] init];
+    Result *result = nil;
     
-    NSLog(@"jsonResults: %@", jsonResults);
     
-    for (NSDictionary *resultEntry in jsonResults) {
+    for (NSDictionary *entry in jsonData) {
+        NSString *type = [entry objectForKey:@"type"];
+        NSString *dateTime = [entry objectForKey:@"date_time"];
+        NSString *homeTeam = [entry objectForKey:@"home_team"];
+        NSString *score = [entry objectForKey:@"score"];
+        NSString *awayTeam = [entry objectForKey:@"away_team"];
+        NSString *competition = [entry objectForKey:@"competition"];
+        NSString *statusNote = [entry objectForKey:@"status_note"];
         
-        NSString *type = [resultEntry objectForKey:@"type"];
-        NSString *dateTime = [resultEntry objectForKey:@"date_time"];
-        NSString *homeTeam = [resultEntry objectForKey:@"home_team"];
-        NSString *score = [resultEntry objectForKey:@"score"];
-        NSString *awayTeam = [resultEntry objectForKey:@"away_team"];
-        NSString *competition = [resultEntry objectForKey:@"competition"];
-        NSString *statusNote = [resultEntry objectForKey:@"status_note"];
-        
-        Result *result = [[Result alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndScore:score AndAwayTeam:awayTeam AndLocation:nil AndCompetition:competition AndStatusNote:statusNote];
+        result = [[Result alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndScore:score AndAwayTeam:awayTeam AndLocation:nil AndCompetition:competition AndStatusNote:statusNote];
         
         [resultsList addObject:result];
     }
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
