@@ -8,6 +8,8 @@
 
 #import "LeagueDivisionsViewController.h"
 #import "LeagueTableViewController.h"
+#import "LeagueFixturesViewController.h"
+#import "LeagueResultsViewController.h"
 #import "Division.h"
 
 @interface LeagueDivisionsViewController ()
@@ -97,13 +99,20 @@
     NSLog(@"%d", indexPath.row);
     Division *division = [divisionsList objectAtIndex:indexPath.row];
     UITabBarController *tabBarController = [segue destinationViewController];
-    UINavigationController *navController = [tabBarController.viewControllers objectAtIndex:0];
-    if ([[segue identifier] isEqualToString:@"ShowTable"]) {
-        LeagueTableViewController *viewController = [navController.viewControllers objectAtIndex:0];
-        [viewController setLeagueId:leagueId];
-        [viewController setSeasonId:seasonId];
-        [viewController setDivisionId:division.theId];
-    }
+    LeagueTableViewController *viewController0 = [tabBarController.viewControllers objectAtIndex:0];
+    [viewController0 setLeagueId:leagueId];
+    [viewController0 setSeasonId:seasonId];
+    [viewController0 setDivisionId:division.theId];
+    NSLog(@"ShowFixtures");
+    LeagueFixturesViewController *viewController1 = [tabBarController.viewControllers objectAtIndex:1];
+    [viewController1 setLeagueId:leagueId];
+    [viewController1 setSeasonId:seasonId];
+    [viewController1 setDivisionId:division.theId];
+    LeagueResultsViewController *viewController2 = [tabBarController.viewControllers objectAtIndex:2];
+    [viewController2 setLeagueId:leagueId];
+    [viewController2 setSeasonId:seasonId];
+    [viewController2 setDivisionId:division.theId];
+
 }
 
 /*

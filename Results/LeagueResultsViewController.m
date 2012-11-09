@@ -16,7 +16,7 @@
 
 @implementation LeagueResultsViewController
 
-@synthesize resultsList;
+@synthesize resultsList, leagueId, seasonId, divisionId;
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];

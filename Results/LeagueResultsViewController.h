@@ -10,4 +10,7 @@
 
 @interface LeagueResultsViewController : UITableViewController
 @property (nonatomic, copy) NSMutableArray *resultsList;
+@property (nonatomic, copy) NSString *leagueId;
+@property (nonatomic, copy) NSString *seasonId;
+@property (nonatomic, copy) NSString *divisionId;
 @end

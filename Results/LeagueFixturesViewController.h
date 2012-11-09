@@ -10,5 +10,7 @@
 
 @interface LeagueFixturesViewController : UITableViewController
 @property (nonatomic, copy) NSMutableArray *fixtureList;
-@property (weak, nonatomic) NSString *leagueSeasonDivisionId;
+@property (nonatomic, copy) NSString *leagueId;
+@property (nonatomic, copy) NSString *seasonId;
+@property (nonatomic, copy) NSString *divisionId;
 @end

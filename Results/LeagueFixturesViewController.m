@@ -19,7 +19,7 @@
 
 @implementation LeagueFixturesViewController
 
-@synthesize leagueSeasonDivisionId, fixtureList;
+@synthesize fixtureList, leagueId, seasonId, divisionId;
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -33,36 +33,33 @@
     [super viewDidLoad];
     
     NSLog(@"LeagueFixturesViewController");
-    
-    fixtureList = [[NSMutableArray alloc] init];
 
     NSError *error;
     
-    NSString *restfulUrl = [[NSString alloc]initWithFormat:@"http://localhost:3000/leagues/1/seasons/1/divisions/"];
-    
-    NSString *urlString = [restfulUrl stringByAppendingFormat:@"%d%@", 1, @"/fixtures.json"];
-    
+    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
+    NSString* jsonServer = [infoDict objectForKey:@"jsonServer"];
+    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/fixtures.json", leagueId, seasonId, divisionId];
     NSLog(@"%@", urlString);
     
     NSURL *url = [NSURL URLWithString:urlString];
-    
     NSData *data = [NSData dataWithContentsOfURL:url];
+    NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
     
-    NSDictionary *jsonFixtures = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-    
-    NSLog(@"jsonFixtures: %@", jsonFixtures);
-    
-    for (NSDictionary *fixtureEntry in jsonFixtures) {
+    fixtureList = [[NSMutableArray alloc] init];
+    Fixture *fixture = nil;
 
-        NSString *type = [fixtureEntry objectForKey:@"type"];
-        NSString *dateTime = [fixtureEntry objectForKey:@"date_time"];
-        NSString *homeTeam = [fixtureEntry objectForKey:@"home_team"];
-        NSString *awayTeam = [fixtureEntry objectForKey:@"away_team"];
-        NSString *location = [fixtureEntry objectForKey:@"location"];
-        NSString *competition = [fixtureEntry objectForKey:@"competition"];
-        NSString *statusNote = [fixtureEntry objectForKey:@"status_note"];
 
-        Fixture *fixture = [[Fixture alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndAwayTeam:awayTeam AndLocation:location AndCompetition:competition AndStatusNote:statusNote];
+    for (NSDictionary *entry in jsonData) {
+
+        NSString *type = [entry objectForKey:@"type"];
+        NSString *dateTime = [entry objectForKey:@"date_time"];
+        NSString *homeTeam = [entry objectForKey:@"home_team"];
+        NSString *awayTeam = [entry objectForKey:@"away_team"];
+        NSString *location = [entry objectForKey:@"location"];
+        NSString *competition = [entry objectForKey:@"competition"];
+        NSString *statusNote = [entry objectForKey:@"status_note"];
+
+        fixture = [[Fixture alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndAwayTeam:awayTeam AndLocation:location AndCompetition:competition AndStatusNote:statusNote];
         
         [fixtureList addObject:fixture];
     }
