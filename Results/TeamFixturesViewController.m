@@ -30,7 +30,7 @@
 {
     [super viewDidLoad];
 
-    NSLog(@"LeagueFixturesViewController");
+    NSLog(@"TeamFixturesViewController");
     
     NSError *error;
     
@@ -93,8 +93,8 @@
     }
     
     Fixture *fixture = [fixtureList objectAtIndex:indexPath.row];
-    cell.homeTeam.text = fixture.hTeam;
-    cell.awayTeam.text = fixture.aTeam;
+    cell.homeTeam.text = fixture.homeTeam;
+    cell.awayTeam.text = fixture.awayTeam;
     cell.date.text = fixture.dateTime;
     return cell;
     

@@ -11,6 +11,7 @@
 #import "CustomTableCell.h"
 #import "TeamDetailsViewController.h"
 #import "TeamFixturesViewController.h"
+#import "TeamResultsViewController.h"
 
 @interface LeagueTableViewController ()
 
@@ -129,6 +130,12 @@
         [teamFixturesController setSeasonId:seasonId];
         [teamFixturesController setDivisionId:divisionId];
         [teamFixturesController setTeamId:team.teamId];
+        NSLog(@"LeagueTableViewController %@ %@ %@ %@", leagueId, seasonId, divisionId, team.teamId);
+        TeamResultsViewController *teamResultsController = [tabBarViewController.viewControllers objectAtIndex:2];
+        [teamResultsController setLeagueId:leagueId];
+        [teamResultsController setSeasonId:seasonId];
+        [teamResultsController setDivisionId:divisionId];
+        [teamResultsController setTeamId:team.teamId];
         NSLog(@"LeagueTableViewController %@ %@ %@ %@", leagueId, seasonId, divisionId, team.teamId);
 
     }

@@ -1,22 +1,22 @@
 //
-//  LeagueResultsViewController.m
+//  TeamResultsViewController.m
 //  Results
 //
-//  Created by Kinman Li on 06/11/2012.
+//  Created by Kinman Li on 10/11/2012.
 //  Copyright (c) 2012 Kinman Li. All rights reserved.
 //
 
-#import "LeagueResultsViewController.h"
+#import "TeamResultsViewController.h"
 #import "Result.h"
 #import "CustomResultCell.h"
 
-@interface LeagueResultsViewController ()
+@interface TeamResultsViewController ()
 
 @end
 
-@implementation LeagueResultsViewController
+@implementation TeamResultsViewController
 
-@synthesize resultsList, leagueId, seasonId, divisionId;
+@synthesize resultsList, leagueId, seasonId, divisionId, teamId;
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -28,14 +28,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSLog(@"LeagueFixturesViewController");
+
+    NSLog(@"TeamResultsViewController");
     
     NSError *error;
     
     NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
     NSString* jsonServer = [infoDict objectForKey:@"jsonServer"];
-    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/results.json", leagueId, seasonId, divisionId];
+    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@/results.json", leagueId, seasonId, divisionId, teamId];
     NSLog(@"%@", urlString);
     
     NSURL *url = [NSURL URLWithString:urlString];
@@ -47,6 +47,7 @@
     
     
     for (NSDictionary *entry in jsonData) {
+        
         NSString *type = [entry objectForKey:@"type"];
         NSString *dateTime = [entry objectForKey:@"date_time"];
         NSString *homeTeam = [entry objectForKey:@"home_team"];
@@ -56,10 +57,10 @@
         NSString *statusNote = [entry objectForKey:@"status_note"];
         
         result = [[Result alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndScore:score AndAwayTeam:awayTeam AndCompetition:competition AndStatusNote:statusNote];
-
+        
         [resultsList addObject:result];
     }
-    
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -81,21 +82,18 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    // Configure the cell...
     static NSString *CellIdentifier = @"CustomResultCell";
-//    CustomResultCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    CustomResultCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    CustomResultCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
         cell = [[CustomResultCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     Result *result = [resultsList objectAtIndex:indexPath.row];
-    cell.date.text = result.dateTime;
     cell.homeTeam.text = result.homeTeam;
     cell.score.text = result.score;
     cell.awayTeam.text = result.awayTeam;
+    cell.date.text = result.dateTime;
     
     return cell;
 }
@@ -129,7 +127,8 @@
 
 /*
 // Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
     // Return NO if you do not want the item to be re-orderable.
     return YES;
 }

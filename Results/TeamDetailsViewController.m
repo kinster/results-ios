@@ -20,6 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationItem.title = @"Team Details";
+    
     NSError *error;
     
     NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];

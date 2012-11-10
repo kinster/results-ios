@@ -94,8 +94,8 @@
     }
 
     Fixture *fixture = [fixtureList objectAtIndex:indexPath.row];
-    cell.homeTeam.text = fixture.hTeam;
-    cell.awayTeam.text = fixture.aTeam;
+    cell.homeTeam.text = fixture.homeTeam;
+    cell.awayTeam.text = fixture.awayTeam;
     cell.date.text = fixture.dateTime;
     return cell;
 }
@@ -148,17 +148,17 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSLog(@"In prepareForSegue");
     
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    NSLog(@"%d", indexPath.row);
-    Fixture *fixture = [fixtureList objectAtIndex:indexPath.row];
-    LeagueFixtureDetailsViewController *destinationController = [segue destinationViewController];
-    
-    if ([[segue identifier] isEqualToString:@"ShowLeagueFixtureDetails"]) {
-        NSLog(@"Fixture id: %@", fixture.fixtureId);
-        NSLog(@"%@", segue.destinationViewController);
-
-        [destinationController setFixtureId:fixture.fixtureId];
-    }
+//    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+//    NSLog(@"%d", indexPath.row);
+//    Fixture *fixture = [fixtureList objectAtIndex:indexPath.row];
+//    LeagueFixtureDetailsViewController *destinationController = [segue destinationViewController];
+//    
+//    if ([[segue identifier] isEqualToString:@"ShowLeagueFixtureDetails"]) {
+//        NSLog(@"Fixture id: %@", fixture.fixtureId);
+//        NSLog(@"%@", segue.destinationViewController);
+//
+//        [destinationController setFixtureId:fixture.fixtureId];
+//    }
 }
 
 @end
