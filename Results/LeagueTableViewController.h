@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TeamDetailsViewController.h"
 
-@class CustomTableCell;
+@class CustomTableCell, Division;
 
 @interface LeagueTableViewController : UITableViewController
 @property (nonatomic, copy) IBOutlet UIImageView *leagueLogo;
@@ -19,5 +19,5 @@
 @property (nonatomic, copy) NSString *leagueLogoUrl;
 @property (nonatomic, copy) NSString *leagueId;
 @property (nonatomic, copy) NSString *seasonId;
-@property (nonatomic, copy) NSString *divisionId;
+@property (weak, nonatomic) Division *division;
 @end

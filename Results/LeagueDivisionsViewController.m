@@ -85,7 +85,7 @@
     }
     
     Division *division = [divisionsList objectAtIndex:indexPath.row];
-    NSLog(@"division: %@ %@", division.theId, division.name);
+    NSLog(@"division: %@ %@", division.divisionId, division.name);
     
     cell.textLabel.text = [division name];
     
@@ -102,16 +102,16 @@
     LeagueTableViewController *viewController0 = [tabBarController.viewControllers objectAtIndex:0];
     [viewController0 setLeagueId:leagueId];
     [viewController0 setSeasonId:seasonId];
-    [viewController0 setDivisionId:division.theId];
+    [viewController0 setDivision:division];
     NSLog(@"ShowFixtures");
     LeagueFixturesViewController *viewController1 = [tabBarController.viewControllers objectAtIndex:1];
     [viewController1 setLeagueId:leagueId];
     [viewController1 setSeasonId:seasonId];
-    [viewController1 setDivisionId:division.theId];
+    [viewController1 setDivisionId:division.divisionId];
     LeagueResultsViewController *viewController2 = [tabBarController.viewControllers objectAtIndex:2];
     [viewController2 setLeagueId:leagueId];
     [viewController2 setSeasonId:seasonId];
-    [viewController2 setDivisionId:division.theId];
+    [viewController2 setDivisionId:division.divisionId];
 
 }
 

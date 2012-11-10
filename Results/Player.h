@@ -8,15 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Player : NSObject {
-    NSString *forename;
-    NSString *surname;
-}
-
-- (void)setForename:(NSString *)newForename;
-- (void)setSurname:(NSString *)newSurname;
-
-- (NSString *)forename;
-- (NSString *)surname;
-
+@interface Player : NSObject
+@property (nonatomic, copy) NSString *name;
+- (id)initPlayer:(NSString *)name;
 @end

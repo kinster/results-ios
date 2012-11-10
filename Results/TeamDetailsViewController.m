@@ -7,7 +7,8 @@
 //
 
 #import "TeamDetailsViewController.h"
-#import "Club.h"
+#import "Team.h"
+#import "Player.h"
 
 @interface TeamDetailsViewController ()
 
@@ -15,35 +16,92 @@
 
 @implementation TeamDetailsViewController
 
-@synthesize position, name, badge, leagueId, seasonId, divisionId, teamId;
+@synthesize position, name, badge, leagueId, seasonId, divisionId, team, navBar, playersTable, playersList;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.navigationItem.title = @"Team Details";
+    navBar.title = @"Team Details";
     
     NSError *error;
     
     NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
     NSString* jsonServer = [infoDict objectForKey:@"jsonServer"];
-    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@.json", leagueId, seasonId, divisionId, teamId];
+    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@.json", leagueId, seasonId, divisionId, team.teamId];
     NSLog(@"%@", urlString);
     
     NSURL *url = [NSURL URLWithString:urlString];
     NSData *data = [NSData dataWithContentsOfURL:url];
-    NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+    NSArray *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
 
+    NSLog(@"%@", jsonData);
+    
 
-    NSLog(@"jsonData: %@", jsonData);
+    NSString *image = [jsonData[0] objectForKey:@"image_url"];
+    NSLog(@"image: %@", image);
     
+    NSURL *imageUrl = [NSURL URLWithString:image];
+    NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
     
-    name.text = @"data here";
+    badge.image = [[UIImage alloc]initWithData:imageData];
+    
+    name.text = [team name];
+
+    NSString *playersUrlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@/players.json", leagueId, seasonId, divisionId, team.teamId];
+    NSLog(@"%@", playersUrlString);
+    
+    NSURL *playersUrl = [NSURL URLWithString:playersUrlString];
+    NSData *playersData = [NSData dataWithContentsOfURL:playersUrl];
+    NSArray *playersJsonData = [NSJSONSerialization JSONObjectWithData:playersData options:NSJSONReadingMutableContainers error:&error];
+
+    playersList = [[NSMutableArray alloc] init];
+
+    Player *player = nil;
+    for (NSDictionary *playerJson in playersJsonData) {
+        player = [[Player alloc] initPlayer:[playerJson objectForKey:@"name"]];
+        [playersList addObject:player];
+    }
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+//    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	return [playersList count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *CellIdentifier = @"PlayerCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
+    NSLog(@"Players count in cell: %d", [playersList count]);
+
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    
+    Player *player = [playersList objectAtIndex:indexPath.row];
+    NSLog(@"Player in cell: %@", player.name);
+ 
+    cell.textLabel.text = [NSString stringWithFormat:@"%d) %@", indexPath.row+1, player.name];
+
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	// open a alert with an OK and cancel button
+    Player *player = [playersList objectAtIndex:indexPath.row];
+	NSString *alertString = [NSString stringWithFormat:@"Clicked on %@", [player name]];
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertString message:@"" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
+	[alert show];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -85,17 +143,5 @@
     return YES;
 }
 */
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
-}
 
 @end

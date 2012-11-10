@@ -10,20 +10,10 @@
 
 @implementation Player
 
-- (void)setForename:(NSString *)newForename {
-    forename = newForename;
+-(id)initPlayer:(NSString *)name {
+    if (self = [super init]) {
+    _name = name;
+    }
+    return self;
 }
-
-- (void)setSurname:(NSString *)newSurname {
-    surname = newSurname;
-}
-
-- (NSString *)forename {
-    return forename;
-}
-
-- (NSString *)surname {
-    return surname;
-}
-
 @end

@@ -12,6 +12,7 @@
 #import "TeamDetailsViewController.h"
 #import "TeamFixturesViewController.h"
 #import "TeamResultsViewController.h"
+#import "Division.h"
 
 @interface LeagueTableViewController ()
 
@@ -19,7 +20,7 @@
 
 @implementation LeagueTableViewController
 
-@synthesize teamList, leagueLogo, leagueName, leagueSeasonDivisionId, leagueLogoUrl, leagueId, seasonId, divisionId;
+@synthesize teamList, leagueLogo, leagueName, leagueSeasonDivisionId, leagueLogoUrl, leagueId, seasonId, division;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,7 +30,7 @@
     
     NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
     NSString* jsonServer = [infoDict objectForKey:@"jsonServer"];
-    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@.json", leagueId, seasonId, divisionId];
+    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@.json", leagueId, seasonId, division.divisionId];
     NSLog(@"%@", urlString);
     
     NSURL *url = [NSURL URLWithString:urlString];
@@ -54,7 +55,7 @@
         NSLog(@"pos: %@", position);
         NSLog(@"gf: %@", gf);
         
-        team = [[Team alloc] initWithTeam:name AndPosition:position AndPlayed:played AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:gf AndGoalsAgainst:ga AndGoalDiff:gd AndPoints:points AndId:teamId];
+        team = [[Team alloc] initWithTeam:name AndPosition:position AndPlayed:played AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:gf AndGoalsAgainst:ga AndGoalDiff:gd AndPoints:points AndTeamId:teamId];
         [teamList addObject: team];
 
     }
@@ -122,21 +123,26 @@
         NSLog(@"%@", teamDetailsViewController.class);
         [teamDetailsViewController setLeagueId:leagueId];
         [teamDetailsViewController setSeasonId:seasonId];
-        [teamDetailsViewController setDivisionId:divisionId];
-        [teamDetailsViewController setTeamId:team.teamId];
+        [teamDetailsViewController setDivisionId:[division divisionId]];
+        [teamDetailsViewController setTeam:team];
         NSLog(@"Team Fixtures");
         TeamFixturesViewController *teamFixturesController = [tabBarViewController.viewControllers objectAtIndex:1];
+        NSLog(@"Team %@ 1", team);
         [teamFixturesController setLeagueId:leagueId];
+        NSLog(@"Team %@ 2", team);
         [teamFixturesController setSeasonId:seasonId];
-        [teamFixturesController setDivisionId:divisionId];
-        [teamFixturesController setTeamId:team.teamId];
-        NSLog(@"LeagueTableViewController %@ %@ %@ %@", leagueId, seasonId, divisionId, team.teamId);
+        NSLog(@"Team %@ 3", team);
+        [teamFixturesController setDivisionId:[division divisionId]];
+        NSLog(@"Team %@ 4", team);
+        [teamFixturesController setTeam:team];
+        NSLog(@"Team %@ 5", team);
+        NSLog(@"LeagueTableViewController %@ %@ %@ %@", leagueId, seasonId, division.divisionId, team.teamId);
         TeamResultsViewController *teamResultsController = [tabBarViewController.viewControllers objectAtIndex:2];
         [teamResultsController setLeagueId:leagueId];
         [teamResultsController setSeasonId:seasonId];
-        [teamResultsController setDivisionId:divisionId];
-        [teamResultsController setTeamId:team.teamId];
-        NSLog(@"LeagueTableViewController %@ %@ %@ %@", leagueId, seasonId, divisionId, team.teamId);
+        [teamResultsController setDivisionId:[division divisionId]];
+        [teamResultsController setTeam:team];
+        NSLog(@"LeagueTableViewController %@ %@ %@ %@", leagueId, seasonId, division.divisionId, team.teamId);
 
     }
 }
