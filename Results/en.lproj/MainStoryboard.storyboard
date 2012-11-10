@@ -438,13 +438,21 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <imageView key="tableHeaderView" userInteractionEnabled="NO" contentMode="scaleToFill" id="ydc-J6-61X">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </imageView>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Type first 3 letters of League name here" showsCancelButton="YES" id="xIV-ef-umF">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <scopeButtonTitles>
+                                <string>Title</string>
+                                <string>Title</string>
+                            </scopeButtonTitles>
+                            <connections>
+                                <outlet property="delegate" destination="NA8-BD-NZx" id="Wel-v2-FH2"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LeagueCell" textLabel="xna-jr-JbZ" style="IBUITableViewCellStyleDefault" id="R0f-b9-Dre">
-                                <rect key="frame" x="0.0" y="82" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
@@ -469,8 +477,19 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Leagues" id="eaO-ao-stZ"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="ByU-hx-jDA" id="Prj-Yl-6GC"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ZU-yW-LEu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="ByU-hx-jDA">
+                    <connections>
+                        <outlet property="delegate" destination="NA8-BD-NZx" id="fiQ-Xn-Fd4"/>
+                        <outlet property="searchContentsController" destination="NA8-BD-NZx" id="Ks4-hV-xBL"/>
+                        <outlet property="searchResultsDataSource" destination="NA8-BD-NZx" id="QW2-cv-q4a"/>
+                        <outlet property="searchResultsDelegate" destination="NA8-BD-NZx" id="9JI-g0-per"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="-826" y="-2690"/>
         </scene>
@@ -735,6 +754,9 @@
         </class>
         <class className="LeaguesViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LeaguesViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>

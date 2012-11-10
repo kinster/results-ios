@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LeaguesViewController : UITableViewController
-@property (nonatomic, copy) NSMutableArray *leaguesList;
+@interface LeaguesViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate, UIScrollViewDelegate>
+
+@property (nonatomic, strong) NSMutableArray *leaguesList;
+@property (strong, nonatomic) NSMutableArray* filteredLeaguesList;
+@property (nonatomic, assign) Boolean isFiltered;
+@property (retain, nonatomic) IBOutlet UISearchBar *searchBar;
 @end
