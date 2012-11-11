@@ -12,6 +12,8 @@
 #import "TeamDetailsViewController.h"
 #import "TeamFixturesViewController.h"
 #import "TeamResultsViewController.h"
+#import "League.h"
+#import "Season.h"
 #import "Division.h"
 
 @interface LeagueTableViewController ()
@@ -20,7 +22,7 @@
 
 @implementation LeagueTableViewController
 
-@synthesize teamList, leagueLogo, leagueName, leagueSeasonDivisionId, leagueLogoUrl, leagueId, seasonId, division;
+@synthesize teamList, league, season, division, nameLabel, leagueTable;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,7 +32,7 @@
     
     NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
     NSString* jsonServer = [infoDict objectForKey:@"jsonServer"];
-    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@.json", leagueId, seasonId, division.divisionId];
+    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@.json", league.leagueId, season.seasonId, division.divisionId];
     NSLog(@"%@", urlString);
     
     NSURL *url = [NSURL URLWithString:urlString];
@@ -52,15 +54,13 @@
         NSString *ga = [entry objectForKey:@"ga"];
         NSString *gd = [entry objectForKey:@"gd"];
         NSString *teamId = [entry objectForKey:@"id"];
-        NSLog(@"pos: %@", position);
-        NSLog(@"gf: %@", gf);
         
         team = [[Team alloc] initWithTeam:name AndPosition:position AndPlayed:played AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:gf AndGoalsAgainst:ga AndGoalDiff:gd AndPoints:points AndTeamId:teamId];
         [teamList addObject: team];
 
     }
-
-    [self loadView];
+    nameLabel.text = [NSString stringWithFormat:@"%@ (%@) %@", league.name, season.name, division.name];
+    NSLog(@"%@", self.nameLabel.text);
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -69,6 +69,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [teamList count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 0.0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -95,16 +99,6 @@
     return cell;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    if (leagueLogo == nil) {
-        NSLog(@"League Logo is NIL");
-    } else {
-        [self.tableView setTableHeaderView: leagueLogo];
-    }
-    [[self tableView] reloadData];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -113,46 +107,36 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSLog(@"In prepareForSegue");
     
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    NSLog(@"%d", indexPath.row);
+    NSIndexPath *indexPath = [self.leagueTable indexPathForSelectedRow];
     Team *team = [teamList objectAtIndex:indexPath.row];
     UITabBarController *tabBarViewController = [segue destinationViewController];
 
+    NSLog(@"Team: %@ - %d %d", team.name, indexPath.row, teamList.count);
     if ([[segue identifier] isEqualToString:@"ShowTeamDetails"]) {
         TeamDetailsViewController *teamDetailsViewController = [tabBarViewController.viewControllers objectAtIndex:0];
-        NSLog(@"%@", teamDetailsViewController.class);
-        [teamDetailsViewController setLeagueId:leagueId];
-        [teamDetailsViewController setSeasonId:seasonId];
-        [teamDetailsViewController setDivisionId:[division divisionId]];
+        [teamDetailsViewController setLeague:league];
+        [teamDetailsViewController setSeason:season];
+        [teamDetailsViewController setDivision:division];
         [teamDetailsViewController setTeam:team];
-        NSLog(@"Team Fixtures");
         TeamFixturesViewController *teamFixturesController = [tabBarViewController.viewControllers objectAtIndex:1];
-        NSLog(@"Team %@ 1", team);
-        [teamFixturesController setLeagueId:leagueId];
-        NSLog(@"Team %@ 2", team);
-        [teamFixturesController setSeasonId:seasonId];
-        NSLog(@"Team %@ 3", team);
-        [teamFixturesController setDivisionId:[division divisionId]];
-        NSLog(@"Team %@ 4", team);
+        [teamFixturesController setLeague:league];
+        [teamFixturesController setSeason:season];
+        [teamFixturesController setDivision:division];
         [teamFixturesController setTeam:team];
-        NSLog(@"Team %@ 5", team);
-        NSLog(@"LeagueTableViewController %@ %@ %@ %@", leagueId, seasonId, division.divisionId, team.teamId);
         TeamResultsViewController *teamResultsController = [tabBarViewController.viewControllers objectAtIndex:2];
-        [teamResultsController setLeagueId:leagueId];
-        [teamResultsController setSeasonId:seasonId];
-        [teamResultsController setDivisionId:[division divisionId]];
+        [teamResultsController setLeague:league];
+        [teamResultsController setSeason:season];
+        [teamResultsController setDivision:division];
         [teamResultsController setTeam:team];
-        NSLog(@"LeagueTableViewController %@ %@ %@ %@", leagueId, seasonId, division.divisionId, team.teamId);
 
     }
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return leagueName;
-}
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+//    return nil;
+//}
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    NSLog(@"viewForHeaderInSection League logo: %@", leagueLogoUrl);
 //    NSURL *imageUrl = [NSURL URLWithString:leagueLogoUrl];
 //    NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];    
 //    UIImage *image = [[UIImage alloc]initWithData:imageData];

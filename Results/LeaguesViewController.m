@@ -18,8 +18,7 @@
 
 @synthesize leaguesList, filteredLeaguesList, searchBar, isFiltered;
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
@@ -27,8 +26,7 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
   
     NSError *error;
@@ -93,42 +91,42 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self.searchBar becomeFirstResponder];
+//    [self.searchBar becomeFirstResponder];
     [super viewDidAppear:animated];
 }
 
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    [self.searchBar setShowsCancelButton:YES animated:YES];
-}
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    self.searchBar.text=@"";
-    
-    [self.searchBar setShowsCancelButton:NO animated:YES];
-    [self.searchBar resignFirstResponder];
-    NSLog(@"searchBarCancelButtonClicked");
-    [self.searchBar resignFirstResponder];
-    
-    self.navigationItem.rightBarButtonItem = nil;
-    self.tableView.scrollEnabled = YES;
-    
-    [self.tableView reloadData];
-}
+//- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+////    [self.searchBar setShowsCancelButton:YES animated:YES];
+//}
+//
+//- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+//    self.searchBar.text=@"";
+//    
+//    [self.searchBar setShowsCancelButton:NO animated:YES];
+//    [self.searchBar resignFirstResponder];
+//    NSLog(@"searchBarCancelButtonClicked");
+//    [self.searchBar resignFirstResponder];
+//    
+//    self.navigationItem.rightBarButtonItem = nil;
+//    self.tableView.scrollEnabled = YES;
+//    
+//    [self.tableView reloadData];
+//}
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.searchBar resignFirstResponder];
+//    [self.searchBar resignFirstResponder];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    [self.searchBar resignFirstResponder];
+//    [self.searchBar resignFirstResponder];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)theSearchBar {
     NSLog(@"search button clicked");
 //	[SVProgressHUD showInView:self.view status:nil networkIndicator:YES posY:-1 maskType:SVProgressHUDMaskTypeGradient];
     NSError *error;
-    [searchBar resignFirstResponder];
+//    [searchBar resignFirstResponder];
 
     NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
     NSString* jsonServer = [infoDict objectForKey:@"jsonServer"];
@@ -217,7 +215,7 @@
 
     if ([[segue identifier] isEqualToString:@"ShowSeasons"]) {
         LeagueSeasonViewController *viewController = [segue destinationViewController];
-        [viewController setLeagueId:league.theId];
+        [viewController setLeague:league];
     }
 }
 

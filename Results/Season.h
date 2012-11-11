@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface Season : NSObject
-@property (nonatomic, copy) NSString *theId;
+@property (nonatomic, copy) NSString *seasonId;
 @property (nonatomic, copy) NSString *name;
--(id)initWithIdAndName:(NSString *)theId AndName:(NSString *)name;
+-(id)initWithIdAndName:(NSString *)seasonId AndName:(NSString *)name;
 @end

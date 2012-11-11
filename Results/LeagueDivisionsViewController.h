@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class League, Season;
+
 @interface LeagueDivisionsViewController : UITableViewController
-@property (nonatomic, copy) NSString *leagueId;
-@property (nonatomic, copy) NSString *seasonId;
 @property (nonatomic, copy) NSMutableArray *divisionsList;
+@property (weak, nonatomic) League *league;
+@property (weak, nonatomic) Season *season;
 @end

@@ -9,9 +9,9 @@
 #import "Season.h"
 
 @implementation Season
--(id)initWithIdAndName:(NSString *)theId AndName:(NSString *)name {
+-(id)initWithIdAndName:(NSString *)seasonId AndName:(NSString *)name {
     if (self = [super init]) {
-        _theId= theId;
+        _seasonId= seasonId;
         _name = name;
         return self;
     }

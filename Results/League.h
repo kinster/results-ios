@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface League : NSObject
-@property (nonatomic, copy) NSString *theId;
+@property (nonatomic, copy) NSString *leagueId;
 @property (nonatomic, copy) NSString *name;
--(id)initWithIdAndName:(NSString *)theId AndName:(NSString *)theName;
+-(id)initWithIdAndName:(NSString *)leagueId AndName:(NSString *)name;
 @end

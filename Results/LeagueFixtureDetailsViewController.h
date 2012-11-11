@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface LeagueFixtureDetailsViewController : UIViewController
-@property (nonatomic, weak) NSString *fixtureId;
+@property (weak, nonatomic) NSString *fixtureId;
 @property (weak, nonatomic) IBOutlet UILabel *dateTime;
 @property (weak, nonatomic) IBOutlet UILabel *location;
 @property (weak, nonatomic) IBOutlet UIImageView *homeBadge;

@@ -8,6 +8,9 @@
 
 #import "LeagueFixturesViewController.h"
 #import "LeagueFixtureDetailsViewController.h"
+#import "League.h"
+#import "Season.h"
+#import "Division.h"
 #import "Team.h"
 #import "Fixture.h"
 #import "CustomFixtureCell.h"
@@ -19,7 +22,7 @@
 
 @implementation LeagueFixturesViewController
 
-@synthesize fixtureList, leagueId, seasonId, divisionId;
+@synthesize fixtureList, league, season, division;
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -38,7 +41,7 @@
     
     NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
     NSString* jsonServer = [infoDict objectForKey:@"jsonServer"];
-    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/fixtures.json", leagueId, seasonId, divisionId];
+    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/fixtures.json", league.leagueId, season.seasonId, division.divisionId];
     NSLog(@"%@", urlString);
     
     NSURL *url = [NSURL URLWithString:urlString];

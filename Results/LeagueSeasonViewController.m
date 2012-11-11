@@ -8,6 +8,7 @@
 
 #import "LeagueSeasonViewController.h"
 #import "LeagueDivisionsViewController.h"
+#import "League.h"
 #import "Season.h"
 
 @interface LeagueSeasonViewController ()
@@ -16,7 +17,7 @@
 
 @implementation LeagueSeasonViewController
 
-@synthesize leagueId, seasonsList;
+@synthesize league, seasonsList;
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -33,7 +34,7 @@
     
     NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
     NSString* jsonServer = [infoDict objectForKey:@"jsonServer"];
-    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons.json", leagueId];
+    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons.json", league.leagueId];
     NSLog(@"%@", urlString);
     
     NSURL *url = [NSURL URLWithString:urlString];
@@ -102,9 +103,8 @@
     
     if ([[segue identifier] isEqualToString:@"ShowDivisions"]) {
         LeagueDivisionsViewController *viewController = [segue destinationViewController];
-        [viewController setLeagueId:leagueId];
-        [viewController setSeasonId:season.theId];
-        NSLog(@"%@ - %@", leagueId, season.theId);
+        [viewController setLeague:league];
+        [viewController setSeason:season];
     }
 }
 /*

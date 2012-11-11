@@ -7,6 +7,9 @@
 //
 
 #import "TeamDetailsViewController.h"
+#import "League.h"
+#import "Season.h"
+#import "Division.h"
 #import "Team.h"
 #import "Player.h"
 
@@ -16,7 +19,7 @@
 
 @implementation TeamDetailsViewController
 
-@synthesize position, name, badge, leagueId, seasonId, divisionId, team, navBar, playersTable, playersList;
+@synthesize position, name, badge, league, season, division, team, navBar, playersTable, playersList;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,7 +30,7 @@
     
     NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
     NSString* jsonServer = [infoDict objectForKey:@"jsonServer"];
-    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@.json", leagueId, seasonId, divisionId, team.teamId];
+    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@.json", league.leagueId, season.seasonId, division.divisionId, team.teamId];
     NSLog(@"%@", urlString);
     
     NSURL *url = [NSURL URLWithString:urlString];
@@ -47,7 +50,7 @@
     
     name.text = [team name];
 
-    NSString *playersUrlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@/players.json", leagueId, seasonId, divisionId, team.teamId];
+    NSString *playersUrlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@/players.json", league.leagueId, season.seasonId, division.divisionId, team.teamId];
     NSLog(@"%@", playersUrlString);
     
     NSURL *playersUrl = [NSURL URLWithString:playersUrlString];

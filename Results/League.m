@@ -10,9 +10,9 @@
 
 @implementation League
 
--(id)initWithIdAndName:(NSString *)theId AndName:(NSString *)name {
+-(id)initWithIdAndName:(NSString *)leagueId AndName:(NSString *)name {
     if (self = [super init]) {
-        _theId = theId;
+        _leagueId = leagueId;
         _name = name;
         return self;
     }

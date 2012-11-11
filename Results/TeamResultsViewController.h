@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class Team;
+@class League, Season, Division, Team;
 
 @interface TeamResultsViewController : UITableViewController
-@property (nonatomic, copy) NSMutableArray *resultsList;
-@property (nonatomic, copy) NSString *leagueId;
-@property (nonatomic, copy) NSString *seasonId;
-@property (nonatomic, copy) NSString *divisionId;
-@property (nonatomic, weak) Team *team;
+@property (copy, nonatomic) NSMutableArray *resultsList;
+@property (weak, nonatomic) League *league;
+@property (weak, nonatomic) Season *season;
+@property (weak, nonatomic) Division *division;
+@property (weak, nonatomic) Team *team;
 @end

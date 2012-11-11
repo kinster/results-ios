@@ -7,6 +7,9 @@
 //
 
 #import "LeagueResultsViewController.h"
+#import "League.h"
+#import "Season.h"
+#import "Division.h"
 #import "Result.h"
 #import "CustomResultCell.h"
 
@@ -16,7 +19,7 @@
 
 @implementation LeagueResultsViewController
 
-@synthesize resultsList, leagueId, seasonId, divisionId;
+@synthesize resultsList, league, season, division;
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -35,7 +38,7 @@
     
     NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
     NSString* jsonServer = [infoDict objectForKey:@"jsonServer"];
-    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/results.json", leagueId, seasonId, divisionId];
+    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/results.json", league.leagueId, season.seasonId, division.divisionId];
     NSLog(@"%@", urlString);
     
     NSURL *url = [NSURL URLWithString:urlString];
