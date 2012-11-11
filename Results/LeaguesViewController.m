@@ -95,30 +95,21 @@
     [super viewDidAppear:animated];
 }
 
-//- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-////    [self.searchBar setShowsCancelButton:YES animated:YES];
-//}
-//
-//- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-//    self.searchBar.text=@"";
-//    
-//    [self.searchBar setShowsCancelButton:NO animated:YES];
-//    [self.searchBar resignFirstResponder];
-//    NSLog(@"searchBarCancelButtonClicked");
-//    [self.searchBar resignFirstResponder];
-//    
-//    self.navigationItem.rightBarButtonItem = nil;
-//    self.tableView.scrollEnabled = YES;
-//    
-//    [self.tableView reloadData];
-//}
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    [self.searchBar setShowsCancelButton:YES animated:YES];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    self.searchBar.text=@"";
+    NSLog(@"searchBarCancelButtonClicked");
+    [self.searchBar setShowsCancelButton:NO animated:YES];
+    [self.searchBar resignFirstResponder];
+    
+    self.tableView.scrollEnabled = YES;
+}
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-//    [self.searchBar resignFirstResponder];
-}
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
 //    [self.searchBar resignFirstResponder];
 }
 
@@ -203,7 +194,6 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSLog(@"LeaguesViewController prepareForSegue");
-    [self.searchBar resignFirstResponder];
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     NSLog(@"%d", indexPath.row);
     League *league = nil;

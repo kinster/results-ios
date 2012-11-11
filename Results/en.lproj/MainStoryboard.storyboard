@@ -1000,6 +1000,7 @@
         <class className="LeaguesViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LeaguesViewController.h"/>
             <relationships>
+                <relationship kind="action" name="goToSearch:"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
             </relationships>
         </class>
