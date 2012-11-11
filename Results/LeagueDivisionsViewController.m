@@ -77,7 +77,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"Cells");
     
     static NSString *CellIdentifier = @"DivisionCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -87,7 +86,6 @@
     }
     
     Division *division = [divisionsList objectAtIndex:indexPath.row];
-    NSLog(@"division: %@ %@", division.divisionId, division.name);
     
     cell.textLabel.text = [division name];
     

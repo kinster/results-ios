@@ -66,6 +66,9 @@
         
         [fixtureList addObject:fixture];
     }
+    
+    self.tabBarController.title = @"League Fixtures";
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  

@@ -822,7 +822,7 @@
             <objects>
                 <tabBarController id="kmb-uQ-a1F" userLabel="Tab Bar Controller - Front Screen" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="My League" id="ZPL-y7-JZO"/>
+                    <navigationItem key="navigationItem" id="ZPL-y7-JZO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="TpU-ea-kaO">
                         <autoresizingMask key="autoresizingMask"/>

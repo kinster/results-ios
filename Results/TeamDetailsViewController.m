@@ -65,6 +65,8 @@
         [playersList addObject:player];
     }
     
+    self.tabBarController.title = @"Team Details";
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  

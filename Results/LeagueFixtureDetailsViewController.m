@@ -57,6 +57,9 @@
     self.awayTeam.text = awayName;
     self.homeBadge.image = [[UIImage alloc]initWithData:imageHomeData];
     self.awayBadge.image = [[UIImage alloc]initWithData:imageAwayData];
+    
+    self.tabBarController.title = @"Fixture Details";
+
 }
 
 - (void)didReceiveMemoryWarning {

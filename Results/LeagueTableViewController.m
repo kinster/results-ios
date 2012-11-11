@@ -61,6 +61,8 @@
     }
     nameLabel.text = [NSString stringWithFormat:@"%@ (%@) %@", league.name, season.name, division.name];
     NSLog(@"%@", self.nameLabel.text);
+    self.tabBarController.title = @"League Table";
+
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
