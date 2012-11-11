@@ -9,6 +9,7 @@
 #import "LeaguesViewController.h"
 #import "League.h"
 #import "LeagueSeasonViewController.h"
+#import "MBProgressHUD.h"
 
 @interface LeaguesViewController ()
 
@@ -115,39 +116,52 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)theSearchBar {
     NSLog(@"search button clicked");
-//	[SVProgressHUD showInView:self.view status:nil networkIndicator:YES posY:-1 maskType:SVProgressHUDMaskTypeGradient];
-    NSError *error;
-//    [searchBar resignFirstResponder];
+    [self.searchBar setShowsCancelButton:NO animated:YES];
+    [self.searchBar resignFirstResponder];
 
-    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
-    NSString* jsonServer = [infoDict objectForKey:@"jsonServer"];
-    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/search/%@.json", theSearchBar.text];
-    NSLog(@"%@", urlString);
-    
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-    
-    leaguesList = [[NSMutableArray alloc] init];
-    League *league = nil;
-    
-    if (!jsonData) {
-        NSLog(@"%@", error);
-    } else {
-        for (NSDictionary *entry in jsonData) {
-            NSString *theId = [entry objectForKey:@"id"];
-            NSString *theName = [entry objectForKey:@"name"];
-            NSLog(@"id: %@", theId);
-            NSLog(@"name: %@", theName);
-            
-            league = [[League alloc] initWithIdAndName:theId AndName:theName];
-            [leaguesList addObject: league];
-            
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    hud.labelText = @"Searching...";
+
+    [self.navigationController.view addSubview:hud];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        // Do something...
+        NSError *error;
+        
+        NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
+        NSString* jsonServer = [infoDict objectForKey:@"jsonServer"];
+        NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/search/%@.json", theSearchBar.text];
+        NSLog(@"%@", urlString);
+        
+        NSURL *url = [NSURL URLWithString:urlString];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+        
+        leaguesList = [[NSMutableArray alloc] init];
+        League *league = nil;
+        
+        if (!jsonData) {
+            NSLog(@"%@", error);
+        } else {
+            for (NSDictionary *entry in jsonData) {
+                NSString *theId = [entry objectForKey:@"id"];
+                NSString *theName = [entry objectForKey:@"name"];
+                NSLog(@"id: %@", theId);
+                NSLog(@"name: %@", theName);
+                
+                league = [[League alloc] initWithIdAndName:theId AndName:theName];
+                [leaguesList addObject: league];
+                
+            }
         }
-    }
-	
-    self.isFiltered = FALSE;
-    [self.tableView reloadData];
+        
+        self.isFiltered = FALSE;
+        // done
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+            [self.tableView reloadData];
+        });
+    });
 }
 
 - (void)didReceiveMemoryWarning {
