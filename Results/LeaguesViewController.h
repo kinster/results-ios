@@ -10,8 +10,10 @@
 
 @interface LeaguesViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate>
 
-@property (nonatomic, copy) NSMutableArray *leaguesList;
+@property (copy, nonatomic) NSMutableArray *leaguesList;
 @property (strong, nonatomic) NSMutableArray* filteredLeaguesList;
-@property (nonatomic, assign) Boolean isFiltered;
+@property (assign, nonatomic) Boolean isFiltered;
 @property (retain, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (nonatomic, retain) NSDictionary *sections;
+@property (nonatomic, retain) NSArray *alphabet;
 @end

@@ -17,7 +17,7 @@
 
 @implementation LeaguesViewController
 
-@synthesize leaguesList, filteredLeaguesList, searchBar, isFiltered;
+@synthesize leaguesList, filteredLeaguesList, searchBar, isFiltered, sections, alphabet;
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -59,11 +59,45 @@
         }
     }
 
+    [self createTableSections];
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+-(void)createTableSections {
+    alphabet = [[NSArray alloc]initWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",
+                @"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z",nil];
+    
+    sections = [[NSMutableDictionary alloc] init];
+    
+    BOOL found;
+    
+    for (League *league in leaguesList) {
+        
+        NSString *c = [league.name substringToIndex:1];
+        
+        found = NO;
+        
+        for (NSString *str in [sections allKeys])
+        {
+            if ([str isEqualToString:c])
+            {
+                found = YES;
+            }
+        }
+        
+        if (!found)
+        {
+            [sections setValue:[[NSMutableArray alloc] init] forKey:c];
+        }
+    }
+    for (League *league in leaguesList) {
+        [[sections objectForKey:[league.name substringToIndex:1]] addObject:league];
+    }
 }
 
 -(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text {
@@ -92,7 +126,6 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-//    [self.searchBar becomeFirstResponder];
     [super viewDidAppear:animated];
 }
 
@@ -102,7 +135,6 @@
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     self.searchBar.text=@"";
-    NSLog(@"searchBarCancelButtonClicked");
     [self.searchBar setShowsCancelButton:NO animated:YES];
     [self.searchBar resignFirstResponder];
     
@@ -111,7 +143,6 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-//    [self.searchBar resignFirstResponder];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)theSearchBar {
@@ -145,8 +176,7 @@
             for (NSDictionary *entry in jsonData) {
                 NSString *theId = [entry objectForKey:@"id"];
                 NSString *theName = [entry objectForKey:@"name"];
-                NSLog(@"id: %@", theId);
-                NSLog(@"name: %@", theName);
+                NSLog(@"%@ %@", theId, theName);
                 
                 league = [[League alloc] initWithIdAndName:theId AndName:theName];
                 [leaguesList addObject: league];
@@ -154,7 +184,7 @@
             }
         }
         
-        self.isFiltered = FALSE;
+        [self createTableSections];
         // done
 
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -170,18 +200,11 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return [[sections allKeys]count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    int rowCount;
-    if (isFiltered) {
-        rowCount = [filteredLeaguesList count];
-    }
-    else {
-        rowCount = [leaguesList count];
-    }
-    return rowCount;
+    return [[sections valueForKey:[[[sections allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:section]] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -191,34 +214,28 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    League *league = nil;
-
-    if (isFiltered) {
-        league = [filteredLeaguesList objectAtIndex:indexPath.row];
-        NSLog(@"In filtered List");
-    }
-    else {
-        league = [leaguesList objectAtIndex:indexPath.row];
-        NSLog(@"In Full List");
-    }
     cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.text = [league name];
+    NSString *name = [[[sections valueForKey:[[[sections allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row] name];
+
+    cell.textLabel.text = name;
     return cell;
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    return [[self.sections allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+}
+
+- (NSString *)tableView:(UITableView *)aTableView titleForHeaderInSection:(NSInteger)section {
+    return [[[self.sections allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:section];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSLog(@"LeaguesViewController prepareForSegue");
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    NSLog(@"%d", indexPath.row);
     League *league = nil;
-    if  (isFiltered) {
-        league = [filteredLeaguesList objectAtIndex:indexPath.row];
-    } else {
-        league = [leaguesList objectAtIndex:indexPath.row];
-    }
-
     if ([[segue identifier] isEqualToString:@"ShowSeasons"]) {
         LeagueSeasonViewController *viewController = [segue destinationViewController];
+        league = [[sections valueForKey:[[[sections allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
         [viewController setLeague:league];
     }
 }
