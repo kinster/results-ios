@@ -308,20 +308,21 @@
                             <constraint firstItem="ep2-k7-Dq4" firstAttribute="trailing" secondItem="TbS-ft-E4k" secondAttribute="trailing" type="default" id="hVz-e1-try"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="1" title="Table" id="336-79-yAO"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Table" image="152-rolodex.png" id="336-79-yAO"/>
                     <navigationItem key="navigationItem" title="League Table" id="KQp-Y1-tBG"/>
                     <connections>
                         <outlet property="leagueBadge" destination="I7h-s1-YGe" id="MqZ-zp-XyW"/>
                         <outlet property="leagueTable" destination="8L3-DS-B2W" id="G4z-91-zj3"/>
                         <outlet property="nameLabel" destination="Zhv-3u-Cdj" id="vOk-qc-5Ae"/>
                         <outlet property="subtitle" destination="Hza-Nl-xNf" id="2cY-fU-qmN"/>
+                        <outlet property="tabBarItem" destination="336-79-yAO" id="YpQ-IZ-mbl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1337" y="-2751"/>
         </scene>
-        <!--Team Results View Controller - Results-->
+        <!--Team Results View Controller - Team Results-->
         <scene sceneID="jcR-ZA-ZUI">
             <objects>
                 <viewController id="U8H-Vy-qma" customClass="TeamResultsViewController" sceneMemberID="viewController">
@@ -449,8 +450,8 @@
                             <constraint firstItem="V5n-V4-Lwn" firstAttribute="trailing" secondItem="s3C-4P-krx" secondAttribute="trailing" type="default" id="x1i-Np-94r"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Results" id="ehm-kn-Aff"/>
-                    <navigationItem key="navigationItem" id="Kl7-Ir-idN"/>
+                    <tabBarItem key="tabBarItem" title="Results" image="179-notepad.png" id="ehm-kn-Aff"/>
+                    <navigationItem key="navigationItem" title="Team Results" id="Kl7-Ir-idN"/>
                     <connections>
                         <outlet property="leagueBadge" destination="FfO-jh-rjl" id="MPp-7M-Ktl"/>
                         <outlet property="nameLabel" destination="jhS-00-EZ0" id="Xbo-bx-cPl"/>
@@ -461,7 +462,7 @@
             </objects>
             <point key="canvasLocation" x="2621" y="-1721"/>
         </scene>
-        <!--Team Fixtures View Controller - Fixtures-->
+        <!--Team Fixtures View Controller - Team Fixtures-->
         <scene sceneID="6dN-Gy-9nX">
             <objects>
                 <viewController id="obT-85-3Sz" customClass="TeamFixturesViewController" sceneMemberID="viewController">
@@ -588,8 +589,8 @@
                             <constraint firstItem="NKc-Hb-bxJ" firstAttribute="trailing" secondItem="Fjv-bO-iaM" secondAttribute="trailing" type="default" id="tEC-XT-d1H"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Fixtures" id="GmF-Ez-5qs"/>
-                    <navigationItem key="navigationItem" id="3fj-3I-jYG"/>
+                    <tabBarItem key="tabBarItem" title="Fixtures" image="83-calendar.png" id="GmF-Ez-5qs"/>
+                    <navigationItem key="navigationItem" title="Team Fixtures" id="3fj-3I-jYG"/>
                     <connections>
                         <outlet property="leagueBadge" destination="TQQ-dM-edy" id="qMF-iB-kJO"/>
                         <outlet property="nameLabel" destination="vah-re-31B" id="xbt-9X-kkK"/>
@@ -600,7 +601,7 @@
             </objects>
             <point key="canvasLocation" x="3044" y="-2109"/>
         </scene>
-        <!--Team Details View Controller - Details-->
+        <!--Team Details View Controller - Team Details-->
         <scene sceneID="Pz2-7r-XVW">
             <objects>
                 <viewController id="bl9-Jn-mfe" customClass="TeamDetailsViewController" sceneMemberID="viewController">
@@ -640,23 +641,44 @@
                                     <constraint firstAttribute="height" constant="282" id="lNO-Y7-evO"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PlayerCell" textLabel="MOG-If-k0u" style="IBUITableViewCellStyleDefault" id="Bw9-xm-ngd">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="CustomCellRestorationId" selectionStyle="none" indentationWidth="10" reuseIdentifier="CustomPlayerCell" rowHeight="42" id="Rm3-k1-0te" userLabel="Player Cell" customClass="CustomPlayerCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="42"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MOG-If-k0u">
-                                                    <rect key="frame" x="10" y="0.0" width="280" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="No." textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="42" translatesAutoresizingMaskIntoConstraints="NO" id="p5w-IO-nLr" userLabel="Date">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="42" id="7QE-SS-oVa"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Dylan Li" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="248" translatesAutoresizingMaskIntoConstraints="NO" id="ez4-i3-sC7" userLabel="Home Team">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="248" id="yd1-a4-dKu"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="p5w-IO-nLr" firstAttribute="bottom" secondItem="Rm3-k1-0te" secondAttribute="bottom" type="default" id="7DK-Kt-sMH"/>
+                                            <constraint firstAttribute="trailing" secondItem="ez4-i3-sC7" secondAttribute="trailing" constant="20" type="default" id="9F4-Yu-Pjg"/>
+                                            <constraint firstItem="ez4-i3-sC7" firstAttribute="bottom" secondItem="Rm3-k1-0te" secondAttribute="bottom" type="default" id="PZP-Wp-h8h"/>
+                                            <constraint firstItem="ez4-i3-sC7" firstAttribute="top" secondItem="Rm3-k1-0te" secondAttribute="top" type="default" id="giN-Bp-9gu"/>
+                                            <constraint firstItem="p5w-IO-nLr" firstAttribute="top" secondItem="Rm3-k1-0te" secondAttribute="top" type="default" id="jXc-5z-fHP"/>
+                                            <constraint firstItem="p5w-IO-nLr" firstAttribute="leading" secondItem="Rm3-k1-0te" secondAttribute="leading" constant="1" id="uJP-sc-Ox1"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="ez4-i3-sC7" id="7Am-jr-t8l"/>
+                                            <outlet property="numberLabel" destination="p5w-IO-nLr" id="I3d-M4-OkK"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -683,8 +705,8 @@
                             <constraint firstItem="sYT-3e-aPM" firstAttribute="leading" secondItem="a8L-7u-bal" secondAttribute="leading" type="default" id="yR3-y5-XAJ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Details" id="8s5-Bi-GuG"/>
-                    <navigationItem key="navigationItem" id="suH-Ef-pLW"/>
+                    <tabBarItem key="tabBarItem" title="Details" image="166-newspaper.png" id="8s5-Bi-GuG"/>
+                    <navigationItem key="navigationItem" title="Team Details" id="suH-Ef-pLW"/>
                     <connections>
                         <outlet property="badge" destination="OWd-zP-XSH" id="xrd-1Q-FNf"/>
                         <outlet property="name" destination="RC2-53-lT5" id="Wmj-4J-WIW"/>
@@ -833,7 +855,7 @@
                             <constraint firstAttribute="bottom" secondItem="65q-rW-xoM" secondAttribute="bottom" constant="287" id="wgy-MV-Zqa"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Fixtures" id="vfR-an-B5r"/>
+                    <tabBarItem key="tabBarItem" title="Fixtures" image="83-calendar.png" id="vfR-an-B5r"/>
                     <navigationItem key="navigationItem" title="League Fixtures" id="HIl-xv-1f2"/>
                     <connections>
                         <outlet property="fixturesTable" destination="b5W-ZF-OmL" id="LZY-QB-s6g"/>
@@ -871,68 +893,73 @@
             <point key="canvasLocation" x="2172" y="-2268"/>
         </scene>
         <!--Leagues View Controller - Leagues-->
-        <scene sceneID="K8j-4Z-PwJ">
+        <scene sceneID="CHS-ho-nxN">
             <objects>
-                <tableViewController title="Leagues" id="NA8-BD-NZx" customClass="LeaguesViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="39L-GL-JSS" userLabel="Leagues Table View">
+                <viewController id="8w3-Sr-emx" customClass="LeaguesViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="n6A-Q8-H8j">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Type first 3 letters of League name here" id="xIV-ef-umF">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <scopeButtonTitles>
-                                <string>Title</string>
-                                <string>Title</string>
-                            </scopeButtonTitles>
-                            <connections>
-                                <outlet property="delegate" destination="NA8-BD-NZx" id="Wel-v2-FH2"/>
-                            </connections>
-                        </searchBar>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LeagueCell" textLabel="xna-jr-JbZ" style="IBUITableViewCellStyleDefault" id="R0f-b9-Dre">
-                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xna-jr-JbZ">
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" placeholder="Type first 3 letters of League name here" translatesAutoresizingMaskIntoConstraints="NO" id="pND-Aa-bqp">
+                                <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
                                 <connections>
-                                    <segue destination="6ih-G9-SMv" kind="push" identifier="ShowSeasons" id="ggr-A0-iCU"/>
+                                    <outlet property="delegate" destination="8w3-Sr-emx" id="TU6-pr-og4"/>
                                 </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="NA8-BD-NZx" id="qZb-gX-O6Z"/>
-                            <outlet property="delegate" destination="NA8-BD-NZx" id="Pvj-Wt-2IV"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Leagues" id="eaO-ao-stZ"/>
+                            </searchBar>
+                            <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="39L-GL-JSS" userLabel="Leagues Table View">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LeagueCell" textLabel="xna-jr-JbZ" style="IBUITableViewCellStyleDefault" id="R0f-b9-Dre">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xna-jr-JbZ">
+                                                    <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <segue destination="6ih-G9-SMv" kind="push" identifier="ShowSeasons" id="ggr-A0-iCU"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="8w3-Sr-emx" id="egU-nZ-Viy"/>
+                                    <outlet property="delegate" destination="8w3-Sr-emx" id="uyc-Pj-9lj"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="39L-GL-JSS" firstAttribute="top" secondItem="pND-Aa-bqp" secondAttribute="bottom" type="default" id="P9J-vZ-7WP"/>
+                            <constraint firstItem="pND-Aa-bqp" firstAttribute="trailing" secondItem="n6A-Q8-H8j" secondAttribute="trailing" type="default" id="b9Y-O5-zPh"/>
+                            <constraint firstItem="39L-GL-JSS" firstAttribute="bottom" secondItem="n6A-Q8-H8j" secondAttribute="bottom" type="default" id="e1i-zK-5pq"/>
+                            <constraint firstItem="39L-GL-JSS" firstAttribute="trailing" secondItem="n6A-Q8-H8j" secondAttribute="trailing" type="default" id="e4Y-FY-Fq5"/>
+                            <constraint firstItem="pND-Aa-bqp" firstAttribute="top" secondItem="n6A-Q8-H8j" secondAttribute="top" type="default" id="kAQ-tV-gEk"/>
+                            <constraint firstItem="39L-GL-JSS" firstAttribute="leading" secondItem="n6A-Q8-H8j" secondAttribute="leading" type="default" id="xwc-ig-QPd"/>
+                            <constraint firstItem="pND-Aa-bqp" firstAttribute="leading" secondItem="n6A-Q8-H8j" secondAttribute="leading" type="default" id="yvi-Ak-POM"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Leagues" id="PDB-mB-oam"/>
                     <connections>
-                        <outlet property="searchBar" destination="xIV-ef-umF" id="xki-v5-9WW"/>
-                        <outlet property="searchDisplayController" destination="ByU-hx-jDA" id="Prj-Yl-6GC"/>
+                        <outlet property="leagueTablesView" destination="39L-GL-JSS" id="Xig-N9-5kT"/>
+                        <outlet property="searchBar" destination="pND-Aa-bqp" id="b4w-nx-DxU"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4ZU-yW-LEu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="ByU-hx-jDA">
-                    <connections>
-                        <outlet property="delegate" destination="NA8-BD-NZx" id="fiQ-Xn-Fd4"/>
-                        <outlet property="searchContentsController" destination="NA8-BD-NZx" id="Ks4-hV-xBL"/>
-                        <outlet property="searchResultsDataSource" destination="NA8-BD-NZx" id="QW2-cv-q4a"/>
-                        <outlet property="searchResultsDelegate" destination="NA8-BD-NZx" id="9JI-g0-per"/>
-                    </connections>
-                </searchDisplayController>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TxG-t9-0uG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-826" y="-2690"/>
+            <point key="canvasLocation" x="-759" y="-2802"/>
         </scene>
         <!--League Season View Controller - Seasons-->
         <scene sceneID="22b-Pl-Gww">
@@ -972,7 +999,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7OA-Fp-GCW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-341" y="-2329"/>
+            <point key="canvasLocation" x="-249" y="-2631"/>
         </scene>
         <!--League Divisions View Controller - Divisions-->
         <scene sceneID="nG1-i7-RNQ">
@@ -1012,7 +1039,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J6O-Si-z0Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="118" y="-2568"/>
+            <point key="canvasLocation" x="298" y="-2574"/>
         </scene>
         <!--Tab Bar Controller - Front Screen-->
         <scene sceneID="VxH-ha-kaa">
@@ -1036,7 +1063,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMa-Ps-y4U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="695" y="-1834"/>
+            <point key="canvasLocation" x="747" y="-1972"/>
         </scene>
         <!--League Results View Controller - League Results-->
         <scene sceneID="mjw-qr-dY6">
@@ -1184,7 +1211,7 @@
                             <constraint firstAttribute="bottom" secondItem="Z8y-DM-jLl" secondAttribute="bottom" constant="287" id="Y00-Tb-Ynv"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Results" id="ac4-Ya-WDf"/>
+                    <tabBarItem key="tabBarItem" title="Results" image="179-notepad.png" id="ac4-Ya-WDf"/>
                     <navigationItem key="navigationItem" title="League Results" id="dbe-pK-A7h"/>
                     <connections>
                         <outlet property="leagueBadge" destination="OgB-qo-KKP" id="t1n-Qx-QTr"/>
@@ -1208,7 +1235,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="NA8-BD-NZx" kind="relationship" relationship="rootViewController" id="9My-F5-ime"/>
+                        <segue destination="8w3-Sr-emx" kind="relationship" relationship="rootViewController" id="Y7u-ql-CeT"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jcq-4R-g9Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1216,6 +1243,12 @@
             <point key="canvasLocation" x="-1420" y="-2620"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="152-rolodex.png" width="26" height="18"/>
+        <image name="166-newspaper.png" width="28" height="23"/>
+        <image name="179-notepad.png" width="22" height="28"/>
+        <image name="83-calendar.png" width="23" height="25"/>
+    </resources>
     <classes>
         <class className="CustomFixtureCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomFixtureCell.h"/>
@@ -1223,6 +1256,13 @@
                 <relationship kind="outlet" name="awayTeam" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="date" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="homeTeam" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="CustomPlayerCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomPlayerCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="CustomResultCell" superclassName="UITableViewCell">
@@ -1280,11 +1320,13 @@
                 <relationship kind="outlet" name="leagueTable" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tabBarItem" candidateClass="UITabBarItem"/>
             </relationships>
         </class>
-        <class className="LeaguesViewController" superclassName="UITableViewController">
+        <class className="LeaguesViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LeaguesViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="leagueTablesView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
             </relationships>
         </class>
@@ -1322,11 +1364,11 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="guz-h0-rin"/>
+        <segue reference="PTE-gE-9LN"/>
         <segue reference="F9C-js-wNE"/>
         <segue reference="Aii-FZ-0Zs"/>
-        <segue reference="PTE-gE-9LN"/>
         <segue reference="Gme-cR-3kr"/>
         <segue reference="nlu-6i-a2D"/>
-        <segue reference="guz-h0-rin"/>
     </inferredMetricsTieBreakers>
 </document>

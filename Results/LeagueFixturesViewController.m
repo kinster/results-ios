@@ -65,13 +65,22 @@
     leagueBadge.image = league.image;
     NSLog(@"%@", self.nameLabel.text);
 
-    self.tabBarController.title = @"League Fixtures";
+    [self setNavTitle];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)setNavTitle {
+    self.tabBarController.title = @"League Fixtures";
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    NSLog(@"table appeared");
+    [self setNavTitle];
 }
 
 - (void)didReceiveMemoryWarning {

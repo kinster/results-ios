@@ -13,6 +13,7 @@
 #import "Team.h"
 #import "Player.h"
 #import "ServerManager.h"
+#import "CustomPlayerCell.h"
 
 @interface TeamDetailsViewController ()
 
@@ -65,13 +66,21 @@
         [playersList addObject:player];
     }
     
-    self.tabBarController.title = @"Team Details";
-
+    [self setNavTitle];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
 //    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)setNavTitle {
+    self.tabBarController.title = @"Team Details";
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    NSLog(@"table appeared");
+    [self setNavTitle];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -84,16 +93,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"PlayerCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"CustomPlayerCell";
+    CustomPlayerCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[CustomPlayerCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     Player *player = [playersList objectAtIndex:indexPath.row];
  
-    cell.textLabel.text = [NSString stringWithFormat:@"%d) %@", indexPath.row+1, player.name];
+    cell.numberLabel.text = [NSString stringWithFormat:@"%d", indexPath.row+1];
+    cell.nameLabel.text = [player name];
 
     return cell;
 }

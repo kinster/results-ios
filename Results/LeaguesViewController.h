@@ -8,11 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LeaguesViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate>
+@interface LeaguesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate>
 
 @property (copy, nonatomic) NSMutableArray *leaguesList;
-@property (strong, nonatomic) NSMutableArray* filteredLeaguesList;
-@property (assign, nonatomic) Boolean isFiltered;
 @property (retain, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (nonatomic, retain) NSDictionary *sections;
+@property (retain, nonatomic) NSDictionary *sections;
+@property (strong, nonatomic) IBOutlet UITableView *leagueTablesView;
 @end

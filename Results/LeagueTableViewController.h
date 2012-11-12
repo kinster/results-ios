@@ -11,7 +11,7 @@
 
 @class CustomTableCell, League, Season, Division;
 
-@interface LeagueTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface LeagueTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITabBarDelegate>
 @property (copy, nonatomic) NSMutableArray *teamList;
 @property (retain, nonatomic) IBOutlet UITableView *leagueTable;
 @property (weak, nonatomic) League *league;
@@ -20,4 +20,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *subtitle;
 @property (weak, nonatomic) IBOutlet UIImageView *leagueBadge;
+@property (weak, nonatomic) IBOutlet UITabBarItem *tabBarItem;
 @end

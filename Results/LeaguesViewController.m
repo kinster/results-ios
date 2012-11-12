@@ -18,15 +18,7 @@
 
 @implementation LeaguesViewController
 
-@synthesize leaguesList, filteredLeaguesList, searchBar, isFiltered, sections;
-
-- (id)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@synthesize leaguesList, searchBar, sections, leagueTablesView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -127,7 +119,7 @@
     [self.searchBar setShowsCancelButton:NO animated:YES];
     [self.searchBar resignFirstResponder];
     
-    self.tableView.scrollEnabled = YES;
+    self.leagueTablesView.scrollEnabled = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -153,10 +145,11 @@
         
         [self createTableSections:urlString AndServerName:serverName];
         // done
+        
 
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-            [self.tableView reloadData];
+            [self.leagueTablesView reloadData];
         });
     });
 }
@@ -176,7 +169,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"LeagueCell";
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [self.leagueTablesView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
@@ -198,7 +191,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSLog(@"LeaguesViewController prepareForSegue");
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    NSIndexPath *indexPath = [self.leagueTablesView indexPathForSelectedRow];
     League *league = nil;
     if ([[segue identifier] isEqualToString:@"ShowSeasons"]) {
         LeagueSeasonViewController *viewController = [segue destinationViewController];

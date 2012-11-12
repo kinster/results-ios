@@ -65,13 +65,22 @@
     leagueBadge.image = [[UIImage alloc]initWithData:imageData];
     
     nameLabel.text = [team name];
-    self.tabBarController.title = @"Team Results";
 
+    [self setNavTitle];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)setNavTitle {
+    self.tabBarController.title = @"Team Results";
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    NSLog(@"table appeared");
+    [self setNavTitle];
 }
 
 - (void)didReceiveMemoryWarning {

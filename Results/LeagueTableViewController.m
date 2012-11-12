@@ -23,12 +23,12 @@
 
 @implementation LeagueTableViewController
 
-@synthesize teamList, league, season, division, nameLabel, subtitle, leagueBadge, leagueTable;
+@synthesize teamList, league, season, division, nameLabel, subtitle, leagueBadge, leagueTable, tabBarItem;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
+        
     NSError *error;
     
     ServerManager *serverManager = [ServerManager sharedServerManager];
@@ -64,7 +64,16 @@
     subtitle.text = [NSString stringWithFormat:@"%@ %@", season.name, division.name];
     leagueBadge.image = league.image;
     NSLog(@"%@", self.nameLabel.text);
+    [self setNavTitle];
+}
+
+- (void)setNavTitle {
     self.tabBarController.title = @"League Table";
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    NSLog(@"table appeared");
+    [self setNavTitle];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

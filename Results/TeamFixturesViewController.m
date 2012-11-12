@@ -58,8 +58,6 @@
         [fixtureList addObject:fixture];
     }
     
-//    [self.view setTranslatesAutoresizingMaskIntoConstraints:NO];
-
     NSLog(@"Fixtures badge: %@", team.badge);
     NSURL *imageUrl = [NSURL URLWithString:team.badge];
     NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
@@ -68,13 +66,22 @@
     
     nameLabel.text = [team name];    
     
-    self.tabBarController.title = @"Team Fixtures";
+    [self setNavTitle];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)setNavTitle {
+    self.tabBarController.title = @"Team Fixtures";
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    NSLog(@"table appeared");
+    [self setNavTitle];
 }
 
 - (void)didReceiveMemoryWarning {

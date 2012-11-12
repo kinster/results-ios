@@ -58,10 +58,17 @@
     self.homeBadge.image = [[UIImage alloc]initWithData:imageHomeData];
     self.awayBadge.image = [[UIImage alloc]initWithData:imageAwayData];
     
-    self.tabBarController.title = @"Fixture Details";
-
+    [self setNavTitle];
 }
 
+- (void)setNavTitle {
+    self.tabBarController.title = @"Fixture Details";
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    NSLog(@"table appeared");
+    [self setNavTitle];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

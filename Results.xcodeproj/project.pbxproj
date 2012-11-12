@@ -30,6 +30,11 @@
 		4B4C235C16494D0600F5A694 /* LeagueResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C235B16494D0600F5A694 /* LeagueResultsViewController.m */; };
 		4B4C236016494D7A00F5A694 /* Result.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C235F16494D7A00F5A694 /* Result.m */; };
 		4B50D3F816515C3A006A8A41 /* ServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B50D3F716515C39006A8A41 /* ServerManager.m */; };
+		4B50D3FB16516DB2006A8A41 /* 83-calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B50D3FA16516DB2006A8A41 /* 83-calendar.png */; };
+		4B50D3FD16516F41006A8A41 /* 179-notepad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B50D3FC16516F41006A8A41 /* 179-notepad.png */; };
+		4B50D3FF16516F9B006A8A41 /* 166-newspaper.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B50D3FE16516F9B006A8A41 /* 166-newspaper.png */; };
+		4B50D4011651707A006A8A41 /* 152-rolodex.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B50D4001651707A006A8A41 /* 152-rolodex.png */; };
+		4B50D404165175E0006A8A41 /* CustomPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B50D403165175DE006A8A41 /* CustomPlayerCell.m */; };
 		4B570083164A9980004BCF9B /* LeaguesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B570082164A9980004BCF9B /* LeaguesViewController.m */; };
 		4B57008A164AA20A004BCF9B /* Division.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B570089164AA20A004BCF9B /* Division.m */; };
 		4B79E0E3164D6014009B8389 /* TeamFixturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B79E0E2164D6014009B8389 /* TeamFixturesViewController.m */; };
@@ -84,6 +89,12 @@
 		4B4C235F16494D7A00F5A694 /* Result.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Result.m; sourceTree = "<group>"; };
 		4B50D3F616515C39006A8A41 /* ServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerManager.h; sourceTree = "<group>"; };
 		4B50D3F716515C39006A8A41 /* ServerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerManager.m; sourceTree = "<group>"; };
+		4B50D3FA16516DB2006A8A41 /* 83-calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "83-calendar.png"; sourceTree = "<group>"; };
+		4B50D3FC16516F41006A8A41 /* 179-notepad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "179-notepad.png"; sourceTree = "<group>"; };
+		4B50D3FE16516F9B006A8A41 /* 166-newspaper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "166-newspaper.png"; sourceTree = "<group>"; };
+		4B50D4001651707A006A8A41 /* 152-rolodex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "152-rolodex.png"; sourceTree = "<group>"; };
+		4B50D402165175DD006A8A41 /* CustomPlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPlayerCell.h; sourceTree = "<group>"; };
+		4B50D403165175DE006A8A41 /* CustomPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPlayerCell.m; sourceTree = "<group>"; };
 		4B570081164A9980004BCF9B /* LeaguesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaguesViewController.h; sourceTree = "<group>"; };
 		4B570082164A9980004BCF9B /* LeaguesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaguesViewController.m; sourceTree = "<group>"; };
 		4B570088164AA20A004BCF9B /* Division.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Division.h; sourceTree = "<group>"; };
@@ -211,6 +222,8 @@
 				4B0E1B4A16473ACB0010CA22 /* CustomResultCell.xib */,
 				4B0E1B4C16473B180010CA22 /* CustomResultCell.h */,
 				4B0E1B4D16473B180010CA22 /* CustomResultCell.m */,
+				4B50D402165175DD006A8A41 /* CustomPlayerCell.h */,
+				4B50D403165175DE006A8A41 /* CustomPlayerCell.m */,
 				4B09D8D41633495E00A0A477 /* ClubModel.xcdatamodeld */,
 				4B09D8A51632F56900A0A477 /* Supporting Files */,
 			);
@@ -220,6 +233,10 @@
 		4B09D8A51632F56900A0A477 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4B50D4001651707A006A8A41 /* 152-rolodex.png */,
+				4B50D3FE16516F9B006A8A41 /* 166-newspaper.png */,
+				4B50D3FC16516F41006A8A41 /* 179-notepad.png */,
+				4B50D3FA16516DB2006A8A41 /* 83-calendar.png */,
 				4B09D8CE1633125500A0A477 /* garforthleague.jpg */,
 				4B09D8A61632F56900A0A477 /* Results-Info.plist */,
 				4B09D8A71632F56900A0A477 /* InfoPlist.strings */,
@@ -293,6 +310,10 @@
 				4BE0E2CC16345CF9000D061F /* CustomTableCell.xib in Resources */,
 				4B0E1B4516471E340010CA22 /* CustomFixtureCell.xib in Resources */,
 				4B0E1B4B16473ACB0010CA22 /* CustomResultCell.xib in Resources */,
+				4B50D3FB16516DB2006A8A41 /* 83-calendar.png in Resources */,
+				4B50D3FD16516F41006A8A41 /* 179-notepad.png in Resources */,
+				4B50D3FF16516F9B006A8A41 /* 166-newspaper.png in Resources */,
+				4B50D4011651707A006A8A41 /* 152-rolodex.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +350,7 @@
 				4BB2DFD7164ED093000650A0 /* TeamResultsViewController.m in Sources */,
 				4BC65362165011FF00049309 /* MBProgressHUD.m in Sources */,
 				4B50D3F816515C3A006A8A41 /* ServerManager.m in Sources */,
+				4B50D404165175E0006A8A41 /* CustomPlayerCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
