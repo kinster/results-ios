@@ -10,7 +10,7 @@
 
 @implementation Team
 
-- (id) initWithTeam:(NSString *)name AndPosition:(NSString *)position AndPlayed:(NSString *)played AndWins:(NSString *)wins AndDraws:(NSString *)draws AndLosses:(NSString *)losses AndGoalsFor:(NSString *)gf AndGoalsAgainst:(NSString *)ga AndGoalDiff:(NSString *)gd AndPoints:(NSString *)points AndTeamId:(NSString *)teamId {
+- (id) initWithTeam:(NSString *)name AndPosition:(NSString *)position AndPlayed:(NSString *)played AndWins:(NSString *)wins AndDraws:(NSString *)draws AndLosses:(NSString *)losses AndGoalsFor:(NSString *)gf AndGoalsAgainst:(NSString *)ga AndGoalDiff:(NSString *)gd AndPoints:(NSString *)points AndTeamId:(NSString *)teamId AndBadge:(NSString *)badge {
     if (self = [super init]) {
         _position = position;
         _name = name;
@@ -23,6 +23,7 @@
         _goalDiff = gd;
         _points = points;
         _teamId = teamId;
+        _badge = badge;
     }
     return self;
 }

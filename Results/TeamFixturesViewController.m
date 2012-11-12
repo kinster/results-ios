@@ -13,6 +13,7 @@
 #import "Team.h"
 #import "Fixture.h"
 #import "CustomFixtureCell.h"
+#import "ServerManager.h"
 
 @interface TeamFixturesViewController ()
 
@@ -20,27 +21,18 @@
 
 @implementation TeamFixturesViewController
 
-@synthesize fixtureList, league, season, division, team;
+@synthesize fixtureList, league, season, division, team, leagueBadge, nameLabel, teamFixturesTable;
 
-- (id)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     NSLog(@"TeamFixturesViewController");
     
     NSError *error;
     
-    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
-    NSString* jsonServer = [infoDict objectForKey:@"jsonServer"];
-    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@/fixtures.json", league.leagueId, season.seasonId, division.divisionId, team.teamId];
+    ServerManager *serverManager = [ServerManager sharedServerManager];
+    NSString *serverName = [serverManager serverName];
+    NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@/fixtures.json", league.leagueId, season.seasonId, division.divisionId, team.teamId];
     NSLog(@"%@", urlString);
     
     NSURL *url = [NSURL URLWithString:urlString];
@@ -65,6 +57,16 @@
         
         [fixtureList addObject:fixture];
     }
+    
+//    [self.view setTranslatesAutoresizingMaskIntoConstraints:NO];
+
+    NSLog(@"Fixtures badge: %@", team.badge);
+    NSURL *imageUrl = [NSURL URLWithString:team.badge];
+    NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
+    
+    leagueBadge.image = [[UIImage alloc]initWithData:imageData];
+    
+    nameLabel.text = [team name];    
     
     self.tabBarController.title = @"Team Fixtures";
 
@@ -102,7 +104,6 @@
     cell.homeTeam.text = fixture.homeTeam;
     cell.awayTeam.text = fixture.awayTeam;
     cell.date.text = fixture.dateTime;
-    return cell;
     
     return cell;
 }

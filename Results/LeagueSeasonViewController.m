@@ -10,6 +10,7 @@
 #import "LeagueDivisionsViewController.h"
 #import "League.h"
 #import "Season.h"
+#import "ServerManager.h"
 
 @interface LeagueSeasonViewController ()
 
@@ -32,9 +33,9 @@
 
     NSError *error;
     
-    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
-    NSString* jsonServer = [infoDict objectForKey:@"jsonServer"];
-    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons.json", league.leagueId];
+    ServerManager *serverManager = [ServerManager sharedServerManager];
+    NSString *serverName = [serverManager serverName];
+    NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons.json", league.leagueId];
     NSLog(@"%@", urlString);
     
     NSURL *url = [NSURL URLWithString:urlString];

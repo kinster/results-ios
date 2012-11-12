@@ -10,12 +10,17 @@
 
 @implementation League
 
--(id)initWithIdAndName:(NSString *)leagueId AndName:(NSString *)name {
+-(id)initWithIdAndNameAndImage:(NSString *)leagueId AndName:(NSString *)name AndImage:(UIImage *)image {
     if (self = [super init]) {
         _leagueId = leagueId;
         _name = name;
+        _image = image;
         return self;
     }
     return self;
+}
+
+-(id)initWithIdAndName:(NSString *)leagueId AndName:(NSString *)name {
+    return [self initWithIdAndNameAndImage:leagueId AndName:name AndImage:nil];
 }
 @end

@@ -12,6 +12,7 @@
 #import "Division.h"
 #import "Team.h"
 #import "Player.h"
+#import "ServerManager.h"
 
 @interface TeamDetailsViewController ()
 
@@ -19,18 +20,16 @@
 
 @implementation TeamDetailsViewController
 
-@synthesize position, name, badge, league, season, division, team, navBar, playersTable, playersList;
+@synthesize name, badge, league, season, division, team, playersTable, playersList;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"Team Details";
-    navBar.title = @"Team Details";
     
     NSError *error;
     
-    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
-    NSString* jsonServer = [infoDict objectForKey:@"jsonServer"];
-    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@.json", league.leagueId, season.seasonId, division.divisionId, team.teamId];
+    ServerManager *serverManager = [ServerManager sharedServerManager];
+    NSString *serverName = [serverManager serverName];
+    NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@.json", league.leagueId, season.seasonId, division.divisionId, team.teamId];
     NSLog(@"%@", urlString);
     
     NSURL *url = [NSURL URLWithString:urlString];
@@ -41,16 +40,17 @@
     
 
     NSString *image = [jsonData[0] objectForKey:@"image_url"];
+    team.badge = image;
     NSLog(@"image: %@", image);
     
-    NSURL *imageUrl = [NSURL URLWithString:image];
+    NSURL *imageUrl = [NSURL URLWithString:team.badge];
     NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
     
     badge.image = [[UIImage alloc]initWithData:imageData];
     
     name.text = [team name];
 
-    NSString *playersUrlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@/players.json", league.leagueId, season.seasonId, division.divisionId, team.teamId];
+    NSString *playersUrlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@/players.json", league.leagueId, season.seasonId, division.divisionId, team.teamId];
     NSLog(@"%@", playersUrlString);
     
     NSURL *playersUrl = [NSURL URLWithString:playersUrlString];
@@ -87,14 +87,11 @@
     static NSString *CellIdentifier = @"PlayerCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
-    NSLog(@"Players count in cell: %d", [playersList count]);
-
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     Player *player = [playersList objectAtIndex:indexPath.row];
-    NSLog(@"Player in cell: %@", player.name);
  
     cell.textLabel.text = [NSString stringWithFormat:@"%d) %@", indexPath.row+1, player.name];
 

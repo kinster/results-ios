@@ -14,6 +14,7 @@
 #import "Team.h"
 #import "Fixture.h"
 #import "CustomFixtureCell.h"
+#import "ServerManager.h"
 
 @interface LeagueFixturesViewController ()
 
@@ -22,15 +23,7 @@
 
 @implementation LeagueFixturesViewController
 
-@synthesize fixtureList, league, season, division;
-
-- (id)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@synthesize fixtureList, league, season, division, fixturesTable, nameLabel, leagueBadge, subtitle;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,9 +32,9 @@
 
     NSError *error;
     
-    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
-    NSString* jsonServer = [infoDict objectForKey:@"jsonServer"];
-    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/fixtures.json", league.leagueId, season.seasonId, division.divisionId];
+    ServerManager *serverManager = [ServerManager sharedServerManager];
+    NSString *serverName = [serverManager serverName];
+    NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/fixtures.json", league.leagueId, season.seasonId, division.divisionId];
     NSLog(@"%@", urlString);
     
     NSURL *url = [NSURL URLWithString:urlString];
@@ -67,6 +60,11 @@
         [fixtureList addObject:fixture];
     }
     
+    nameLabel.text = [NSString stringWithFormat:@"%@", league.name];
+    subtitle.text = [NSString stringWithFormat:@"%@ %@", season.name, division.name];
+    leagueBadge.image = league.image;
+    NSLog(@"%@", self.nameLabel.text);
+
     self.tabBarController.title = @"League Fixtures";
 
     // Uncomment the following line to preserve selection between presentations.
@@ -93,7 +91,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"CustomFixtureCell";
-    CustomFixtureCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    CustomFixtureCell *cell = [fixturesTable dequeueReusableCellWithIdentifier:CellIdentifier];
 
     if (cell == nil) {
         cell = [[CustomFixtureCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
@@ -104,6 +102,10 @@
     cell.awayTeam.text = fixture.awayTeam;
     cell.date.text = fixture.dateTime;
     return cell;
+}
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+    NSLog(@"%@", viewController.tabBarItem);
 }
 
 /*

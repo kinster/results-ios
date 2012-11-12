@@ -15,5 +15,4 @@
 @property (assign, nonatomic) Boolean isFiltered;
 @property (retain, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, retain) NSDictionary *sections;
-@property (nonatomic, retain) NSArray *alphabet;
 @end

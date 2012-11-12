@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface League : NSObject
-@property (nonatomic, copy) NSString *leagueId;
-@property (nonatomic, copy) NSString *name;
+@property (copy, nonatomic) NSString *leagueId;
+@property (copy, nonatomic) NSString *name;
+@property (retain, nonatomic) UIImage *image;
+-(id)initWithIdAndNameAndImage:(NSString *)leagueId AndName:(NSString *)name AndImage:(UIImage *)image;
 -(id)initWithIdAndName:(NSString *)leagueId AndName:(NSString *)name;
 @end

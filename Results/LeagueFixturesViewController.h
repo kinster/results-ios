@@ -10,9 +10,13 @@
 
 @class League, Season, Division;
 
-@interface LeagueFixturesViewController : UITableViewController
+@interface LeagueFixturesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITabBarControllerDelegate>
 @property (copy, nonatomic) NSMutableArray *fixtureList;
 @property (weak, nonatomic) League *league;
 @property (weak, nonatomic) Season *season;
 @property (weak, nonatomic) Division *division;
+@property (retain, nonatomic) IBOutlet UITableView *fixturesTable;
+@property (weak, nonatomic) IBOutlet UIImageView *leagueBadge;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subtitle;
 @end

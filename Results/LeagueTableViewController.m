@@ -15,6 +15,7 @@
 #import "League.h"
 #import "Season.h"
 #import "Division.h"
+#import "ServerManager.h"
 
 @interface LeagueTableViewController ()
 
@@ -22,7 +23,7 @@
 
 @implementation LeagueTableViewController
 
-@synthesize teamList, league, season, division, nameLabel, leagueTable;
+@synthesize teamList, league, season, division, nameLabel, subtitle, leagueBadge, leagueTable;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,9 +31,9 @@
     
     NSError *error;
     
-    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
-    NSString* jsonServer = [infoDict objectForKey:@"jsonServer"];
-    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@.json", league.leagueId, season.seasonId, division.divisionId];
+    ServerManager *serverManager = [ServerManager sharedServerManager];
+    NSString *serverName = [serverManager serverName];
+    NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@.json", league.leagueId, season.seasonId, division.divisionId];
     NSLog(@"%@", urlString);
     
     NSURL *url = [NSURL URLWithString:urlString];
@@ -55,14 +56,15 @@
         NSString *gd = [entry objectForKey:@"gd"];
         NSString *teamId = [entry objectForKey:@"id"];
         
-        team = [[Team alloc] initWithTeam:name AndPosition:position AndPlayed:played AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:gf AndGoalsAgainst:ga AndGoalDiff:gd AndPoints:points AndTeamId:teamId];
+        team = [[Team alloc] initWithTeam:name AndPosition:position AndPlayed:played AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:gf AndGoalsAgainst:ga AndGoalDiff:gd AndPoints:points AndTeamId:teamId AndBadge:nil];
         [teamList addObject: team];
 
     }
-    nameLabel.text = [NSString stringWithFormat:@"%@ (%@) %@", league.name, season.name, division.name];
+    nameLabel.text = [NSString stringWithFormat:@"%@", league.name];
+    subtitle.text = [NSString stringWithFormat:@"%@ %@", season.name, division.name];
+    leagueBadge.image = league.image;
     NSLog(@"%@", self.nameLabel.text);
     self.tabBarController.title = @"League Table";
-
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -81,7 +83,7 @@
     
     NSString *CellIdentifier = @"CustomTableCell";
     
-    CustomTableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    CustomTableCell *cell = [leagueTable dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[CustomTableCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
@@ -130,8 +132,8 @@
         [teamResultsController setSeason:season];
         [teamResultsController setDivision:division];
         [teamResultsController setTeam:team];
-
     }
+    NSLog(@"end of prepareForSegue");
 }
 
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {

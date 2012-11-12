@@ -13,6 +13,7 @@
 #import "League.h"
 #import "Season.h"
 #import "Division.h"
+#import "ServerManager.h"
 
 @interface LeagueDivisionsViewController ()
 
@@ -30,14 +31,32 @@
     return self;
 }
 
+-(UIImage *)getLeagueImage:(NSString *)serverName AndLeagueId:(NSString *)leagueId {
+    NSError *error;
+    NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@.json", leagueId];
+    NSLog(@"%@", urlString);
+    
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    NSArray *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+    NSString *image = [jsonData objectAtIndex:0];
+    
+    NSURL *imageUrl = [NSURL URLWithString:image];
+    NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
+    
+    UIImage *leagueBadge = [[UIImage alloc]initWithData:imageData];
+    return leagueBadge;
+
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     NSError *error;
     
-    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
-    NSString* jsonServer = [infoDict objectForKey:@"jsonServer"];
-    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@.json", league.leagueId, season.seasonId];
+    ServerManager *serverManager = [ServerManager sharedServerManager];
+    NSString *serverName = [serverManager serverName];
+    NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@.json", league.leagueId, season.seasonId];
     NSLog(@"%@", urlString);
     
     NSURL *url = [NSURL URLWithString:urlString];
@@ -55,6 +74,8 @@
         [divisionsList addObject: division];
     }
     
+    UIImage *image = [self getLeagueImage:serverName AndLeagueId:league.leagueId];
+    league.image = image;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     

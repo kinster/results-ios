@@ -10,9 +10,13 @@
 
 @class League, Season, Division;
 
-@interface LeagueResultsViewController : UITableViewController
+@interface LeagueResultsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (copy, nonatomic) NSMutableArray *resultsList;
 @property (weak, nonatomic) League *league;
 @property (weak, nonatomic) Season *season;
 @property (weak, nonatomic) Division *division;
+@property (weak, nonatomic) IBOutlet UIImageView *leagueBadge;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subtitle;
+@property (weak, nonatomic) IBOutlet UITableView *resultsTable;
 @end

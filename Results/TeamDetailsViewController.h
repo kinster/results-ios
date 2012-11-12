@@ -17,9 +17,6 @@
 @property (weak, nonatomic) Team *team;
 @property (copy, nonatomic) NSMutableArray *playersList;
 
-@property (weak, nonatomic) IBOutlet UINavigationItem *navBar;
-
-@property (weak, nonatomic) IBOutlet UILabel *position;
 @property (weak, nonatomic) IBOutlet UIImageView *badge;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (retain, nonatomic) IBOutlet UITableView *playersTable;

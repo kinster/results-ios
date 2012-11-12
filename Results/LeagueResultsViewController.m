@@ -12,6 +12,7 @@
 #import "Division.h"
 #import "Result.h"
 #import "CustomResultCell.h"
+#import "ServerManager.h"
 
 @interface LeagueResultsViewController ()
 
@@ -19,15 +20,7 @@
 
 @implementation LeagueResultsViewController
 
-@synthesize resultsList, league, season, division;
-
-- (id)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@synthesize resultsList, league, season, division, nameLabel, leagueBadge, subtitle, resultsTable;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,9 +29,9 @@
     
     NSError *error;
     
-    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
-    NSString* jsonServer = [infoDict objectForKey:@"jsonServer"];
-    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/results.json", league.leagueId, season.seasonId, division.divisionId];
+    ServerManager *serverManager = [ServerManager sharedServerManager];
+    NSString *serverName = [serverManager serverName];
+    NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/results.json", league.leagueId, season.seasonId, division.divisionId];
     NSLog(@"%@", urlString);
     
     NSURL *url = [NSURL URLWithString:urlString];
@@ -62,7 +55,9 @@
 
         [resultsList addObject:result];
     }
-    
+    nameLabel.text = [NSString stringWithFormat:@"%@", league.name];
+    subtitle.text = [NSString stringWithFormat:@"%@ %@", season.name, division.name];
+    leagueBadge.image = league.image;
     self.tabBarController.title = @"League Results";
 
     // Uncomment the following line to preserve selection between presentations.
@@ -90,7 +85,7 @@
     // Configure the cell...
     static NSString *CellIdentifier = @"CustomResultCell";
 //    CustomResultCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    CustomResultCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    CustomResultCell *cell = [resultsTable dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     if (cell == nil) {
         cell = [[CustomResultCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];

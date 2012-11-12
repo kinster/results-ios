@@ -10,6 +10,7 @@
 #import "League.h"
 #import "LeagueSeasonViewController.h"
 #import "MBProgressHUD.h"
+#import "ServerManager.h"
 
 @interface LeaguesViewController ()
 
@@ -17,7 +18,7 @@
 
 @implementation LeaguesViewController
 
-@synthesize leaguesList, filteredLeaguesList, searchBar, isFiltered, sections, alphabet;
+@synthesize leaguesList, filteredLeaguesList, searchBar, isFiltered, sections;
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -30,17 +31,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
   
-    NSError *error;
-
-    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
-    NSString* jsonServer = [infoDict objectForKey:@"jsonServer"];
-    NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues.json"];
+    ServerManager *serverManager = [ServerManager sharedServerManager];
+    NSString *serverName = [serverManager serverName];
+    NSString *urlString = [serverName stringByAppendingFormat:@"/leagues.json"];
     NSLog(@"%@", urlString);
+
+    [self createTableSections:urlString AndServerName:serverName];
+
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+ 
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+-(void)createTableSections:(NSString *)urlString AndServerName:(NSString *)serverName {
+    
+    NSError *error;
 
     NSURL *url = [NSURL URLWithString:urlString];
     NSData *data = [NSData dataWithContentsOfURL:url];
     NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-
+    
     leaguesList = [[NSMutableArray alloc] init];
     League *league = nil;
     
@@ -50,48 +62,25 @@
         for (NSDictionary *entry in jsonData) {
             NSString *theId = [entry objectForKey:@"id"];
             NSString *theName = [entry objectForKey:@"name"];
-            NSLog(@"id: %@", theId);
-            NSLog(@"name: %@", theName);
-            
+            NSLog(@"%@ %@", theId, theName);
             league = [[League alloc] initWithIdAndName:theId AndName:theName];
-            [leaguesList addObject: league];
-            
+            [leaguesList addObject: league];            
         }
     }
-
-    [self createTableSections];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
--(void)createTableSections {
-    alphabet = [[NSArray alloc]initWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",
-                @"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z",nil];
     
     sections = [[NSMutableDictionary alloc] init];
     
     BOOL found;
     
     for (League *league in leaguesList) {
-        
         NSString *c = [league.name substringToIndex:1];
-        
         found = NO;
-        
-        for (NSString *str in [sections allKeys])
-        {
-            if ([str isEqualToString:c])
-            {
+        for (NSString *str in [sections allKeys]) {
+            if ([str isEqualToString:c]) {
                 found = YES;
             }
         }
-        
-        if (!found)
-        {
+        if (!found) {
             [sections setValue:[[NSMutableArray alloc] init] forKey:c];
         }
     }
@@ -156,35 +145,13 @@
     [self.navigationController.view addSubview:hud];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         // Do something...
-        NSError *error;
         
-        NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
-        NSString* jsonServer = [infoDict objectForKey:@"jsonServer"];
-        NSString *urlString = [jsonServer stringByAppendingFormat:@"/leagues/search/%@.json", theSearchBar.text];
+        ServerManager *serverManager = [ServerManager sharedServerManager];
+        NSString *serverName = [serverManager serverName];
+        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/search/%@.json", theSearchBar.text];
         NSLog(@"%@", urlString);
         
-        NSURL *url = [NSURL URLWithString:urlString];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-        
-        leaguesList = [[NSMutableArray alloc] init];
-        League *league = nil;
-        
-        if (!jsonData) {
-            NSLog(@"%@", error);
-        } else {
-            for (NSDictionary *entry in jsonData) {
-                NSString *theId = [entry objectForKey:@"id"];
-                NSString *theName = [entry objectForKey:@"name"];
-                NSLog(@"%@ %@", theId, theName);
-                
-                league = [[League alloc] initWithIdAndName:theId AndName:theName];
-                [leaguesList addObject: league];
-                
-            }
-        }
-        
-        [self createTableSections];
+        [self createTableSections:urlString AndServerName:serverName];
         // done
 
         dispatch_async(dispatch_get_main_queue(), ^{
