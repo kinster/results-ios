@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"LeagueFixturesViewController");
+    NSLog(@"LeagueResultsViewController");
     
     NSError *error;
     

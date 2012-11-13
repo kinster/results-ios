@@ -114,26 +114,30 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSLog(@"LeaguesViewController prepareForSegue");
+    NSLog(@"LeagueDivisionsViewController prepareForSegue");
     
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     NSLog(@"%d", indexPath.row);
     Division *division = [divisionsList objectAtIndex:indexPath.row];
     UITabBarController *tabBarController = [segue destinationViewController];
+    NSLog(@"controllers: %d", [tabBarController.viewControllers count]);
     LeagueTableViewController *viewController0 = [tabBarController.viewControllers objectAtIndex:0];
+    NSLog(@"controller 0: %@", viewController0);
     [viewController0 setLeague:league];
     [viewController0 setSeason:season];
     [viewController0 setDivision:division];
     NSLog(@"ShowFixtures");
     LeagueFixturesViewController *viewController1 = [tabBarController.viewControllers objectAtIndex:1];
+    NSLog(@"controller 1: %@", viewController1);
     [viewController1 setLeague:league];
     [viewController1 setSeason:season];
     [viewController1 setDivision:division];
     LeagueResultsViewController *viewController2 = [tabBarController.viewControllers objectAtIndex:2];
+    NSLog(@"controller 2: %@", viewController2);
     [viewController2 setLeague:league];
     [viewController2 setSeason:season];
     [viewController2 setDivision:division];
-
+    NSLog(@"end");
 }
 
 /*

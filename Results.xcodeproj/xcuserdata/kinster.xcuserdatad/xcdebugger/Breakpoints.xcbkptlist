@@ -200,26 +200,13 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Results/LeagueDivisionsViewController.m"
-         timestampString = "374431988.079003"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "126"
-         endingLineNumber = "126"
-         landmarkName = "-prepareForSegue:sender:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "Results/LeagueTableViewController.m"
          timestampString = "374431988.079003"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "26"
          endingLineNumber = "26"
-         landmarkName = "@synthesize teamList, league, season, division, nameLabel, subtitle, leagueBadge, leagueTable, tabBarItem;"
+         landmarkName = "@synthesize teamList, league, season, division, nameLabel, subtitle, leagueBadge, leagueTable;"
          landmarkType = "19">
       </FileBreakpoint>
       <FileBreakpoint
@@ -238,11 +225,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Results/LeagueTableViewController.m"
-         timestampString = "374431988.079003"
+         timestampString = "374498395.730888"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "64"
-         endingLineNumber = "64"
+         startingLineNumber = "66"
+         endingLineNumber = "66"
          landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>

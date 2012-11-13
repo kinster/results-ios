@@ -23,12 +23,14 @@
 
 @implementation LeagueTableViewController
 
-@synthesize teamList, league, season, division, nameLabel, subtitle, leagueBadge, leagueTable, tabBarItem;
+@synthesize teamList, league, season, division, nameLabel, subtitle, leagueBadge, leagueTable;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-        
+    
+    NSLog(@"LeagueTableViewController");
+
     NSError *error;
     
     ServerManager *serverManager = [ServerManager sharedServerManager];
