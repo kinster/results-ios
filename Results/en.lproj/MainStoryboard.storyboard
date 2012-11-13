@@ -129,7 +129,6 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="I7h-s1-YGe">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="101" id="Xmq-T0-J8d"/>
-                                            <constraint firstAttribute="height" constant="51" id="qKn-cb-Yb9"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
@@ -152,15 +151,14 @@
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="CustomCellRestorationId" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CustomTableCell" rowHeight="25" id="Dwl-Iw-EaS" userLabel="Team Cell" customClass="CustomTableCell">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="25"/>
+                                        <rect key="frame" x="0.0" y="22" width="321" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="24"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="301" height="24"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lTh-Pa-Cly" userLabel="Position">
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="25" id="7Ee-ng-3Xo"/>
                                                         <constraint firstAttribute="width" constant="25" id="AVc-eq-pcQ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -243,35 +241,36 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="lTh-Pa-Cly" firstAttribute="baseline" secondItem="0Dc-HI-Guj" secondAttribute="baseline" type="default" id="2E2-xO-WeK"/>
-                                            <constraint firstItem="Dds-dh-XT3" firstAttribute="top" secondItem="Vh1-Da-wkh" secondAttribute="top" type="default" id="57O-WM-naI"/>
+                                            <constraint firstItem="5OO-rP-Zx6" firstAttribute="bottom" secondItem="Dwl-Iw-EaS" secondAttribute="bottom" type="default" id="34g-hi-G75"/>
+                                            <constraint firstItem="7dI-UA-yfe" firstAttribute="bottom" secondItem="Dwl-Iw-EaS" secondAttribute="bottom" type="default" id="49E-tK-MQh"/>
                                             <constraint firstItem="r0K-EW-lHH" firstAttribute="leading" secondItem="Dwl-Iw-EaS" secondAttribute="leading" constant="272" id="58k-mL-NtC"/>
-                                            <constraint firstItem="yeN-jG-1Ve" firstAttribute="top" secondItem="5OO-rP-Zx6" secondAttribute="top" type="default" id="8aA-0l-ZQ0"/>
-                                            <constraint firstItem="mpH-C5-aEf" firstAttribute="top" secondItem="0Dc-HI-Guj" secondAttribute="top" type="default" id="ANd-1A-woA"/>
-                                            <constraint firstItem="7dI-UA-yfe" firstAttribute="top" secondItem="bjq-A9-th3" secondAttribute="top" type="default" id="B01-DZ-kT5"/>
-                                            <constraint firstItem="bjq-A9-th3" firstAttribute="baseline" secondItem="Dds-dh-XT3" secondAttribute="baseline" type="default" id="DQc-8K-Kk7"/>
-                                            <constraint firstItem="0Dc-HI-Guj" firstAttribute="baseline" secondItem="mpH-C5-aEf" secondAttribute="baseline" type="default" id="EhB-EA-hes"/>
+                                            <constraint firstItem="Dds-dh-XT3" firstAttribute="top" secondItem="Dwl-Iw-EaS" secondAttribute="top" type="default" id="6y4-H4-Kao"/>
+                                            <constraint firstItem="0Dc-HI-Guj" firstAttribute="bottom" secondItem="Dwl-Iw-EaS" secondAttribute="bottom" type="default" id="8ix-jO-fX8"/>
+                                            <constraint firstItem="Vh1-Da-wkh" firstAttribute="bottom" secondItem="Dwl-Iw-EaS" secondAttribute="bottom" type="default" id="9vN-Ao-leG"/>
+                                            <constraint firstItem="Vh1-Da-wkh" firstAttribute="top" secondItem="Dwl-Iw-EaS" secondAttribute="top" type="default" id="H7d-Hn-4h3"/>
                                             <constraint firstItem="7dI-UA-yfe" firstAttribute="leading" secondItem="Dwl-Iw-EaS" secondAttribute="leading" constant="152" id="Ic0-1z-njB"/>
-                                            <constraint firstItem="bjq-A9-th3" firstAttribute="top" secondItem="Dds-dh-XT3" secondAttribute="top" type="default" id="J3A-fy-tMj"/>
                                             <constraint firstItem="Vh1-Da-wkh" firstAttribute="leading" secondItem="Dwl-Iw-EaS" secondAttribute="leading" constant="212" id="Jrg-MK-XXP"/>
+                                            <constraint firstItem="mpH-C5-aEf" firstAttribute="bottom" secondItem="Dwl-Iw-EaS" secondAttribute="bottom" type="default" id="Lzk-06-C94"/>
+                                            <constraint firstItem="lTh-Pa-Cly" firstAttribute="top" secondItem="Dwl-Iw-EaS" secondAttribute="top" type="default" id="MG3-Xt-fIK"/>
                                             <constraint firstItem="5OO-rP-Zx6" firstAttribute="leading" secondItem="Dwl-Iw-EaS" secondAttribute="leading" constant="252" id="NVJ-R2-69D"/>
                                             <constraint firstItem="0Dc-HI-Guj" firstAttribute="leading" secondItem="Dwl-Iw-EaS" secondAttribute="leading" constant="31" id="SSH-7O-Ojj"/>
-                                            <constraint firstItem="Dds-dh-XT3" firstAttribute="baseline" secondItem="Vh1-Da-wkh" secondAttribute="baseline" type="default" id="U39-FB-jB4"/>
+                                            <constraint firstItem="yeN-jG-1Ve" firstAttribute="top" secondItem="Dwl-Iw-EaS" secondAttribute="top" type="default" id="Sgo-CA-LaN"/>
                                             <constraint firstItem="mpH-C5-aEf" firstAttribute="leading" secondItem="Dwl-Iw-EaS" secondAttribute="leading" constant="132" id="VFK-7g-IRJ"/>
                                             <constraint firstItem="yeN-jG-1Ve" firstAttribute="leading" secondItem="Dwl-Iw-EaS" secondAttribute="leading" constant="232" id="WEB-PC-At2"/>
-                                            <constraint firstItem="mpH-C5-aEf" firstAttribute="baseline" secondItem="7dI-UA-yfe" secondAttribute="baseline" type="default" id="hyI-Af-iYF"/>
-                                            <constraint firstItem="5OO-rP-Zx6" firstAttribute="top" secondItem="r0K-EW-lHH" secondAttribute="top" type="default" id="iB4-BU-MqV"/>
-                                            <constraint firstItem="Vh1-Da-wkh" firstAttribute="baseline" secondItem="yeN-jG-1Ve" secondAttribute="baseline" type="default" id="jTZ-26-C5z"/>
+                                            <constraint firstItem="yeN-jG-1Ve" firstAttribute="bottom" secondItem="Dwl-Iw-EaS" secondAttribute="bottom" type="default" id="aOX-bp-9Nu"/>
+                                            <constraint firstItem="0Dc-HI-Guj" firstAttribute="top" secondItem="Dwl-Iw-EaS" secondAttribute="top" type="default" id="bfB-aT-0bu"/>
+                                            <constraint firstItem="Dds-dh-XT3" firstAttribute="bottom" secondItem="Dwl-Iw-EaS" secondAttribute="bottom" type="default" id="ePz-gj-SGM"/>
+                                            <constraint firstItem="bjq-A9-th3" firstAttribute="top" secondItem="Dwl-Iw-EaS" secondAttribute="top" type="default" id="fDc-fm-cVb"/>
+                                            <constraint firstItem="5OO-rP-Zx6" firstAttribute="top" secondItem="Dwl-Iw-EaS" secondAttribute="top" type="default" id="fVs-JY-ahV"/>
+                                            <constraint firstItem="lTh-Pa-Cly" firstAttribute="bottom" secondItem="Dwl-Iw-EaS" secondAttribute="bottom" type="default" id="ffG-6f-Dtj"/>
+                                            <constraint firstItem="mpH-C5-aEf" firstAttribute="top" secondItem="Dwl-Iw-EaS" secondAttribute="top" type="default" id="fh7-cC-qjt"/>
+                                            <constraint firstItem="r0K-EW-lHH" firstAttribute="bottom" secondItem="Dwl-Iw-EaS" secondAttribute="bottom" type="default" id="gKQ-Dr-9Pm"/>
                                             <constraint firstItem="bjq-A9-th3" firstAttribute="leading" secondItem="Dwl-Iw-EaS" secondAttribute="leading" constant="172" id="kCg-eR-01z"/>
-                                            <constraint firstItem="yeN-jG-1Ve" firstAttribute="baseline" secondItem="5OO-rP-Zx6" secondAttribute="baseline" type="default" id="nTc-fb-uBR"/>
+                                            <constraint firstItem="r0K-EW-lHH" firstAttribute="top" secondItem="Dwl-Iw-EaS" secondAttribute="top" type="default" id="mBl-4E-Ikx"/>
                                             <constraint firstItem="Dds-dh-XT3" firstAttribute="leading" secondItem="Dwl-Iw-EaS" secondAttribute="leading" constant="192" id="nne-fD-RqU"/>
-                                            <constraint firstItem="mpH-C5-aEf" firstAttribute="top" secondItem="7dI-UA-yfe" secondAttribute="top" type="default" id="o8a-k6-Io0"/>
-                                            <constraint firstItem="lTh-Pa-Cly" firstAttribute="top" secondItem="0Dc-HI-Guj" secondAttribute="top" type="default" id="oCy-74-V6m"/>
-                                            <constraint firstItem="7dI-UA-yfe" firstAttribute="baseline" secondItem="bjq-A9-th3" secondAttribute="baseline" type="default" id="p6v-mQ-Ah5"/>
                                             <constraint firstItem="lTh-Pa-Cly" firstAttribute="leading" secondItem="Dwl-Iw-EaS" secondAttribute="leading" type="default" id="qxc-OK-JeX"/>
-                                            <constraint firstItem="Vh1-Da-wkh" firstAttribute="top" secondItem="yeN-jG-1Ve" secondAttribute="top" type="default" id="s8y-L2-fvO"/>
-                                            <constraint firstItem="lTh-Pa-Cly" firstAttribute="top" secondItem="Dwl-Iw-EaS" secondAttribute="top" constant="-1" id="tEg-3N-LOg"/>
-                                            <constraint firstItem="5OO-rP-Zx6" firstAttribute="baseline" secondItem="r0K-EW-lHH" secondAttribute="baseline" type="default" id="u03-6F-wbH"/>
+                                            <constraint firstItem="7dI-UA-yfe" firstAttribute="top" secondItem="Dwl-Iw-EaS" secondAttribute="top" type="default" id="tiE-gI-Qy7"/>
+                                            <constraint firstItem="bjq-A9-th3" firstAttribute="bottom" secondItem="Dwl-Iw-EaS" secondAttribute="bottom" type="default" id="wsT-lG-hj9"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="draws" destination="bjq-A9-th3" id="hOg-J5-bpE"/>
@@ -297,15 +296,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="ep2-k7-Dq4" secondAttribute="bottom" constant="262" id="2mW-6n-T2h"/>
-                            <constraint firstItem="75p-g5-7dN" firstAttribute="trailing" secondItem="TbS-ft-E4k" secondAttribute="trailing" type="default" id="CQK-2w-tQ4"/>
+                            <constraint firstAttribute="bottom" secondItem="75p-g5-7dN" secondAttribute="bottom" constant="287" id="NgN-V0-hbU"/>
                             <constraint firstItem="ep2-k7-Dq4" firstAttribute="top" secondItem="TbS-ft-E4k" secondAttribute="top" constant="80" id="RsK-3a-jYX"/>
                             <constraint firstItem="ep2-k7-Dq4" firstAttribute="leading" secondItem="TbS-ft-E4k" secondAttribute="leading" type="default" id="SWK-gE-HDJ"/>
+                            <constraint firstItem="75p-g5-7dN" firstAttribute="trailing" secondItem="ep2-k7-Dq4" secondAttribute="trailing" type="default" id="TUU-lO-uey"/>
+                            <constraint firstItem="8L3-DS-B2W" firstAttribute="leading" secondItem="TbS-ft-E4k" secondAttribute="leading" type="default" id="Uce-9N-GVp"/>
+                            <constraint firstItem="ep2-k7-Dq4" firstAttribute="centerX" secondItem="TbS-ft-E4k" secondAttribute="centerX" type="default" id="Xqi-hm-yyk"/>
                             <constraint firstItem="8L3-DS-B2W" firstAttribute="bottom" secondItem="TbS-ft-E4k" secondAttribute="bottom" type="default" id="aiT-iw-6El"/>
-                            <constraint firstItem="8L3-DS-B2W" firstAttribute="leading" secondItem="TbS-ft-E4k" secondAttribute="leading" type="default" id="anp-vb-Gds"/>
                             <constraint firstItem="75p-g5-7dN" firstAttribute="leading" secondItem="TbS-ft-E4k" secondAttribute="leading" type="default" id="bEJ-cG-0gD"/>
-                            <constraint firstItem="8L3-DS-B2W" firstAttribute="trailing" secondItem="TbS-ft-E4k" secondAttribute="trailing" type="default" id="ccn-da-0ZV"/>
                             <constraint firstItem="75p-g5-7dN" firstAttribute="top" secondItem="TbS-ft-E4k" secondAttribute="top" type="default" id="d7C-QC-EaB"/>
-                            <constraint firstItem="ep2-k7-Dq4" firstAttribute="trailing" secondItem="TbS-ft-E4k" secondAttribute="trailing" type="default" id="hVz-e1-try"/>
+                            <constraint firstItem="8L3-DS-B2W" firstAttribute="trailing" secondItem="ep2-k7-Dq4" secondAttribute="trailing" type="default" id="gkx-mz-FlE"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" tag="1" title="Table" image="152-rolodex.png" id="336-79-yAO"/>
@@ -315,7 +315,6 @@
                         <outlet property="leagueTable" destination="8L3-DS-B2W" id="G4z-91-zj3"/>
                         <outlet property="nameLabel" destination="Zhv-3u-Cdj" id="vOk-qc-5Ae"/>
                         <outlet property="subtitle" destination="Hza-Nl-xNf" id="2cY-fU-qmN"/>
-                        <outlet property="tabBarItem" destination="336-79-yAO" id="YpQ-IZ-mbl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -893,73 +892,69 @@
             <point key="canvasLocation" x="2172" y="-2268"/>
         </scene>
         <!--Leagues View Controller - Leagues-->
-        <scene sceneID="CHS-ho-nxN">
+        <scene sceneID="K8j-4Z-PwJ">
             <objects>
-                <viewController id="8w3-Sr-emx" customClass="LeaguesViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="n6A-Q8-H8j">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <searchBar contentMode="redraw" placeholder="Type first 3 letters of League name here" translatesAutoresizingMaskIntoConstraints="NO" id="pND-Aa-bqp">
-                                <textInputTraits key="textInputTraits"/>
-                                <scopeButtonTitles>
-                                    <string>Title</string>
-                                    <string>Title</string>
-                                </scopeButtonTitles>
-                                <connections>
-                                    <outlet property="delegate" destination="8w3-Sr-emx" id="TU6-pr-og4"/>
-                                </connections>
-                            </searchBar>
-                            <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="39L-GL-JSS" userLabel="Leagues Table View">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LeagueCell" textLabel="xna-jr-JbZ" style="IBUITableViewCellStyleDefault" id="R0f-b9-Dre">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xna-jr-JbZ">
-                                                    <rect key="frame" x="10" y="0.0" width="280" height="43"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <connections>
-                                            <segue destination="6ih-G9-SMv" kind="push" identifier="ShowSeasons" id="ggr-A0-iCU"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="8w3-Sr-emx" id="egU-nZ-Viy"/>
-                                    <outlet property="delegate" destination="8w3-Sr-emx" id="uyc-Pj-9lj"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="39L-GL-JSS" firstAttribute="top" secondItem="pND-Aa-bqp" secondAttribute="bottom" type="default" id="P9J-vZ-7WP"/>
-                            <constraint firstItem="pND-Aa-bqp" firstAttribute="trailing" secondItem="n6A-Q8-H8j" secondAttribute="trailing" type="default" id="b9Y-O5-zPh"/>
-                            <constraint firstItem="39L-GL-JSS" firstAttribute="bottom" secondItem="n6A-Q8-H8j" secondAttribute="bottom" type="default" id="e1i-zK-5pq"/>
-                            <constraint firstItem="39L-GL-JSS" firstAttribute="trailing" secondItem="n6A-Q8-H8j" secondAttribute="trailing" type="default" id="e4Y-FY-Fq5"/>
-                            <constraint firstItem="pND-Aa-bqp" firstAttribute="top" secondItem="n6A-Q8-H8j" secondAttribute="top" type="default" id="kAQ-tV-gEk"/>
-                            <constraint firstItem="39L-GL-JSS" firstAttribute="leading" secondItem="n6A-Q8-H8j" secondAttribute="leading" type="default" id="xwc-ig-QPd"/>
-                            <constraint firstItem="pND-Aa-bqp" firstAttribute="leading" secondItem="n6A-Q8-H8j" secondAttribute="leading" type="default" id="yvi-Ak-POM"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Leagues" id="PDB-mB-oam"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4ZU-yW-LEu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="ByU-hx-jDA">
                     <connections>
-                        <outlet property="leagueTablesView" destination="39L-GL-JSS" id="Xig-N9-5kT"/>
-                        <outlet property="searchBar" destination="pND-Aa-bqp" id="b4w-nx-DxU"/>
+                        <outlet property="delegate" destination="NA8-BD-NZx" id="fiQ-Xn-Fd4"/>
+                        <outlet property="searchContentsController" destination="NA8-BD-NZx" id="Ks4-hV-xBL"/>
+                        <outlet property="searchResultsDataSource" destination="NA8-BD-NZx" id="QW2-cv-q4a"/>
+                        <outlet property="searchResultsDelegate" destination="NA8-BD-NZx" id="9JI-g0-per"/>
                     </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TxG-t9-0uG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </searchDisplayController>
+                <tableViewController title="Leagues" id="NA8-BD-NZx" customClass="LeaguesViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="39L-GL-JSS" userLabel="Leagues Table View">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Type first 3 letters of League name here" id="xIV-ef-umF">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <scopeButtonTitles>
+                                <string>Title</string>
+                                <string>Title</string>
+                            </scopeButtonTitles>
+                            <connections>
+                                <outlet property="delegate" destination="NA8-BD-NZx" id="Wel-v2-FH2"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LeagueCell" textLabel="xna-jr-JbZ" style="IBUITableViewCellStyleDefault" id="R0f-b9-Dre">
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xna-jr-JbZ">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <segue destination="6ih-G9-SMv" kind="push" identifier="ShowSeasons" id="ggr-A0-iCU"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="NA8-BD-NZx" id="qZb-gX-O6Z"/>
+                            <outlet property="delegate" destination="NA8-BD-NZx" id="Pvj-Wt-2IV"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Leagues" id="eaO-ao-stZ"/>
+                    <connections>
+                        <outlet property="leagueTablesView" destination="39L-GL-JSS" id="7ds-1j-l8d"/>
+                        <outlet property="searchBar" destination="xIV-ef-umF" id="xki-v5-9WW"/>
+                        <outlet property="searchDisplayController" destination="ByU-hx-jDA" id="Prj-Yl-6GC"/>
+                    </connections>
+                </tableViewController>
             </objects>
-            <point key="canvasLocation" x="-759" y="-2802"/>
+            <point key="canvasLocation" x="-826" y="-2690"/>
         </scene>
         <!--League Season View Controller - Seasons-->
         <scene sceneID="22b-Pl-Gww">
@@ -999,7 +994,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7OA-Fp-GCW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-249" y="-2631"/>
+            <point key="canvasLocation" x="-341" y="-2329"/>
         </scene>
         <!--League Divisions View Controller - Divisions-->
         <scene sceneID="nG1-i7-RNQ">
@@ -1039,7 +1034,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J6O-Si-z0Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="298" y="-2574"/>
+            <point key="canvasLocation" x="118" y="-2568"/>
         </scene>
         <!--Tab Bar Controller - Front Screen-->
         <scene sceneID="VxH-ha-kaa">
@@ -1063,7 +1058,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMa-Ps-y4U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="747" y="-1972"/>
+            <point key="canvasLocation" x="695" y="-1834"/>
         </scene>
         <!--League Results View Controller - League Results-->
         <scene sceneID="mjw-qr-dY6">
@@ -1235,7 +1230,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="8w3-Sr-emx" kind="relationship" relationship="rootViewController" id="Y7u-ql-CeT"/>
+                        <segue destination="NA8-BD-NZx" kind="relationship" relationship="rootViewController" id="9My-F5-ime"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jcq-4R-g9Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
