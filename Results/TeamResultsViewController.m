@@ -21,7 +21,7 @@
 
 @implementation TeamResultsViewController
 
-@synthesize resultsList, league, season, division, team, leagueBadge, nameLabel, teamResultsTable;
+@synthesize resultsList, league, season, division, team, leagueBadge, nameLabel, subtitle, teamResultsTable;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -65,6 +65,9 @@
     leagueBadge.image = [[UIImage alloc]initWithData:imageData];
     
     nameLabel.text = [team name];
+    
+    subtitle.text = [NSString stringWithFormat:@"%@ %@", season.name, division.name];
+
 
     [self setNavTitle];
     // Uncomment the following line to preserve selection between presentations.

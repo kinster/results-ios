@@ -21,7 +21,7 @@
 
 @implementation TeamDetailsViewController
 
-@synthesize name, badge, league, season, division, team, playersTable, playersList;
+@synthesize name, badge, league, season, division, team, playersTable, playersList, subtitle;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -50,6 +50,8 @@
     badge.image = [[UIImage alloc]initWithData:imageData];
     
     name.text = [team name];
+
+    subtitle.text = [NSString stringWithFormat:@"%@ %@", season.name, division.name];
 
     NSString *playersUrlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@/players.json", league.leagueId, season.seasonId, division.divisionId, team.teamId];
     NSLog(@"%@", playersUrlString);

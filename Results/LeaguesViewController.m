@@ -22,17 +22,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-  
+    
     ServerManager *serverManager = [ServerManager sharedServerManager];
     NSString *serverName = [serverManager serverName];
     NSString *urlString = [serverName stringByAppendingFormat:@"/leagues.json"];
     NSLog(@"%@", urlString);
-
+    
     [self createTableSections:urlString AndServerName:serverName];
-
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -40,7 +40,7 @@
 -(void)createTableSections:(NSString *)urlString AndServerName:(NSString *)serverName {
     
     NSError *error;
-
+    
     NSURL *url = [NSURL URLWithString:urlString];
     NSData *data = [NSData dataWithContentsOfURL:url];
     NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
@@ -56,7 +56,7 @@
             NSString *theName = [entry objectForKey:@"name"];
             NSLog(@"%@ %@", theId, theName);
             league = [[League alloc] initWithIdAndName:theId AndName:theName];
-            [leaguesList addObject: league];            
+            [leaguesList addObject: league];
         }
     }
     
@@ -83,27 +83,27 @@
 
 -(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text {
     
-//    if (text.length == 0) {
-//        NSLog(@"no text");
-//        isFiltered = FALSE;
-//        // The user clicked the [X] button or otherwise cleared the text.
-//        [self.searchBar performSelector: @selector(resignFirstResponder)
-//                        withObject: nil
-//                        afterDelay: 0.1];
-//    }
-//    else {
-//        isFiltered = TRUE;
-//        filteredLeaguesList = [[NSMutableArray alloc] init];
-//        for (League *league in leaguesList) {
-//            NSRange nameRange = [league.name rangeOfString:text options:NSCaseInsensitiveSearch];
-//            if (nameRange.location != NSNotFound) {
-//                [filteredLeaguesList addObject:league];
-//            }
-//
-//        }
-//    }
-//    NSLog(@"filteredLeagueList: %d", [filteredLeaguesList count]);
-//    [self.tableView reloadData];
+    //    if (text.length == 0) {
+    //        NSLog(@"no text");
+    //        isFiltered = FALSE;
+    //        // The user clicked the [X] button or otherwise cleared the text.
+    //        [self.searchBar performSelector: @selector(resignFirstResponder)
+    //                        withObject: nil
+    //                        afterDelay: 0.1];
+    //    }
+    //    else {
+    //        isFiltered = TRUE;
+    //        filteredLeaguesList = [[NSMutableArray alloc] init];
+    //        for (League *league in leaguesList) {
+    //            NSRange nameRange = [league.name rangeOfString:text options:NSCaseInsensitiveSearch];
+    //            if (nameRange.location != NSNotFound) {
+    //                [filteredLeaguesList addObject:league];
+    //            }
+    //
+    //        }
+    //    }
+    //    NSLog(@"filteredLeagueList: %d", [filteredLeaguesList count]);
+    //    [self.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -130,10 +130,10 @@
     NSLog(@"search button clicked");
     [self.searchBar setShowsCancelButton:NO animated:YES];
     [self.searchBar resignFirstResponder];
-
+    
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Searching...";
-
+    
     [self.navigationController.view addSubview:hud];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         // Do something...
@@ -146,7 +146,7 @@
         [self createTableSections:urlString AndServerName:serverName];
         // done
         
-
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
             [self.leagueTablesView reloadData];
@@ -176,7 +176,7 @@
     
     cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
     NSString *name = [[[sections valueForKey:[[[sections allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row] name];
-
+    
     cell.textLabel.text = name;
     return cell;
 }
@@ -201,43 +201,43 @@
 }
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ }
+ else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+ {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 #pragma mark - Table view delegate
 

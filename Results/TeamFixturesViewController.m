@@ -21,7 +21,7 @@
 
 @implementation TeamFixturesViewController
 
-@synthesize fixtureList, league, season, division, team, leagueBadge, nameLabel, teamFixturesTable;
+@synthesize fixtureList, league, season, division, team, leagueBadge, nameLabel, subtitle,teamFixturesTable;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -66,6 +66,8 @@
     
     nameLabel.text = [team name];    
     
+    subtitle.text = [NSString stringWithFormat:@"%@ %@", season.name, division.name];
+
     [self setNavTitle];
 
     // Uncomment the following line to preserve selection between presentations.

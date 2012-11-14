@@ -19,4 +19,5 @@
 @property (weak, nonatomic) IBOutlet UIImageView *leagueBadge;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UITableView *teamResultsTable;
+@property (weak, nonatomic) IBOutlet UILabel *subtitle;
 @end
