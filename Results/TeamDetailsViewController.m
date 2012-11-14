@@ -33,53 +33,42 @@
     
     subtitle.text = [NSString stringWithFormat:@"%@ %@", season.name, division.name];
 
+    NSURL *imageUrl = [NSURL URLWithString:team.badge];
+    NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
+    
+    badge.image = [[UIImage alloc]initWithData:imageData];
+
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Searching...";
     
     [self.navigationController.view addSubview:hud];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         // Do something...
+        @try {
+            NSError *error;
+            
+            ServerManager *serverManager = [ServerManager sharedServerManager];
+            NSString *serverName = [serverManager serverName];
+            
+            NSString *playersUrlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@/players.json", league.leagueId, season.seasonId, division.divisionId, team.teamId];
+            NSLog(@"%@", playersUrlString);
+            
+            NSURL *playersUrl = [NSURL URLWithString:playersUrlString];
+            NSData *playersData = [NSData dataWithContentsOfURL:playersUrl];
+            NSArray *playersJsonData = [NSJSONSerialization JSONObjectWithData:playersData options:NSJSONReadingMutableContainers error:&error];
 
-        NSError *error;
-        
-        ServerManager *serverManager = [ServerManager sharedServerManager];
-        NSString *serverName = [serverManager serverName];
-        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@.json", league.leagueId, season.seasonId, division.divisionId, team.teamId];
-        NSLog(@"%@", urlString);
-        
-        NSURL *url = [NSURL URLWithString:urlString];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        NSArray *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            playersList = [[NSMutableArray alloc] init];
 
-        NSLog(@"%@", jsonData);
-        
-        NSString *image = [jsonData[0] objectForKey:@"image_url"];
-        team.badge = image;
-        NSLog(@"image: %@", image);
-        
-        NSURL *imageUrl = [NSURL URLWithString:team.badge];
-        NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
-        
-        badge.image = [[UIImage alloc]initWithData:imageData];
-        
-        NSString *playersUrlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@/players.json", league.leagueId, season.seasonId, division.divisionId, team.teamId];
-        NSLog(@"%@", playersUrlString);
-        
-        NSURL *playersUrl = [NSURL URLWithString:playersUrlString];
-        NSData *playersData = [NSData dataWithContentsOfURL:playersUrl];
-        NSArray *playersJsonData = [NSJSONSerialization JSONObjectWithData:playersData options:NSJSONReadingMutableContainers error:&error];
-
-        playersList = [[NSMutableArray alloc] init];
-
-        Player *player = nil;
-        for (NSDictionary *playerJson in playersJsonData) {
-            player = [[Player alloc] initPlayer:[playerJson objectForKey:@"name"]];
-            [playersList addObject:player];
+            Player *player = nil;
+            for (NSDictionary *playerJson in playersJsonData) {
+                player = [[Player alloc] initPlayer:[playerJson objectForKey:@"name"]];
+                [playersList addObject:player];
+            }
+            
+            // done
+        } @catch (NSException *exception) {
+            NSLog(@"Exception: %@ %@", [exception name], [exception reason]);
         }
-        
-
-        // done
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
             [self.playersTable reloadData];

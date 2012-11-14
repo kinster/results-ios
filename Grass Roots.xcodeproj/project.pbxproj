@@ -13,9 +13,6 @@
 		4B09D8A91632F56900A0A477 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B09D8A71632F56900A0A477 /* InfoPlist.strings */; };
 		4B09D8AB1632F56900A0A477 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B09D8AA1632F56900A0A477 /* main.m */; };
 		4B09D8AF1632F56900A0A477 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B09D8AE1632F56900A0A477 /* AppDelegate.m */; };
-		4B09D8B11632F56900A0A477 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B09D8B01632F56900A0A477 /* Default.png */; };
-		4B09D8B31632F56900A0A477 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B09D8B21632F56900A0A477 /* Default@2x.png */; };
-		4B09D8B51632F56900A0A477 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B09D8B41632F56900A0A477 /* Default-568h@2x.png */; };
 		4B09D8B81632F56900A0A477 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B09D8B61632F56900A0A477 /* MainStoryboard.storyboard */; };
 		4B09D8BB1632F56900A0A477 /* LeagueTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B09D8BA1632F56900A0A477 /* LeagueTableViewController.m */; };
 		4B09D8C31632F62E00A0A477 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B09D8C21632F62E00A0A477 /* Player.m */; };
@@ -48,6 +45,9 @@
 		4BB2DFD7164ED093000650A0 /* TeamResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB2DFD6164ED093000650A0 /* TeamResultsViewController.m */; };
 		4BC65362165011FF00049309 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC65361165011FF00049309 /* MBProgressHUD.m */; };
 		4BC86C1616442FC6007B51BE /* LeagueFixturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC86C1516442FC6007B51BE /* LeagueFixturesViewController.m */; };
+		4BCB75F716541CEA009D1132 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BCB75F616541CEA009D1132 /* Default-568h@2x.png */; };
+		4BCB75F916541CED009D1132 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BCB75F816541CED009D1132 /* Default@2x.png */; };
+		4BCB75FB16541CF6009D1132 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BCB75FA16541CF6009D1132 /* Default.png */; };
 		4BCF2AD31645575700C689DD /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCF2AD21645575700C689DD /* Team.m */; };
 		4BDBEE161645A087001F3F77 /* Fixture.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBEE151645A087001F3F77 /* Fixture.m */; };
 		4BDBEE1A1645B2CF001F3F77 /* LeagueFixtureDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBEE191645B2CF001F3F77 /* LeagueFixtureDetailsViewController.m */; };
@@ -66,9 +66,6 @@
 		4B09D8AC1632F56900A0A477 /* Results-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Results-Prefix.pch"; sourceTree = "<group>"; };
 		4B09D8AD1632F56900A0A477 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4B09D8AE1632F56900A0A477 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4B09D8B01632F56900A0A477 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		4B09D8B21632F56900A0A477 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		4B09D8B41632F56900A0A477 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4B09D8B71632F56900A0A477 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		4B09D8B91632F56900A0A477 /* LeagueTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeagueTableViewController.h; sourceTree = "<group>"; };
 		4B09D8BA1632F56900A0A477 /* LeagueTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LeagueTableViewController.m; sourceTree = "<group>"; };
@@ -121,6 +118,9 @@
 		4BC65361165011FF00049309 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		4BC86C1416442FC6007B51BE /* LeagueFixturesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeagueFixturesViewController.h; sourceTree = "<group>"; };
 		4BC86C1516442FC6007B51BE /* LeagueFixturesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeagueFixturesViewController.m; sourceTree = "<group>"; };
+		4BCB75F616541CEA009D1132 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		4BCB75F816541CED009D1132 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		4BCB75FA16541CF6009D1132 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		4BCF2AD11645575700C689DD /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
 		4BCF2AD21645575700C689DD /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
 		4BDBEE141645A087001F3F77 /* Fixture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fixture.h; sourceTree = "<group>"; };
@@ -149,6 +149,9 @@
 		4B09D88F1632F56800A0A477 = {
 			isa = PBXGroup;
 			children = (
+				4BCB75FA16541CF6009D1132 /* Default.png */,
+				4BCB75F816541CED009D1132 /* Default@2x.png */,
+				4BCB75F616541CEA009D1132 /* Default-568h@2x.png */,
 				4B847ADF1654124900C670E0 /* ipiconsmall.png */,
 				4B847ADA1654108700C670E0 /* ipicon.png */,
 				4B09D8A41632F56900A0A477 /* Grass Roots */,
@@ -252,9 +255,6 @@
 				4B09D8A71632F56900A0A477 /* InfoPlist.strings */,
 				4B09D8AA1632F56900A0A477 /* main.m */,
 				4B09D8AC1632F56900A0A477 /* Results-Prefix.pch */,
-				4B09D8B01632F56900A0A477 /* Default.png */,
-				4B09D8B21632F56900A0A477 /* Default@2x.png */,
-				4B09D8B41632F56900A0A477 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -312,9 +312,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B09D8A91632F56900A0A477 /* InfoPlist.strings in Resources */,
-				4B09D8B11632F56900A0A477 /* Default.png in Resources */,
-				4B09D8B31632F56900A0A477 /* Default@2x.png in Resources */,
-				4B09D8B51632F56900A0A477 /* Default-568h@2x.png in Resources */,
 				4B09D8B81632F56900A0A477 /* MainStoryboard.storyboard in Resources */,
 				4B09D8CF1633125500A0A477 /* garforthleague.jpg in Resources */,
 				4BE0E2CC16345CF9000D061F /* CustomTableCell.xib in Resources */,
@@ -327,6 +324,9 @@
 				4B847ADB1654108700C670E0 /* ipicon.png in Resources */,
 				4B847ADE1654117A00C670E0 /* ipicon.png in Resources */,
 				4B847AE01654124900C670E0 /* ipiconsmall.png in Resources */,
+				4BCB75F716541CEA009D1132 /* Default-568h@2x.png in Resources */,
+				4BCB75F916541CED009D1132 /* Default@2x.png in Resources */,
+				4BCB75FB16541CF6009D1132 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

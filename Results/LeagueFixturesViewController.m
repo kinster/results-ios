@@ -44,37 +44,40 @@
     [self.navigationController.view addSubview:hud];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         // Do something...
-        NSError *error;
-        
-        ServerManager *serverManager = [ServerManager sharedServerManager];
-        NSString *serverName = [serverManager serverName];
-        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/fixtures.json", league.leagueId, season.seasonId, division.divisionId];
-        NSLog(@"%@", urlString);
-        
-        NSURL *url = [NSURL URLWithString:urlString];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-        
-        fixtureList = [[NSMutableArray alloc] init];
-        Fixture *fixture = nil;
-
-        for (NSDictionary *entry in jsonData) {
-
-            NSString *type = [entry objectForKey:@"type"];
-            NSString *dateTime = [entry objectForKey:@"date_time"];
-            NSString *homeTeam = [entry objectForKey:@"home_team"];
-            NSString *awayTeam = [entry objectForKey:@"away_team"];
-            NSString *location = [entry objectForKey:@"location"];
-            NSString *competition = [entry objectForKey:@"competition"];
-            NSString *statusNote = [entry objectForKey:@"status_note"];
-
-            fixture = [[Fixture alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndAwayTeam:awayTeam AndLocation:location AndCompetition:competition AndStatusNote:statusNote];
+        @try {
+            NSError *error;
             
-            [fixtureList addObject:fixture];
+            ServerManager *serverManager = [ServerManager sharedServerManager];
+            NSString *serverName = [serverManager serverName];
+            NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/fixtures.json", league.leagueId, season.seasonId, division.divisionId];
+            NSLog(@"%@", urlString);
+            
+            NSURL *url = [NSURL URLWithString:urlString];
+            NSData *data = [NSData dataWithContentsOfURL:url];
+            NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            
+            fixtureList = [[NSMutableArray alloc] init];
+            Fixture *fixture = nil;
+
+            for (NSDictionary *entry in jsonData) {
+
+                NSString *type = [entry objectForKey:@"type"];
+                NSString *dateTime = [entry objectForKey:@"date_time"];
+                NSString *homeTeam = [entry objectForKey:@"home_team"];
+                NSString *awayTeam = [entry objectForKey:@"away_team"];
+                NSString *location = [entry objectForKey:@"location"];
+                NSString *competition = [entry objectForKey:@"competition"];
+                NSString *statusNote = [entry objectForKey:@"status_note"];
+
+                fixture = [[Fixture alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndAwayTeam:awayTeam AndLocation:location AndCompetition:competition AndStatusNote:statusNote];
+                
+                [fixtureList addObject:fixture];
+            }
+            
+            // done
+        } @catch (NSException *exception) {
+            NSLog(@"Exception: %@ %@", [exception name], [exception reason]);
         }
-        
-        // done
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
             [self.fixturesTable reloadData];

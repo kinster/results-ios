@@ -46,40 +46,42 @@
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         // Do something...
-        
-        NSError *error;
-        
-        ServerManager *serverManager = [ServerManager sharedServerManager];
-        NSString *serverName = [serverManager serverName];
-        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@.json", league.leagueId, season.seasonId, division.divisionId];
-        NSLog(@"%@", urlString);
-        
-        NSURL *url = [NSURL URLWithString:urlString];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-        
-        teamList = [[NSMutableArray alloc] init];
-        Team *team = nil;
-        
-        for (NSDictionary *entry in jsonData) {
-            NSString *position = [entry objectForKey:@"position"];
-            NSString *name = [entry objectForKey:@"name"];
-            NSString *played = [entry objectForKey:@"played"];
-            NSString *wins = [entry objectForKey:@"wins"];
-            NSString *draws = [entry objectForKey:@"draws"];
-            NSString *losses = [entry objectForKey:@"losses"];
-            NSString *points = [entry objectForKey:@"points"];
-            NSString *gf = [entry objectForKey:@"gf"];
-            NSString *ga = [entry objectForKey:@"ga"];
-            NSString *gd = [entry objectForKey:@"gd"];
-            NSString *teamId = [entry objectForKey:@"id"];
+        @try {
+            NSError *error;
             
-            team = [[Team alloc] initWithTeam:name AndPosition:position AndPlayed:played AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:gf AndGoalsAgainst:ga AndGoalDiff:gd AndPoints:points AndTeamId:teamId AndBadge:nil];
-            [teamList addObject: team];
+            ServerManager *serverManager = [ServerManager sharedServerManager];
+            NSString *serverName = [serverManager serverName];
+            NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@.json", league.leagueId, season.seasonId, division.divisionId];
+            NSLog(@"%@", urlString);
+            
+            NSURL *url = [NSURL URLWithString:urlString];
+            NSData *data = [NSData dataWithContentsOfURL:url];
+            NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            
+            teamList = [[NSMutableArray alloc] init];
+            Team *team = nil;
+            
+            for (NSDictionary *entry in jsonData) {
+                NSString *position = [entry objectForKey:@"position"];
+                NSString *name = [entry objectForKey:@"name"];
+                NSString *played = [entry objectForKey:@"played"];
+                NSString *wins = [entry objectForKey:@"wins"];
+                NSString *draws = [entry objectForKey:@"draws"];
+                NSString *losses = [entry objectForKey:@"losses"];
+                NSString *points = [entry objectForKey:@"points"];
+                NSString *gf = [entry objectForKey:@"gf"];
+                NSString *ga = [entry objectForKey:@"ga"];
+                NSString *gd = [entry objectForKey:@"gd"];
+                NSString *teamId = [entry objectForKey:@"id"];
+                
+                team = [[Team alloc] initWithTeam:name AndPosition:position AndPlayed:played AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:gf AndGoalsAgainst:ga AndGoalDiff:gd AndPoints:points AndTeamId:teamId AndBadge:nil];
+                [teamList addObject: team];
 
+            }
+            // done
+        } @catch (NSException *exception) {
+            NSLog(@"Exception: %@ %@", [exception name], [exception reason]);
         }
-        // done
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
             [self.leagueTable reloadData];
@@ -150,17 +152,34 @@
         [teamDetailsViewController setLeague:league];
         [teamDetailsViewController setSeason:season];
         [teamDetailsViewController setDivision:division];
-        [teamDetailsViewController setTeam:team];
-        TeamFixturesViewController *teamFixturesController = [tabBarViewController.viewControllers objectAtIndex:1];
-        [teamFixturesController setLeague:league];
-        [teamFixturesController setSeason:season];
-        [teamFixturesController setDivision:division];
-        [teamFixturesController setTeam:team];
-        TeamResultsViewController *teamResultsController = [tabBarViewController.viewControllers objectAtIndex:2];
-        [teamResultsController setLeague:league];
-        [teamResultsController setSeason:season];
-        [teamResultsController setDivision:division];
-        [teamResultsController setTeam:team];
+        @try {
+            NSError *error;
+            ServerManager *serverManager = [ServerManager sharedServerManager];
+            NSString *serverName = [serverManager serverName];
+            NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@.json", league.leagueId, season.seasonId, division.divisionId, team.teamId];
+            NSLog(@"%@", urlString);
+            NSURL *url = [NSURL URLWithString:urlString];
+            NSData *data = [NSData dataWithContentsOfURL:url];
+            NSArray *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            NSLog(@"%@", jsonData);
+            NSString *image = [jsonData[0] objectForKey:@"image_url"];
+            team.badge = image;
+            NSLog(@"image: %@", image);
+            
+            [teamDetailsViewController setTeam:team];
+            TeamFixturesViewController *teamFixturesController = [tabBarViewController.viewControllers objectAtIndex:1];
+            [teamFixturesController setLeague:league];
+            [teamFixturesController setSeason:season];
+            [teamFixturesController setDivision:division];
+            [teamFixturesController setTeam:team];
+            TeamResultsViewController *teamResultsController = [tabBarViewController.viewControllers objectAtIndex:2];
+            [teamResultsController setLeague:league];
+            [teamResultsController setSeason:season];
+            [teamResultsController setDivision:division];
+            [teamResultsController setTeam:team];
+        } @catch (NSException *exception) {
+            NSLog(@"Exception: %@ %@", [exception name], [exception reason]);
+        }
     }
     NSLog(@"end of prepareForSegue");
 }

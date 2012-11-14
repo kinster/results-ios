@@ -43,37 +43,39 @@
     [self.navigationController.view addSubview:hud];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         // Do something...
-        
-        NSError *error;
-        
-        ServerManager *serverManager = [ServerManager sharedServerManager];
-        NSString *serverName = [serverManager serverName];
-        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@/results.json", league.leagueId, season.seasonId, division.divisionId, team.teamId];
-        NSLog(@"%@", urlString);
-        
-        NSURL *url = [NSURL URLWithString:urlString];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-        
-        resultsList = [[NSMutableArray alloc] init];
-        Result *result = nil;
-        
-        for (NSDictionary *entry in jsonData) {
+        @try {
+            NSError *error;
             
-            NSString *type = [entry objectForKey:@"type"];
-            NSString *dateTime = [entry objectForKey:@"date_time"];
-            NSString *homeTeam = [entry objectForKey:@"home_team"];
-            NSString *score = [entry objectForKey:@"score"];
-            NSString *awayTeam = [entry objectForKey:@"away_team"];
-            NSString *competition = [entry objectForKey:@"competition"];
-            NSString *statusNote = [entry objectForKey:@"status_note"];
+            ServerManager *serverManager = [ServerManager sharedServerManager];
+            NSString *serverName = [serverManager serverName];
+            NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@/results.json", league.leagueId, season.seasonId, division.divisionId, team.teamId];
+            NSLog(@"%@", urlString);
             
-            result = [[Result alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndScore:score AndAwayTeam:awayTeam AndCompetition:competition AndStatusNote:statusNote];
+            NSURL *url = [NSURL URLWithString:urlString];
+            NSData *data = [NSData dataWithContentsOfURL:url];
+            NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
             
-            [resultsList addObject:result];
+            resultsList = [[NSMutableArray alloc] init];
+            Result *result = nil;
+            
+            for (NSDictionary *entry in jsonData) {
+                
+                NSString *type = [entry objectForKey:@"type"];
+                NSString *dateTime = [entry objectForKey:@"date_time"];
+                NSString *homeTeam = [entry objectForKey:@"home_team"];
+                NSString *score = [entry objectForKey:@"score"];
+                NSString *awayTeam = [entry objectForKey:@"away_team"];
+                NSString *competition = [entry objectForKey:@"competition"];
+                NSString *statusNote = [entry objectForKey:@"status_note"];
+                
+                result = [[Result alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndScore:score AndAwayTeam:awayTeam AndCompetition:competition AndStatusNote:statusNote];
+                
+                [resultsList addObject:result];
+            }
+            // done
+        } @catch (NSException *exception) {
+            NSLog(@"Exception: %@ %@", [exception name], [exception reason]);
         }
-        // done
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
             [self.teamResultsTable reloadData];

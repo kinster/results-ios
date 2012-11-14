@@ -31,7 +31,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Searching...";
     
@@ -39,35 +38,38 @@
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         // Do something...
 
-        NSError *error;
-        
-        ServerManager *serverManager = [ServerManager sharedServerManager];
-        NSString *serverName = [serverManager serverName];
-        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons.json", league.leagueId];
-        NSLog(@"%@", urlString);
-        
-        NSURL *url = [NSURL URLWithString:urlString];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-        
-        seasonsList = [[NSMutableArray alloc] init];
-        Season *season = nil;
-        
-        if (!jsonData) {
-            NSLog(@"%@", error);
-        } else {
-            for (NSDictionary *entry in jsonData) {
-                NSString *theId = [entry objectForKey:@"id"];
-                NSString *theName = [entry objectForKey:@"name"];
-                NSLog(@"id: %@", theId);
-                NSLog(@"name: %@", theName);
-                
-                season = [[Season alloc] initWithIdAndName:theId AndName:theName];
-                [seasonsList addObject: season];
+        @try {
+            NSError *error;
+            
+            ServerManager *serverManager = [ServerManager sharedServerManager];
+            NSString *serverName = [serverManager serverName];
+            NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons.json", league.leagueId];
+            NSLog(@"%@", urlString);
+            
+            NSURL *url = [NSURL URLWithString:urlString];
+            NSData *data = [NSData dataWithContentsOfURL:url];
+            NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            
+            seasonsList = [[NSMutableArray alloc] init];
+            Season *season = nil;
+            
+            if (!jsonData) {
+                NSLog(@"%@", error);
+            } else {
+                for (NSDictionary *entry in jsonData) {
+                    NSString *theId = [entry objectForKey:@"id"];
+                    NSString *theName = [entry objectForKey:@"name"];
+                    NSLog(@"id: %@", theId);
+                    NSLog(@"name: %@", theName);
+                    
+                    season = [[Season alloc] initWithIdAndName:theId AndName:theName];
+                    [seasonsList addObject: season];
+                }
             }
+            // done
+        } @catch (NSException *exception) {
+            NSLog(@"Exception: %@ %@", [exception name], [exception reason]);
         }
-        // done
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
             [self.tableView reloadData];

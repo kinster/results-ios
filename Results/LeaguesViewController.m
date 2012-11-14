@@ -22,14 +22,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    ServerManager *serverManager = [ServerManager sharedServerManager];
-    NSString *serverName = [serverManager serverName];
-    NSString *urlString = [serverName stringByAppendingFormat:@"/leagues.json"];
-    NSLog(@"%@", urlString);
-    
-    [self createTableSections:urlString AndServerName:serverName];
-    
+    @try {
+        ServerManager *serverManager = [ServerManager sharedServerManager];
+        NSString *serverName = [serverManager serverName];
+        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues.json"];
+        NSLog(@"%@", urlString);
+        [self createTableSections:urlString AndServerName:serverName];
+    } @catch (NSException *exception) {
+        NSLog(@"Exception: %@ %@", [exception name], [exception reason]);
+    }
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -38,7 +39,6 @@
 }
 
 -(void)createTableSections:(NSString *)urlString AndServerName:(NSString *)serverName {
-    
     NSError *error;
     
     NSURL *url = [NSURL URLWithString:urlString];
@@ -138,13 +138,15 @@
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         // Do something...
-        
-        ServerManager *serverManager = [ServerManager sharedServerManager];
-        NSString *serverName = [serverManager serverName];
-        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/search/%@.json", theSearchBar.text];
-        NSLog(@"%@", urlString);
-        
-        [self createTableSections:urlString AndServerName:serverName];
+        @try {
+            ServerManager *serverManager = [ServerManager sharedServerManager];
+            NSString *serverName = [serverManager serverName];
+            NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/search/%@.json", theSearchBar.text];
+            NSLog(@"%@", urlString);
+            [self createTableSections:urlString AndServerName:serverName];
+        } @catch (NSException *exception) {
+                NSLog(@"Exception%@ %@", [exception name], [exception reason]);
+            }
 
         // done
         
