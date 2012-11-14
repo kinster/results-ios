@@ -41,6 +41,9 @@
 		4B7AF2E316396AF300D092D4 /* TeamDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7AF2E216396AF300D092D4 /* TeamDetailsViewController.m */; };
 		4B84517E164B0E54002EB85F /* Season.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B84517D164B0E54002EB85F /* Season.m */; };
 		4B845182164B0F11002EB85F /* LeagueSeasonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B845181164B0F11002EB85F /* LeagueSeasonViewController.m */; };
+		4B847ADB1654108700C670E0 /* ipicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B847ADA1654108700C670E0 /* ipicon.png */; };
+		4B847ADE1654117A00C670E0 /* ipicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B847ADD1654117A00C670E0 /* ipicon.png */; };
+		4B847AE01654124900C670E0 /* ipiconsmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B847ADF1654124900C670E0 /* ipiconsmall.png */; };
 		4BA8EA79164B1A3500785401 /* LeagueDivisionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA8EA78164B1A3500785401 /* LeagueDivisionsViewController.m */; };
 		4BB2DFD7164ED093000650A0 /* TeamResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB2DFD6164ED093000650A0 /* TeamResultsViewController.m */; };
 		4BC65362165011FF00049309 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC65361165011FF00049309 /* MBProgressHUD.m */; };
@@ -107,6 +110,9 @@
 		4B84517D164B0E54002EB85F /* Season.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Season.m; sourceTree = "<group>"; };
 		4B845180164B0F11002EB85F /* LeagueSeasonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeagueSeasonViewController.h; sourceTree = "<group>"; };
 		4B845181164B0F11002EB85F /* LeagueSeasonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeagueSeasonViewController.m; sourceTree = "<group>"; };
+		4B847ADA1654108700C670E0 /* ipicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipicon.png; sourceTree = "<group>"; };
+		4B847ADD1654117A00C670E0 /* ipicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ipicon.png; path = ../../../Desktop/ipicon.png; sourceTree = "<group>"; };
+		4B847ADF1654124900C670E0 /* ipiconsmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipiconsmall.png; sourceTree = "<group>"; };
 		4BA8EA77164B1A3500785401 /* LeagueDivisionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeagueDivisionsViewController.h; sourceTree = "<group>"; };
 		4BA8EA78164B1A3500785401 /* LeagueDivisionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeagueDivisionsViewController.m; sourceTree = "<group>"; };
 		4BB2DFD5164ED093000650A0 /* TeamResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamResultsViewController.h; sourceTree = "<group>"; };
@@ -143,7 +149,9 @@
 		4B09D88F1632F56800A0A477 = {
 			isa = PBXGroup;
 			children = (
-				4B09D8A41632F56900A0A477 /* Results */,
+				4B847ADF1654124900C670E0 /* ipiconsmall.png */,
+				4B847ADA1654108700C670E0 /* ipicon.png */,
+				4B09D8A41632F56900A0A477 /* Grass Roots */,
 				4B09D89D1632F56900A0A477 /* Frameworks */,
 				4B09D89B1632F56900A0A477 /* Products */,
 			);
@@ -167,7 +175,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4B09D8A41632F56900A0A477 /* Results */ = {
+		4B09D8A41632F56900A0A477 /* Grass Roots */ = {
 			isa = PBXGroup;
 			children = (
 				4BC65360165011FF00049309 /* MBProgressHUD.h */,
@@ -227,12 +235,14 @@
 				4B09D8D41633495E00A0A477 /* ClubModel.xcdatamodeld */,
 				4B09D8A51632F56900A0A477 /* Supporting Files */,
 			);
+			name = "Grass Roots";
 			path = Results;
 			sourceTree = "<group>";
 		};
 		4B09D8A51632F56900A0A477 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4B847ADD1654117A00C670E0 /* ipicon.png */,
 				4B50D4001651707A006A8A41 /* 152-rolodex.png */,
 				4B50D3FE16516F9B006A8A41 /* 166-newspaper.png */,
 				4B50D3FC16516F41006A8A41 /* 179-notepad.png */,
@@ -252,9 +262,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4B09D8991632F56900A0A477 /* Results */ = {
+		4B09D8991632F56900A0A477 /* Grass Roots */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4B09D8BE1632F56900A0A477 /* Build configuration list for PBXNativeTarget "Results" */;
+			buildConfigurationList = 4B09D8BE1632F56900A0A477 /* Build configuration list for PBXNativeTarget "Grass Roots" */;
 			buildPhases = (
 				4B09D8961632F56900A0A477 /* Sources */,
 				4B09D8971632F56900A0A477 /* Frameworks */,
@@ -264,7 +274,7 @@
 			);
 			dependencies = (
 			);
-			name = Results;
+			name = "Grass Roots";
 			productName = Results;
 			productReference = 4B09D89A1632F56900A0A477 /* Results.app */;
 			productType = "com.apple.product-type.application";
@@ -279,7 +289,7 @@
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Kinman Li";
 			};
-			buildConfigurationList = 4B09D8941632F56800A0A477 /* Build configuration list for PBXProject "Results" */;
+			buildConfigurationList = 4B09D8941632F56800A0A477 /* Build configuration list for PBXProject "Grass Roots" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -291,7 +301,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4B09D8991632F56900A0A477 /* Results */,
+				4B09D8991632F56900A0A477 /* Grass Roots */,
 			);
 		};
 /* End PBXProject section */
@@ -314,6 +324,9 @@
 				4B50D3FD16516F41006A8A41 /* 179-notepad.png in Resources */,
 				4B50D3FF16516F9B006A8A41 /* 166-newspaper.png in Resources */,
 				4B50D4011651707A006A8A41 /* 152-rolodex.png in Resources */,
+				4B847ADB1654108700C670E0 /* ipicon.png in Resources */,
+				4B847ADE1654117A00C670E0 /* ipicon.png in Resources */,
+				4B847AE01654124900C670E0 /* ipiconsmall.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,7 +464,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4B09D8941632F56800A0A477 /* Build configuration list for PBXProject "Results" */ = {
+		4B09D8941632F56800A0A477 /* Build configuration list for PBXProject "Grass Roots" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4B09D8BC1632F56900A0A477 /* Debug */,
@@ -460,7 +473,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4B09D8BE1632F56900A0A477 /* Build configuration list for PBXNativeTarget "Results" */ = {
+		4B09D8BE1632F56900A0A477 /* Build configuration list for PBXNativeTarget "Grass Roots" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4B09D8BF1632F56900A0A477 /* Debug */,

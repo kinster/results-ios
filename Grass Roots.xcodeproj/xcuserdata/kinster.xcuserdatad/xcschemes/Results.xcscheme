@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4B09D8991632F56900A0A477"
                BuildableName = "Results.app"
-               BlueprintName = "Results"
-               ReferencedContainer = "container:Results.xcodeproj">
+               BlueprintName = "Grass Roots"
+               ReferencedContainer = "container:Grass Roots.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4B09D8991632F56900A0A477"
             BuildableName = "Results.app"
-            BlueprintName = "Results"
-            ReferencedContainer = "container:Results.xcodeproj">
+            BlueprintName = "Grass Roots"
+            ReferencedContainer = "container:Grass Roots.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -53,8 +53,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4B09D8991632F56900A0A477"
             BuildableName = "Results.app"
-            BlueprintName = "Results"
-            ReferencedContainer = "container:Results.xcodeproj">
+            BlueprintName = "Grass Roots"
+            ReferencedContainer = "container:Grass Roots.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -71,8 +71,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4B09D8991632F56900A0A477"
             BuildableName = "Results.app"
-            BlueprintName = "Results"
-            ReferencedContainer = "container:Results.xcodeproj">
+            BlueprintName = "Grass Roots"
+            ReferencedContainer = "container:Grass Roots.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
