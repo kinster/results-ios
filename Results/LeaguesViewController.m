@@ -135,6 +135,7 @@
     hud.labelText = @"Searching...";
     
     [self.navigationController.view addSubview:hud];
+    
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         // Do something...
         
@@ -144,8 +145,8 @@
         NSLog(@"%@", urlString);
         
         [self createTableSections:urlString AndServerName:serverName];
+
         // done
-        
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];

@@ -14,6 +14,7 @@
 #import "Result.h"
 #import "CustomResultCell.h"
 #import "ServerManager.h"
+#import "MBProgressHUD.h"
 
 @interface TeamResultsViewController ()
 
@@ -27,49 +28,58 @@
     [super viewDidLoad];
 
     NSLog(@"TeamResultsViewController");
-    
-    NSError *error;
-    
-    ServerManager *serverManager = [ServerManager sharedServerManager];
-    NSString *serverName = [serverManager serverName];
-    NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@/results.json", league.leagueId, season.seasonId, division.divisionId, team.teamId];
-    NSLog(@"%@", urlString);
-    
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-    
-    resultsList = [[NSMutableArray alloc] init];
-    Result *result = nil;
-    
-    
-    for (NSDictionary *entry in jsonData) {
-        
-        NSString *type = [entry objectForKey:@"type"];
-        NSString *dateTime = [entry objectForKey:@"date_time"];
-        NSString *homeTeam = [entry objectForKey:@"home_team"];
-        NSString *score = [entry objectForKey:@"score"];
-        NSString *awayTeam = [entry objectForKey:@"away_team"];
-        NSString *competition = [entry objectForKey:@"competition"];
-        NSString *statusNote = [entry objectForKey:@"status_note"];
-        
-        result = [[Result alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndScore:score AndAwayTeam:awayTeam AndCompetition:competition AndStatusNote:statusNote];
-        
-        [resultsList addObject:result];
-    }
 
-    NSLog(@"badge: %@", team.badge);
+    [self setNavTitle];
     NSURL *imageUrl = [NSURL URLWithString:team.badge];
     NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
     
     leagueBadge.image = [[UIImage alloc]initWithData:imageData];
-    
     nameLabel.text = [team name];
-    
     subtitle.text = [NSString stringWithFormat:@"%@ %@", season.name, division.name];
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    hud.labelText = @"Searching...";
+    
+    [self.navigationController.view addSubview:hud];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        // Do something...
+        
+        NSError *error;
+        
+        ServerManager *serverManager = [ServerManager sharedServerManager];
+        NSString *serverName = [serverManager serverName];
+        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@/results.json", league.leagueId, season.seasonId, division.divisionId, team.teamId];
+        NSLog(@"%@", urlString);
+        
+        NSURL *url = [NSURL URLWithString:urlString];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+        
+        resultsList = [[NSMutableArray alloc] init];
+        Result *result = nil;
+        
+        for (NSDictionary *entry in jsonData) {
+            
+            NSString *type = [entry objectForKey:@"type"];
+            NSString *dateTime = [entry objectForKey:@"date_time"];
+            NSString *homeTeam = [entry objectForKey:@"home_team"];
+            NSString *score = [entry objectForKey:@"score"];
+            NSString *awayTeam = [entry objectForKey:@"away_team"];
+            NSString *competition = [entry objectForKey:@"competition"];
+            NSString *statusNote = [entry objectForKey:@"status_note"];
+            
+            result = [[Result alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndScore:score AndAwayTeam:awayTeam AndCompetition:competition AndStatusNote:statusNote];
+            
+            [resultsList addObject:result];
+        }
+        // done
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+            [self.teamResultsTable reloadData];
+        });
+    });
 
-
-    [self setNavTitle];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  

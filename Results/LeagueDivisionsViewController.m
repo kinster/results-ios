@@ -14,6 +14,7 @@
 #import "Season.h"
 #import "Division.h"
 #import "ServerManager.h"
+#import "MBProgressHUD.h"
 
 @interface LeagueDivisionsViewController ()
 
@@ -52,30 +53,47 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    NSError *error;
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    hud.labelText = @"Searching...";
     
-    ServerManager *serverManager = [ServerManager sharedServerManager];
-    NSString *serverName = [serverManager serverName];
-    NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@.json", league.leagueId, season.seasonId];
-    NSLog(@"%@", urlString);
+    [self.navigationController.view addSubview:hud];
     
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-
-    divisionsList = [[NSMutableArray alloc] init];
-    Division *division = nil;
-    
-    for (NSDictionary *entry in jsonData) {
-        NSString *theId = [entry objectForKey:@"id"];
-        NSString *theName = [entry objectForKey:@"name"];
-        division = [[Division alloc] initWithIdAndName:theId AndName:theName];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        // Do something...
+        NSError *error;
+        ServerManager *serverManager = [ServerManager sharedServerManager];
+        NSString *serverName = [serverManager serverName];
         
-        [divisionsList addObject: division];
-    }
+        UIImage *image = [self getLeagueImage:serverName AndLeagueId:league.leagueId];
+        league.image = image;
+        
+        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@.json", league.leagueId, season.seasonId];
+        NSLog(@"%@", urlString);
+        
+        NSURL *url = [NSURL URLWithString:urlString];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+
+        divisionsList = [[NSMutableArray alloc] init];
+        Division *division = nil;
+        
+        for (NSDictionary *entry in jsonData) {
+            NSString *theId = [entry objectForKey:@"id"];
+            NSString *theName = [entry objectForKey:@"name"];
+            division = [[Division alloc] initWithIdAndName:theId AndName:theName];
+            
+            [divisionsList addObject: division];
+        }
+        
+        // done
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+            [self.tableView reloadData];
+        });
+    });
+
     
-    UIImage *image = [self getLeagueImage:serverName AndLeagueId:league.leagueId];
-    league.image = image;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     

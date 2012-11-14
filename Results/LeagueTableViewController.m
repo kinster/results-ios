@@ -16,6 +16,7 @@
 #import "Season.h"
 #import "Division.h"
 #import "ServerManager.h"
+#import "MBProgressHUD.h"
 
 @interface LeagueTableViewController ()
 
@@ -31,42 +32,59 @@
     
     NSLog(@"LeagueTableViewController");
 
-    NSError *error;
-    
-    ServerManager *serverManager = [ServerManager sharedServerManager];
-    NSString *serverName = [serverManager serverName];
-    NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@.json", league.leagueId, season.seasonId, division.divisionId];
-    NSLog(@"%@", urlString);
-    
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-    
-    teamList = [[NSMutableArray alloc] init];
-    Team *team = nil;
-    
-    for (NSDictionary *entry in jsonData) {
-        NSString *position = [entry objectForKey:@"position"];
-        NSString *name = [entry objectForKey:@"name"];
-        NSString *played = [entry objectForKey:@"played"];
-        NSString *wins = [entry objectForKey:@"wins"];
-        NSString *draws = [entry objectForKey:@"draws"];
-        NSString *losses = [entry objectForKey:@"losses"];
-        NSString *points = [entry objectForKey:@"points"];
-        NSString *gf = [entry objectForKey:@"gf"];
-        NSString *ga = [entry objectForKey:@"ga"];
-        NSString *gd = [entry objectForKey:@"gd"];
-        NSString *teamId = [entry objectForKey:@"id"];
-        
-        team = [[Team alloc] initWithTeam:name AndPosition:position AndPlayed:played AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:gf AndGoalsAgainst:ga AndGoalDiff:gd AndPoints:points AndTeamId:teamId AndBadge:nil];
-        [teamList addObject: team];
+    [self setNavTitle];
 
-    }
     nameLabel.text = [NSString stringWithFormat:@"%@", league.name];
     subtitle.text = [NSString stringWithFormat:@"%@ %@", season.name, division.name];
     leagueBadge.image = league.image;
     NSLog(@"%@", self.nameLabel.text);
-    [self setNavTitle];
+
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    hud.labelText = @"Searching...";
+    
+    [self.navigationController.view addSubview:hud];
+    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        // Do something...
+        
+        NSError *error;
+        
+        ServerManager *serverManager = [ServerManager sharedServerManager];
+        NSString *serverName = [serverManager serverName];
+        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@.json", league.leagueId, season.seasonId, division.divisionId];
+        NSLog(@"%@", urlString);
+        
+        NSURL *url = [NSURL URLWithString:urlString];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+        
+        teamList = [[NSMutableArray alloc] init];
+        Team *team = nil;
+        
+        for (NSDictionary *entry in jsonData) {
+            NSString *position = [entry objectForKey:@"position"];
+            NSString *name = [entry objectForKey:@"name"];
+            NSString *played = [entry objectForKey:@"played"];
+            NSString *wins = [entry objectForKey:@"wins"];
+            NSString *draws = [entry objectForKey:@"draws"];
+            NSString *losses = [entry objectForKey:@"losses"];
+            NSString *points = [entry objectForKey:@"points"];
+            NSString *gf = [entry objectForKey:@"gf"];
+            NSString *ga = [entry objectForKey:@"ga"];
+            NSString *gd = [entry objectForKey:@"gd"];
+            NSString *teamId = [entry objectForKey:@"id"];
+            
+            team = [[Team alloc] initWithTeam:name AndPosition:position AndPlayed:played AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:gf AndGoalsAgainst:ga AndGoalDiff:gd AndPoints:points AndTeamId:teamId AndBadge:nil];
+            [teamList addObject: team];
+
+        }
+        // done
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+            [self.leagueTable reloadData];
+        });
+    });        
 }
 
 - (void)setNavTitle {

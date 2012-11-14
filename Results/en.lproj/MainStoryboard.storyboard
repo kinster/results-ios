@@ -9,7 +9,7 @@
             <objects>
                 <viewController title="League Table" id="2" customClass="LeagueTableViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TbS-ft-E4k">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ep2-k7-Dq4" userLabel="Table Bar">
@@ -342,7 +342,7 @@
             <objects>
                 <viewController id="U8H-Vy-qma" customClass="TeamResultsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="s3C-4P-krx">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="N0L-SW-Fna">
@@ -500,13 +500,13 @@
             <objects>
                 <viewController id="obT-85-3Sz" customClass="TeamFixturesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fjv-bO-iaM">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="NKc-Hb-bxJ">
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="367" type="user" id="kuM-NE-ykX"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="368" type="user" id="Hxa-bu-i5L"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="CustomCellRestorationId" selectionStyle="none" indentationWidth="10" reuseIdentifier="CustomFixtureCell" rowHeight="42" id="bEz-Tu-oQf" userLabel="Fixture Cell Wide" customClass="CustomFixtureCell">
@@ -636,14 +636,14 @@
                             <constraint firstItem="yCF-4m-hdW" firstAttribute="leading" secondItem="Fjv-bO-iaM" secondAttribute="leading" type="default" id="2aL-yT-kie"/>
                             <constraint firstItem="vrl-Me-cB0" firstAttribute="top" secondItem="yCF-4m-hdW" secondAttribute="bottom" constant="1" type="user" id="4I9-Db-nGn"/>
                             <constraint firstItem="NKc-Hb-bxJ" firstAttribute="trailing" secondItem="Fjv-bO-iaM" secondAttribute="trailing" type="default" id="5E4-6p-8yP"/>
+                            <constraint firstItem="NKc-Hb-bxJ" firstAttribute="top" secondItem="vrl-Me-cB0" secondAttribute="bottom" constant="1" type="user" id="6gz-ya-vG5"/>
                             <constraint firstItem="Pix-hh-AXm" firstAttribute="trailing" secondItem="Fjv-bO-iaM" secondAttribute="trailing" type="default" id="CGy-nI-i8N"/>
                             <constraint firstItem="Pix-hh-AXm" firstAttribute="leading" secondItem="Fjv-bO-iaM" secondAttribute="leading" type="default" id="HCG-VG-4YY"/>
                             <constraint firstItem="yCF-4m-hdW" firstAttribute="trailing" secondItem="Fjv-bO-iaM" secondAttribute="trailing" type="default" id="NfQ-SU-dZL"/>
+                            <constraint firstItem="NKc-Hb-bxJ" firstAttribute="bottom" secondItem="Fjv-bO-iaM" secondAttribute="bottom" type="user" id="Qr5-oI-97H"/>
                             <constraint firstItem="vrl-Me-cB0" firstAttribute="leading" secondItem="Fjv-bO-iaM" secondAttribute="leading" type="default" id="RBZ-Zr-ACu"/>
                             <constraint firstItem="NKc-Hb-bxJ" firstAttribute="leading" secondItem="Fjv-bO-iaM" secondAttribute="leading" type="default" id="UYa-Bk-hzZ"/>
-                            <constraint firstItem="NKc-Hb-bxJ" firstAttribute="top" secondItem="vrl-Me-cB0" secondAttribute="bottom" constant="2" type="user" id="VnT-uk-cuS"/>
-                            <constraint firstItem="NKc-Hb-bxJ" firstAttribute="bottom" secondItem="Fjv-bO-iaM" secondAttribute="bottom" type="default" id="cUv-0f-KSt"/>
-                            <constraint firstItem="yCF-4m-hdW" firstAttribute="top" secondItem="Fjv-bO-iaM" secondAttribute="top" type="user" id="d0A-tl-TlL"/>
+                            <constraint firstItem="yCF-4m-hdW" firstAttribute="top" secondItem="Fjv-bO-iaM" secondAttribute="top" type="user" id="Vcl-BZ-yhz"/>
                             <constraint firstItem="Pix-hh-AXm" firstAttribute="top" secondItem="Fjv-bO-iaM" secondAttribute="top" constant="80" id="kKD-lJ-3do"/>
                         </constraints>
                     </view>
@@ -665,7 +665,7 @@
             <objects>
                 <viewController id="bl9-Jn-mfe" customClass="TeamDetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a8L-7u-bal">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="7kq-j3-k9v">
@@ -805,7 +805,7 @@
             <objects>
                 <viewController id="Vpf-d4-xuW" customClass="LeagueFixturesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="s7h-lH-iVJ">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="b5W-ZF-OmL" userLabel="Fixtures Table View">
@@ -988,7 +988,7 @@
             <objects>
                 <viewController id="8d3-vd-Jzl" customClass="LeaguesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uAl-ph-XNc">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aH4-3D-3D9">
@@ -1057,7 +1057,7 @@
             <objects>
                 <tableViewController title="Leagues" id="NA8-BD-NZx" customClass="LeaguesViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="39L-GL-JSS" userLabel="Leagues Table View">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Type first 3 letters of League name here" id="xIV-ef-umF">
@@ -1127,7 +1127,7 @@
             <objects>
                 <tableViewController id="6ih-G9-SMv" customClass="LeagueSeasonViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Chx-42-B9b">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -1167,7 +1167,7 @@
             <objects>
                 <tableViewController id="MJr-js-9w1" customClass="LeagueDivisionsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Vov-DP-uWA">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -1228,7 +1228,7 @@
             <objects>
                 <viewController id="Qxt-6v-GEh" customClass="LeagueResultsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8FE-2P-Ahr">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="inE-DI-3nL">
@@ -1539,7 +1539,7 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="1gk-dg-SEp"/>

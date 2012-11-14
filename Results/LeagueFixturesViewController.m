@@ -15,6 +15,7 @@
 #import "Fixture.h"
 #import "CustomFixtureCell.h"
 #import "ServerManager.h"
+#import "MBProgressHUD.h"
 
 @interface LeagueFixturesViewController ()
 
@@ -27,46 +28,60 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     NSLog(@"LeagueFixturesViewController");
 
-    NSError *error;
-    
-    ServerManager *serverManager = [ServerManager sharedServerManager];
-    NSString *serverName = [serverManager serverName];
-    NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/fixtures.json", league.leagueId, season.seasonId, division.divisionId];
-    NSLog(@"%@", urlString);
-    
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-    
-    fixtureList = [[NSMutableArray alloc] init];
-    Fixture *fixture = nil;
-
-
-    for (NSDictionary *entry in jsonData) {
-
-        NSString *type = [entry objectForKey:@"type"];
-        NSString *dateTime = [entry objectForKey:@"date_time"];
-        NSString *homeTeam = [entry objectForKey:@"home_team"];
-        NSString *awayTeam = [entry objectForKey:@"away_team"];
-        NSString *location = [entry objectForKey:@"location"];
-        NSString *competition = [entry objectForKey:@"competition"];
-        NSString *statusNote = [entry objectForKey:@"status_note"];
-
-        fixture = [[Fixture alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndAwayTeam:awayTeam AndLocation:location AndCompetition:competition AndStatusNote:statusNote];
-        
-        [fixtureList addObject:fixture];
-    }
-    
     nameLabel.text = [NSString stringWithFormat:@"%@", league.name];
     subtitle.text = [NSString stringWithFormat:@"%@ %@", season.name, division.name];
     leagueBadge.image = league.image;
     NSLog(@"%@", self.nameLabel.text);
-
+    
     [self setNavTitle];
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    hud.labelText = @"Searching...";
+    
+    [self.navigationController.view addSubview:hud];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        // Do something...
+        NSError *error;
+        
+        ServerManager *serverManager = [ServerManager sharedServerManager];
+        NSString *serverName = [serverManager serverName];
+        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/fixtures.json", league.leagueId, season.seasonId, division.divisionId];
+        NSLog(@"%@", urlString);
+        
+        NSURL *url = [NSURL URLWithString:urlString];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+        
+        fixtureList = [[NSMutableArray alloc] init];
+        Fixture *fixture = nil;
 
+        for (NSDictionary *entry in jsonData) {
+
+            NSString *type = [entry objectForKey:@"type"];
+            NSString *dateTime = [entry objectForKey:@"date_time"];
+            NSString *homeTeam = [entry objectForKey:@"home_team"];
+            NSString *awayTeam = [entry objectForKey:@"away_team"];
+            NSString *location = [entry objectForKey:@"location"];
+            NSString *competition = [entry objectForKey:@"competition"];
+            NSString *statusNote = [entry objectForKey:@"status_note"];
+
+            fixture = [[Fixture alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndAwayTeam:awayTeam AndLocation:location AndCompetition:competition AndStatusNote:statusNote];
+            
+            [fixtureList addObject:fixture];
+        }
+        
+        // done
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+            [self.fixturesTable reloadData];
+        });
+    });
+
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
