@@ -13,11 +13,29 @@
 
 @implementation AppDelegate
 
-@synthesize tabBarController;
+- (void)customizeAppearance {
+    // Create resizable images
+    UIImage *menubar = [[UIImage imageNamed:@"menubar.png"]
+                                resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+    // Set the background image for *all* UINavigationBars
+    [[UINavigationBar appearance] setBackgroundImage:menubar
+                                       forBarMetrics:UIBarMetricsDefault];
+    UIImage *barButton = [[UIImage imageNamed:@"menubar-button.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 4)];
+    
+    [[UIBarButtonItem appearance] setBackgroundImage:barButton forState:UIControlStateNormal
+                                          barMetrics:UIBarMetricsDefault];
+
+    UIImage *backButton = [[UIImage imageNamed:@"back.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 14, 0, 4)];
+    
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButton forState:UIControlStateNormal
+                                                    barMetrics:UIBarMetricsDefault];
+
+}
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [self customizeAppearance];
 
     UIViewController *leaguesViewController = [[LeaguesViewController alloc] init];
 //    UIViewController *leagueTableViewController = [[LeagueTableViewController alloc] init];
