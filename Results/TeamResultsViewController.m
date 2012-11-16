@@ -99,6 +99,7 @@
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
             [self.teamResultsTable reloadData];
             UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+            refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
             [refreshControl addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
             [self.teamResultsTable addSubview:refreshControl];
         });
@@ -112,23 +113,30 @@
 }
 
 - (void)refreshView:(UIRefreshControl *)refresh {
-    NSLog(@"refreshing");
-    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data..."];
     
-    // custom refresh logic would be placed here...
-    [self loadData];
-    [self.teamResultsTable reloadData];
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MMM d, hh:mm a"];
-    NSString *lastUpdated = [NSString stringWithFormat:@"Last updated on %@",
-                             [formatter stringFromDate:[NSDate date]]];
-    
-    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
-    
-    [refresh endRefreshing];
-    NSLog(@"refreshed");
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        NSLog(@"refreshing");
+        refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data..."];
+        
+        // custom refresh logic would be placed here...
+        [self loadData];
+        [self.teamResultsTable reloadData];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"MMM d, hh:mm a"];
+            NSString *lastUpdated = [NSString stringWithFormat:@"Last updated on %@",
+                                     [formatter stringFromDate:[NSDate date]]];
+            
+            refresh.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
+            
+            [refresh endRefreshing];
+            NSLog(@"refreshed");
+        });
+    });
 }
+
 - (void)setNavTitle {
     self.tabBarController.title = @"Team Results";
 }
