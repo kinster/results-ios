@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LeagueTableViewController.h"
-#import "LeagueFixturesViewController.h"
 
 @interface AppDelegate : UIResponder <UITableViewDelegate>
 @property (strong, nonatomic) UIWindow *window;

@@ -349,6 +349,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="368" type="user" id="QkV-p0-fdX"/>
+                                    <constraint firstAttribute="height" constant="368" id="Thc-Dc-c4J"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="CustomCellRestorationId" selectionStyle="none" indentationWidth="10" reuseIdentifier="CustomResultCell" rowHeight="42" id="h5h-wh-Qow" userLabel="Result Cell Grouped" customClass="CustomResultCell">
@@ -476,7 +477,6 @@
                             <constraint firstItem="0aq-ol-25I" firstAttribute="top" secondItem="CeB-Ri-3lM" secondAttribute="bottom" constant="1" type="user" id="Jmh-dA-w0z"/>
                             <constraint firstItem="N0L-SW-Fna" firstAttribute="top" secondItem="0aq-ol-25I" secondAttribute="bottom" constant="1" type="user" id="KZv-bl-FPT"/>
                             <constraint firstItem="CeB-Ri-3lM" firstAttribute="leading" secondItem="s3C-4P-krx" secondAttribute="leading" type="default" id="Mib-6n-Sc0"/>
-                            <constraint firstItem="N0L-SW-Fna" firstAttribute="bottom" secondItem="s3C-4P-krx" secondAttribute="bottom" type="default" id="P8Q-mP-T2I"/>
                             <constraint firstItem="0aq-ol-25I" firstAttribute="leading" secondItem="s3C-4P-krx" secondAttribute="leading" type="default" id="Udd-xc-pz4"/>
                             <constraint firstItem="N0L-SW-Fna" firstAttribute="leading" secondItem="s3C-4P-krx" secondAttribute="leading" type="default" id="hNw-2I-sGc"/>
                             <constraint firstItem="0aq-ol-25I" firstAttribute="top" secondItem="s3C-4P-krx" secondAttribute="top" constant="61" type="user" id="jNP-Du-pyI"/>
@@ -507,6 +507,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="368" type="user" id="Hxa-bu-i5L"/>
+                                    <constraint firstAttribute="height" constant="368" id="u4m-bB-41p"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="CustomCellRestorationId" selectionStyle="none" indentationWidth="10" reuseIdentifier="CustomFixtureCell" rowHeight="42" id="bEz-Tu-oQf" userLabel="Fixture Cell Wide" customClass="CustomFixtureCell">
@@ -640,7 +641,6 @@
                             <constraint firstItem="Pix-hh-AXm" firstAttribute="trailing" secondItem="Fjv-bO-iaM" secondAttribute="trailing" type="default" id="CGy-nI-i8N"/>
                             <constraint firstItem="Pix-hh-AXm" firstAttribute="leading" secondItem="Fjv-bO-iaM" secondAttribute="leading" type="default" id="HCG-VG-4YY"/>
                             <constraint firstItem="yCF-4m-hdW" firstAttribute="trailing" secondItem="Fjv-bO-iaM" secondAttribute="trailing" type="default" id="NfQ-SU-dZL"/>
-                            <constraint firstItem="NKc-Hb-bxJ" firstAttribute="bottom" secondItem="Fjv-bO-iaM" secondAttribute="bottom" type="user" id="Qr5-oI-97H"/>
                             <constraint firstItem="vrl-Me-cB0" firstAttribute="leading" secondItem="Fjv-bO-iaM" secondAttribute="leading" type="default" id="RBZ-Zr-ACu"/>
                             <constraint firstItem="NKc-Hb-bxJ" firstAttribute="leading" secondItem="Fjv-bO-iaM" secondAttribute="leading" type="default" id="UYa-Bk-hzZ"/>
                             <constraint firstItem="yCF-4m-hdW" firstAttribute="top" secondItem="Fjv-bO-iaM" secondAttribute="top" type="user" id="Vcl-BZ-yhz"/>
@@ -1010,7 +1010,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <segue destination="6ih-G9-SMv" kind="push" identifier="ShowSeasons" id="1gk-dg-SEp"/>
+                                            <segue destination="qdX-ep-6hh" kind="push" identifier="ShowSeasons" id="CmI-Mq-3g5"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1056,84 +1056,120 @@
             <point key="canvasLocation" x="-337" y="-2090"/>
         </scene>
         <!--League Season View Controller - Seasons-->
-        <scene sceneID="22b-Pl-Gww">
+        <scene sceneID="V1U-dC-g8b">
             <objects>
-                <tableViewController id="6ih-G9-SMv" customClass="LeagueSeasonViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Chx-42-B9b">
+                <viewController id="qdX-ep-6hh" customClass="LeagueSeasonViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="klK-mz-Ywe">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SeasonCell" textLabel="t4c-MG-BVH" style="IBUITableViewCellStyleDefault" id="CcQ-5L-Kuh">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t4c-MG-BVH">
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Chx-42-B9b">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="504" type="user" id="T3v-mL-nrH"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SeasonCell" textLabel="t4c-MG-BVH" style="IBUITableViewCellStyleDefault" id="CcQ-5L-Kuh">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="t4c-MG-BVH">
+                                                    <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <segue destination="KjO-oT-6Bj" kind="push" identifier="ShowDivisions" id="hy8-79-ghR"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
-                                    <segue destination="MJr-js-9w1" kind="push" identifier="ShowDivisions" id="frC-t9-f6Z"/>
+                                    <outlet property="dataSource" destination="qdX-ep-6hh" id="LUG-fJ-uxN"/>
+                                    <outlet property="delegate" destination="qdX-ep-6hh" id="cZ2-aM-OoT"/>
                                 </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="6ih-G9-SMv" id="YIe-3v-baZ"/>
-                            <outlet property="delegate" destination="6ih-G9-SMv" id="Cj2-HB-WUl"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Seasons" id="gkb-Qm-csq"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7OA-Fp-GCW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Chx-42-B9b" firstAttribute="leading" secondItem="klK-mz-Ywe" secondAttribute="leading" type="default" id="30q-D6-Wc5"/>
+                            <constraint firstItem="Chx-42-B9b" firstAttribute="trailing" secondItem="klK-mz-Ywe" secondAttribute="trailing" type="default" id="BE1-qW-nhB"/>
+                            <constraint firstItem="Chx-42-B9b" firstAttribute="top" secondItem="klK-mz-Ywe" secondAttribute="top" type="user" id="Ndu-ED-OAI"/>
+                            <constraint firstItem="Chx-42-B9b" firstAttribute="bottom" secondItem="klK-mz-Ywe" secondAttribute="bottom" type="user" id="s5j-id-aao"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Seasons" id="FRc-ww-7gm"/>
+                    <connections>
+                        <outlet property="seasonsTableView" destination="Chx-42-B9b" id="zgk-gf-V2h"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X28-hW-IY0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="185" y="-2329"/>
+            <point key="canvasLocation" x="188" y="-2150"/>
         </scene>
         <!--League Divisions View Controller - Divisions-->
-        <scene sceneID="nG1-i7-RNQ">
+        <scene sceneID="3Fy-bW-8pX">
             <objects>
-                <tableViewController id="MJr-js-9w1" customClass="LeagueDivisionsViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Vov-DP-uWA">
+                <viewController id="KjO-oT-6Bj" customClass="LeagueDivisionsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hj6-pS-aIZ">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DivisionCell" textLabel="GDP-jc-etA" style="IBUITableViewCellStyleDefault" id="Sou-w4-wG3">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDP-jc-etA">
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Vov-DP-uWA">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="548" type="user" id="F21-q5-g1h"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DivisionCell" textLabel="GDP-jc-etA" style="IBUITableViewCellStyleDefault" id="Sou-w4-wG3">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GDP-jc-etA">
+                                                    <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <segue destination="kmb-uQ-a1F" kind="push" identifier="ShowTable" id="bG6-oO-bYX"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
-                                    <segue destination="kmb-uQ-a1F" kind="push" identifier="ShowTable" id="bG6-oO-bYX"/>
+                                    <outlet property="dataSource" destination="KjO-oT-6Bj" id="Zcg-g0-WFB"/>
+                                    <outlet property="delegate" destination="KjO-oT-6Bj" id="8vI-sp-Vm8"/>
                                 </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="MJr-js-9w1" id="94m-Ul-6wI"/>
-                            <outlet property="delegate" destination="MJr-js-9w1" id="ADY-ZT-WRq"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Divisions" id="46H-QX-NV6"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="J6O-Si-z0Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Vov-DP-uWA" firstAttribute="top" secondItem="Hj6-pS-aIZ" secondAttribute="top" type="user" id="91R-St-ljm"/>
+                            <constraint firstItem="Vov-DP-uWA" firstAttribute="leading" secondItem="Hj6-pS-aIZ" secondAttribute="leading" type="default" id="9pB-Dv-FsK"/>
+                            <constraint firstItem="Vov-DP-uWA" firstAttribute="trailing" secondItem="Hj6-pS-aIZ" secondAttribute="trailing" type="default" id="UMs-Lg-86H"/>
+                            <constraint firstItem="Vov-DP-uWA" firstAttribute="bottom" secondItem="Hj6-pS-aIZ" secondAttribute="bottom" type="user" id="h05-od-tBO"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Divisions" id="XHJ-h3-lI5"/>
+                    <connections>
+                        <outlet property="divisionsTableView" destination="Vov-DP-uWA" id="xzu-9j-vO3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oQC-l9-wt9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="644" y="-2568"/>
+            <point key="canvasLocation" x="722" y="-2242"/>
         </scene>
         <!--Tab Bar Controller - Front Screen-->
         <scene sceneID="VxH-ha-kaa">
@@ -1340,6 +1376,123 @@
         <image name="179-notepad.png" width="22" height="28"/>
         <image name="83-calendar.png" width="23" height="25"/>
     </resources>
+    <classes>
+        <class className="CustomFixtureCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomFixtureCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="awayTeam" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="date" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="homeTeam" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="CustomPlayerCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomPlayerCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="CustomResultCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomResultCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="awayTeam" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="date" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="homeTeam" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="score" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="CustomTableCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomTableCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="draws" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="goalDiff" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="goalsAgainst" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="goalsFor" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="losses" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="played" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="points" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="position" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="team" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="wins" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="LeagueDivisionsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueDivisionsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="divisionsTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="LeagueFixturesViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueFixturesViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="fixturesTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="LeagueResultsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueResultsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="resultsTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="LeagueSeasonViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueSeasonViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="seasonsTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="LeagueTableViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="leagueTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="LeaguesViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeaguesViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="leagueTablesView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="TeamDetailsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeamDetailsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="badge" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="playersTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TeamFixturesViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeamFixturesViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="teamFixturesTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TeamResultsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeamResultsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="teamResultsTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

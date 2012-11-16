@@ -151,11 +151,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Results/LeaguesViewController.h"
-         timestampString = "374440134.382088"
+         timestampString = "374758033.824662"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "16"
-         endingLineNumber = "16"
+         startingLineNumber = "17"
+         endingLineNumber = "17"
          landmarkName = "leagueTablesView"
          landmarkType = "19">
       </FileBreakpoint>
@@ -175,11 +175,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Results/LeagueTableViewController.m"
-         timestampString = "374588830.858163"
+         timestampString = "374760396.929152"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "27"
-         endingLineNumber = "27"
+         startingLineNumber = "29"
+         endingLineNumber = "29"
          landmarkName = "@synthesize teamList, league, season, division, nameLabel, subtitle, leagueBadge, leagueTable;"
          landmarkType = "19">
       </FileBreakpoint>
@@ -199,11 +199,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Results/LeagueResultsViewController.h"
-         timestampString = "374379268.549148"
+         timestampString = "374760396.929152"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "21"
-         endingLineNumber = "21"
+         startingLineNumber = "22"
+         endingLineNumber = "22"
          landmarkName = "resultsTable"
          landmarkType = "19">
       </FileBreakpoint>
@@ -212,11 +212,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Results/LeagueResultsViewController.h"
-         timestampString = "374379719.162307"
+         timestampString = "374760396.929152"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "18"
-         endingLineNumber = "18"
+         startingLineNumber = "19"
+         endingLineNumber = "19"
          landmarkName = "leagueBadge"
          landmarkType = "19">
       </FileBreakpoint>
@@ -238,11 +238,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Results/LeaguesViewController.h"
-         timestampString = "374514215.425548"
+         timestampString = "374758033.824662"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "14"
-         endingLineNumber = "14"
+         startingLineNumber = "15"
+         endingLineNumber = "15"
          landmarkName = "searchBar"
          landmarkType = "19">
       </FileBreakpoint>
@@ -251,11 +251,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Results/LeaguesViewController.m"
-         timestampString = "374719381.091225"
+         timestampString = "374760396.929152"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "155"
-         endingLineNumber = "155"
+         startingLineNumber = "166"
+         endingLineNumber = "166"
          landmarkName = "-searchBarSearchButtonClicked:"
          landmarkType = "5">
       </FileBreakpoint>

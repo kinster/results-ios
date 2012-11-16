@@ -20,16 +20,17 @@
 
 @end
 
-@implementation LeagueDivisionsViewController
+@implementation LeagueDivisionsViewController {
+    ADBannerView *_bannerView;
+}
 
-@synthesize divisionsList, league, season;
+@synthesize divisionsList, league, season, divisionsTableView;
 
-- (id)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+- (void)loadBanner {
+    _bannerView = [[ADBannerView alloc] init];
+    _bannerView.delegate = self;
+    
+    [self.view addSubview:_bannerView];
 }
 
 -(UIImage *)getLeagueImage:(NSString *)serverName AndLeagueId:(NSString *)leagueId {
@@ -65,7 +66,9 @@
     [self.navigationController.view addSubview:hud];
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        // Do something...
+
+        [self loadBanner];
+        
         @try {
             NSError *error;
             ServerManager *serverManager = [ServerManager sharedServerManager];
@@ -98,7 +101,7 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-            [self.tableView reloadData];
+            [self.divisionsTableView reloadData];
         });
     });
 
@@ -143,7 +146,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSLog(@"LeagueDivisionsViewController prepareForSegue");
     
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    NSIndexPath *indexPath = [self.divisionsTableView indexPathForSelectedRow];
     NSLog(@"%d", indexPath.row);
     Division *division = [divisionsList objectAtIndex:indexPath.row];
     UITabBarController *tabBarController = [segue destinationViewController];
@@ -165,6 +168,44 @@
     [viewController2 setSeason:season];
     [viewController2 setDivision:division];
     NSLog(@"end");
+}
+
+- (void)viewDidLayoutSubviews {
+    [_bannerView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    
+    CGRect contentFrame = self.view.bounds;
+    CGRect bannerFrame = _bannerView.frame;
+    if (_bannerView.bannerLoaded) {
+        contentFrame.size.height -= _bannerView.frame.size.height;
+        bannerFrame.origin.y = contentFrame.size.height;
+    } else {
+        bannerFrame.origin.y = contentFrame.size.height;
+    }
+    _bannerView.frame = bannerFrame;
+}
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+    [UIView animateWithDuration:0.25 animations:^{
+        [self.view setNeedsLayout];
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    [UIView animateWithDuration:0.25 animations:^{
+        [self.view setNeedsLayout];
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionWillBegin" object:self];
+    return YES;
+}
+
+- (void)bannerViewActionDidFinish:(ADBannerView *)banner {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionDidFinish" object:self];
 }
 
 /*

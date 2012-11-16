@@ -17,16 +17,17 @@
 
 @end
 
-@implementation LeagueSeasonViewController
+@implementation LeagueSeasonViewController {
+    ADBannerView *_bannerView;
+}
 
-@synthesize league, seasonsList;
+@synthesize league, seasonsList, seasonsTableView;
 
-- (id)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+- (void)loadBanner {
+    _bannerView = [[ADBannerView alloc] init];
+    _bannerView.delegate = self;
+    
+    [self.view addSubview:_bannerView];    
 }
 
 - (void)loadNetworkExceptionAlert {
@@ -42,7 +43,8 @@
     
     [self.navigationController.view addSubview:hud];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        // Do something...
+
+        [self loadBanner];
 
         @try {
             NSError *error;
@@ -79,7 +81,7 @@
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-            [self.tableView reloadData];
+            [self.seasonsTableView reloadData];
         });
     });
 
@@ -122,7 +124,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSLog(@"LeagueSeasonViewController prepareForSegue");
     
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    NSIndexPath *indexPath = [self.seasonsTableView indexPathForSelectedRow];
     NSLog(@"%d", indexPath.row);
     Season *season = [seasonsList objectAtIndex:indexPath.row];
     
@@ -132,6 +134,45 @@
         [viewController setSeason:season];
     }
 }
+
+- (void)viewDidLayoutSubviews {
+    [_bannerView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    
+    CGRect contentFrame = self.view.bounds;
+    CGRect bannerFrame = _bannerView.frame;
+    if (_bannerView.bannerLoaded) {
+        contentFrame.size.height -= _bannerView.frame.size.height;
+        bannerFrame.origin.y = contentFrame.size.height;
+    } else {
+        bannerFrame.origin.y = contentFrame.size.height;
+    }
+    _bannerView.frame = bannerFrame;
+}
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+    [UIView animateWithDuration:0.25 animations:^{
+        [self.view setNeedsLayout];
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    [UIView animateWithDuration:0.25 animations:^{
+        [self.view setNeedsLayout];
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionWillBegin" object:self];
+    return YES;
+}
+
+- (void)bannerViewActionDidFinish:(ADBannerView *)banner {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionDidFinish" object:self];
+}
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

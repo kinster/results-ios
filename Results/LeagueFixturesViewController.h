@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <iAd/iAd.h>
 
 @class League, Season, Division;
 
-@interface LeagueFixturesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITabBarControllerDelegate>
+@interface LeagueFixturesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITabBarControllerDelegate, ADBannerViewDelegate>
 @property (copy, nonatomic) NSMutableArray *fixtureList;
 @property (weak, nonatomic) League *league;
 @property (weak, nonatomic) Season *season;

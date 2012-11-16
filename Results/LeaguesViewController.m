@@ -16,7 +16,9 @@
 
 @end
 
-@implementation LeaguesViewController
+@implementation LeaguesViewController {
+    ADBannerView *_bannerView;
+}
 
 @synthesize leaguesList, searchBar, sections, leagueTablesView;
 
@@ -26,9 +28,17 @@
     [alert show];
 }
 
+- (void)loadBanner {
+    _bannerView = [[ADBannerView alloc] init];
+    _bannerView.delegate = self;
+    
+    [self.view addSubview:_bannerView];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     @try {
+        [self loadBanner];
         ServerManager *serverManager = [ServerManager sharedServerManager];
         NSString *serverName = [serverManager serverName];
         NSString *urlString = [serverName stringByAppendingFormat:@"/leagues.json"];
@@ -38,6 +48,7 @@
         NSLog(@"Exception: %@ %@", [exception name], [exception reason]);
         [self loadNetworkExceptionAlert];
     }
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -201,10 +212,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSLog(@"LeaguesViewController prepareForSegue");
     NSIndexPath *indexPath = [self.leagueTablesView indexPathForSelectedRow];
+    NSLog(@"LeaguesViewController indexPath: %d", indexPath.row);
     League *league = nil;
     if ([[segue identifier] isEqualToString:@"ShowSeasons"]) {
         LeagueSeasonViewController *viewController = [segue destinationViewController];
         league = [[sections valueForKey:[[[sections allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+        NSLog(@"league: %@", league.leagueId);
         [viewController setLeague:league];
     }
 }
@@ -215,6 +228,44 @@
     [viewController setLeague:league];
 
     [self.navigationController pushViewController:viewController animated:YES];
+}
+
+- (void)viewDidLayoutSubviews {
+    [_bannerView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+
+    CGRect contentFrame = self.view.bounds;
+    CGRect bannerFrame = _bannerView.frame;
+    if (_bannerView.bannerLoaded) {
+        contentFrame.size.height -= _bannerView.frame.size.height;
+        bannerFrame.origin.y = contentFrame.size.height;
+    } else {
+        bannerFrame.origin.y = contentFrame.size.height;
+    }
+    _bannerView.frame = bannerFrame;
+}
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+    [UIView animateWithDuration:0.25 animations:^{
+        [self.view setNeedsLayout];
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    [UIView animateWithDuration:0.25 animations:^{
+        [self.view setNeedsLayout];
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionWillBegin" object:self];
+    return YES;
+}
+
+- (void)bannerViewActionDidFinish:(ADBannerView *)banner {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionDidFinish" object:self];
 }
 
 /*

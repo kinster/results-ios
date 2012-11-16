@@ -22,9 +22,18 @@
 @end
 
 
-@implementation LeagueFixturesViewController
+@implementation LeagueFixturesViewController {
+    ADBannerView *_bannerView;
+}
 
 @synthesize fixtureList, league, season, division, fixturesTable, nameLabel, leagueBadge, subtitle;
+
+- (void)loadBanner {
+    _bannerView = [[ADBannerView alloc] init];
+    _bannerView.delegate = self;
+    
+    [self.view addSubview:_bannerView];
+}
 
 - (void)loadNetworkExceptionAlert {
     NSString *alertString = [NSString stringWithFormat:@"Network Connection Issue"];
@@ -85,7 +94,7 @@
     
     [self.navigationController.view addSubview:hud];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        // Do something...
+        [self loadBanner];
         [self loadData];
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
@@ -167,6 +176,45 @@
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
     NSLog(@"%@", viewController.tabBarItem);
 }
+
+- (void)viewDidLayoutSubviews {
+    [_bannerView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    
+    CGRect contentFrame = self.view.bounds;
+    CGRect bannerFrame = _bannerView.frame;
+    if (_bannerView.bannerLoaded) {
+        contentFrame.size.height -= _bannerView.frame.size.height;
+        bannerFrame.origin.y = contentFrame.size.height;
+    } else {
+        bannerFrame.origin.y = contentFrame.size.height;
+    }
+    _bannerView.frame = bannerFrame;
+}
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+    [UIView animateWithDuration:0.25 animations:^{
+        [self.view setNeedsLayout];
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    [UIView animateWithDuration:0.25 animations:^{
+        [self.view setNeedsLayout];
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionWillBegin" object:self];
+    return YES;
+}
+
+- (void)bannerViewActionDidFinish:(ADBannerView *)banner {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionDidFinish" object:self];
+}
+
 
 /*
 // Override to support conditional editing of the table view.
