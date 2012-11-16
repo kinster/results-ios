@@ -27,7 +27,7 @@
         NSString *serverName = [serverManager serverName];
         NSString *urlString = [serverName stringByAppendingFormat:@"/leagues.json"];
         NSLog(@"%@", urlString);
-        [self createTableSections:urlString AndServerName:serverName];
+        [self createTableSections:urlString AndServerName:serverName];        
     } @catch (NSException *exception) {
         NSLog(@"Exception: %@ %@", [exception name], [exception reason]);
     }
@@ -201,6 +201,14 @@
         league = [[sections valueForKey:[[[sections allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
         [viewController setLeague:league];
     }
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    LeagueSeasonViewController *viewController = [[LeagueSeasonViewController alloc] init];
+    League *league = [[sections valueForKey:[[[sections allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+    [viewController setLeague:league];
+
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 /*

@@ -26,6 +26,41 @@
 
 @synthesize fixtureList, league, season, division, fixturesTable, nameLabel, leagueBadge, subtitle;
 
+- (void)loadData {
+    @try {
+        NSError *error;
+        
+        ServerManager *serverManager = [ServerManager sharedServerManager];
+        NSString *serverName = [serverManager serverName];
+        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/fixtures.json", league.leagueId, season.seasonId, division.divisionId];
+        NSLog(@"%@", urlString);
+        
+        NSURL *url = [NSURL URLWithString:urlString];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+        
+        fixtureList = [[NSMutableArray alloc] init];
+        Fixture *fixture = nil;
+        
+        for (NSDictionary *entry in jsonData) {
+            
+            NSString *type = [entry objectForKey:@"type"];
+            NSString *dateTime = [entry objectForKey:@"date_time"];
+            NSString *homeTeam = [entry objectForKey:@"home_team"];
+            NSString *awayTeam = [entry objectForKey:@"away_team"];
+            NSString *location = [entry objectForKey:@"location"];
+            NSString *competition = [entry objectForKey:@"competition"];
+            NSString *statusNote = [entry objectForKey:@"status_note"];
+            
+            fixture = [[Fixture alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndAwayTeam:awayTeam AndLocation:location AndCompetition:competition AndStatusNote:statusNote];
+            
+            [fixtureList addObject:fixture];
+        }
+    } @catch (NSException *exception) {
+        NSLog(@"Exception: %@ %@", [exception name], [exception reason]);
+    }    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -44,46 +79,16 @@
     [self.navigationController.view addSubview:hud];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         // Do something...
-        @try {
-            NSError *error;
-            
-            ServerManager *serverManager = [ServerManager sharedServerManager];
-            NSString *serverName = [serverManager serverName];
-            NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/fixtures.json", league.leagueId, season.seasonId, division.divisionId];
-            NSLog(@"%@", urlString);
-            
-            NSURL *url = [NSURL URLWithString:urlString];
-            NSData *data = [NSData dataWithContentsOfURL:url];
-            NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-            
-            fixtureList = [[NSMutableArray alloc] init];
-            Fixture *fixture = nil;
-
-            for (NSDictionary *entry in jsonData) {
-
-                NSString *type = [entry objectForKey:@"type"];
-                NSString *dateTime = [entry objectForKey:@"date_time"];
-                NSString *homeTeam = [entry objectForKey:@"home_team"];
-                NSString *awayTeam = [entry objectForKey:@"away_team"];
-                NSString *location = [entry objectForKey:@"location"];
-                NSString *competition = [entry objectForKey:@"competition"];
-                NSString *statusNote = [entry objectForKey:@"status_note"];
-
-                fixture = [[Fixture alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndAwayTeam:awayTeam AndLocation:location AndCompetition:competition AndStatusNote:statusNote];
-                
-                [fixtureList addObject:fixture];
-            }
-            
-            // done
-        } @catch (NSException *exception) {
-            NSLog(@"Exception: %@ %@", [exception name], [exception reason]);
-        }
+        [self loadData];
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
             [self.fixturesTable reloadData];
+            UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+            [refreshControl addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
+            [self.fixturesTable addSubview:refreshControl];
+
         });
     });
-
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -91,6 +96,27 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+
+-(void)refreshView:(UIRefreshControl *)refresh {
+    NSLog(@"refreshing");
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data..."];
+    
+    // custom refresh logic would be placed here...
+    [self loadData];
+    [self.fixturesTable reloadData];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMM d, hh:mm a"];
+    NSString *lastUpdated = [NSString stringWithFormat:@"Last updated on %@",
+                             [formatter stringFromDate:[NSDate date]]];
+    
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
+    
+    [refresh endRefreshing];
+    NSLog(@"refreshed");
+}
+
+
 
 - (void)setNavTitle {
     self.tabBarController.title = @"League Fixtures";

@@ -26,6 +26,43 @@
 
 @synthesize teamList, league, season, division, nameLabel, subtitle, leagueBadge, leagueTable;
 
+- (void)loadData {
+    @try {
+        NSError *error;
+        
+        ServerManager *serverManager = [ServerManager sharedServerManager];
+        NSString *serverName = [serverManager serverName];
+        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@.json", league.leagueId, season.seasonId, division.divisionId];
+        NSLog(@"%@", urlString);
+        
+        NSURL *url = [NSURL URLWithString:urlString];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+        
+        teamList = [[NSMutableArray alloc] init];
+        Team *team = nil;
+        
+        for (NSDictionary *entry in jsonData) {
+            NSString *position = [entry objectForKey:@"position"];
+            NSString *name = [entry objectForKey:@"name"];
+            NSString *played = [entry objectForKey:@"played"];
+            NSString *wins = [entry objectForKey:@"wins"];
+            NSString *draws = [entry objectForKey:@"draws"];
+            NSString *losses = [entry objectForKey:@"losses"];
+            NSString *points = [entry objectForKey:@"points"];
+            NSString *gf = [entry objectForKey:@"gf"];
+            NSString *ga = [entry objectForKey:@"ga"];
+            NSString *gd = [entry objectForKey:@"gd"];
+            NSString *teamId = [entry objectForKey:@"id"];
+            
+            team = [[Team alloc] initWithTeam:name AndPosition:position AndPlayed:played AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:gf AndGoalsAgainst:ga AndGoalDiff:gd AndPoints:points AndTeamId:teamId AndBadge:nil];
+            [teamList addObject: team];
+        }
+    } @catch (NSException *exception) {
+        NSLog(@"Exception: %@ %@", [exception name], [exception reason]);
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
@@ -46,47 +83,34 @@
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         // Do something...
-        @try {
-            NSError *error;
-            
-            ServerManager *serverManager = [ServerManager sharedServerManager];
-            NSString *serverName = [serverManager serverName];
-            NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@.json", league.leagueId, season.seasonId, division.divisionId];
-            NSLog(@"%@", urlString);
-            
-            NSURL *url = [NSURL URLWithString:urlString];
-            NSData *data = [NSData dataWithContentsOfURL:url];
-            NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-            
-            teamList = [[NSMutableArray alloc] init];
-            Team *team = nil;
-            
-            for (NSDictionary *entry in jsonData) {
-                NSString *position = [entry objectForKey:@"position"];
-                NSString *name = [entry objectForKey:@"name"];
-                NSString *played = [entry objectForKey:@"played"];
-                NSString *wins = [entry objectForKey:@"wins"];
-                NSString *draws = [entry objectForKey:@"draws"];
-                NSString *losses = [entry objectForKey:@"losses"];
-                NSString *points = [entry objectForKey:@"points"];
-                NSString *gf = [entry objectForKey:@"gf"];
-                NSString *ga = [entry objectForKey:@"ga"];
-                NSString *gd = [entry objectForKey:@"gd"];
-                NSString *teamId = [entry objectForKey:@"id"];
-                
-                team = [[Team alloc] initWithTeam:name AndPosition:position AndPlayed:played AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:gf AndGoalsAgainst:ga AndGoalDiff:gd AndPoints:points AndTeamId:teamId AndBadge:nil];
-                [teamList addObject: team];
-
-            }
-            // done
-        } @catch (NSException *exception) {
-            NSLog(@"Exception: %@ %@", [exception name], [exception reason]);
-        }
+        [self loadData];
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
             [self.leagueTable reloadData];
+            UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+            [refreshControl addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
+            [self.leagueTable addSubview:refreshControl];
         });
     });        
+}
+
+- (void)refreshView:(UIRefreshControl *)refresh {
+    NSLog(@"refreshing");
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data..."];
+    
+    // custom refresh logic would be placed here...
+    [self loadData];
+    [self.leagueTable reloadData];
+
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMM d, hh:mm a"];
+    NSString *lastUpdated = [NSString stringWithFormat:@"Last updated on %@",
+                             [formatter stringFromDate:[NSDate date]]];
+    
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
+
+    [refresh endRefreshing];
+    NSLog(@"refreshed");
 }
 
 - (void)setNavTitle {
