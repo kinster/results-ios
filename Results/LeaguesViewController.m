@@ -20,6 +20,12 @@
 
 @synthesize leaguesList, searchBar, sections, leagueTablesView;
 
+- (void)loadNetworkExceptionAlert {
+    NSString *alertString = [NSString stringWithFormat:@"Network Connection Issue"];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertString message:@"" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
+    [alert show];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     @try {
@@ -30,6 +36,7 @@
         [self createTableSections:urlString AndServerName:serverName];        
     } @catch (NSException *exception) {
         NSLog(@"Exception: %@ %@", [exception name], [exception reason]);
+        [self loadNetworkExceptionAlert];
     }
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -145,11 +152,10 @@
             NSLog(@"%@", urlString);
             [self createTableSections:urlString AndServerName:serverName];
         } @catch (NSException *exception) {
-                NSLog(@"Exception%@ %@", [exception name], [exception reason]);
-            }
-
+            NSLog(@"Exception%@ %@", [exception name], [exception reason]);
+            [self loadNetworkExceptionAlert];
+        }
         // done
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
             [self.leagueTablesView reloadData];

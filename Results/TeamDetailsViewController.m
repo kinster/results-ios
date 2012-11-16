@@ -24,6 +24,12 @@
 
 @synthesize name, badge, league, season, division, team, playersTable, playersList, subtitle;
 
+- (void)loadNetworkExceptionAlert {
+    NSString *alertString = [NSString stringWithFormat:@"Network Connection Issue"];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertString message:@"" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
+    [alert show];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -68,6 +74,7 @@
             // done
         } @catch (NSException *exception) {
             NSLog(@"Exception: %@ %@", [exception name], [exception reason]);
+            [self loadNetworkExceptionAlert];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
@@ -117,10 +124,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	// open a alert with an OK and cancel button
-    Player *player = [playersList objectAtIndex:indexPath.row];
-	NSString *alertString = [NSString stringWithFormat:@"Clicked on %@", [player name]];
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertString message:@"" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
-	[alert show];
+//    Player *player = [playersList objectAtIndex:indexPath.row];
+//	NSString *alertString = [NSString stringWithFormat:@"Clicked on %@", [player name]];
+//	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertString message:@"" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
+//	[alert show];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -23,6 +23,12 @@
 
 @synthesize resultsList, league, season, division, nameLabel, leagueBadge, subtitle, resultsTable;
 
+- (void)loadNetworkExceptionAlert {
+    NSString *alertString = [NSString stringWithFormat:@"Network Connection Issue"];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertString message:@"" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
+    [alert show];
+}
+
 - (void)loadData {
     @try {
         NSError *error;
@@ -54,6 +60,7 @@
         }
     } @catch (NSException *exception) {
         NSLog(@"Exception: %@ %@", [exception name], [exception reason]);
+        [self loadNetworkExceptionAlert];
     }    
 }
 
