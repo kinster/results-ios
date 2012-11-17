@@ -31,8 +31,7 @@
 }
 
 - (void)loadNetworkExceptionAlert {
-    NSString *alertString = [NSString stringWithFormat:@"Network Connection Issue"];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertString message:@"" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
 }
 
@@ -77,7 +76,6 @@
             // done
         } @catch (NSException *exception) {
             NSLog(@"Exception: %@ %@", [exception name], [exception reason]);
-            [self loadNetworkExceptionAlert];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];

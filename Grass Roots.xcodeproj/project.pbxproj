@@ -35,6 +35,8 @@
 		4B570083164A9980004BCF9B /* LeaguesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B570082164A9980004BCF9B /* LeaguesViewController.m */; };
 		4B57008A164AA20A004BCF9B /* Division.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B570089164AA20A004BCF9B /* Division.m */; };
 		4B5987AB16565556005FFCCE /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5987AA16565556005FFCCE /* iAd.framework */; };
+		4B5987B61656ED71005FFCCE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5987B51656ED70005FFCCE /* SystemConfiguration.framework */; };
+		4B5987B91656EE8C005FFCCE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5987B81656EE8B005FFCCE /* Reachability.m */; };
 		4B79E0E3164D6014009B8389 /* TeamFixturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B79E0E2164D6014009B8389 /* TeamFixturesViewController.m */; };
 		4B7AF2E316396AF300D092D4 /* TeamDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7AF2E216396AF300D092D4 /* TeamDetailsViewController.m */; };
 		4B84517E164B0E54002EB85F /* Season.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B84517D164B0E54002EB85F /* Season.m */; };
@@ -106,6 +108,9 @@
 		4B570088164AA20A004BCF9B /* Division.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Division.h; sourceTree = "<group>"; };
 		4B570089164AA20A004BCF9B /* Division.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Division.m; sourceTree = "<group>"; };
 		4B5987AA16565556005FFCCE /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		4B5987B51656ED70005FFCCE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		4B5987B71656EE8A005FFCCE /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../../../downloads/Reachability/Classes/Reachability.h; sourceTree = "<group>"; };
+		4B5987B81656EE8B005FFCCE /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../../../downloads/Reachability/Classes/Reachability.m; sourceTree = "<group>"; };
 		4B79E0E1164D6014009B8389 /* TeamFixturesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamFixturesViewController.h; sourceTree = "<group>"; };
 		4B79E0E2164D6014009B8389 /* TeamFixturesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamFixturesViewController.m; sourceTree = "<group>"; };
 		4B7AF2E116396AF300D092D4 /* TeamDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamDetailsViewController.h; sourceTree = "<group>"; };
@@ -149,6 +154,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B5987B61656ED71005FFCCE /* SystemConfiguration.framework in Frameworks */,
 				4B5987AB16565556005FFCCE /* iAd.framework in Frameworks */,
 				4B09D89F1632F56900A0A477 /* UIKit.framework in Frameworks */,
 				4B09D8A11632F56900A0A477 /* Foundation.framework in Frameworks */,
@@ -162,6 +168,7 @@
 		4B09D88F1632F56800A0A477 = {
 			isa = PBXGroup;
 			children = (
+				4B5987B51656ED70005FFCCE /* SystemConfiguration.framework */,
 				4B5987AA16565556005FFCCE /* iAd.framework */,
 				4BBD13C9165558F70003FCA1 /* grassicon57.png */,
 				4BBD13C7165558EF0003FCA1 /* grassicon114.png */,
@@ -195,6 +202,8 @@
 		4B09D8A41632F56900A0A477 /* Grass Roots */ = {
 			isa = PBXGroup;
 			children = (
+				4B5987B71656EE8A005FFCCE /* Reachability.h */,
+				4B5987B81656EE8B005FFCCE /* Reachability.m */,
 				4BC65360165011FF00049309 /* MBProgressHUD.h */,
 				4BC65361165011FF00049309 /* MBProgressHUD.m */,
 				4B40DB711637DF46008F264C /* League.h */,
@@ -388,6 +397,7 @@
 				4BC65362165011FF00049309 /* MBProgressHUD.m in Sources */,
 				4B50D3F816515C3A006A8A41 /* ServerManager.m in Sources */,
 				4B50D404165175E0006A8A41 /* CustomPlayerCell.m in Sources */,
+				4B5987B91656EE8C005FFCCE /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

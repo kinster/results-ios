@@ -10,8 +10,12 @@
 #import "LeaguesViewController.h"
 #import "LeagueTableViewController.h"
 #import "LeagueFixturesViewController.h"
+#import "ServerManager.h"
+#import "Reachability.h"
 
 @implementation AppDelegate
+
+@synthesize internetActive;
 
 - (void)customizeAppearance {
     // Create resizable images
@@ -34,22 +38,14 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
+
     // Override point for customization after application launch.
     [self customizeAppearance];
-
     UIViewController *leaguesViewController = [[LeaguesViewController alloc] init];
-//    UIViewController *leagueTableViewController = [[LeagueTableViewController alloc] init];
-//    UIViewController *leagueFixturesViewController = [[LeagueFixturesViewController alloc] init];
-//    
-//    NSArray *viewControllersArray = [[NSArray alloc] initWithObjects:leagueTableViewController, leagueFixturesViewController, nil];
-//
-//    self.tabBarController = [[UITabBarController alloc] init];
-//    [self.tabBarController setViewControllers:viewControllersArray];
-//    
-//    self.window.rootViewController = tabBarController;
-    
     [self.window addSubview:[leaguesViewController view]];
     [self.window makeKeyAndVisible];
+    [self customizeAppearance];
     return YES;
 }
 							
@@ -59,29 +55,53 @@
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
+- (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
+- (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
+- (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-//-(CGFloat) tableView:(UITableView *)tableViewheightForHeaderInSection:(NSInteger)section {
-//    return 189;
-//}
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    internetReach = [Reachability reachabilityForInternetConnection];
+	[internetReach startNotifier];
+    
+    NetworkStatus networkStatus = [internetReach currentReachabilityStatus];
+    [self checkNetworkStatus:networkStatus];
+
+}
+
+- (void)checkNetworkStatus:(NetworkStatus)networkStatus {
+    
+    switch (networkStatus) {
+        case ReachableViaWWAN: {
+            break;
+        }
+        case ReachableViaWiFi: {
+            break;
+        }
+        case NotReachable: {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+            break;
+        }
+    }
+}
+//Called by Reachability whenever status changes.
+- (void) reachabilityChanged: (NSNotification* )note {
+	Reachability* curReach = [note object];
+	NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
+	
+    NetworkStatus networkStatus = [curReach currentReachabilityStatus];
+    [self checkNetworkStatus:networkStatus];
+}
 
 @end

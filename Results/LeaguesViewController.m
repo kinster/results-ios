@@ -11,6 +11,7 @@
 #import "LeagueSeasonViewController.h"
 #import "MBProgressHUD.h"
 #import "ServerManager.h"
+#import "Reachability.h"
 
 @interface LeaguesViewController ()
 
@@ -23,8 +24,7 @@
 @synthesize leaguesList, searchBar, sections, leagueTablesView;
 
 - (void)loadNetworkExceptionAlert {
-    NSString *alertString = [NSString stringWithFormat:@"Network Connection Issue"];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertString message:@"" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
 }
 
@@ -46,7 +46,6 @@
         [self createTableSections:urlString AndServerName:serverName];        
     } @catch (NSException *exception) {
         NSLog(@"Exception: %@ %@", [exception name], [exception reason]);
-        [self loadNetworkExceptionAlert];
     }
 
     // Uncomment the following line to preserve selection between presentations.
@@ -100,28 +99,6 @@
 }
 
 -(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text {
-    
-    //    if (text.length == 0) {
-    //        NSLog(@"no text");
-    //        isFiltered = FALSE;
-    //        // The user clicked the [X] button or otherwise cleared the text.
-    //        [self.searchBar performSelector: @selector(resignFirstResponder)
-    //                        withObject: nil
-    //                        afterDelay: 0.1];
-    //    }
-    //    else {
-    //        isFiltered = TRUE;
-    //        filteredLeaguesList = [[NSMutableArray alloc] init];
-    //        for (League *league in leaguesList) {
-    //            NSRange nameRange = [league.name rangeOfString:text options:NSCaseInsensitiveSearch];
-    //            if (nameRange.location != NSNotFound) {
-    //                [filteredLeaguesList addObject:league];
-    //            }
-    //
-    //        }
-    //    }
-    //    NSLog(@"filteredLeagueList: %d", [filteredLeaguesList count]);
-    //    [self.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

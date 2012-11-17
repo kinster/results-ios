@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UITableViewDelegate>
+@class Reachability;
+
+@interface AppDelegate : UIResponder {
+    Reachability *internetReach;
+}
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic) BOOL internetActive;
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "ServerManager.h"
+#import "Reachability.h"
 
 @implementation ServerManager
 @synthesize serverName;
@@ -27,6 +28,7 @@
     }
     return self;
 }
+
 
 - (void)dealloc {
     // Should never be called, but just here for clarity really.
