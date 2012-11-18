@@ -7,6 +7,7 @@
 //
 
 #import "TeamFixturesViewController.h"
+#import "LeagueFixtureDetailsViewController.h"
 #import "League.h"
 #import "Season.h"
 #import "Division.h"
@@ -63,7 +64,7 @@
             NSString *location = [entry objectForKey:@"location"];
             NSString *competition = [entry objectForKey:@"competition"];
             NSString *statusNote = [entry objectForKey:@"status_note"];
-            NSString *fixtureId = [entry objectForKey:@"fixtureId"];
+            NSString *fixtureId = [entry objectForKey:@"fixture_id"];
             
             fixture = [[Fixture alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndAwayTeam:awayTeam AndLocation:location AndCompetition:competition AndStatusNote:statusNote AndFixtureId:fixtureId];
             
@@ -180,6 +181,24 @@
     cell.date.text = fixture.dateTime;
     
     return cell;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSLog(@"In prepareForSegue");
+    
+    NSIndexPath *indexPath = [self.teamFixturesTable indexPathForSelectedRow];
+    NSLog(@"%d", indexPath.row);
+    Fixture *fixture = [fixtureList objectAtIndex:indexPath.row];
+    LeagueFixtureDetailsViewController *destinationController = [segue destinationViewController];
+    
+    if ([[segue identifier] isEqualToString:@"ShowFixtureDetails"]) {
+        NSLog(@"Fixture location: %@", fixture.location);
+        NSLog(@"%@", segue.destinationViewController);
+        [destinationController setLeague:league];
+        [destinationController setSeason:season];
+        [destinationController setDivision:division];
+        [destinationController setFixture:fixture];
+    }
 }
 
 - (void)viewDidLayoutSubviews {

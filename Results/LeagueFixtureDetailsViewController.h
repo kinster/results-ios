@@ -12,7 +12,9 @@
 
 @class League, Season, Division, Team, Fixture;
 
-@interface LeagueFixtureDetailsViewController : UIViewController<ADBannerViewDelegate, MKMapViewDelegate>
+@interface LeagueFixtureDetailsViewController : UIViewController<ADBannerViewDelegate, MKMapViewDelegate> {
+    ADBannerView *bannerView;
+}
 @property (weak, nonatomic) League *league;
 @property (weak, nonatomic) Season *season;
 @property (weak, nonatomic) Division *division;
@@ -20,4 +22,7 @@
 @property (weak, nonatomic) Fixture *fixture;
 @property (weak, nonatomic) NSString *location;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+- (IBAction)navigate:(id)sender;
+@property (retain, nonatomic) MKMapItem *mapItem;
+@property (retain, nonatomic) IBOutlet ADBannerView *bannerView;
 @end

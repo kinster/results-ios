@@ -21,17 +21,15 @@
 
 #define METERS_PER_MILE 1609.344
 
-@implementation LeagueFixtureDetailsViewController {
-    ADBannerView *_bannerView;
-}
+@implementation LeagueFixtureDetailsViewController
 
-@synthesize league, season, division, team, fixture, mapView, location;
+@synthesize league, season, division, team, fixture, mapView, location, mapItem, bannerView;
 
 - (void)loadBanner {
-    _bannerView = [[ADBannerView alloc] init];
-    _bannerView.delegate = self;
-    
-    [self.view addSubview:_bannerView];
+    bannerView = [[ADBannerView alloc] init];
+    bannerView.delegate = self;
+
+    [self.view addSubview:bannerView];
 }
 
 - (void)loadNetworkExceptionAlert {
@@ -42,69 +40,74 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNavTitle];
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-    hud.labelText = @"Searching...";
-    [self.navigationController.view addSubview:hud];
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        [self loadBanner];
-        @try {
-            NSError *error;
-            
-            ServerManager *serverManager = [ServerManager sharedServerManager];
-            NSString *serverName = [serverManager serverName];
-            
-            NSString *fixtureUrlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/fixtures/%@.json", league.leagueId, season.seasonId, division.divisionId, fixture.fixtureId];
-            
-            NSLog(@"%@", fixtureUrlString);
-            
-            NSURL *fixtureUrl = [NSURL URLWithString:fixtureUrlString];
-            NSData *fixtureData = [NSData dataWithContentsOfURL:fixtureUrl];
-            
-            
-            NSArray *fixtureJsonData = [NSJSONSerialization JSONObjectWithData:fixtureData options:NSJSONReadingMutableContainers error:&error];
-            
-            location = [fixtureJsonData objectAtIndex:0];
-            
-            CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-            
-            [geocoder geocodeAddressString:location
-                completionHandler:^(NSArray *placemarks, NSError *error) {
     
-                if (error) {
-                    NSLog(@"Geocode failed with error: %@", error);
-                    return;
-                }
+    if ([fixture.location caseInsensitiveCompare:@"TBA"] == NSOrderedSame) {
+        NSLog(@"Fixture Details Location length: %d", fixture.location.length);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"No location found for this Fixture" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return;
+    } else {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        hud.labelText = @"Searching...";
+        [self.navigationController.view addSubview:hud];
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+    //        [self loadBanner];
+            @try {
+                NSError *error;
+                
+                ServerManager *serverManager = [ServerManager sharedServerManager];
+                NSString *serverName = [serverManager serverName];
+                
+                NSString *fixtureUrlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/fixtures/%@.json", league.leagueId, season.seasonId, division.divisionId, fixture.fixtureId];
+                
+                NSLog(@"Fixture url: %@", fixtureUrlString);
+                
+                NSURL *fixtureUrl = [NSURL URLWithString:fixtureUrlString];
+                NSData *fixtureData = [NSData dataWithContentsOfURL:fixtureUrl];
+                
+                
+                NSArray *fixtureJsonData = [NSJSONSerialization JSONObjectWithData:fixtureData options:NSJSONReadingMutableContainers error:&error];
+                
+                location = [fixtureJsonData objectAtIndex:0];
+                
+                CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+                
+                [geocoder geocodeAddressString:location
+                    completionHandler:^(NSArray *placemarks, NSError *error) {
+        
+                    if (error) {
+                        NSLog(@"Geocode failed with error: %@", error);
+                        return;
+                    }
 
-                NSLog(@"location %@:", [self location]);
+                    NSLog(@"location %@:", [self location]);
 
-                if (placemarks && placemarks.count > 0) {
-                    CLPlacemark *placemark = placemarks[0];
-                    CLLocation *newLocation = placemark.location;
-                    CLLocationCoordinate2D coords = newLocation.coordinate;
-                    NSLog(@"Location = %@, Latitude = %f, Longitude = %f", [self location],
-                        coords.latitude, coords.longitude);
-                    MKPlacemark *mkPlacemark = [[MKPlacemark alloc] initWithPlacemark:placemark];
+                    if (placemarks && placemarks.count > 0) {
+                        CLPlacemark *placemark = placemarks[0];
+                        CLLocation *newLocation = placemark.location;
+                        CLLocationCoordinate2D coords = newLocation.coordinate;
+                        NSLog(@"Location = %@, Latitude = %f, Longitude = %f", [self location],
+                            coords.latitude, coords.longitude);
+                        MKPlacemark *mkPlacemark = [[MKPlacemark alloc] initWithPlacemark:placemark];
 
-                    MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:mkPlacemark];
-                    
-//
-//                    [mapItem openInMapsWithLaunchOptions:nil];
-                    
 
-                    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(coords, 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
-                    [mapView setRegion:viewRegion animated:YES];
-                }
-            }];
-            // done
-        } @catch (NSException *exception) {
-            NSLog(@"Exception: %@ %@", [exception name], [exception reason]);
-            [self loadNetworkExceptionAlert];
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(coords, 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
+                        [mapView setRegion:viewRegion animated:YES];
+                        
+                        mapItem = [[MKMapItem alloc] initWithPlacemark:mkPlacemark];
+
+                    }
+                }];
+                // done
+            } @catch (NSException *exception) {
+                NSLog(@"Exception: %@ %@", [exception name], [exception reason]);
+                [self loadNetworkExceptionAlert];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+            });
         });
-    });
-
+    }
 }
 
 - (void)setNavTitle {
@@ -117,6 +120,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)navigate:(id)sender {
+    NSLog(@"navigate");
+    [mapItem openInMapsWithLaunchOptions:nil];
 }
 
 @end

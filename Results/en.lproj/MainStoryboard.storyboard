@@ -493,7 +493,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ssv-a9-tYG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3117" y="-1793"/>
+            <point key="canvasLocation" x="3705" y="-1361"/>
         </scene>
         <!--Team Fixtures View Controller - Team Fixtures-->
         <scene sceneID="6dN-Gy-9nX">
@@ -570,6 +570,7 @@
                                             <outlet property="awayTeam" destination="COU-sL-b6i" id="h5X-uX-s6z"/>
                                             <outlet property="date" destination="S6R-6Y-EqE" id="pzM-g2-rc6"/>
                                             <outlet property="homeTeam" destination="f9j-sw-Lpc" id="KIi-Fd-ODr"/>
+                                            <segue destination="vbr-tu-NID" kind="push" identifier="ShowFixtureDetails" id="BBh-dp-TyZ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -658,7 +659,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xzk-QI-Den" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3570" y="-2109"/>
+            <point key="canvasLocation" x="3662" y="-1989"/>
         </scene>
         <!--Team Details View Controller - Team Details-->
         <scene sceneID="Pz2-7r-XVW">
@@ -798,7 +799,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MEr-U9-2OR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4041" y="-2384"/>
+            <point key="canvasLocation" x="3921" y="-2480"/>
         </scene>
         <!--League Fixtures View Controller - League Fixtures-->
         <scene sceneID="qMR-t7-ybm">
@@ -984,7 +985,7 @@
             </objects>
             <point key="canvasLocation" x="2698" y="-2268"/>
         </scene>
-        <!--League Fixture Details View Controller - Fixture Details-->
+        <!--League Fixture Details View Controller - Fixture-->
         <scene sceneID="Bz0-SB-Bra">
             <objects>
                 <viewController id="vbr-tu-NID" customClass="LeagueFixtureDetailsViewController" sceneMemberID="viewController">
@@ -993,27 +994,53 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nEb-er-alD">
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="318" type="user" id="YAD-zA-K58"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="vbr-tu-NID" id="N1a-2V-dP6"/>
                                 </connections>
                             </mapView>
+                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="miN-SW-L3y">
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" type="user" id="V26-Hu-tqh"/>
+                                    <constraint firstAttribute="height" constant="50" type="user" id="Xfn-bi-DBk"/>
+                                </constraints>
+                                <requiredContentSizeIdentifiers>
+                                    <string>ADBannerContentSizeLandscape</string>
+                                    <string>ADBannerContentSizePortrait</string>
+                                </requiredContentSizeIdentifiers>
+                                <connections>
+                                    <outlet property="delegate" destination="vbr-tu-NID" id="X61-TZ-21G"/>
+                                </connections>
+                            </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="nEb-er-alD" firstAttribute="bottom" secondItem="wPv-jS-XP5" secondAttribute="bottom" type="default" id="KNU-cI-VxX"/>
                             <constraint firstItem="nEb-er-alD" firstAttribute="trailing" secondItem="wPv-jS-XP5" secondAttribute="trailing" type="default" id="OwY-26-jgD"/>
+                            <constraint firstItem="miN-SW-L3y" firstAttribute="leading" secondItem="wPv-jS-XP5" secondAttribute="leading" type="default" id="hfb-NE-fOx"/>
+                            <constraint firstItem="nEb-er-alD" firstAttribute="top" secondItem="wPv-jS-XP5" secondAttribute="top" type="user" id="l4N-LT-A62"/>
                             <constraint firstItem="nEb-er-alD" firstAttribute="leading" secondItem="wPv-jS-XP5" secondAttribute="leading" type="default" id="mF3-Tk-Zf9"/>
-                            <constraint firstItem="nEb-er-alD" firstAttribute="top" secondItem="wPv-jS-XP5" secondAttribute="top" type="default" id="not-Y0-i8y"/>
+                            <constraint firstItem="miN-SW-L3y" firstAttribute="top" secondItem="nEb-er-alD" secondAttribute="bottom" constant="-1" type="user" id="ofQ-e4-ylt"/>
+                            <constraint firstItem="miN-SW-L3y" firstAttribute="bottom" secondItem="wPv-jS-XP5" secondAttribute="bottom" type="default" id="wdm-5q-zEv"/>
+                            <constraint firstItem="miN-SW-L3y" firstAttribute="trailing" secondItem="wPv-jS-XP5" secondAttribute="trailing" type="default" id="y7o-02-MBd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Fixture Details" id="26b-qH-Vsx"/>
+                    <navigationItem key="navigationItem" title="Fixture" id="26b-qH-Vsx">
+                        <barButtonItem key="rightBarButtonItem" title="Navigate" id="bSZ-hC-FY8">
+                            <connections>
+                                <action selector="navigate:" destination="vbr-tu-NID" id="XQc-au-Htt"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="bannerView" destination="miN-SW-L3y" id="BQb-na-Kz2"/>
                         <outlet property="mapView" destination="nEb-er-alD" id="WUH-Oi-Q9i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nzf-bs-MVl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2568" y="-1893"/>
+            <point key="canvasLocation" x="2958" y="-1684"/>
         </scene>
         <!--Leagues View Controller - Leagues-->
         <scene sceneID="8H3-Jq-wN0">
@@ -1408,137 +1435,15 @@
         <image name="179-notepad.png" width="22" height="28"/>
         <image name="83-calendar.png" width="23" height="25"/>
     </resources>
-    <classes>
-        <class className="CustomFixtureCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomFixtureCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="awayTeam" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="date" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="homeTeam" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="CustomPlayerCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomPlayerCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="CustomResultCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomResultCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="awayTeam" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="date" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="homeTeam" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="score" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="CustomTableCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomTableCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="draws" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="goalDiff" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="goalsAgainst" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="goalsFor" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="losses" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="played" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="points" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="position" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="team" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="wins" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="LeagueDivisionsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueDivisionsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="divisionsTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="LeagueFixtureDetailsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueFixtureDetailsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-            </relationships>
-        </class>
-        <class className="LeagueFixturesViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueFixturesViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="fixturesTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="LeagueResultsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueResultsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="resultsTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="LeagueSeasonViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueSeasonViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="seasonsTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="LeagueTableViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="leagueTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="LeaguesViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeaguesViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="leagueTablesView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="TeamDetailsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeamDetailsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="badge" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="playersTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="TeamFixturesViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeamFixturesViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="teamFixturesTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="TeamResultsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeamResultsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="teamResultsTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="nlu-6i-a2D"/>
         <segue reference="Gme-cR-3kr"/>
         <segue reference="guz-h0-rin"/>
+        <segue reference="nlu-6i-a2D"/>
+        <segue reference="BBh-dp-TyZ"/>
     </inferredMetricsTieBreakers>
 </document>
