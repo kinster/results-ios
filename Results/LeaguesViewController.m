@@ -121,6 +121,28 @@
     [self.searchBar setShowsCancelButton:NO animated:YES];
     [self.searchBar resignFirstResponder];
     
+    NSCharacterSet *alphanumericSet = [NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_ &"];
+
+    alphanumericSet = [alphanumericSet invertedSet];
+
+    NSRange range = [theSearchBar.text rangeOfCharacterFromSet:alphanumericSet];
+    if (range.location != NSNotFound) {
+        NSLog(@"the string contains illegal characters");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Must contain valid characters" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return;
+    }
+
+    if ([theSearchBar.text length] < 3) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Type in first 3 letters of League name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return;
+    }
+    
+    NSRange whiteSpaceRange = [theSearchBar.text rangeOfCharacterFromSet:[NSCharacterSet whitespaceCharacterSet]];
+    if (whiteSpaceRange.location != NSNotFound) {
+    }
+
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Searching...";
     
@@ -131,16 +153,6 @@
         @try {
             ServerManager *serverManager = [ServerManager sharedServerManager];
             NSString *serverName = [serverManager serverName];
-            
-            NSRange whiteSpaceRange = [theSearchBar.text rangeOfCharacterFromSet:[NSCharacterSet whitespaceCharacterSet]];
-            if (whiteSpaceRange.location != NSNotFound) {
-            }
-
-            if ([theSearchBar.text length] == 0) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Type is first 3 letters of League name ." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-                [alert show];
-                return;
-            }
             NSString *escapedText = [theSearchBar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/search/%@.json", escapedText];
             NSLog(@"%@", urlString);
