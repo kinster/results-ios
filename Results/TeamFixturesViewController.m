@@ -25,7 +25,7 @@
     ADBannerView *_bannerView;
 }
 
-@synthesize fixtureList, league, season, division, team, leagueBadge, nameLabel, subtitle,teamFixturesTable;
+@synthesize fixtureList, league, season, division, team, leagueBadge, nameLabel, subtitle, teamFixturesTable;
 
 - (void)loadBanner {
     _bannerView = [[ADBannerView alloc] init];

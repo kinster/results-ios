@@ -37,22 +37,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    @try {
-        [self loadBanner];
-        ServerManager *serverManager = [ServerManager sharedServerManager];
-        NSString *serverName = [serverManager serverName];
-        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues.json"];
-        NSLog(@"%@", urlString);
-        [self createTableSections:urlString AndServerName:serverName];        
-    } @catch (NSException *exception) {
-        NSLog(@"Exception: %@ %@", [exception name], [exception reason]);
-    }
+    [self loadBanner];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    NSLog(@"LeaguesViewController viewWillAppear");
 }
 
 -(void)createTableSections:(NSString *)urlString AndServerName:(NSString *)serverName {
@@ -136,7 +131,18 @@
         @try {
             ServerManager *serverManager = [ServerManager sharedServerManager];
             NSString *serverName = [serverManager serverName];
-            NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/search/%@.json", theSearchBar.text];
+            
+            NSRange whiteSpaceRange = [theSearchBar.text rangeOfCharacterFromSet:[NSCharacterSet whitespaceCharacterSet]];
+            if (whiteSpaceRange.location != NSNotFound) {
+            }
+
+            if ([theSearchBar.text length] == 0) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Type is first 3 letters of League name ." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                [alert show];
+                return;
+            }
+            NSString *escapedText = [theSearchBar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/search/%@.json", escapedText];
             NSLog(@"%@", urlString);
             [self createTableSections:urlString AndServerName:serverName];
         } @catch (NSException *exception) {
@@ -243,6 +249,29 @@
 
 - (void)bannerViewActionDidFinish:(ADBannerView *)banner {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionDidFinish" object:self];
+}
+
+- (IBAction)getTop500:(id)sender {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    hud.labelText = @"Searching...";
+    
+    [self.navigationController.view addSubview:hud];
+    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        @try {
+            ServerManager *serverManager = [ServerManager sharedServerManager];
+            NSString *serverName = [serverManager serverName];
+            NSString *urlString = [serverName stringByAppendingFormat:@"/leagues.json"];
+            [self createTableSections:urlString AndServerName:serverName];
+        } @catch (NSException *exception) {
+            NSLog(@"Exception%@ %@", [exception name], [exception reason]);
+            [self loadNetworkExceptionAlert];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+            [self.leagueTablesView reloadData];
+        });
+    });
 }
 
 /*

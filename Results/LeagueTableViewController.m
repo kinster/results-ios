@@ -17,6 +17,7 @@
 #import "Division.h"
 #import "ServerManager.h"
 #import "MBProgressHUD.h"
+#import "LeaguesViewController.h"
 
 @interface LeagueTableViewController ()
 
@@ -87,7 +88,7 @@
     NSLog(@"LeagueTableViewController");
 
     [self setNavTitle];
-
+    
     nameLabel.text = [NSString stringWithFormat:@"%@", league.name];
     subtitle.text = [NSString stringWithFormat:@"%@ %@", season.name, division.name];
     leagueBadge.image = league.image;
@@ -189,18 +190,19 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSLog(@"In prepareForSegue");
-    
-    NSIndexPath *indexPath = [self.leagueTable indexPathForSelectedRow];
-    Team *team = [teamList objectAtIndex:indexPath.row];
-    UITabBarController *tabBarViewController = [segue destinationViewController];
-
-    NSLog(@"Team: %@ - %d %d", team.name, indexPath.row, teamList.count);
     if ([[segue identifier] isEqualToString:@"ShowTeamDetails"]) {
+        NSIndexPath *indexPath = [self.leagueTable indexPathForSelectedRow];
+        Team *team = [teamList objectAtIndex:indexPath.row];
+        UITabBarController *tabBarViewController = [segue destinationViewController];
+        
+        NSLog(@"Team: %@ - %d %d", team.name, indexPath.row, teamList.count);
         TeamDetailsViewController *teamDetailsViewController = [tabBarViewController.viewControllers objectAtIndex:0];
         [teamDetailsViewController setLeague:league];
         [teamDetailsViewController setSeason:season];
         [teamDetailsViewController setDivision:division];
+
         @try {
+            
             NSError *error;
             ServerManager *serverManager = [ServerManager sharedServerManager];
             NSString *serverName = [serverManager serverName];
@@ -213,22 +215,22 @@
             NSString *image = [jsonData[0] objectForKey:@"image_url"];
             team.badge = image;
             NSLog(@"image: %@", image);
-            
-            [teamDetailsViewController setTeam:team];
-            TeamFixturesViewController *teamFixturesController = [tabBarViewController.viewControllers objectAtIndex:1];
-            [teamFixturesController setLeague:league];
-            [teamFixturesController setSeason:season];
-            [teamFixturesController setDivision:division];
-            [teamFixturesController setTeam:team];
-            TeamResultsViewController *teamResultsController = [tabBarViewController.viewControllers objectAtIndex:2];
-            [teamResultsController setLeague:league];
-            [teamResultsController setSeason:season];
-            [teamResultsController setDivision:division];
-            [teamResultsController setTeam:team];
         } @catch (NSException *exception) {
             NSLog(@"Exception: %@ %@", [exception name], [exception reason]);
             [self loadNetworkExceptionAlert];
         }
+        [teamDetailsViewController setTeam:team];
+        TeamFixturesViewController *teamFixturesController = [tabBarViewController.viewControllers objectAtIndex:1];
+        [teamFixturesController setLeague:league];
+        [teamFixturesController setSeason:season];
+        [teamFixturesController setDivision:division];
+        [teamFixturesController setTeam:team];
+        TeamResultsViewController *teamResultsController = [tabBarViewController.viewControllers objectAtIndex:2];
+        [teamResultsController setLeague:league];
+        [teamResultsController setSeason:season];
+        [teamResultsController setDivision:division];
+        [teamResultsController setTeam:team];
+
     }
     NSLog(@"end of prepareForSegue");
 }

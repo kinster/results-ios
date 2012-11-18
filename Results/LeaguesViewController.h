@@ -15,4 +15,5 @@
 @property (retain, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (retain, nonatomic) NSDictionary *sections;
 @property (strong, nonatomic) IBOutlet UITableView *leagueTablesView;
+- (IBAction)getTop500:(id)sender;
 @end

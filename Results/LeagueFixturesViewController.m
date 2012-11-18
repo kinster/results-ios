@@ -180,10 +180,6 @@
     return cell;
 }
 
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
-    NSLog(@"%@", viewController.tabBarItem);
-}
-
 - (void)viewDidLayoutSubviews {
     [_bannerView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     

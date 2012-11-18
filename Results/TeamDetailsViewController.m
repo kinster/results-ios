@@ -43,6 +43,7 @@
     
     [self setNavTitle];
 
+    NSLog(@"team id: %@", team.teamId);
     name.text = [team name];
     
     subtitle.text = [NSString stringWithFormat:@"%@ %@", season.name, division.name];

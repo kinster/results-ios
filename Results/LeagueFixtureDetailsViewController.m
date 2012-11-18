@@ -37,14 +37,18 @@
     [alert show];
 }
 
+- (void)loadGeocodeExceptionAlert {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"No location found for this Fixture" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alert show];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNavTitle];
     
     if ([fixture.location caseInsensitiveCompare:@"TBA"] == NSOrderedSame) {
         NSLog(@"Fixture Details Location length: %d", fixture.location.length);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"No location found for this Fixture" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
+        [self loadGeocodeExceptionAlert];
         return;
     } else {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
@@ -77,6 +81,7 @@
         
                     if (error) {
                         NSLog(@"Geocode failed with error: %@", error);
+                        [self loadGeocodeExceptionAlert];
                         return;
                     }
 
