@@ -65,8 +65,9 @@
             NSString *location = [entry objectForKey:@"location"];
             NSString *competition = [entry objectForKey:@"competition"];
             NSString *statusNote = [entry objectForKey:@"status_note"];
-            
-            fixture = [[Fixture alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndAwayTeam:awayTeam AndLocation:location AndCompetition:competition AndStatusNote:statusNote];
+            NSString *fixtureId = [entry objectForKey:@"fixture_id"];
+            NSLog(@"location %@", location);
+            fixture = [[Fixture alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndAwayTeam:awayTeam AndLocation:location AndCompetition:competition AndStatusNote:statusNote AndFixtureId:fixtureId];
             
             [fixtureList addObject:fixture];
         }
@@ -270,17 +271,19 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSLog(@"In prepareForSegue");
     
-//    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//    NSLog(@"%d", indexPath.row);
-//    Fixture *fixture = [fixtureList objectAtIndex:indexPath.row];
-//    LeagueFixtureDetailsViewController *destinationController = [segue destinationViewController];
-//    
-//    if ([[segue identifier] isEqualToString:@"ShowLeagueFixtureDetails"]) {
-//        NSLog(@"Fixture id: %@", fixture.fixtureId);
-//        NSLog(@"%@", segue.destinationViewController);
-//
-//        [destinationController setFixtureId:fixture.fixtureId];
-//    }
+    NSIndexPath *indexPath = [self.fixturesTable indexPathForSelectedRow];
+    NSLog(@"%d", indexPath.row);
+    Fixture *fixture = [fixtureList objectAtIndex:indexPath.row];
+    LeagueFixtureDetailsViewController *destinationController = [segue destinationViewController];
+    
+    if ([[segue identifier] isEqualToString:@"ShowFixtureDetails"]) {
+        NSLog(@"Fixture location: %@", fixture.location);
+        NSLog(@"%@", segue.destinationViewController);
+        [destinationController setLeague:league];
+        [destinationController setSeason:season];
+        [destinationController setDivision:division];
+        [destinationController setFixture:fixture];
+    }
 }
 
 @end

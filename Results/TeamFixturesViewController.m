@@ -63,8 +63,9 @@
             NSString *location = [entry objectForKey:@"location"];
             NSString *competition = [entry objectForKey:@"competition"];
             NSString *statusNote = [entry objectForKey:@"status_note"];
+            NSString *fixtureId = [entry objectForKey:@"fixtureId"];
             
-            fixture = [[Fixture alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndAwayTeam:awayTeam AndLocation:location AndCompetition:competition AndStatusNote:statusNote];
+            fixture = [[Fixture alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndAwayTeam:awayTeam AndLocation:location AndCompetition:competition AndStatusNote:statusNote AndFixtureId:fixtureId];
             
             [fixtureList addObject:fixture];
         }

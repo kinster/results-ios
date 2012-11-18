@@ -41,6 +41,8 @@
 		4B7AF2E316396AF300D092D4 /* TeamDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7AF2E216396AF300D092D4 /* TeamDetailsViewController.m */; };
 		4B84517E164B0E54002EB85F /* Season.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B84517D164B0E54002EB85F /* Season.m */; };
 		4B845182164B0F11002EB85F /* LeagueSeasonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B845181164B0F11002EB85F /* LeagueSeasonViewController.m */; };
+		4B91C2241658017500C5DFB5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B91C2231658017400C5DFB5 /* MapKit.framework */; };
+		4B91C227165859F600C5DFB5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B91C226165859F600C5DFB5 /* CoreLocation.framework */; };
 		4BA8EA79164B1A3500785401 /* LeagueDivisionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA8EA78164B1A3500785401 /* LeagueDivisionsViewController.m */; };
 		4BB2DFD7164ED093000650A0 /* TeamResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB2DFD6164ED093000650A0 /* TeamResultsViewController.m */; };
 		4BBD13C8165558EF0003FCA1 /* grassicon114.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BBD13C7165558EF0003FCA1 /* grassicon114.png */; };
@@ -119,6 +121,8 @@
 		4B84517D164B0E54002EB85F /* Season.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Season.m; sourceTree = "<group>"; };
 		4B845180164B0F11002EB85F /* LeagueSeasonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeagueSeasonViewController.h; sourceTree = "<group>"; };
 		4B845181164B0F11002EB85F /* LeagueSeasonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeagueSeasonViewController.m; sourceTree = "<group>"; };
+		4B91C2231658017400C5DFB5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		4B91C226165859F600C5DFB5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		4BA8EA77164B1A3500785401 /* LeagueDivisionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeagueDivisionsViewController.h; sourceTree = "<group>"; };
 		4BA8EA78164B1A3500785401 /* LeagueDivisionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeagueDivisionsViewController.m; sourceTree = "<group>"; };
 		4BB2DFD5164ED093000650A0 /* TeamResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamResultsViewController.h; sourceTree = "<group>"; };
@@ -154,6 +158,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B91C227165859F600C5DFB5 /* CoreLocation.framework in Frameworks */,
+				4B91C2241658017500C5DFB5 /* MapKit.framework in Frameworks */,
 				4B5987B61656ED71005FFCCE /* SystemConfiguration.framework in Frameworks */,
 				4B5987AB16565556005FFCCE /* iAd.framework in Frameworks */,
 				4B09D89F1632F56900A0A477 /* UIKit.framework in Frameworks */,
@@ -168,6 +174,8 @@
 		4B09D88F1632F56800A0A477 = {
 			isa = PBXGroup;
 			children = (
+				4B91C226165859F600C5DFB5 /* CoreLocation.framework */,
+				4B91C2231658017400C5DFB5 /* MapKit.framework */,
 				4B5987B51656ED70005FFCCE /* SystemConfiguration.framework */,
 				4B5987AA16565556005FFCCE /* iAd.framework */,
 				4BBD13C9165558F70003FCA1 /* grassicon57.png */,

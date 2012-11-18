@@ -7,13 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <iAd/iAd.h>
+#import <MapKit/MapKit.h>
 
-@interface LeagueFixtureDetailsViewController : UIViewController
-@property (weak, nonatomic) NSString *fixtureId;
-@property (weak, nonatomic) IBOutlet UILabel *dateTime;
-@property (weak, nonatomic) IBOutlet UILabel *location;
-@property (weak, nonatomic) IBOutlet UIImageView *homeBadge;
-@property (weak, nonatomic) IBOutlet UILabel *homeTeam;
-@property (weak, nonatomic) IBOutlet UILabel *awayTeam;
-@property (weak, nonatomic) IBOutlet UIImageView *awayBadge;
+@class League, Season, Division, Team, Fixture;
+
+@interface LeagueFixtureDetailsViewController : UIViewController<ADBannerViewDelegate, MKMapViewDelegate>
+@property (weak, nonatomic) League *league;
+@property (weak, nonatomic) Season *season;
+@property (weak, nonatomic) Division *division;
+@property (weak, nonatomic) Team *team;
+@property (weak, nonatomic) Fixture *fixture;
+@property (weak, nonatomic) NSString *location;
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @end

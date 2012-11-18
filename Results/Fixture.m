@@ -10,7 +10,7 @@
 
 @implementation Fixture
 
-- (id)initWithType:(NSString *)type AndDateTime:(NSString *)dateTime AndHomeTeam:(NSString *)homeTeam AndAwayTeam:(NSString *)awayTeam AndLocation:(NSString *)location AndCompetition:(NSString *)competition AndStatusNote:(NSString *)statusNote {
+- (id)initWithType:(NSString *)type AndDateTime:(NSString *)dateTime AndHomeTeam:(NSString *)homeTeam AndAwayTeam:(NSString *)awayTeam AndLocation:(NSString *)location AndCompetition:(NSString *)competition AndStatusNote:(NSString *)statusNote AndFixtureId:(NSString *)fixtureId {
     if (self = [super init]) {
         _type = type;
         _dateTime = dateTime;
@@ -19,6 +19,7 @@
         _location = location;
         _competition = competition;
         _statusNote = statusNote;
+        _fixtureId = fixtureId;
     }
     return self;
 }
