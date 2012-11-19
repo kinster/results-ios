@@ -487,6 +487,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Results/Results-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					MYDEBUG,
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Results/Results-Info.plist";
