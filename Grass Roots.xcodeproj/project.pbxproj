@@ -440,7 +440,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kinman Li (EGVK8S4UQX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kinman Li (EGVK8S4UQX)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -455,6 +456,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "E4929FEA-9032-48FC-8C80-E62EED9EAD39";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E4929FEA-9032-48FC-8C80-E62EED9EAD39";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -468,7 +471,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kinman Li";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kinman Li";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -476,6 +480,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "9400D4BC-2C95-4F59-ABAA-A7D489C85C9C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9400D4BC-2C95-4F59-ABAA-A7D489C85C9C";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -484,15 +490,16 @@
 		4B09D8BF1632F56900A0A477 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kinman Li (EGVK8S4UQX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kinman Li (EGVK8S4UQX)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Results/Results-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					MYDEBUG,
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = "Results/Results-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "D442E1B9-74ED-46C1-BA74-029070C10457";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D442E1B9-74ED-46C1-BA74-029070C10457";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -500,11 +507,15 @@
 		4B09D8C01632F56900A0A477 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kinman Li";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kinman Li";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Results/Results-Prefix.pch";
 				INFOPLIST_FILE = "Results/Results-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "9400D4BC-2C95-4F59-ABAA-A7D489C85C9C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9400D4BC-2C95-4F59-ABAA-A7D489C85C9C";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
