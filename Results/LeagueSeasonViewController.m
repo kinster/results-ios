@@ -51,7 +51,7 @@
             ServerManager *serverManager = [ServerManager sharedServerManager];
             NSString *serverName = [serverManager serverName];
             NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons.json", league.leagueId];
-            NSLog(@"%@", urlString);
+            DLog(@"%@", urlString);
             
             NSURL *url = [NSURL URLWithString:urlString];
             NSData *data = [NSData dataWithContentsOfURL:url];
@@ -66,8 +66,8 @@
                 for (NSDictionary *entry in jsonData) {
                     NSString *theId = [entry objectForKey:@"id"];
                     NSString *theName = [entry objectForKey:@"name"];
-                    NSLog(@"id: %@", theId);
-                    NSLog(@"name: %@", theName);
+                    DLog(@"id: %@", theId);
+                    DLog(@"name: %@", theName);
                     
                     season = [[Season alloc] initWithIdAndName:theId AndName:theName];
                     [seasonsList addObject: season];
@@ -120,10 +120,10 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSLog(@"LeagueSeasonViewController prepareForSegue");
+    DLog(@"LeagueSeasonViewController prepareForSegue");
     
     NSIndexPath *indexPath = [self.seasonsTableView indexPathForSelectedRow];
-    NSLog(@"%d", indexPath.row);
+    DLog(@"%d", indexPath.row);
     Season *season = [seasonsList objectAtIndex:indexPath.row];
     
     if ([[segue identifier] isEqualToString:@"ShowDivisions"]) {

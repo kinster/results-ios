@@ -47,7 +47,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSLog(@"LeaguesViewController viewWillAppear");
+    DLog(@"LeaguesViewController viewWillAppear");
 }
 
 -(void)createTableSections:(NSString *)urlString AndServerName:(NSString *)serverName {
@@ -66,7 +66,7 @@
         for (NSDictionary *entry in jsonData) {
             NSString *theId = [entry objectForKey:@"id"];
             NSString *theName = [entry objectForKey:@"name"];
-            NSLog(@"%@ %@", theId, theName);
+            DLog(@"%@ %@", theId, theName);
             league = [[League alloc] initWithIdAndName:theId AndName:theName];
             [leaguesList addObject: league];
         }
@@ -117,7 +117,7 @@
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)theSearchBar {
-    NSLog(@"search button clicked");
+    DLog(@"search button clicked");
     [self.searchBar setShowsCancelButton:NO animated:YES];
     [self.searchBar resignFirstResponder];
     
@@ -127,7 +127,7 @@
 
     NSRange range = [theSearchBar.text rangeOfCharacterFromSet:alphanumericSet];
     if (range.location != NSNotFound) {
-        NSLog(@"the string contains illegal characters");
+        DLog(@"the string contains illegal characters");
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Must contain valid characters" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
         return;
@@ -155,7 +155,7 @@
             NSString *serverName = [serverManager serverName];
             NSString *escapedText = [theSearchBar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/search/%@.json", escapedText];
-            NSLog(@"%@", urlString);
+            DLog(@"%@", urlString);
             [self createTableSections:urlString AndServerName:serverName];
         } @catch (NSException *exception) {
             NSLog(@"Exception%@ %@", [exception name], [exception reason]);
@@ -205,14 +205,14 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSLog(@"LeaguesViewController prepareForSegue");
+    DLog(@"LeaguesViewController prepareForSegue");
     NSIndexPath *indexPath = [self.leagueTablesView indexPathForSelectedRow];
-    NSLog(@"LeaguesViewController indexPath: %d", indexPath.row);
+    DLog(@"LeaguesViewController indexPath: %d", indexPath.row);
     League *league = nil;
     if ([[segue identifier] isEqualToString:@"ShowSeasons"]) {
         LeagueSeasonViewController *viewController = [segue destinationViewController];
         league = [[sections valueForKey:[[[sections allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
-        NSLog(@"league: %@", league.leagueId);
+        DLog(@"league: %@", league.leagueId);
         [viewController setLeague:league];
     }
 }

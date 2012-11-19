@@ -44,7 +44,7 @@
         ServerManager *serverManager = [ServerManager sharedServerManager];
         NSString *serverName = [serverManager serverName];
         NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/results.json", league.leagueId, season.seasonId, division.divisionId];
-        NSLog(@"%@", urlString);
+        DLog(@"%@", urlString);
         
         NSURL *url = [NSURL URLWithString:urlString];
         NSData *data = [NSData dataWithContentsOfURL:url];
@@ -75,7 +75,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"LeagueResultsViewController");
+    DLog(@"LeagueResultsViewController");
     
     nameLabel.text = [NSString stringWithFormat:@"%@", league.name];
     subtitle.text = [NSString stringWithFormat:@"%@ %@", season.name, division.name];
@@ -111,7 +111,7 @@
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         
-        NSLog(@"refreshing");
+        DLog(@"refreshing");
         refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data..."];
         
         // custom refresh logic would be placed here...
@@ -127,7 +127,7 @@
             refresh.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
             
             [refresh endRefreshing];
-            NSLog(@"refreshed");
+            DLog(@"refreshed");
         });
     });
 }
@@ -137,7 +137,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSLog(@"table appeared");
+    DLog(@"table appeared");
     [self setNavTitle];
 }
 

@@ -49,7 +49,7 @@
         ServerManager *serverManager = [ServerManager sharedServerManager];
         NSString *serverName = [serverManager serverName];
         NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@.json", league.leagueId, season.seasonId, division.divisionId];
-        NSLog(@"%@", urlString);
+        DLog(@"%@", urlString);
         
         NSURL *url = [NSURL URLWithString:urlString];
         NSData *data = [NSData dataWithContentsOfURL:url];
@@ -85,14 +85,14 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    NSLog(@"LeagueTableViewController");
+    DLog(@"LeagueTableViewController");
 
     [self setNavTitle];
     
     nameLabel.text = [NSString stringWithFormat:@"%@", league.name];
     subtitle.text = [NSString stringWithFormat:@"%@ %@", season.name, division.name];
     leagueBadge.image = league.image;
-    NSLog(@"%@", self.nameLabel.text);
+    DLog(@"%@", self.nameLabel.text);
 
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Searching...";
@@ -117,7 +117,7 @@
 
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
     
-        NSLog(@"refreshing");
+        DLog(@"refreshing");
         refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data..."];
         
         // custom refresh logic would be placed here...
@@ -133,7 +133,7 @@
             refresh.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
 
             [refresh endRefreshing];
-            NSLog(@"refreshed");
+            DLog(@"refreshed");
         });
     });
 }
@@ -143,7 +143,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSLog(@"table appeared");
+    DLog(@"table appeared");
     [self setNavTitle];
 }
 
@@ -189,13 +189,13 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSLog(@"In prepareForSegue");
+    DLog(@"In prepareForSegue");
     if ([[segue identifier] isEqualToString:@"ShowTeamDetails"]) {
         NSIndexPath *indexPath = [self.leagueTable indexPathForSelectedRow];
         Team *team = [teamList objectAtIndex:indexPath.row];
         UITabBarController *tabBarViewController = [segue destinationViewController];
         
-        NSLog(@"Team: %@ - %d %d", team.name, indexPath.row, teamList.count);
+        DLog(@"Team: %@ - %d %d", team.name, indexPath.row, teamList.count);
         TeamDetailsViewController *teamDetailsViewController = [tabBarViewController.viewControllers objectAtIndex:0];
         [teamDetailsViewController setLeague:league];
         [teamDetailsViewController setSeason:season];
@@ -207,14 +207,14 @@
             ServerManager *serverManager = [ServerManager sharedServerManager];
             NSString *serverName = [serverManager serverName];
             NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@.json", league.leagueId, season.seasonId, division.divisionId, team.teamId];
-            NSLog(@"%@", urlString);
+            DLog(@"%@", urlString);
             NSURL *url = [NSURL URLWithString:urlString];
             NSData *data = [NSData dataWithContentsOfURL:url];
             NSArray *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-            NSLog(@"%@", jsonData);
+            DLog(@"%@", jsonData);
             NSString *image = [jsonData[0] objectForKey:@"image_url"];
             team.badge = image;
-            NSLog(@"image: %@", image);
+            DLog(@"image: %@", image);
         } @catch (NSException *exception) {
             NSLog(@"Exception: %@ %@", [exception name], [exception reason]);
             [self loadNetworkExceptionAlert];
@@ -232,7 +232,7 @@
         [teamResultsController setTeam:team];
 
     }
-    NSLog(@"end of prepareForSegue");
+    DLog(@"end of prepareForSegue");
 }
 
 - (void)viewDidLayoutSubviews {

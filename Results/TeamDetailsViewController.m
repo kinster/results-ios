@@ -43,7 +43,7 @@
     
     [self setNavTitle];
 
-    NSLog(@"team id: %@", team.teamId);
+    DLog(@"team id: %@", team.teamId);
     name.text = [team name];
     
     subtitle.text = [NSString stringWithFormat:@"%@ %@", season.name, division.name];
@@ -66,7 +66,7 @@
             NSString *serverName = [serverManager serverName];
             
             NSString *playersUrlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@/players.json", league.leagueId, season.seasonId, division.divisionId, team.teamId];
-            NSLog(@"%@", playersUrlString);
+            DLog(@"%@", playersUrlString);
             
             NSURL *playersUrl = [NSURL URLWithString:playersUrlString];
             NSData *playersData = [NSData dataWithContentsOfURL:playersUrl];
@@ -102,7 +102,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSLog(@"table appeared");
+    DLog(@"table appeared");
     [self setNavTitle];
 }
 

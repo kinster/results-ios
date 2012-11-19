@@ -46,7 +46,7 @@
         ServerManager *serverManager = [ServerManager sharedServerManager];
         NSString *serverName = [serverManager serverName];
         NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@/fixtures.json", league.leagueId, season.seasonId, division.divisionId, team.teamId];
-        NSLog(@"%@", urlString);
+        DLog(@"%@", urlString);
         
         NSURL *url = [NSURL URLWithString:urlString];
         NSData *data = [NSData dataWithContentsOfURL:url];
@@ -79,9 +79,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    NSLog(@"TeamFixturesViewController");
+    DLog(@"TeamFixturesViewController");
     
-    NSLog(@"Fixtures badge: %@", team.badge);
+    DLog(@"Fixtures badge: %@", team.badge);
     NSURL *imageUrl = [NSURL URLWithString:team.badge];
     NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
     
@@ -122,7 +122,7 @@
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         
-        NSLog(@"refreshing");
+        DLog(@"refreshing");
         refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data..."];
         
         // custom refresh logic would be placed here...
@@ -138,7 +138,7 @@
             refresh.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
             
             [refresh endRefreshing];
-            NSLog(@"refreshed");
+            DLog(@"refreshed");
         });
     });
 }
@@ -148,7 +148,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSLog(@"table appeared");
+    DLog(@"table appeared");
     [self setNavTitle];
 }
 
@@ -184,16 +184,16 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSLog(@"In prepareForSegue");
+    DLog(@"In prepareForSegue");
     
     NSIndexPath *indexPath = [self.teamFixturesTable indexPathForSelectedRow];
-    NSLog(@"%d", indexPath.row);
+    DLog(@"%d", indexPath.row);
     Fixture *fixture = [fixtureList objectAtIndex:indexPath.row];
     LeagueFixtureDetailsViewController *destinationController = [segue destinationViewController];
     
     if ([[segue identifier] isEqualToString:@"ShowFixtureDetails"]) {
-        NSLog(@"Fixture location: %@", fixture.location);
-        NSLog(@"%@", segue.destinationViewController);
+        DLog(@"Fixture location: %@", fixture.location);
+        DLog(@"%@", segue.destinationViewController);
         [destinationController setLeague:league];
         [destinationController setSeason:season];
         [destinationController setDivision:division];

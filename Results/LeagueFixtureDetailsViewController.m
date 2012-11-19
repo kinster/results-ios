@@ -47,7 +47,7 @@
     [self setNavTitle];
     
     if ([fixture.location caseInsensitiveCompare:@"TBA"] == NSOrderedSame) {
-        NSLog(@"Fixture Details Location length: %d", fixture.location.length);
+        DLog(@"Fixture Details Location length: %d", fixture.location.length);
         [self loadGeocodeExceptionAlert];
         return;
     } else {
@@ -64,7 +64,7 @@
                 
                 NSString *fixtureUrlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/fixtures/%@.json", league.leagueId, season.seasonId, division.divisionId, fixture.fixtureId];
                 
-                NSLog(@"Fixture url: %@", fixtureUrlString);
+                DLog(@"Fixture url: %@", fixtureUrlString);
                 
                 NSURL *fixtureUrl = [NSURL URLWithString:fixtureUrlString];
                 NSData *fixtureData = [NSData dataWithContentsOfURL:fixtureUrl];
@@ -85,13 +85,13 @@
                         return;
                     }
 
-                    NSLog(@"location %@:", [self location]);
+                    DLog(@"location %@:", [self location]);
 
                     if (placemarks && placemarks.count > 0) {
                         CLPlacemark *placemark = placemarks[0];
                         CLLocation *newLocation = placemark.location;
                         CLLocationCoordinate2D coords = newLocation.coordinate;
-                        NSLog(@"Location = %@, Latitude = %f, Longitude = %f", [self location],
+                        DLog(@"Location = %@, Latitude = %f, Longitude = %f", [self location],
                             coords.latitude, coords.longitude);
                         MKPlacemark *mkPlacemark = [[MKPlacemark alloc] initWithPlacemark:placemark];
 
@@ -147,7 +147,7 @@
 }
 
 - (IBAction)navigate:(id)sender {
-    NSLog(@"navigate");
+    DLog(@"navigate");
     [mapItem openInMapsWithLaunchOptions:nil];
 }
 

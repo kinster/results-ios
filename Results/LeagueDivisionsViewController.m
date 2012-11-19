@@ -36,7 +36,7 @@
 -(UIImage *)getLeagueImage:(NSString *)serverName AndLeagueId:(NSString *)leagueId {
     NSError *error;
     NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@.json", leagueId];
-    NSLog(@"%@", urlString);
+    DLog(@"%@", urlString);
     
     NSURL *url = [NSURL URLWithString:urlString];
     NSData *data = [NSData dataWithContentsOfURL:url];
@@ -77,7 +77,7 @@
             league.image = image;
             
             NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@.json", league.leagueId, season.seasonId];
-            NSLog(@"%@", urlString);
+            DLog(@"%@", urlString);
             
             NSURL *url = [NSURL URLWithString:urlString];
             NSData *data = [NSData dataWithContentsOfURL:url];
@@ -143,30 +143,30 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSLog(@"LeagueDivisionsViewController prepareForSegue");
+    DLog(@"LeagueDivisionsViewController prepareForSegue");
     
     NSIndexPath *indexPath = [self.divisionsTableView indexPathForSelectedRow];
-    NSLog(@"%d", indexPath.row);
+    DLog(@"%d", indexPath.row);
     Division *division = [divisionsList objectAtIndex:indexPath.row];
     UITabBarController *tabBarController = [segue destinationViewController];
-    NSLog(@"controllers: %d", [tabBarController.viewControllers count]);
+    DLog(@"controllers: %d", [tabBarController.viewControllers count]);
     LeagueTableViewController *viewController0 = [tabBarController.viewControllers objectAtIndex:0];
-    NSLog(@"controller 0: %@", viewController0);
+    DLog(@"controller 0: %@", viewController0);
     [viewController0 setLeague:league];
     [viewController0 setSeason:season];
     [viewController0 setDivision:division];
-    NSLog(@"ShowFixtures");
+    DLog(@"ShowFixtures");
     LeagueFixturesViewController *viewController1 = [tabBarController.viewControllers objectAtIndex:1];
-    NSLog(@"controller 1: %@", viewController1);
+    DLog(@"controller 1: %@", viewController1);
     [viewController1 setLeague:league];
     [viewController1 setSeason:season];
     [viewController1 setDivision:division];
     LeagueResultsViewController *viewController2 = [tabBarController.viewControllers objectAtIndex:2];
-    NSLog(@"controller 2: %@", viewController2);
+    DLog(@"controller 2: %@", viewController2);
     [viewController2 setLeague:league];
     [viewController2 setSeason:season];
     [viewController2 setDivision:division];
-    NSLog(@"end");
+    DLog(@"end");
 }
 
 - (void)viewDidLayoutSubviews {
