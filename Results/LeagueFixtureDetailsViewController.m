@@ -95,12 +95,16 @@
                             coords.latitude, coords.longitude);
                         MKPlacemark *mkPlacemark = [[MKPlacemark alloc] initWithPlacemark:placemark];
 
-
                         MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(coords, 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
                         [mapView setRegion:viewRegion animated:YES];
+                        [mapView addAnnotation:mkPlacemark];
                         
-                        mapItem = [[MKMapItem alloc] initWithPlacemark:mkPlacemark];
+                        MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+                        annotation.coordinate = coords;
+                        [mapView addAnnotation:annotation];
 
+
+                        mapItem = [[MKMapItem alloc] initWithPlacemark:mkPlacemark];
                     }
                 }];
                 // done
@@ -113,6 +117,21 @@
             });
         });
     }
+}
+
+- (MKAnnotationView *) mapView:(MKMapView *)aMapView viewForAnnotation:(id <MKAnnotation>)annotation {
+    NSString *title = annotation.title;
+    MKPinAnnotationView *pinView=(MKPinAnnotationView *)[aMapView dequeueReusableAnnotationViewWithIdentifier:title];
+    
+    if (pinView == nil) {
+        pinView=[[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:title];
+    }
+    pinView.canShowCallout=YES;
+    pinView.animatesDrop=YES;
+    
+    
+    return pinView;
+
 }
 
 - (void)setNavTitle {
