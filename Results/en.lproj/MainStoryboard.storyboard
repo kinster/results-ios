@@ -9,7 +9,7 @@
             <objects>
                 <viewController title="League Table" id="2" customClass="LeagueTableViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TbS-ft-E4k">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ep2-k7-Dq4" userLabel="Table Bar">
@@ -1234,7 +1234,7 @@
                 <tabBarController id="kmb-uQ-a1F" userLabel="Tab Bar Controller - Front Screen" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="ZPL-y7-JZO">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="dnp-nJ-OnM">
+                        <barButtonItem key="rightBarButtonItem" title="Leagues" id="dnp-nJ-OnM">
                             <connections>
                                 <segue destination="8d3-vd-Jzl" kind="push" identifier="GoBackToLeagues" id="tYH-qn-cIh"/>
                             </connections>
@@ -1569,10 +1569,10 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Gme-cR-3kr"/>
-        <segue reference="vfM-is-vMH"/>
-        <segue reference="w7Y-6N-5L6"/>
-        <segue reference="guz-h0-rin"/>
+        <segue reference="tYH-qn-cIh"/>
         <segue reference="nlu-6i-a2D"/>
+        <segue reference="guz-h0-rin"/>
+        <segue reference="Gme-cR-3kr"/>
+        <segue reference="w7Y-6N-5L6"/>
     </inferredMetricsTieBreakers>
 </document>
