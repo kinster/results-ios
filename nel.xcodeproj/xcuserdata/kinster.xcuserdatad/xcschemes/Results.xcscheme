@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4B09D8991632F56900A0A477"
-               BuildableName = "Grass Roots.app"
-               BlueprintName = "Grass Roots"
-               ReferencedContainer = "container:Grass Roots.xcodeproj">
+               BuildableName = "NELFC.app"
+               BlueprintName = "nel"
+               ReferencedContainer = "container:nel.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4B09D8991632F56900A0A477"
-            BuildableName = "Grass Roots.app"
-            BlueprintName = "Grass Roots"
-            ReferencedContainer = "container:Grass Roots.xcodeproj">
+            BuildableName = "NELFC.app"
+            BlueprintName = "nel"
+            ReferencedContainer = "container:nel.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -52,9 +52,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4B09D8991632F56900A0A477"
-            BuildableName = "Grass Roots.app"
-            BlueprintName = "Grass Roots"
-            ReferencedContainer = "container:Grass Roots.xcodeproj">
+            BuildableName = "NELFC.app"
+            BlueprintName = "nel"
+            ReferencedContainer = "container:nel.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -70,9 +70,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4B09D8991632F56900A0A477"
-            BuildableName = "Grass Roots.app"
-            BlueprintName = "Grass Roots"
-            ReferencedContainer = "container:Grass Roots.xcodeproj">
+            BuildableName = "NELFC.app"
+            BlueprintName = "nel"
+            ReferencedContainer = "container:nel.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

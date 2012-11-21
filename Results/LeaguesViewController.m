@@ -21,7 +21,7 @@
     ADBannerView *_bannerView;
 }
 
-@synthesize leaguesList, searchBar, sections, leagueTablesView;
+@synthesize leaguesList, sections, leagueTablesView, club;
 
 - (void)loadNetworkExceptionAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -38,12 +38,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadBanner];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    ServerManager *serverManager = [ServerManager sharedServerManager];
+    NSString *serverName = [serverManager serverName];
+    NSString *clubId = [serverManager clubId];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    club = [[Club alloc] initWithIdAndName:clubId AndName:nil];
+    
+    NSString *urlString = [serverName stringByAppendingFormat:@"/clubs/%@/leagues.json", [club clubId]];
+    
+    DLog(@"%@", urlString);
+    [self createTableSections:urlString AndServerName:serverName];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -66,6 +70,7 @@
         for (NSDictionary *entry in jsonData) {
             NSString *theId = [entry objectForKey:@"id"];
             NSString *theName = [entry objectForKey:@"name"];
+            
             DLog(@"%@ %@", theId, theName);
             league = [[League alloc] initWithIdAndName:theId AndName:theName];
             [leaguesList addObject: league];
@@ -100,73 +105,8 @@
     [super viewDidAppear:animated];
 }
 
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    [self.searchBar setShowsCancelButton:YES animated:YES];
-}
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    self.searchBar.text=@"";
-    [self.searchBar setShowsCancelButton:NO animated:YES];
-    [self.searchBar resignFirstResponder];
-    
-    self.leagueTablesView.scrollEnabled = YES;
-}
-
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-}
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)theSearchBar {
-    DLog(@"search button clicked");
-    [self.searchBar setShowsCancelButton:NO animated:YES];
-    [self.searchBar resignFirstResponder];
-    
-    NSCharacterSet *alphanumericSet = [NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_ &"];
-
-    alphanumericSet = [alphanumericSet invertedSet];
-
-    NSRange range = [theSearchBar.text rangeOfCharacterFromSet:alphanumericSet];
-    if (range.location != NSNotFound) {
-        DLog(@"the string contains illegal characters");
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Must contain valid characters" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-        return;
-    }
-
-    if ([theSearchBar.text length] < 3) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Type in first 3 letters of League name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-        return;
-    }
-    
-    NSRange whiteSpaceRange = [theSearchBar.text rangeOfCharacterFromSet:[NSCharacterSet whitespaceCharacterSet]];
-    if (whiteSpaceRange.location != NSNotFound) {
-    }
-
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-    hud.labelText = @"Searching...";
-    
-    [self.navigationController.view addSubview:hud];
-    
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        // Do something...
-        @try {
-            ServerManager *serverManager = [ServerManager sharedServerManager];
-            NSString *serverName = [serverManager serverName];
-            NSString *escapedText = [theSearchBar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/search/%@.json", escapedText];
-            DLog(@"%@", urlString);
-            [self createTableSections:urlString AndServerName:serverName];
-        } @catch (NSException *exception) {
-            NSLog(@"Exception%@ %@", [exception name], [exception reason]);
-            [self loadNetworkExceptionAlert];
-        }
-        // done
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-            [self.leagueTablesView reloadData];
-        });
-    });
 }
 
 - (void)didReceiveMemoryWarning {
@@ -214,6 +154,7 @@
         league = [[sections valueForKey:[[[sections allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
         DLog(@"league: %@", league.leagueId);
         [viewController setLeague:league];
+        [viewController setClub:club];
     }
 }
 
@@ -261,81 +202,6 @@
 
 - (void)bannerViewActionDidFinish:(ADBannerView *)banner {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionDidFinish" object:self];
-}
-
-- (IBAction)getTop500:(id)sender {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-    hud.labelText = @"Searching...";
-    
-    [self.navigationController.view addSubview:hud];
-    
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        @try {
-            ServerManager *serverManager = [ServerManager sharedServerManager];
-            NSString *serverName = [serverManager serverName];
-            NSString *urlString = [serverName stringByAppendingFormat:@"/leagues.json"];
-            [self createTableSections:urlString AndServerName:serverName];
-        } @catch (NSException *exception) {
-            NSLog(@"Exception%@ %@", [exception name], [exception reason]);
-            [self loadNetworkExceptionAlert];
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-            [self.leagueTablesView reloadData];
-        });
-    });
-}
-
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
 }
 
 @end

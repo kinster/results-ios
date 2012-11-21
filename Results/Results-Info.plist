@@ -14,13 +14,13 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>grassicon114.png</string>
-				<string>grassicon57.png</string>
+				<string>nel114.png</string>
+				<string>nel57.png</string>
 			</array>
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>com.footie.me.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>com.footie.me.nel</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -49,6 +49,8 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>jsonServer</key>
-	<string>http://footie.me</string>
+	<string>http://localhost:3000</string>
+	<key>clubId</key>
+	<string>1</string>
 </dict>
 </plist>

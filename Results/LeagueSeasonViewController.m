@@ -21,7 +21,7 @@
     ADBannerView *_bannerView;
 }
 
-@synthesize league, seasonsList, seasonsTableView;
+@synthesize league, seasonsList, seasonsTableView, club;
 
 - (void)loadBanner {
     _bannerView = [[ADBannerView alloc] init];
@@ -50,7 +50,7 @@
             
             ServerManager *serverManager = [ServerManager sharedServerManager];
             NSString *serverName = [serverManager serverName];
-            NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons.json", league.leagueId];
+            NSString *urlString = [serverName stringByAppendingFormat:@"/clubs/%@/leagues/%@.json", club.clubId, league.leagueId];
             DLog(@"%@", urlString);
             
             NSURL *url = [NSURL URLWithString:urlString];
@@ -130,6 +130,7 @@
         LeagueDivisionsViewController *viewController = [segue destinationViewController];
         [viewController setLeague:league];
         [viewController setSeason:season];
+        [viewController setClub:club];
     }
 }
 

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <iAd/iAd.h>
+#import "Club.h"
 
 @class League;
 
@@ -15,4 +16,5 @@
 @property (nonatomic, copy) NSMutableArray *seasonsList;
 @property (weak, nonatomic) League *league;
 @property (weak, nonatomic) IBOutlet UITableView *seasonsTableView;
+@property (weak, nonatomic) Club *club;
 @end

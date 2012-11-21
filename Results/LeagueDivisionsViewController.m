@@ -10,6 +10,7 @@
 #import "LeagueTableViewController.h"
 #import "LeagueFixturesViewController.h"
 #import "LeagueResultsViewController.h"
+#import "Club.h"
 #import "League.h"
 #import "Season.h"
 #import "Division.h"
@@ -24,7 +25,7 @@
     ADBannerView *_bannerView;
 }
 
-@synthesize divisionsList, league, season, divisionsTableView;
+@synthesize divisionsList, league, season, divisionsTableView, club;
 
 - (void)loadBanner {
     _bannerView = [[ADBannerView alloc] init];
@@ -76,7 +77,7 @@
             UIImage *image = [self getLeagueImage:serverName AndLeagueId:league.leagueId];
             league.image = image;
             
-            NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@.json", league.leagueId, season.seasonId];
+            NSString *urlString = [serverName stringByAppendingFormat:@"/clubs/%@/leagues/%@/seasons/%@.json", club.clubId, league.leagueId, season.seasonId];
             DLog(@"%@", urlString);
             
             NSURL *url = [NSURL URLWithString:urlString];
@@ -90,6 +91,7 @@
                 NSString *theId = [entry objectForKey:@"id"];
                 NSString *theName = [entry objectForKey:@"name"];
                 division = [[Division alloc] initWithIdAndName:theId AndName:theName];
+                NSLog(@"%@ %@ %@", [club clubId], [season seasonId], [division divisionId]);
                 
                 [divisionsList addObject: division];
             }

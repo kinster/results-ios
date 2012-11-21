@@ -10,7 +10,7 @@
 #import "Reachability.h"
 
 @implementation ServerManager
-@synthesize serverName;
+@synthesize serverName, clubId;
 
 + (id)sharedServerManager {
     static ServerManager *sharedServerManager = nil;
@@ -25,6 +25,7 @@
     if (self = [super init]) {
         NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
         serverName = [infoDict objectForKey:@"jsonServer"];
+        clubId = [infoDict objectForKey:@"clubId"];
     }
     return self;
 }

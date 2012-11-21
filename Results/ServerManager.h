@@ -10,5 +10,6 @@
 
 @interface ServerManager : NSObject
 @property (retain, nonatomic) NSString *serverName;
+@property (retain, nonatomic) NSString *clubId;
 +(id)sharedServerManager;
 @end
