@@ -129,12 +129,12 @@
 		4BB2DFD6164ED093000650A0 /* TeamResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamResultsViewController.m; sourceTree = "<group>"; };
 		4BBD13C7165558EF0003FCA1 /* grassicon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grassicon114.png; sourceTree = "<group>"; };
 		4BBD13C9165558F70003FCA1 /* grassicon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grassicon57.png; sourceTree = "<group>"; };
-		4BBD13CF165567E30003FCA1 /* menubar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menubar.png; path = "../../../downloads/ocean/sample-project/ocean/Resources/menubar.png"; sourceTree = "<group>"; };
-		4BBD13D0165567E30003FCA1 /* menubar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menubar@2x.png"; path = "../../../downloads/ocean/sample-project/ocean/Resources/menubar@2x.png"; sourceTree = "<group>"; };
-		4BBD13D71655811C0003FCA1 /* menubar-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menubar-button.png"; path = "../../../downloads/ocean/sample-project/ocean/Resources/menubar-button.png"; sourceTree = "<group>"; };
-		4BBD13D81655811C0003FCA1 /* menubar-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menubar-button@2x.png"; path = "../../../downloads/ocean/sample-project/ocean/Resources/menubar-button@2x.png"; sourceTree = "<group>"; };
-		4BBD13DB165581C70003FCA1 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back.png; path = "../../../downloads/ocean/sample-project/ocean/Resources/back.png"; sourceTree = "<group>"; };
-		4BBD13DC165581C70003FCA1 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "back@2x.png"; path = "../../../downloads/ocean/sample-project/ocean/Resources/back@2x.png"; sourceTree = "<group>"; };
+		4BBD13CF165567E30003FCA1 /* menubar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menubar.png; sourceTree = "<group>"; };
+		4BBD13D0165567E30003FCA1 /* menubar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menubar@2x.png"; sourceTree = "<group>"; };
+		4BBD13D71655811C0003FCA1 /* menubar-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menubar-button.png"; sourceTree = "<group>"; };
+		4BBD13D81655811C0003FCA1 /* menubar-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menubar-button@2x.png"; sourceTree = "<group>"; };
+		4BBD13DB165581C70003FCA1 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		4BBD13DC165581C70003FCA1 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		4BC65360165011FF00049309 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		4BC65361165011FF00049309 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		4BC86C1416442FC6007B51BE /* LeagueFixturesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeagueFixturesViewController.h; sourceTree = "<group>"; };
