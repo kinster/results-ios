@@ -50,10 +50,6 @@
     [self createTableSections:urlString AndServerName:serverName];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    DLog(@"LeaguesViewController viewWillAppear");
-}
-
 -(void)createTableSections:(NSString *)urlString AndServerName:(NSString *)serverName {
     NSError *error;
     
@@ -99,6 +95,17 @@
 }
 
 -(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text {
+}
+
+- (void)setNavTitle {
+    self.tabBarController.title = @"Leagues";
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    DLog(@"table appeared");
+    [self setNavTitle];
+    self.tabBarController.navigationItem.rightBarButtonItem = nil;
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {

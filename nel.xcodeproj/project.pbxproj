@@ -26,7 +26,6 @@
 		4B09D8C31632F62E00A0A477 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B09D8C21632F62E00A0A477 /* Player.m */; };
 		4B09D8C91632F65100A0A477 /* Club.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B09D8C71632F65100A0A477 /* Club.m */; };
 		4B09D8CF1633125500A0A477 /* garforthleague.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4B09D8CE1633125500A0A477 /* garforthleague.jpg */; };
-		4B09D8D61633495E00A0A477 /* ClubModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B09D8D41633495E00A0A477 /* ClubModel.xcdatamodeld */; };
 		4B0E1B4516471E340010CA22 /* CustomFixtureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B0E1B4416471E340010CA22 /* CustomFixtureCell.xib */; };
 		4B0E1B4916471EA20010CA22 /* CustomFixtureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E1B4816471EA20010CA22 /* CustomFixtureCell.m */; };
 		4B0E1B4B16473ACB0010CA22 /* CustomResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B0E1B4A16473ACB0010CA22 /* CustomResultCell.xib */; };
@@ -42,13 +41,20 @@
 		4B50D404165175E0006A8A41 /* CustomPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B50D403165175DE006A8A41 /* CustomPlayerCell.m */; };
 		4B570083164A9980004BCF9B /* LeaguesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B570082164A9980004BCF9B /* LeaguesViewController.m */; };
 		4B57008A164AA20A004BCF9B /* Division.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B570089164AA20A004BCF9B /* Division.m */; };
+		4B57857616603DEE0075A446 /* insertion_control.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4B57857516603DEE0075A446 /* insertion_control.jpg */; };
+		4B5785791660453B0075A446 /* deselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B5785771660453A0075A446 /* deselected.png */; };
+		4B57857A1660453B0075A446 /* selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B5785781660453B0075A446 /* selected.png */; };
 		4B5987AB16565556005FFCCE /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5987AA16565556005FFCCE /* iAd.framework */; };
 		4B5987B61656ED71005FFCCE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5987B51656ED70005FFCCE /* SystemConfiguration.framework */; };
 		4B5987B91656EE8C005FFCCE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5987B81656EE8B005FFCCE /* Reachability.m */; };
 		4B79E0E3164D6014009B8389 /* TeamFixturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B79E0E2164D6014009B8389 /* TeamFixturesViewController.m */; };
 		4B7AF2E316396AF300D092D4 /* TeamDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7AF2E216396AF300D092D4 /* TeamDetailsViewController.m */; };
+		4B806671165E3FB50092D057 /* Saved-Divisions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B806670165E3FB50092D057 /* Saved-Divisions.plist */; };
+		4B806674165E45310092D057 /* CustomDivisionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B806673165E45310092D057 /* CustomDivisionCell.m */; };
 		4B84517E164B0E54002EB85F /* Season.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B84517D164B0E54002EB85F /* Season.m */; };
 		4B845182164B0F11002EB85F /* LeagueSeasonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B845181164B0F11002EB85F /* LeagueSeasonViewController.m */; };
+		4B904FF9166133F9006B1E3B /* 180-stickynote.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B904FF8166133F9006B1E3B /* 180-stickynote.png */; };
+		4B904FFD16613E0A006B1E3B /* SavedDivisionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B904FFC16613E09006B1E3B /* SavedDivisionsViewController.m */; };
 		4B91C2241658017500C5DFB5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B91C2231658017400C5DFB5 /* MapKit.framework */; };
 		4B91C227165859F600C5DFB5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B91C226165859F600C5DFB5 /* CoreLocation.framework */; };
 		4BA8EA79164B1A3500785401 /* LeagueDivisionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA8EA78164B1A3500785401 /* LeagueDivisionsViewController.m */; };
@@ -90,7 +96,6 @@
 		4B09D8C61632F65000A0A477 /* Club.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Club.h; sourceTree = "<group>"; };
 		4B09D8C71632F65100A0A477 /* Club.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Club.m; sourceTree = "<group>"; };
 		4B09D8CE1633125500A0A477 /* garforthleague.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = garforthleague.jpg; sourceTree = "<group>"; };
-		4B09D8D51633495E00A0A477 /* ClubModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ClubModel.xcdatamodel; sourceTree = "<group>"; };
 		4B0E1B4416471E340010CA22 /* CustomFixtureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomFixtureCell.xib; sourceTree = "<group>"; };
 		4B0E1B4716471EA20010CA22 /* CustomFixtureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomFixtureCell.h; sourceTree = "<group>"; };
 		4B0E1B4816471EA20010CA22 /* CustomFixtureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomFixtureCell.m; sourceTree = "<group>"; };
@@ -115,6 +120,9 @@
 		4B570082164A9980004BCF9B /* LeaguesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaguesViewController.m; sourceTree = "<group>"; };
 		4B570088164AA20A004BCF9B /* Division.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Division.h; sourceTree = "<group>"; };
 		4B570089164AA20A004BCF9B /* Division.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Division.m; sourceTree = "<group>"; };
+		4B57857516603DEE0075A446 /* insertion_control.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = insertion_control.jpg; path = ../../../downloads/insertion_control.jpg; sourceTree = "<group>"; };
+		4B5785771660453A0075A446 /* deselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = deselected.png; path = ../../../Desktop/deselected.png; sourceTree = "<group>"; };
+		4B5785781660453B0075A446 /* selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = selected.png; path = ../../../Desktop/selected.png; sourceTree = "<group>"; };
 		4B5987AA16565556005FFCCE /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		4B5987B51656ED70005FFCCE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4B5987B71656EE8A005FFCCE /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../../../downloads/Reachability/Classes/Reachability.h; sourceTree = "<group>"; };
@@ -123,10 +131,16 @@
 		4B79E0E2164D6014009B8389 /* TeamFixturesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamFixturesViewController.m; sourceTree = "<group>"; };
 		4B7AF2E116396AF300D092D4 /* TeamDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamDetailsViewController.h; sourceTree = "<group>"; };
 		4B7AF2E216396AF300D092D4 /* TeamDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamDetailsViewController.m; sourceTree = "<group>"; };
+		4B806670165E3FB50092D057 /* Saved-Divisions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Saved-Divisions.plist"; sourceTree = "<group>"; };
+		4B806672165E45310092D057 /* CustomDivisionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDivisionCell.h; sourceTree = "<group>"; };
+		4B806673165E45310092D057 /* CustomDivisionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomDivisionCell.m; sourceTree = "<group>"; };
 		4B84517C164B0E54002EB85F /* Season.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Season.h; sourceTree = "<group>"; };
 		4B84517D164B0E54002EB85F /* Season.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Season.m; sourceTree = "<group>"; };
 		4B845180164B0F11002EB85F /* LeagueSeasonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeagueSeasonViewController.h; sourceTree = "<group>"; };
 		4B845181164B0F11002EB85F /* LeagueSeasonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeagueSeasonViewController.m; sourceTree = "<group>"; };
+		4B904FF8166133F9006B1E3B /* 180-stickynote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "180-stickynote.png"; path = "../../../downloads/glyphish-icons/PNG icons/180-stickynote.png"; sourceTree = "<group>"; };
+		4B904FFB16613E09006B1E3B /* SavedDivisionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedDivisionsViewController.h; sourceTree = "<group>"; };
+		4B904FFC16613E09006B1E3B /* SavedDivisionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedDivisionsViewController.m; sourceTree = "<group>"; };
 		4B91C2231658017400C5DFB5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4B91C226165859F600C5DFB5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		4BA8EA77164B1A3500785401 /* LeagueDivisionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeagueDivisionsViewController.h; sourceTree = "<group>"; };
@@ -264,7 +278,10 @@
 				4B0E1B4D16473B180010CA22 /* CustomResultCell.m */,
 				4B50D402165175DD006A8A41 /* CustomPlayerCell.h */,
 				4B50D403165175DE006A8A41 /* CustomPlayerCell.m */,
-				4B09D8D41633495E00A0A477 /* ClubModel.xcdatamodeld */,
+				4B806672165E45310092D057 /* CustomDivisionCell.h */,
+				4B806673165E45310092D057 /* CustomDivisionCell.m */,
+				4B904FFB16613E09006B1E3B /* SavedDivisionsViewController.h */,
+				4B904FFC16613E09006B1E3B /* SavedDivisionsViewController.m */,
 				4B09D8A51632F56900A0A477 /* Supporting Files */,
 			);
 			name = nel;
@@ -274,6 +291,10 @@
 		4B09D8A51632F56900A0A477 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4B5785771660453A0075A446 /* deselected.png */,
+				4B5785781660453B0075A446 /* selected.png */,
+				4B904FF8166133F9006B1E3B /* 180-stickynote.png */,
+				4B57857516603DEE0075A446 /* insertion_control.jpg */,
 				4B077168165BAE4000B926DD /* back@2x.png */,
 				4B077169165BAE4000B926DD /* back.png */,
 				4B077160165BACD600B926DD /* menubar-button@2x.png */,
@@ -289,6 +310,7 @@
 				4B09D8A71632F56900A0A477 /* InfoPlist.strings */,
 				4B09D8AA1632F56900A0A477 /* main.m */,
 				4B09D8AC1632F56900A0A477 /* Results-Prefix.pch */,
+				4B806670165E3FB50092D057 /* Saved-Divisions.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -364,6 +386,11 @@
 				4B077167165BACD600B926DD /* menubar.png in Resources */,
 				4B07716A165BAE4000B926DD /* back@2x.png in Resources */,
 				4B07716B165BAE4000B926DD /* back.png in Resources */,
+				4B806671165E3FB50092D057 /* Saved-Divisions.plist in Resources */,
+				4B57857616603DEE0075A446 /* insertion_control.jpg in Resources */,
+				4B5785791660453B0075A446 /* deselected.png in Resources */,
+				4B57857A1660453B0075A446 /* selected.png in Resources */,
+				4B904FF9166133F9006B1E3B /* 180-stickynote.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,7 +406,6 @@
 				4B09D8BB1632F56900A0A477 /* LeagueTableViewController.m in Sources */,
 				4B09D8C31632F62E00A0A477 /* Player.m in Sources */,
 				4B09D8C91632F65100A0A477 /* Club.m in Sources */,
-				4B09D8D61633495E00A0A477 /* ClubModel.xcdatamodeld in Sources */,
 				4BF55D871634A83600926CDC /* CustomTableCell.m in Sources */,
 				4B40DB731637DF46008F264C /* League.m in Sources */,
 				4B7AF2E316396AF300D092D4 /* TeamDetailsViewController.m in Sources */,
@@ -402,6 +428,8 @@
 				4B50D3F816515C3A006A8A41 /* ServerManager.m in Sources */,
 				4B50D404165175E0006A8A41 /* CustomPlayerCell.m in Sources */,
 				4B5987B91656EE8C005FFCCE /* Reachability.m in Sources */,
+				4B806674165E45310092D057 /* CustomDivisionCell.m in Sources */,
+				4B904FFD16613E0A006B1E3B /* SavedDivisionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,19 +567,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		4B09D8D41633495E00A0A477 /* ClubModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				4B09D8D51633495E00A0A477 /* ClubModel.xcdatamodel */,
-			);
-			currentVersion = 4B09D8D51633495E00A0A477 /* ClubModel.xcdatamodel */;
-			path = ClubModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 4B09D8911632F56800A0A477 /* Project object */;
 }

@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface Division : NSObject
-@property (nonatomic, copy) NSString *divisionId;
-@property (nonatomic, copy) NSString *name;
+@property (copy, nonatomic) NSString *divisionId;
+@property (copy, nonatomic) NSString *name;
+@property (nonatomic) BOOL selected;
 -(id)initWithIdAndName:(NSString *)divisionId AndName:(NSString *)name;
 @end

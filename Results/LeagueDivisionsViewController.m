@@ -16,6 +16,7 @@
 #import "Division.h"
 #import "ServerManager.h"
 #import "MBProgressHUD.h"
+#import "CustomDivisionCell.h"
 
 @interface LeagueDivisionsViewController ()
 
@@ -23,9 +24,10 @@
 
 @implementation LeagueDivisionsViewController {
     ADBannerView *_bannerView;
+    BOOL editMode;
 }
 
-@synthesize divisionsList, league, season, divisionsTableView, club;
+@synthesize divisionsList, league, season, divisionsTableView, club, selectedDivisions;
 
 - (void)loadBanner {
     _bannerView = [[ADBannerView alloc] init];
@@ -34,7 +36,11 @@
     [self.view addSubview:_bannerView];
 }
 
--(UIImage *)getLeagueImage:(NSString *)serverName AndLeagueId:(NSString *)leagueId {
+- (void) readInSavedDivisions {
+    selectedDivisions = [[NSMutableArray alloc] init];
+}
+
+- (UIImage *)getLeagueImage:(NSString *)serverName AndLeagueId:(NSString *)leagueId {
     NSError *error;
     NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@.json", leagueId];
     DLog(@"%@", urlString);
@@ -59,7 +65,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+//    self.editButtonItem.title = @"Edit";
+//    self.navigationItem.rightBarButtonItem = [self editButtonItem];
+    [self readInSavedDivisions];
+    
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Searching...";
     
@@ -68,7 +77,7 @@
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
 
         [self loadBanner];
-        
+
         @try {
             NSError *error;
             ServerManager *serverManager = [ServerManager sharedServerManager];
@@ -76,6 +85,8 @@
             
             UIImage *image = [self getLeagueImage:serverName AndLeagueId:league.leagueId];
             league.image = image;
+            
+            // get out of plist saved ones instead
             
             NSString *urlString = [serverName stringByAppendingFormat:@"/clubs/%@/leagues/%@/seasons/%@.json", club.clubId, league.leagueId, season.seasonId];
             DLog(@"%@", urlString);
@@ -114,6 +125,9 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -129,19 +143,143 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *CellIdentifier = @"DivisionCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    DLog(@"cell");
+    static NSString *CellIdentifier = @"CustomDivisionCell";
+    CustomDivisionCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[CustomDivisionCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     Division *division = [divisionsList objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = [division name];
-    
+    DLog(@"Divisions name: %@", [division name]);
+    cell.name.text = [division name];
+//    cell.textLabel.text = [division name];
+
+    if (editMode) {
+        DLog(@"isEditing");
+        [cell setEditing:TRUE];
+        cell.radioButton.hidden=NO;
+        if ([self.selectedDivisions containsObject:division]) {
+            [cell.radioButton setBackgroundImage:[UIImage imageNamed:@"selected.png"] forState:UIControlStateSelected];
+            
+        } else {
+            [cell.radioButton setBackgroundImage:[UIImage imageNamed:@"deselected.png"] forState:UIControlStateNormal];
+        }
+        divisionsTableView.allowsSelection=NO;
+        cell.accessoryType=UITableViewCellAccessoryNone;
+    } else {
+        cell.radioButton.hidden=YES;
+        divisionsTableView.allowsSelection=YES;
+        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+    }
+    DLog(@"Edit mode? %d", editMode);
+
+//    if ([selectedDivisions containsObject:division]) {
+//        cell.imageView.image = [UIImage imageNamed:@"checked.png"];
+//    }
+//    else {
+//        cell.checkBox.titleLabel.text = @"x";
+//        cell.imageView.image = [UIImage imageNamed:@"unchecked.png"];
+//    }
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleChecking:)];
+//    [cell.imageView addGestureRecognizer:tap];
+//    cell.imageView.userInteractionEnabled = YES;
+
     return cell;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    DLog(@"editingStyleForRowAtIndexPath");
+    // Detemine if it's in editing mode
+
+    static NSString *CellIdentifier = @"CustomDivisionCell";
+    CustomDivisionCell *cell = [aTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
+    [cell.imageView setHidden:YES];
+    
+    if (self.editing) {
+        return UITableViewCellEditingStyleDelete;
+    }
+    return UITableViewCellEditingStyleNone;
+}
+
+//- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+//    DLog(@"Beginning editing");
+//
+//    CustomDivisionCell *cell = (CustomDivisionCell *)[tableView cellForRowAtIndexPath:indexPath];
+//    
+//    Division *division = [divisionsList objectAtIndex:indexPath.row];
+//
+//    cell.name.text = [division name];
+//    
+//    [cell.radioButton setBackgroundImage:[UIImage imageNamed:@"selected.png"] forState:UIControlStateNormal];
+//    
+//}
+
+//- (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+//    DLog(@"End editing");
+//}
+- (IBAction)switchToAdd:(id)sender {
+    UIBarButtonItem *button = sender;
+    DLog(@"switchToEdit %@", [button title]);
+    if ([button.title isEqualToString:@"Add"]) {
+        [button setTitle:@"Save"];
+        editMode = YES;
+    } else {
+        [button setTitle:@"Add"];
+        editMode = NO;
+        [self saveDivisions];
+        DLog(@"Saved...");
+    }
+    NSLog(@"%d", editMode);
+    [self.divisionsTableView reloadData];
+}
+
+- (void)saveDivisions {
+    
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    NSString *leagueId = [league leagueId];
+    NSString *leagueName = [league name];
+    NSString *seasonId = [season seasonId];
+    NSString *seasonName = [season name];
+
+    for (Division *division in selectedDivisions) {
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+        [dict setObject:leagueId forKey:@"LeagueId"];
+        [dict setObject:leagueName forKey:@"LeagueName"];
+        [dict setObject:seasonId forKey:@"SeasonId"];
+        [dict setObject:seasonName forKey:@"SeasonName"];
+        [dict setObject:division.divisionId forKey:@"DivisionId"];
+        [dict setObject:division.name forKey:@"DivisionName"];
+        DLog(@"%@ %@ %@ %@ %@ %@", leagueId, leagueName, seasonId, seasonName, division.divisionId, division.name);
+        [array addObject:dict];
+    }
+    DLog(@"Array size %d", [array count]);
+    
+//    for (NSMutableDictionary *dict in array) {
+//        DLog(@"%@ %@", dict, [dict class]);
+//        NSString *leagueId = [dict valueForKey:@"LeagueId"];
+//        NSString *leagueName = [dict valueForKey:@"LeagueName"];
+//        NSString *seasonId = [dict valueForKey:@"SeasonId"];
+//        NSString *seasonName = [dict valueForKey:@"SeasonName"];
+//        NSString *divisionId = [dict valueForKey:@"DivisionId"];
+//        NSString *divisionName = [dict valueForKey:@"DivisionName"];
+//        DLog(@"plist: %@ %@ %@ %@ %@ %@", leagueId, leagueName, seasonId, seasonName, divisionId, divisionName);
+//    }
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+
+    BOOL success = [array writeToFile:[documentsDirectory stringByAppendingPathComponent:@"Saved-Divisions.plist"] atomically:YES];
+
+    if (success) {
+        DLog(@"written to plist");
+    } else {
+        DLog(@"Failed");
+    }
+
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -209,26 +347,55 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionDidFinish" object:self];
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    DLog(@"editing");
+    [super setEditing:editing animated:animated];
+    [divisionsTableView setEditing:editing animated:YES];
+}
 
-/*
+- (IBAction)rowSelected:(id)sender {
+    NSIndexPath *indexPath = [self.divisionsTableView indexPathForCell:(UITableViewCell *)
+                              [[sender superview] superview]];
+
+    Division *division = [divisionsList objectAtIndex:indexPath.row];
+    UIButton *button = sender;
+    
+    if ([self.selectedDivisions containsObject:division]) {
+        DLog(@"Deselected %@", [division name]);
+        [self.selectedDivisions removeObject:division];
+        [button setBackgroundImage:[UIImage imageNamed:@"deselected.png"] forState:UIControlStateNormal];
+        
+    } else {
+        DLog(@"Selected %@", [division name]);
+        [self.selectedDivisions addObject:division];
+        [button setBackgroundImage:[UIImage imageNamed:@"selected.png"] forState:UIControlStateNormal];
+    }
+    DLog(@"Size %d", [selectedDivisions count]);
+}
+
+ // Override to support conditional editing of the table view.
+// - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+//     DLog(@"canEditRowAtIndexPath");
+//
+// // Return NO if you do not want the specified item to be editable.
+// return YES;
+// }
+
  // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
+// - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+// if (editingStyle == UITableViewCellEditingStyleDelete) {
+// // Delete the row from the data source
+// [divisionsTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//     DLog(@"delete");
+//
+// }
+// else if (editingStyle == UITableViewCellEditingStyleInsert) {
+// // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+//     DLog(@"editstyle");
+//
+// }
+// }
+// 
 
 /*
  // Override to support rearranging the table view.

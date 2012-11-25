@@ -9,6 +9,9 @@
 #import "Division.h"
 
 @implementation Division
+
+@synthesize selected;
+
 - (id)initWithIdAndName:(NSString *)divisionId AndName:(NSString *)name {
     if (self = [super init]) {
         _divisionId = divisionId;

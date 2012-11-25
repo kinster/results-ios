@@ -139,8 +139,6 @@
 
 }
 
-
-
 - (void)setNavTitle {
     self.tabBarController.title = @"League Fixtures";
 }
