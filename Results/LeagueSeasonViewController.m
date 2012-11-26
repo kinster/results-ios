@@ -37,13 +37,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self loadBanner];
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Searching...";
     
     [self.navigationController.view addSubview:hud];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-
-        [self loadBanner];
 
         @try {
             NSError *error;

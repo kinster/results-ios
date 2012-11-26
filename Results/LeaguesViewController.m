@@ -46,10 +46,6 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    DLog(@"LeaguesViewController viewWillAppear");
-}
-
 -(void)createTableSections:(NSString *)urlString AndServerName:(NSString *)serverName {
     NSError *error;
     
@@ -96,8 +92,23 @@
 -(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text {
 }
 
+- (void)setNavTitle {
+    self.tabBarController.title = @"Leagues";
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    DLog(@"table appeared");
+    [self setNavTitle];
+    self.tabBarController.navigationItem.rightBarButtonItem = nil;
+    
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    UIBarButtonItem *top500 = [[UIBarButtonItem alloc] initWithTitle:@"Top 500" style:(UIBarButtonItemStylePlain) target:self action:@selector(getTop500:)];
+    top500.title = @"Top 500";
+    [self.tabBarController.navigationItem setRightBarButtonItem:top500];
+
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {

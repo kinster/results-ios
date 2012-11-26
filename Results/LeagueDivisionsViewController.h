@@ -11,9 +11,11 @@
 
 @class League, Season;
 
-@interface LeagueDivisionsViewController : UIViewController<ADBannerViewDelegate>
+@interface LeagueDivisionsViewController : UIViewController<ADBannerViewDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, copy) NSMutableArray *divisionsList;
 @property (weak, nonatomic) League *league;
 @property (weak, nonatomic) Season *season;
 @property (weak, nonatomic) IBOutlet UITableView *divisionsTableView;
+@property (copy, nonatomic) NSMutableArray *readDivisions;
+@property (copy, nonatomic) NSMutableArray *selectedDivisions;
 @end

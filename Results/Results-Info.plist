@@ -49,6 +49,6 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>jsonServer</key>
-	<string>http://footie.me</string>
+	<string>http://localhost:3000</string>
 </dict>
 </plist>

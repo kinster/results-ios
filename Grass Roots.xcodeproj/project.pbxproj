@@ -37,6 +37,11 @@
 		4B5987AB16565556005FFCCE /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5987AA16565556005FFCCE /* iAd.framework */; };
 		4B5987B61656ED71005FFCCE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5987B51656ED70005FFCCE /* SystemConfiguration.framework */; };
 		4B5987B91656EE8C005FFCCE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5987B81656EE8B005FFCCE /* Reachability.m */; };
+		4B6A217C16640547004A54C1 /* deselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B6A217A16640547004A54C1 /* deselected.png */; };
+		4B6A217D16640547004A54C1 /* selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B6A217B16640547004A54C1 /* selected.png */; };
+		4B6A2180166405CE004A54C1 /* 180-stickynote.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B6A217F166405CE004A54C1 /* 180-stickynote.png */; };
+		4B6A218316640C97004A54C1 /* CustomDivisionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B6A218216640C96004A54C1 /* CustomDivisionCell.m */; };
+		4B6A218616640E8E004A54C1 /* SavedDivisionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B6A218516640E8D004A54C1 /* SavedDivisionsViewController.m */; };
 		4B79E0E3164D6014009B8389 /* TeamFixturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B79E0E2164D6014009B8389 /* TeamFixturesViewController.m */; };
 		4B7AF2E316396AF300D092D4 /* TeamDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7AF2E216396AF300D092D4 /* TeamDetailsViewController.m */; };
 		4B84517E164B0E54002EB85F /* Season.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B84517D164B0E54002EB85F /* Season.m */; };
@@ -113,6 +118,13 @@
 		4B5987B51656ED70005FFCCE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4B5987B71656EE8A005FFCCE /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../../../downloads/Reachability/Classes/Reachability.h; sourceTree = "<group>"; };
 		4B5987B81656EE8B005FFCCE /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../../../downloads/Reachability/Classes/Reachability.m; sourceTree = "<group>"; };
+		4B6A217A16640547004A54C1 /* deselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deselected.png; sourceTree = "<group>"; };
+		4B6A217B16640547004A54C1 /* selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selected.png; sourceTree = "<group>"; };
+		4B6A217F166405CE004A54C1 /* 180-stickynote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "180-stickynote.png"; sourceTree = "<group>"; };
+		4B6A218116640C95004A54C1 /* CustomDivisionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDivisionCell.h; sourceTree = "<group>"; };
+		4B6A218216640C96004A54C1 /* CustomDivisionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomDivisionCell.m; sourceTree = "<group>"; };
+		4B6A218416640E8D004A54C1 /* SavedDivisionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedDivisionsViewController.h; sourceTree = "<group>"; };
+		4B6A218516640E8D004A54C1 /* SavedDivisionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedDivisionsViewController.m; sourceTree = "<group>"; };
 		4B79E0E1164D6014009B8389 /* TeamFixturesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamFixturesViewController.h; sourceTree = "<group>"; };
 		4B79E0E2164D6014009B8389 /* TeamFixturesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamFixturesViewController.m; sourceTree = "<group>"; };
 		4B7AF2E116396AF300D092D4 /* TeamDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamDetailsViewController.h; sourceTree = "<group>"; };
@@ -255,6 +267,8 @@
 				4B79E0E2164D6014009B8389 /* TeamFixturesViewController.m */,
 				4BB2DFD5164ED093000650A0 /* TeamResultsViewController.h */,
 				4BB2DFD6164ED093000650A0 /* TeamResultsViewController.m */,
+				4B6A218416640E8D004A54C1 /* SavedDivisionsViewController.h */,
+				4B6A218516640E8D004A54C1 /* SavedDivisionsViewController.m */,
 				4BE0E2CB16345CF9000D061F /* CustomTableCell.xib */,
 				4BF55D851634A83600926CDC /* CustomTableCell.h */,
 				4BF55D861634A83600926CDC /* CustomTableCell.m */,
@@ -266,6 +280,8 @@
 				4B0E1B4D16473B180010CA22 /* CustomResultCell.m */,
 				4B50D402165175DD006A8A41 /* CustomPlayerCell.h */,
 				4B50D403165175DE006A8A41 /* CustomPlayerCell.m */,
+				4B6A218116640C95004A54C1 /* CustomDivisionCell.h */,
+				4B6A218216640C96004A54C1 /* CustomDivisionCell.m */,
 				4B09D8D41633495E00A0A477 /* ClubModel.xcdatamodeld */,
 				4B09D8A51632F56900A0A477 /* Supporting Files */,
 			);
@@ -276,6 +292,9 @@
 		4B09D8A51632F56900A0A477 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4B6A217F166405CE004A54C1 /* 180-stickynote.png */,
+				4B6A217A16640547004A54C1 /* deselected.png */,
+				4B6A217B16640547004A54C1 /* selected.png */,
 				4BBD13DB165581C70003FCA1 /* back.png */,
 				4BBD13DC165581C70003FCA1 /* back@2x.png */,
 				4BBD13D71655811C0003FCA1 /* menubar-button.png */,
@@ -368,6 +387,9 @@
 				4BBD13DA1655811C0003FCA1 /* menubar-button@2x.png in Resources */,
 				4BBD13DD165581C70003FCA1 /* back.png in Resources */,
 				4BBD13DE165581C70003FCA1 /* back@2x.png in Resources */,
+				4B6A217C16640547004A54C1 /* deselected.png in Resources */,
+				4B6A217D16640547004A54C1 /* selected.png in Resources */,
+				4B6A2180166405CE004A54C1 /* 180-stickynote.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +428,8 @@
 				4B50D3F816515C3A006A8A41 /* ServerManager.m in Sources */,
 				4B50D404165175E0006A8A41 /* CustomPlayerCell.m in Sources */,
 				4B5987B91656EE8C005FFCCE /* Reachability.m in Sources */,
+				4B6A218316640C97004A54C1 /* CustomDivisionCell.m in Sources */,
+				4B6A218616640E8E004A54C1 /* SavedDivisionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,7 +518,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kinman Li (EGVK8S4UQX)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Results/Results-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"MYDEBUG=1",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "Results/Results-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";

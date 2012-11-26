@@ -336,7 +336,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1658" y="-2812"/>
+            <point key="canvasLocation" x="1585" y="-1508"/>
         </scene>
         <!--Team Results View Controller - Team Results-->
         <scene sceneID="jcR-ZA-ZUI">
@@ -494,7 +494,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ssv-a9-tYG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3705" y="-1361"/>
+            <point key="canvasLocation" x="4231" y="-1361"/>
         </scene>
         <!--Team Fixtures View Controller - Team Fixtures-->
         <scene sceneID="6dN-Gy-9nX">
@@ -660,7 +660,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xzk-QI-Den" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3662" y="-1989"/>
+            <point key="canvasLocation" x="4188" y="-1989"/>
         </scene>
         <!--Team Details View Controller - Team Details-->
         <scene sceneID="Pz2-7r-XVW">
@@ -960,7 +960,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="izT-TI-BKg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2178" y="-2115"/>
+            <point key="canvasLocation" x="2704" y="-2115"/>
         </scene>
         <!--Tab Bar Controller - Details-->
         <scene sceneID="2mv-dN-YNo">
@@ -1003,35 +1003,19 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nEb-er-alD">
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="318" type="user" id="YAD-zA-K58"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="367" type="user" id="ZJc-UO-ruY"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="vbr-tu-NID" id="N1a-2V-dP6"/>
                                 </connections>
                             </mapView>
-                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="miN-SW-L3y">
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" type="user" id="V26-Hu-tqh"/>
-                                    <constraint firstAttribute="height" constant="50" type="user" id="Xfn-bi-DBk"/>
-                                </constraints>
-                                <requiredContentSizeIdentifiers>
-                                    <string>ADBannerContentSizeLandscape</string>
-                                    <string>ADBannerContentSizePortrait</string>
-                                </requiredContentSizeIdentifiers>
-                                <connections>
-                                    <outlet property="delegate" destination="vbr-tu-NID" id="X61-TZ-21G"/>
-                                </connections>
-                            </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="nEb-er-alD" firstAttribute="trailing" secondItem="wPv-jS-XP5" secondAttribute="trailing" type="default" id="OwY-26-jgD"/>
-                            <constraint firstItem="miN-SW-L3y" firstAttribute="leading" secondItem="wPv-jS-XP5" secondAttribute="leading" type="default" id="hfb-NE-fOx"/>
                             <constraint firstItem="nEb-er-alD" firstAttribute="top" secondItem="wPv-jS-XP5" secondAttribute="top" type="user" id="l4N-LT-A62"/>
                             <constraint firstItem="nEb-er-alD" firstAttribute="leading" secondItem="wPv-jS-XP5" secondAttribute="leading" type="default" id="mF3-Tk-Zf9"/>
-                            <constraint firstItem="miN-SW-L3y" firstAttribute="top" secondItem="nEb-er-alD" secondAttribute="bottom" constant="-1" type="user" id="ofQ-e4-ylt"/>
-                            <constraint firstItem="miN-SW-L3y" firstAttribute="bottom" secondItem="wPv-jS-XP5" secondAttribute="bottom" type="default" id="wdm-5q-zEv"/>
-                            <constraint firstItem="miN-SW-L3y" firstAttribute="trailing" secondItem="wPv-jS-XP5" secondAttribute="trailing" type="default" id="y7o-02-MBd"/>
+                            <constraint firstItem="nEb-er-alD" firstAttribute="bottom" secondItem="wPv-jS-XP5" secondAttribute="bottom" type="user" id="pk1-Np-hnW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Fixture" id="26b-qH-Vsx">
@@ -1042,13 +1026,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bannerView" destination="miN-SW-L3y" id="BQb-na-Kz2"/>
                         <outlet property="mapView" destination="nEb-er-alD" id="WUH-Oi-Q9i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nzf-bs-MVl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2958" y="-1684"/>
+            <point key="canvasLocation" x="3484" y="-1684"/>
         </scene>
         <!--Leagues View Controller - Leagues-->
         <scene sceneID="8H3-Jq-wN0">
@@ -1104,13 +1087,9 @@
                             <constraint firstItem="zya-kl-abu" firstAttribute="bottom" secondItem="aH4-3D-3D9" secondAttribute="top" type="default" id="pyb-t6-XLx"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Leagues" id="VVL-qX-PKr">
-                        <barButtonItem key="rightBarButtonItem" title="Top 500" id="39T-sf-reM">
-                            <connections>
-                                <action selector="getTop500:" destination="8d3-vd-Jzl" id="tZB-HG-2H2"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <tabBarItem key="tabBarItem" title="Leagues" image="166-newspaper.png" id="Psa-ke-G44"/>
+                    <navigationItem key="navigationItem" title="Leagues" id="VVL-qX-PKr"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="leagueTablesView" destination="aH4-3D-3D9" id="i3S-O3-lFX"/>
                         <outlet property="searchBar" destination="zya-kl-abu" id="81l-hp-rf2"/>
@@ -1126,7 +1105,55 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-235" y="-2451"/>
+            <point key="canvasLocation" x="-94" y="-2476"/>
+        </scene>
+        <!--Saved Divisions View Controller - Following-->
+        <scene sceneID="0Ee-vM-s0b">
+            <objects>
+                <viewController id="3pn-BG-Q5Q" customClass="SavedDivisionsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7TX-eU-LtG">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="OJG-rp-zbX">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SelectedDivisionCell" id="12I-Vc-aMz">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <segue destination="kmb-uQ-a1F" kind="push" identifier="ShowTable" id="yWI-6L-yQb"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="3pn-BG-Q5Q" id="1BA-Gu-F7E"/>
+                                    <outlet property="delegate" destination="3pn-BG-Q5Q" id="Q8Y-3F-vZw"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OJG-rp-zbX" firstAttribute="trailing" secondItem="7TX-eU-LtG" secondAttribute="trailing" type="default" id="49p-3S-fcM"/>
+                            <constraint firstItem="OJG-rp-zbX" firstAttribute="bottom" secondItem="7TX-eU-LtG" secondAttribute="bottom" type="default" id="TwZ-Yv-t3X"/>
+                            <constraint firstItem="OJG-rp-zbX" firstAttribute="leading" secondItem="7TX-eU-LtG" secondAttribute="leading" type="default" id="XBv-UX-sgP"/>
+                            <constraint firstItem="OJG-rp-zbX" firstAttribute="top" secondItem="7TX-eU-LtG" secondAttribute="top" type="default" id="ZSd-Y4-BiA"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Following" image="180-stickynote.png" id="65W-G8-qTT"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="divisionsTableView" destination="OJG-rp-zbX" id="jNO-XE-CRx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Egk-Nk-78P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="798" y="-1473"/>
         </scene>
         <!--League Season View Controller - Seasons-->
         <scene sceneID="V1U-dC-g8b">
@@ -1184,7 +1211,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X28-hW-IY0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="188" y="-2150"/>
+            <point key="canvasLocation" x="714" y="-2150"/>
         </scene>
         <!--League Divisions View Controller - Divisions-->
         <scene sceneID="3Fy-bW-8pX">
@@ -1200,20 +1227,12 @@
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="548" type="user" id="F21-q5-g1h"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DivisionCell" textLabel="GDP-jc-etA" style="IBUITableViewCellStyleDefault" id="Sou-w4-wG3">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CustomDivisionCell" id="Sou-w4-wG3" customClass="CustomDivisionCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GDP-jc-etA">
-                                                    <rect key="frame" x="10" y="0.0" width="280" height="43"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </label>
-                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
@@ -1242,7 +1261,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQC-l9-wt9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="722" y="-2242"/>
+            <point key="canvasLocation" x="1741" y="-2532"/>
         </scene>
         <!--Tab Bar Controller - Front Screen-->
         <scene sceneID="VxH-ha-kaa">
@@ -1269,7 +1288,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMa-Ps-y4U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1148" y="-2456"/>
+            <point key="canvasLocation" x="1202" y="-2076"/>
         </scene>
         <!--League Results View Controller - League Results-->
         <scene sceneID="mjw-qr-dY6">
@@ -1428,11 +1447,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MGa-8J-210" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1751" y="-1848"/>
+            <point key="canvasLocation" x="2277" y="-1848"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FuX-id-8cL">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8E2-2U-Ovg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="kF1-Aj-8Lq" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sGP-Qu-61c">
@@ -1441,21 +1461,47 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="8d3-vd-Jzl" kind="relationship" relationship="rootViewController" id="LpR-ns-O5m"/>
+                        <segue destination="arA-7S-civ" kind="relationship" relationship="rootViewController" id="C6y-j0-rXi"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8E2-2U-Ovg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1071" y="-2133"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Vq3-lG-rjw">
+            <objects>
+                <tabBarController id="arA-7S-civ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="pzM-C2-XXg"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="w97-VR-zPg">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="8d3-vd-Jzl" kind="relationship" relationship="viewControllers" id="7zN-fd-Gvj"/>
+                        <segue destination="3pn-BG-Q5Q" kind="relationship" relationship="viewControllers" id="tAy-2B-3m9"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MhF-IA-cSj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-615" y="-2060"/>
         </scene>
     </scenes>
     <resources>
         <image name="152-rolodex.png" width="26" height="18"/>
         <image name="166-newspaper.png" width="28" height="23"/>
         <image name="179-notepad.png" width="22" height="28"/>
+        <image name="180-stickynote.png" width="22" height="22"/>
         <image name="83-calendar.png" width="23" height="25"/>
     </resources>
     <classes>
+        <class className="CustomDivisionCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomDivisionCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="radioButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
         <class className="CustomFixtureCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomFixtureCell.h"/>
             <relationships>
@@ -1505,7 +1551,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueFixtureDetailsViewController.h"/>
             <relationships>
                 <relationship kind="action" name="navigate:"/>
-                <relationship kind="outlet" name="bannerView" candidateClass="ADBannerView"/>
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
             </relationships>
         </class>
@@ -1553,6 +1598,12 @@
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
+        <class className="SavedDivisionsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SavedDivisionsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="divisionsTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
         <class className="TeamDetailsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TeamDetailsViewController.h"/>
             <relationships>
@@ -1587,10 +1638,11 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="7zN-fd-Gvj"/>
+        <segue reference="yWI-6L-yQb"/>
         <segue reference="Gme-cR-3kr"/>
-        <segue reference="vfM-is-vMH"/>
-        <segue reference="w7Y-6N-5L6"/>
         <segue reference="guz-h0-rin"/>
         <segue reference="nlu-6i-a2D"/>
+        <segue reference="w7Y-6N-5L6"/>
     </inferredMetricsTieBreakers>
 </document>

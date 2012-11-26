@@ -21,15 +21,17 @@
 
 #define METERS_PER_MILE 1609.344
 
-@implementation LeagueFixtureDetailsViewController
+@implementation LeagueFixtureDetailsViewController {
+    ADBannerView *_bannerView;
+}
 
-@synthesize league, season, division, team, fixture, mapView, location, mapItem, bannerView;
+@synthesize league, season, division, team, fixture, mapView, location, mapItem;
 
 - (void)loadBanner {
-    bannerView = [[ADBannerView alloc] init];
-    bannerView.delegate = self;
-
-    [self.view addSubview:bannerView];
+    _bannerView = [[ADBannerView alloc] init];
+    _bannerView.delegate = self;
+    
+    [self.view addSubview:_bannerView];
 }
 
 - (void)loadNetworkExceptionAlert {
@@ -45,7 +47,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNavTitle];
-    
+
     if ([fixture.location caseInsensitiveCompare:@"TBA"] == NSOrderedSame) {
         DLog(@"Fixture Details Location length: %d", fixture.location.length);
         [self loadGeocodeExceptionAlert];
@@ -55,7 +57,7 @@
         hud.labelText = @"Searching...";
         [self.navigationController.view addSubview:hud];
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-    //        [self loadBanner];
+            [self loadBanner];
             @try {
                 NSError *error;
                 
@@ -149,6 +151,44 @@
 - (IBAction)navigate:(id)sender {
     DLog(@"navigate");
     [mapItem openInMapsWithLaunchOptions:nil];
+}
+
+- (void)viewDidLayoutSubviews {
+    [_bannerView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    
+    CGRect contentFrame = self.view.bounds;
+    CGRect bannerFrame = _bannerView.frame;
+    if (_bannerView.bannerLoaded) {
+        contentFrame.size.height -= _bannerView.frame.size.height;
+        bannerFrame.origin.y = contentFrame.size.height;
+    } else {
+        bannerFrame.origin.y = contentFrame.size.height;
+    }
+    _bannerView.frame = bannerFrame;
+}
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+    [UIView animateWithDuration:0.25 animations:^{
+        [self.view setNeedsLayout];
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    [UIView animateWithDuration:0.25 animations:^{
+        [self.view setNeedsLayout];
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionWillBegin" object:self];
+    return YES;
+}
+
+- (void)bannerViewActionDidFinish:(ADBannerView *)banner {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionDidFinish" object:self];
 }
 
 @end

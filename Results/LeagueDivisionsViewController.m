@@ -15,6 +15,7 @@
 #import "Division.h"
 #import "ServerManager.h"
 #import "MBProgressHUD.h"
+#import "CustomDivisionCell.h"
 
 @interface LeagueDivisionsViewController ()
 
@@ -24,13 +25,50 @@
     ADBannerView *_bannerView;
 }
 
-@synthesize divisionsList, league, season, divisionsTableView;
+@synthesize divisionsList, league, season, divisionsTableView, selectedDivisions, readDivisions;
 
 - (void)loadBanner {
     _bannerView = [[ADBannerView alloc] init];
     _bannerView.delegate = self;
     
     [self.view addSubview:_bannerView];
+}
+
+- (void) readInSavedDivisions {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"Saved-Divisions.plist"];
+    
+    NSMutableArray *divisions = [[NSMutableArray alloc] initWithContentsOfFile:path];
+    
+    readDivisions = [[NSMutableArray alloc] init];
+    
+    League *inLeague = nil;
+    Season *inSeason = nil;
+    Division *division = nil;
+    for (NSDictionary *dict in divisions) {
+        NSString *leagueId = [dict objectForKey:@"LeagueId"];
+        NSString *leagueName = [dict objectForKey:@"LeagueName"];
+        inLeague = [[League alloc] initWithIdAndName:leagueId AndName:leagueName];
+        
+        NSString *seasonId = [dict objectForKey:@"SeasonId"];
+        NSString *seasonName = [dict objectForKey:@"SeasonName"];
+        inSeason = [[Season alloc] initWithIdAndName:seasonId AndName:seasonName];
+        
+        NSString *divisionId = [dict objectForKey:@"DivisionId"];
+        NSString *divisionName = [dict objectForKey:@"DivisionName"];
+        division = [[Division alloc] initWithIdAndName:divisionId AndName:divisionName];
+        
+        NSMutableArray *innerArray = [[NSMutableArray alloc] init];
+        [innerArray addObject:league];
+        [innerArray addObject:season];
+        [innerArray addObject:division];
+        
+        [readDivisions addObject:innerArray];
+        
+        DLog(@"plist: %@ %@ %@ %@", [league leagueId], [season seasonId], [division divisionId], [division name]);
+    }
 }
 
 -(UIImage *)getLeagueImage:(NSString *)serverName AndLeagueId:(NSString *)leagueId {
@@ -48,7 +86,6 @@
     
     UIImage *leagueBadge = [[UIImage alloc]initWithData:imageData];
     return leagueBadge;
-
 }
 
 - (void)loadNetworkExceptionAlert {
@@ -58,6 +95,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.editButtonItem.title = @"Follow";
+    self.navigationItem.rightBarButtonItem = [self editButtonItem];
+    selectedDivisions = [[NSMutableArray alloc] init];
+    [self readInSavedDivisions];
 
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Searching...";
@@ -112,8 +153,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -128,18 +168,144 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"DivisionCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"CustomDivisionCell";
+    CustomDivisionCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[CustomDivisionCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     Division *division = [divisionsList objectAtIndex:indexPath.row];
     
     cell.textLabel.text = [division name];
     
+    DLog(@"cell division %@", division.divisionId);
+    
+    if ([self isDivisionSaved:division]) {
+        // add this to list if not already in selectedDivisions
+        [self addToSelectedDivisions:division];
+        [cell.radioButton setBackgroundImage:[UIImage imageNamed:@"selected.png"] forState:UIControlStateNormal];
+    }
+    UIButton *radioButton = (UIButton *)[cell viewWithTag:1];
+    [radioButton addTarget:self action:@selector(radioButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
+
     return cell;
+}
+
+- (BOOL)isDivisionSaved:(Division *)division {
+    
+    for (NSMutableArray *array in readDivisions) {
+        League *inLeague = [array objectAtIndex:0];
+        Season *inSeason = [array objectAtIndex:1];
+        Division *inDivision = [array objectAtIndex:2];
+        DLog(@"%@ %@ %@", inLeague.leagueId, inSeason.seasonId, inDivision.divisionId);
+        BOOL isLeague = [[NSString stringWithFormat:@"%@", inLeague.leagueId] isEqualToString:[NSString stringWithFormat:@"%@", league.leagueId]];
+        BOOL isSeason = [[NSString stringWithFormat:@"%@", inSeason.seasonId] isEqualToString:[NSString stringWithFormat:@"%@", season.seasonId]];
+        BOOL isDivision = [[NSString stringWithFormat:@"%@", inDivision.divisionId] isEqualToString:[NSString stringWithFormat:@"%@", division.divisionId]];
+        if (isLeague && isSeason && isDivision) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (void)addToSelectedDivisions:(Division *)division {
+    if ([self.selectedDivisions containsObject:division]) {
+        DLog(@"Deselected %@", [division name]);
+        [self.selectedDivisions removeObject:division];
+    } else {
+        DLog(@"Selected %@", [division name]);
+        [self.selectedDivisions addObject:division];
+    }
+}
+
+- (IBAction)radioButtonSelected:(id)sender {
+    DLog(@"radioButtonSelected");
+    NSIndexPath *indexPath = [self.divisionsTableView indexPathForCell:(UITableViewCell *)
+                              [[sender superview] superview]];
+    
+    Division *division = [divisionsList objectAtIndex:indexPath.row];
+    UIButton *button = sender;
+    
+    if ([self.selectedDivisions containsObject:division]) {
+        DLog(@"Deselected %@", [division name]);
+        [self.selectedDivisions removeObject:division];
+        [button setBackgroundImage:[UIImage imageNamed:@"deselected.png"] forState:UIControlStateNormal];
+    } else {
+        DLog(@"Selected %@", [division name]);
+        [self.selectedDivisions addObject:division];
+        [button setBackgroundImage:[UIImage imageNamed:@"selected.png"] forState:UIControlStateNormal];
+    }
+    DLog(@"Size %d", [selectedDivisions count]);
+}
+
+- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 3;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    DLog(@"editingStyleForRowAtIndexPath");
+    //    if (self.editing) {
+    //        return UITableViewCellEditingStyleDelete;
+    //    }
+    return UITableViewCellEditingStyleNone;
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    DLog(@"editing");
+    [divisionsTableView setEditing:editing animated:YES];
+    [super setEditing:editing animated:animated];
+    if (!editing) {
+        [self saveDivisions];
+        DLog(@"Done leave editmode");
+        self.editButtonItem.title = @"Follow";
+    }
+}
+
+- (void)saveDivisions {
+    
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    NSString *leagueId = [league leagueId];
+    NSString *leagueName = [league name];
+    NSString *seasonId = [season seasonId];
+    NSString *seasonName = [season name];
+    
+    for (Division *division in selectedDivisions) {
+        DLog(@"%@ %@ %@ %@ %@ %@", leagueId, leagueName, seasonId, seasonName, division.divisionId, division.name);
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+        [dict setObject:leagueId forKey:@"LeagueId"];
+        [dict setObject:leagueName forKey:@"LeagueName"];
+        [dict setObject:seasonId forKey:@"SeasonId"];
+        [dict setObject:seasonName forKey:@"SeasonName"];
+        [dict setObject:division.divisionId forKey:@"DivisionId"];
+        [dict setObject:division.name forKey:@"DivisionName"];
+        DLog(@"%@ %@ %@ %@ %@ %@", leagueId, leagueName, seasonId, seasonName, division.divisionId, division.name);
+        [array addObject:dict];
+    }
+    DLog(@"Array size %d", [array count]);
+    
+    //    for (NSMutableDictionary *dict in array) {
+    //        DLog(@"%@ %@", dict, [dict class]);
+    //        NSString *leagueId = [dict valueForKey:@"LeagueId"];
+    //        NSString *leagueName = [dict valueForKey:@"LeagueName"];
+    //        NSString *seasonId = [dict valueForKey:@"SeasonId"];
+    //        NSString *seasonName = [dict valueForKey:@"SeasonName"];
+    //        NSString *divisionId = [dict valueForKey:@"DivisionId"];
+    //        NSString *divisionName = [dict valueForKey:@"DivisionName"];
+    //        DLog(@"plist: %@ %@ %@ %@ %@ %@", leagueId, leagueName, seasonId, seasonName, divisionId, divisionName);
+    //    }
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    BOOL success = [array writeToFile:[documentsDirectory stringByAppendingPathComponent:@"Saved-Divisions.plist"] atomically:YES];
+    
+    if (success) {
+        DLog(@"written to plist");
+    } else {
+        DLog(@"Failed");
+    }
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
