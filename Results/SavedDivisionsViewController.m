@@ -41,7 +41,6 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
-    
     NSString *path = [documentsDirectory stringByAppendingPathComponent:@"Saved-Divisions.plist"];
     
     NSMutableArray *divisions = [[NSMutableArray alloc] initWithContentsOfFile:path];
@@ -179,9 +178,7 @@
     
     UIImage *leagueBadge = [[UIImage alloc]initWithData:imageData];
     return leagueBadge;
-    
 }
-
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     DLog(@"%d %d", indexPath.row, [divisionsList count]);

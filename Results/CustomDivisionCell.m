@@ -10,46 +10,38 @@
 
 @implementation CustomDivisionCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+@synthesize name, radioButton, isSelected;
+
+-(id)initWithCoder:(NSCoder *)decoder {
+    self = [super initWithCoder:decoder];
     if (self) {
         // Initialization code
+        DLog(@"init division cell");
+        radioButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [radioButton setFrame:CGRectMake(0, 12, 21, 21)];
+        [radioButton setBackgroundImage:[UIImage imageNamed:@"deselected.png"] forState:UIControlStateNormal];
+        radioButton.tag = 1;
+        [self.contentView addSubview:radioButton];
+
     }
     return self;
 }
 
-- (void)willTransitionToState:(UITableViewCellStateMask)state {
-    NSString *logStr = @"Invoked";
-    if ((state & UITableViewCellStateShowingEditControlMask) != 0) {
-        // you need to move the controls in left
-        logStr = [NSString stringWithFormat:@"%@%@",logStr,@"UITableViewCellStateShowingEditControlMask"];
+- (void)layoutSubviews {
+    [super layoutSubviews];
+
+    CGRect b = [self bounds];
+    b.size.height -= 1; // leave room for the separator line
+    b.size.width += 5; // allow extra width to slide for editing
+    b.origin.x -= (self.editing) ? -15 : 30; // start 30px left unless editing
+    [self.contentView setFrame:b];
+
+    if (self.editing) {
+        DLog(@"editing subview");
+        CGRect lb = [self.textLabel bounds];
+        lb.origin.x = 36;
+        [self.textLabel setFrame:lb];
     }
-    if ((state & UITableViewCellStateShowingDeleteConfirmationMask) != 0) {
-        // you need to hide the controls for the delete button
-        logStr = [NSString stringWithFormat:@"%@%@",logStr,@"UITableViewCellStateShowingDeleteConfirmationMask"];
-    }
-    DLog(@"%@",logStr);
-    [super willTransitionToState:state];
 }
 
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
-    [super setEditing:editing animated:animated];
-    
-    if (animated) {
-        [UIView beginAnimations:@"setEditingAnimation" context:nil];
-        [UIView setAnimationDuration:0.3];
-    }
-    
-    if (editing) {
-        /* do your offset and resize here */
-        DLog(@"editing");
-        
-    } else {
-        /* return to the original here*/
-        DLog(@"not editing");
-    }
-    
-    if (animated)
-        [UIView commitAnimations];
-}
 @end

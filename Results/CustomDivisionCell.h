@@ -11,4 +11,5 @@
 @interface CustomDivisionCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UIButton *radioButton;
+@property (nonatomic) BOOL isSelected;
 @end
