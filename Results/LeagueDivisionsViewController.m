@@ -98,7 +98,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.editButtonItem.title = @"Edit";
+    self.editButtonItem.title = @"Follow";
     self.navigationItem.rightBarButtonItem = [self editButtonItem];
     selectedDivisions = [[NSMutableArray alloc] init];
     [self readInSavedDivisions];
@@ -268,6 +268,7 @@
     if (!editing) {
         [self saveDivisions];
         DLog(@"Done leave editmode");
+        self.editButtonItem.title = @"Follow";
     }
 }
 

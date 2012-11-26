@@ -45,8 +45,8 @@
 		4B5987AB16565556005FFCCE /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5987AA16565556005FFCCE /* iAd.framework */; };
 		4B5987B61656ED71005FFCCE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5987B51656ED70005FFCCE /* SystemConfiguration.framework */; };
 		4B5987B91656EE8C005FFCCE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5987B81656EE8B005FFCCE /* Reachability.m */; };
-		4B6A21701663A534004A54C1 /* deselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B6A216E1663A534004A54C1 /* deselected.png */; };
-		4B6A21711663A534004A54C1 /* selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B6A216F1663A534004A54C1 /* selected.png */; };
+		4B6A21741663F99C004A54C1 /* deselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B6A21721663F99B004A54C1 /* deselected.png */; };
+		4B6A21751663F99C004A54C1 /* selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B6A21731663F99C004A54C1 /* selected.png */; };
 		4B79E0E3164D6014009B8389 /* TeamFixturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B79E0E2164D6014009B8389 /* TeamFixturesViewController.m */; };
 		4B7AF2E316396AF300D092D4 /* TeamDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7AF2E216396AF300D092D4 /* TeamDetailsViewController.m */; };
 		4B806671165E3FB50092D057 /* Saved-Divisions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B806670165E3FB50092D057 /* Saved-Divisions.plist */; };
@@ -125,8 +125,8 @@
 		4B5987B51656ED70005FFCCE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4B5987B71656EE8A005FFCCE /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../../../downloads/Reachability/Classes/Reachability.h; sourceTree = "<group>"; };
 		4B5987B81656EE8B005FFCCE /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../../../downloads/Reachability/Classes/Reachability.m; sourceTree = "<group>"; };
-		4B6A216E1663A534004A54C1 /* deselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = deselected.png; path = ../../../Desktop/deselected.png; sourceTree = "<group>"; };
-		4B6A216F1663A534004A54C1 /* selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = selected.png; path = ../../../Desktop/selected.png; sourceTree = "<group>"; };
+		4B6A21721663F99B004A54C1 /* deselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deselected.png; sourceTree = "<group>"; };
+		4B6A21731663F99C004A54C1 /* selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selected.png; sourceTree = "<group>"; };
 		4B79E0E1164D6014009B8389 /* TeamFixturesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamFixturesViewController.h; sourceTree = "<group>"; };
 		4B79E0E2164D6014009B8389 /* TeamFixturesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamFixturesViewController.m; sourceTree = "<group>"; };
 		4B7AF2E116396AF300D092D4 /* TeamDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamDetailsViewController.h; sourceTree = "<group>"; };
@@ -291,8 +291,8 @@
 		4B09D8A51632F56900A0A477 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4B6A216E1663A534004A54C1 /* deselected.png */,
-				4B6A216F1663A534004A54C1 /* selected.png */,
+				4B6A21721663F99B004A54C1 /* deselected.png */,
+				4B6A21731663F99C004A54C1 /* selected.png */,
 				4B904FF8166133F9006B1E3B /* 180-stickynote.png */,
 				4B57857516603DEE0075A446 /* insertion_control.jpg */,
 				4B077168165BAE4000B926DD /* back@2x.png */,
@@ -389,8 +389,8 @@
 				4B806671165E3FB50092D057 /* Saved-Divisions.plist in Resources */,
 				4B57857616603DEE0075A446 /* insertion_control.jpg in Resources */,
 				4B904FF9166133F9006B1E3B /* 180-stickynote.png in Resources */,
-				4B6A21701663A534004A54C1 /* deselected.png in Resources */,
-				4B6A21711663A534004A54C1 /* selected.png in Resources */,
+				4B6A21741663F99C004A54C1 /* deselected.png in Resources */,
+				4B6A21751663F99C004A54C1 /* selected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

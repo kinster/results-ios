@@ -18,7 +18,7 @@
         // Initialization code
         DLog(@"init division cell");
         radioButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [radioButton setFrame:CGRectMake(0, 12, 21, 21)];
+        [radioButton setFrame:CGRectMake(0, 8, 30, 30)];
         [radioButton setBackgroundImage:[UIImage imageNamed:@"deselected.png"] forState:UIControlStateNormal];
         radioButton.tag = 1;
         [self.contentView addSubview:radioButton];
@@ -39,7 +39,7 @@
     if (self.editing) {
         DLog(@"editing subview");
         CGRect lb = [self.textLabel bounds];
-        lb.origin.x = 36;
+        lb.origin.x = 41;
         [self.textLabel setFrame:lb];
     }
 }
