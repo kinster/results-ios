@@ -23,7 +23,7 @@
     ADBannerView *_bannerView;
 }
 
-@synthesize resultsList, league, season, division, nameLabel, leagueBadge, subtitle, resultsTable;
+@synthesize resultsList, division, nameLabel, leagueBadge, subtitle, resultsTable;
 
 - (void)loadBanner {
     _bannerView = [[ADBannerView alloc] init];
@@ -41,9 +41,11 @@
     @try {
         NSError *error;
         
+        Season *season = [division season];
+        
         ServerManager *serverManager = [ServerManager sharedServerManager];
         NSString *serverName = [serverManager serverName];
-        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/results.json", league.leagueId, season.seasonId, division.divisionId];
+        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/results.json", [season league].leagueId, season.seasonId, division.divisionId];
         DLog(@"%@", urlString);
         
         NSURL *url = [NSURL URLWithString:urlString];
@@ -77,9 +79,11 @@
     
     DLog(@"LeagueResultsViewController");
     
-    nameLabel.text = [NSString stringWithFormat:@"%@", league.name];
+    Season *season = [division season];
+    
+    nameLabel.text = [NSString stringWithFormat:@"%@", [season league].name];
     subtitle.text = [NSString stringWithFormat:@"%@ %@", season.name, division.name];
-    leagueBadge.image = league.image;
+    leagueBadge.image = [season league].image;
     
     [self setNavTitle];
     

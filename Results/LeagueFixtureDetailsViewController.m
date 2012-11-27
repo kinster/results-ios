@@ -10,7 +10,6 @@
 #import "League.h"
 #import "Season.h"
 #import "Division.h"
-#import "Team.h"
 #import "Fixture.h"
 #import "ServerManager.h"
 #import "MBProgressHUD.h"
@@ -25,7 +24,7 @@
     ADBannerView *_bannerView;
 }
 
-@synthesize league, season, division, team, fixture, mapView, location, mapItem;
+@synthesize division, fixture, mapView, location, mapItem;
 
 - (void)loadBanner {
     _bannerView = [[ADBannerView alloc] init];
@@ -63,6 +62,9 @@
                 
                 ServerManager *serverManager = [ServerManager sharedServerManager];
                 NSString *serverName = [serverManager serverName];
+                
+                Season *season = [division season];
+                League *league = [season league];
                 
                 NSString *fixtureUrlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/fixtures/%@.json", league.leagueId, season.seasonId, division.divisionId, fixture.fixtureId];
                 

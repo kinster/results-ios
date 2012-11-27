@@ -10,6 +10,8 @@
 
 @implementation Team
 
+@synthesize division;
+
 - (id) initWithTeam:(NSString *)name AndPosition:(NSString *)position AndPlayed:(NSString *)played AndWins:(NSString *)wins AndDraws:(NSString *)draws AndLosses:(NSString *)losses AndGoalsFor:(NSString *)gf AndGoalsAgainst:(NSString *)ga AndGoalDiff:(NSString *)gd AndPoints:(NSString *)points AndTeamId:(NSString *)teamId AndBadge:(NSString *)badge {
     if (self = [super init]) {
         _position = position;
