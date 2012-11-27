@@ -10,7 +10,7 @@
 
 @implementation CustomDivisionCell
 
-@synthesize name, radioButton, isSelected;
+@synthesize radioButton;
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];

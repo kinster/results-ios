@@ -17,6 +17,5 @@
 @property (weak, nonatomic) Season *season;
 @property (weak, nonatomic) IBOutlet UITableView *divisionsTableView;
 @property (weak, nonatomic) Club *club;
-@property (copy, nonatomic) NSMutableArray *readDivisions;
 @property (copy, nonatomic) NSMutableArray *selectedDivisions;
 @end

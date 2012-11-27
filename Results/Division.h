@@ -11,6 +11,5 @@
 @interface Division : NSObject
 @property (copy, nonatomic) NSString *divisionId;
 @property (copy, nonatomic) NSString *name;
-@property (nonatomic) BOOL selected;
 -(id)initWithIdAndName:(NSString *)divisionId AndName:(NSString *)name;
 @end
