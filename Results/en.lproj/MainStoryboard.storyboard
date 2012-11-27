@@ -9,7 +9,7 @@
             <objects>
                 <viewController title="League Table" id="2" customClass="LeagueTableViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TbS-ft-E4k">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ep2-k7-Dq4" userLabel="Table Bar">
@@ -970,7 +970,7 @@
                     <navigationItem key="navigationItem" id="u0g-6L-FnZ">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="Nkp-dT-lgJ">
                             <connections>
-                                <segue destination="8d3-vd-Jzl" kind="push" identifier="GoBackToLeagues" id="vfM-is-vMH"/>
+                                <segue destination="arA-7S-civ" kind="push" identifier="GoBackToLeagues" id="FGf-AT-rSI"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -991,7 +991,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5tN-Pb-VDt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2779" y="-3426"/>
+            <point key="canvasLocation" x="1115" y="-3276"/>
         </scene>
         <!--League Fixture Details View Controller - Fixture-->
         <scene sceneID="Bz0-SB-Bra">
@@ -1105,7 +1105,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-94" y="-2476"/>
+            <point key="canvasLocation" x="178" y="-2572"/>
         </scene>
         <!--Saved Divisions View Controller - Following-->
         <scene sceneID="0Ee-vM-s0b">
@@ -1271,7 +1271,7 @@
                     <navigationItem key="navigationItem" id="ZPL-y7-JZO">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="dnp-nJ-OnM">
                             <connections>
-                                <segue destination="8d3-vd-Jzl" kind="push" identifier="GoBackToLeagues" id="tYH-qn-cIh"/>
+                                <segue destination="arA-7S-civ" kind="push" identifier="GoBackToLeagues" id="Sll-mx-oBk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1288,7 +1288,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMa-Ps-y4U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1202" y="-2076"/>
+            <point key="canvasLocation" x="-528" y="-2207"/>
         </scene>
         <!--League Results View Controller - League Results-->
         <scene sceneID="mjw-qr-dY6">
@@ -1452,7 +1452,6 @@
         <!--Navigation Controller-->
         <scene sceneID="FuX-id-8cL">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8E2-2U-Ovg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="kF1-Aj-8Lq" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sGP-Qu-61c">
@@ -1464,8 +1463,9 @@
                         <segue destination="arA-7S-civ" kind="relationship" relationship="rootViewController" id="C6y-j0-rXi"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8E2-2U-Ovg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1071" y="-2133"/>
+            <point key="canvasLocation" x="-1367" y="-2129"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Vq3-lG-rjw">
@@ -1485,7 +1485,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MhF-IA-cSj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-615" y="-2060"/>
+            <point key="canvasLocation" x="-883" y="-2744"/>
         </scene>
     </scenes>
     <resources>
@@ -1638,11 +1638,11 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="7zN-fd-Gvj"/>
+        <segue reference="Sll-mx-oBk"/>
         <segue reference="yWI-6L-yQb"/>
-        <segue reference="Gme-cR-3kr"/>
-        <segue reference="guz-h0-rin"/>
-        <segue reference="nlu-6i-a2D"/>
         <segue reference="w7Y-6N-5L6"/>
+        <segue reference="nlu-6i-a2D"/>
+        <segue reference="guz-h0-rin"/>
+        <segue reference="Gme-cR-3kr"/>
     </inferredMetricsTieBreakers>
 </document>
