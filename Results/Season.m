@@ -9,6 +9,9 @@
 #import "Season.h"
 
 @implementation Season
+
+@synthesize league;
+
 -(id)initWithIdAndName:(NSString *)seasonId AndName:(NSString *)name {
     if (self = [super init]) {
         _seasonId= seasonId;

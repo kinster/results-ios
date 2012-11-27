@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <iAd/iAd.h>
 
-@class League, Season;
-
 @interface SavedDivisionsViewController : UIViewController <ADBannerViewDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *divisionsTableView;
 @property (copy, nonatomic) NSMutableArray *divisionsList;

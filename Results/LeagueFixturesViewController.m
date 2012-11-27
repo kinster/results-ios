@@ -26,7 +26,7 @@
     ADBannerView *_bannerView;
 }
 
-@synthesize fixtureList, league, season, division, fixturesTable, nameLabel, leagueBadge, subtitle;
+@synthesize fixtureList, division, fixturesTable, nameLabel, leagueBadge, subtitle;
 
 - (void)loadBanner {
     _bannerView = [[ADBannerView alloc] init];
@@ -44,9 +44,11 @@
     @try {
         NSError *error;
         
+        Season *season = [division season];
+        
         ServerManager *serverManager = [ServerManager sharedServerManager];
         NSString *serverName = [serverManager serverName];
-        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/fixtures.json", league.leagueId, season.seasonId, division.divisionId];
+        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/fixtures.json", [season league].leagueId, season.seasonId, division.divisionId];
         DLog(@"%@", urlString);
         
         NSURL *url = [NSURL URLWithString:urlString];
@@ -82,9 +84,10 @@
 
     DLog(@"LeagueFixturesViewController");
 
-    nameLabel.text = [NSString stringWithFormat:@"%@", league.name];
+    Season *season = [division season];
+    nameLabel.text = [NSString stringWithFormat:@"%@", [season league].name];
     subtitle.text = [NSString stringWithFormat:@"%@ %@", season.name, division.name];
-    leagueBadge.image = league.image;
+    leagueBadge.image = [season league].image;
     DLog(@"%@", self.nameLabel.text);
     
     [self setNavTitle];
@@ -273,8 +276,6 @@
     if ([[segue identifier] isEqualToString:@"ShowFixtureDetails"]) {
         DLog(@"Fixture location: %@", fixture.location);
         DLog(@"%@", segue.destinationViewController);
-        [destinationController setLeague:league];
-        [destinationController setSeason:season];
         [destinationController setDivision:division];
         [destinationController setFixture:fixture];
     }

@@ -24,7 +24,7 @@
     ADBannerView *_bannerView;
 }
 
-@synthesize name, badge, league, season, division, team, playersTable, playersList, subtitle;
+@synthesize name, badge, team, playersTable, playersList, subtitle;
 
 - (void)loadBanner {
     _bannerView = [[ADBannerView alloc] init];
@@ -43,10 +43,11 @@
     
     [self setNavTitle];
 
+    Division *division = [team division];
     DLog(@"team id: %@", team.teamId);
     name.text = [team name];
     
-    subtitle.text = [NSString stringWithFormat:@"%@ %@", season.name, division.name];
+    subtitle.text = [NSString stringWithFormat:@"%@ %@", [division season].name, division.name];
 
     NSURL *imageUrl = [NSURL URLWithString:team.badge];
     NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
@@ -65,7 +66,8 @@
             ServerManager *serverManager = [ServerManager sharedServerManager];
             NSString *serverName = [serverManager serverName];
             
-            NSString *playersUrlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@/players.json", league.leagueId, season.seasonId, division.divisionId, team.teamId];
+            NSString *playersUrlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@/players.json", [[division season].league leagueId], [division season].seasonId, division.divisionId, team.teamId];
+
             DLog(@"%@", playersUrlString);
             
             NSURL *playersUrl = [NSURL URLWithString:playersUrlString];

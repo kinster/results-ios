@@ -9,13 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <iAd/iAd.h>
 
-@class CustomTableCell, League, Season, Division;
+@class CustomTableCell, Division;
 
 @interface LeagueTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, ADBannerViewDelegate>
 @property (copy, nonatomic) NSMutableArray *teamList;
 @property (retain, nonatomic) IBOutlet UITableView *leagueTable;
-@property (weak, nonatomic) League *league;
-@property (weak, nonatomic) Season *season;
 @property (weak, nonatomic) Division *division;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *subtitle;

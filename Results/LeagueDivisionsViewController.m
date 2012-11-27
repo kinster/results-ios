@@ -27,7 +27,7 @@
     BOOL editMode;
 }
 
-@synthesize divisionsList, league, season, divisionsTableView, club, selectedDivisions;
+@synthesize divisionsList, season, divisionsTableView, club, selectedDivisions;
 
 - (void)loadBanner {
     _bannerView = [[ADBannerView alloc] init];
@@ -43,23 +43,32 @@
     NSString *path = [documentsDirectory stringByAppendingPathComponent:@"Saved-Divisions.plist"];
     
     NSMutableArray *divisions = [[NSMutableArray alloc] initWithContentsOfFile:path];
-        
+
+    League *newLeague = nil;
+    Season *newSeason = nil;
+    Division *division = nil;
     for (NSDictionary *dict in divisions) {
-        Division *division = nil;
         NSString *leagueId = [dict objectForKey:@"LeagueId"];
+        NSString *leagueName = [dict objectForKey:@"LeagueName"];
         NSString *seasonId = [dict objectForKey:@"SeasonId"];
+        NSString *seasonName = [dict objectForKey:@"SeasonName"];
         
-        BOOL isLeague = [[NSString stringWithFormat:@"%@", leagueId] isEqualToString:[NSString stringWithFormat:@"%@", league.leagueId]];
+        BOOL isLeague = [[NSString stringWithFormat:@"%@", leagueId] isEqualToString:[NSString stringWithFormat:@"%@", [season league].leagueId]];
         BOOL isSeason = [[NSString stringWithFormat:@"%@", seasonId] isEqualToString:[NSString stringWithFormat:@"%@", season.seasonId]];
         
         if (isLeague && isSeason) {
             NSString *divisionId = [dict objectForKey:@"DivisionId"];
             NSString *divisionName = [dict objectForKey:@"DivisionName"];
+            newLeague = [[League alloc] initWithIdAndName:leagueId AndName:leagueName];
+            newSeason = [[Season alloc] initWithIdAndName:seasonId AndName:seasonName];
+            [newSeason setLeague:newLeague];
             division = [[Division alloc] initWithIdAndName:divisionId AndName:divisionName];
+            
+            [division setSeason:newSeason];
         }
         [selectedDivisions addObject:division];
         
-        DLog(@"plist: %@ %@ %@ %@", [league leagueId], [season seasonId], [division divisionId], [division name]);
+        DLog(@"plist: %@ %@ %@ %@", [[season league] leagueId], [season seasonId], [division divisionId], [division name]);
     }
 }
 
@@ -107,17 +116,22 @@
             ServerManager *serverManager = [ServerManager sharedServerManager];
             NSString *serverName = [serverManager serverName];
             
-            UIImage *image = [self getLeagueImage:serverName AndLeagueId:league.leagueId];
-            league.image = image;
+            UIImage *image = [self getLeagueImage:serverName AndLeagueId:[season league].leagueId];
+            [season league].image = image;
             
             // get out of plist saved ones instead
             
-            NSString *urlString = [serverName stringByAppendingFormat:@"/clubs/%@/leagues/%@/seasons/%@.json", club.clubId, league.leagueId, season.seasonId];
+            NSString *urlString = [serverName stringByAppendingFormat:@"/clubs/%@/leagues/%@/seasons/%@.json", club.clubId, [season league].leagueId, season.seasonId];
             DLog(@"%@", urlString);
             
             NSURL *url = [NSURL URLWithString:urlString];
             NSData *data = [NSData dataWithContentsOfURL:url];
             NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+
+            League *newLeague = [[League alloc] initWithIdAndName:[season league].leagueId AndName:[season league].name];
+            Season *newSeason = [[Season alloc] initWithIdAndName:[season seasonId] AndName:[season name]];
+            
+            [newSeason setLeague:newLeague];
 
             divisionsList = [[NSMutableArray alloc] init];
             Division *division = nil;
@@ -126,8 +140,8 @@
                 NSString *theId = [entry objectForKey:@"id"];
                 NSString *theName = [entry objectForKey:@"name"];
                 division = [[Division alloc] initWithIdAndName:theId AndName:theName];
-                DLog(@"%@ %@ %@", [club clubId], [season seasonId], [division divisionId]);
-                
+                [division setSeason:newSeason];
+                DLog(@"%@ %@", [newLeague leagueId], [newSeason seasonId]);                
                 [divisionsList addObject: division];
             }
         } @catch (NSException *exception) {
@@ -249,24 +263,21 @@
 - (void)saveDivisions {
     
     NSMutableArray *array = [[NSMutableArray alloc] init];
-    NSString *leagueId = [league leagueId];
-    NSString *leagueName = [league name];
-    NSString *seasonId = [season seasonId];
-    NSString *seasonName = [season name];
 
+    NSMutableDictionary *dict = nil;
     for (Division *division in selectedDivisions) {
-        DLog(@"%@ %@ %@ %@ %@ %@", leagueId, leagueName, seasonId, seasonName, division.divisionId, division.name);
-        NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-        [dict setObject:leagueId forKey:@"LeagueId"];
-        [dict setObject:leagueName forKey:@"LeagueName"];
-        [dict setObject:seasonId forKey:@"SeasonId"];
-        [dict setObject:seasonName forKey:@"SeasonName"];
+        DLog(@"save division %@ %@ %@", [division.season league].leagueId, [division season].seasonId, division.divisionId);
+        dict = [[NSMutableDictionary alloc] init];
+        [dict setObject:[division.season league].leagueId forKey:@"LeagueId"];
+        [dict setObject:[division.season league].name forKey:@"LeagueName"];
+        [dict setObject:[season seasonId] forKey:@"SeasonId"];
+        [dict setObject:[season name] forKey:@"SeasonName"];
         [dict setObject:division.divisionId forKey:@"DivisionId"];
         [dict setObject:division.name forKey:@"DivisionName"];
-        DLog(@"%@ %@ %@ %@ %@ %@", leagueId, leagueName, seasonId, seasonName, division.divisionId, division.name);
         [array addObject:dict];
     }
     DLog(@"Array size %d", [array count]);
+
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -287,23 +298,18 @@
     NSIndexPath *indexPath = [self.divisionsTableView indexPathForSelectedRow];
     DLog(@"%d", indexPath.row);
     Division *division = [divisionsList objectAtIndex:indexPath.row];
+    [division setSeason:season];
     UITabBarController *tabBarController = [segue destinationViewController];
     DLog(@"controllers: %d", [tabBarController.viewControllers count]);
     LeagueTableViewController *viewController0 = [tabBarController.viewControllers objectAtIndex:0];
     DLog(@"controller 0: %@", viewController0);
-    [viewController0 setLeague:league];
-    [viewController0 setSeason:season];
     [viewController0 setDivision:division];
     DLog(@"ShowFixtures");
     LeagueFixturesViewController *viewController1 = [tabBarController.viewControllers objectAtIndex:1];
     DLog(@"controller 1: %@", viewController1);
-    [viewController1 setLeague:league];
-    [viewController1 setSeason:season];
     [viewController1 setDivision:division];
     LeagueResultsViewController *viewController2 = [tabBarController.viewControllers objectAtIndex:2];
     DLog(@"controller 2: %@", viewController2);
-    [viewController2 setLeague:league];
-    [viewController2 setSeason:season];
     [viewController2 setDivision:division];
     DLog(@"end");
 }

@@ -10,6 +10,8 @@
 
 @implementation Division
 
+@synthesize season;
+
 - (id)initWithIdAndName:(NSString *)divisionId AndName:(NSString *)name {
     if (self = [super init]) {
         _divisionId = divisionId;

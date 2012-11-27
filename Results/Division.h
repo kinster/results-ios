@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class Season;
+
 @interface Division : NSObject
+@property (strong, nonatomic) Season *season;
 @property (copy, nonatomic) NSString *divisionId;
 @property (copy, nonatomic) NSString *name;
 -(id)initWithIdAndName:(NSString *)divisionId AndName:(NSString *)name;

@@ -27,7 +27,7 @@
     ADBannerView *_bannerView;
 }
 
-@synthesize teamList, league, season, division, nameLabel, subtitle, leagueBadge, leagueTable;
+@synthesize teamList, division, nameLabel, subtitle, leagueBadge, leagueTable;
 
 - (void)loadBanner {
     _bannerView = [[ADBannerView alloc] init];
@@ -46,9 +46,11 @@
     @try {
         NSError *error;
         
+        Season *season = [division season];
+
         ServerManager *serverManager = [ServerManager sharedServerManager];
         NSString *serverName = [serverManager serverName];
-        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@.json", league.leagueId, season.seasonId, division.divisionId];
+        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@.json", [season league].leagueId, season.seasonId, division.divisionId];
         DLog(@"%@", urlString);
         
         NSURL *url = [NSURL URLWithString:urlString];
@@ -72,6 +74,7 @@
             NSString *teamId = [entry objectForKey:@"id"];
             
             team = [[Team alloc] initWithTeam:name AndPosition:position AndPlayed:played AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:gf AndGoalsAgainst:ga AndGoalDiff:gd AndPoints:points AndTeamId:teamId AndBadge:nil];
+            [team setDivision:division];
             [teamList addObject: team];
         }
     } @catch (NSException *exception) {
@@ -88,7 +91,9 @@
     DLog(@"LeagueTableViewController");
 
     [self setNavTitle];
-    
+
+    Season *season = [division season];
+    League *league = [season league];
     nameLabel.text = [NSString stringWithFormat:@"%@", league.name];
     subtitle.text = [NSString stringWithFormat:@"%@ %@", season.name, division.name];
     leagueBadge.image = league.image;
@@ -195,18 +200,14 @@
         Team *team = [teamList objectAtIndex:indexPath.row];
         UITabBarController *tabBarViewController = [segue destinationViewController];
         
-        DLog(@"Team: %@ - %d %d", team.name, indexPath.row, teamList.count);
-        TeamDetailsViewController *teamDetailsViewController = [tabBarViewController.viewControllers objectAtIndex:0];
-        [teamDetailsViewController setLeague:league];
-        [teamDetailsViewController setSeason:season];
-        [teamDetailsViewController setDivision:division];
-
         @try {
             
+            Season *season = [division season];
+
             NSError *error;
             ServerManager *serverManager = [ServerManager sharedServerManager];
             NSString *serverName = [serverManager serverName];
-            NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@.json", league.leagueId, season.seasonId, division.divisionId, team.teamId];
+            NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@.json", [season league].leagueId, season.seasonId, division.divisionId, team.teamId];
             DLog(@"%@", urlString);
             NSURL *url = [NSURL URLWithString:urlString];
             NSData *data = [NSData dataWithContentsOfURL:url];
@@ -219,18 +220,14 @@
             NSLog(@"Exception: %@ %@", [exception name], [exception reason]);
             [self loadNetworkExceptionAlert];
         }
+        TeamDetailsViewController *teamDetailsViewController = [tabBarViewController.viewControllers objectAtIndex:0];
         [teamDetailsViewController setTeam:team];
         TeamFixturesViewController *teamFixturesController = [tabBarViewController.viewControllers objectAtIndex:1];
-        [teamFixturesController setLeague:league];
-        [teamFixturesController setSeason:season];
         [teamFixturesController setDivision:division];
         [teamFixturesController setTeam:team];
         TeamResultsViewController *teamResultsController = [tabBarViewController.viewControllers objectAtIndex:2];
-        [teamResultsController setLeague:league];
-        [teamResultsController setSeason:season];
         [teamResultsController setDivision:division];
         [teamResultsController setTeam:team];
-
     }
     DLog(@"end of prepareForSegue");
 }

@@ -70,6 +70,7 @@
                     DLog(@"name: %@", theName);
                     
                     season = [[Season alloc] initWithIdAndName:theId AndName:theName];
+                    [season setLeague:league];
                     [seasonsList addObject: season];
                 }
             }
@@ -128,7 +129,6 @@
     
     if ([[segue identifier] isEqualToString:@"ShowDivisions"]) {
         LeagueDivisionsViewController *viewController = [segue destinationViewController];
-        [viewController setLeague:league];
         [viewController setSeason:season];
         [viewController setClub:club];
     }

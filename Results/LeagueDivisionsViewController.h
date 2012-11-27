@@ -9,11 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <iAd/iAd.h>
 
-@class League, Season, Club;
+@class Season, Club;
 
 @interface LeagueDivisionsViewController : UIViewController<ADBannerViewDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (copy, nonatomic) NSMutableArray *divisionsList;
-@property (weak, nonatomic) League *league;
 @property (weak, nonatomic) Season *season;
 @property (weak, nonatomic) IBOutlet UITableView *divisionsTableView;
 @property (weak, nonatomic) Club *club;

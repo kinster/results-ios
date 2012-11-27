@@ -25,7 +25,7 @@
     ADBannerView *_bannerView;
 }
 
-@synthesize league, season, division, team, fixture, mapView, location, mapItem;
+@synthesize division, fixture, mapView, location, mapItem;
 
 - (void)loadNetworkExceptionAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -64,7 +64,9 @@
                 ServerManager *serverManager = [ServerManager sharedServerManager];
                 NSString *serverName = [serverManager serverName];
                 
-                NSString *fixtureUrlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/fixtures/%@.json", league.leagueId, season.seasonId, division.divisionId, fixture.fixtureId];
+                Season *season = [division season];
+
+                NSString *fixtureUrlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/fixtures/%@.json", [season league].leagueId, season.seasonId, division.divisionId, fixture.fixtureId];
                 
                 DLog(@"Fixture url: %@", fixtureUrlString);
                 

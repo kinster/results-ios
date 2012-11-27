@@ -24,7 +24,7 @@
     ADBannerView *_bannerView;
 }
 
-@synthesize resultsList, league, season, division, team, leagueBadge, nameLabel, subtitle, teamResultsTable;
+@synthesize resultsList, division, team, leagueBadge, nameLabel, subtitle, teamResultsTable;
 
 - (void)loadBanner {
     _bannerView = [[ADBannerView alloc] init];
@@ -42,9 +42,11 @@
     @try {
         NSError *error;
         
+        Season *season = [division season];
+
         ServerManager *serverManager = [ServerManager sharedServerManager];
         NSString *serverName = [serverManager serverName];
-        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@/results.json", league.leagueId, season.seasonId, division.divisionId, team.teamId];
+        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@/results.json", [season league].leagueId, season.seasonId, division.divisionId, team.teamId];
         DLog(@"%@", urlString);
         
         NSURL *url = [NSURL URLWithString:urlString];
@@ -85,7 +87,7 @@
     
     leagueBadge.image = [[UIImage alloc]initWithData:imageData];
     nameLabel.text = [team name];
-    subtitle.text = [NSString stringWithFormat:@"%@ %@", season.name, division.name];
+    subtitle.text = [NSString stringWithFormat:@"%@ %@", [division season].name, division.name];
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Searching...";

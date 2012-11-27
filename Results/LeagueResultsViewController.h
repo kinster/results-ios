@@ -9,12 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <iAd/iAd.h>
 
-@class League, Season, Division;
+@class Division;
 
 @interface LeagueResultsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, ADBannerViewDelegate>
 @property (copy, nonatomic) NSMutableArray *resultsList;
-@property (weak, nonatomic) League *league;
-@property (weak, nonatomic) Season *season;
 @property (weak, nonatomic) Division *division;
 @property (weak, nonatomic) IBOutlet UIImageView *leagueBadge;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
