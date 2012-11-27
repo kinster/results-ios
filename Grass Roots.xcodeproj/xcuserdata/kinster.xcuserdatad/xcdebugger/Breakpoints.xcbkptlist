@@ -225,11 +225,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Results/LeaguesViewController.m"
-         timestampString = "375663548.581337"
+         timestampString = "375742632.799605"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "172"
-         endingLineNumber = "172"
+         startingLineNumber = "173"
+         endingLineNumber = "173"
          landmarkName = "-searchBarSearchButtonClicked:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -270,19 +270,6 @@
          startingLineNumber = "88"
          endingLineNumber = "88"
          landmarkName = "-viewDidLoad"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Results/LeaguesViewController.m"
-         timestampString = "375663316.348839"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "110"
-         endingLineNumber = "110"
-         landmarkName = "-viewDidAppear:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint

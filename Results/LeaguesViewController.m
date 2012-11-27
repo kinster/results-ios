@@ -109,6 +109,7 @@
     top500.title = @"Top 500";
     [self.tabBarController.navigationItem setRightBarButtonItem:top500];
 
+
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
