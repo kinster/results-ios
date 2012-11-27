@@ -208,7 +208,7 @@
         NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
         [dict setObject:league.leagueId forKey:@"LeagueId"];
         [dict setObject:league.name forKey:@"LeagueName"];
-        [dict setObject:season.name forKey:@"SeasonId"];
+        [dict setObject:season.seasonId forKey:@"SeasonId"];
         [dict setObject:season.name forKey:@"SeasonName"];
         [dict setObject:division.divisionId forKey:@"DivisionId"];
         [dict setObject:division.name forKey:@"DivisionName"];
@@ -216,16 +216,16 @@
     }
     DLog(@"Count: %d", [rootArray count]);
     
-    for (NSMutableDictionary *dict in rootArray) {
-        DLog(@"%@ %@", dict, [dict class]);
-        NSString *leagueId = [dict valueForKey:@"LeagueId"];
-        NSString *leagueName = [dict valueForKey:@"LeagueName"];
-        NSString *seasonId = [dict valueForKey:@"SeasonId"];
-        NSString *seasonName = [dict valueForKey:@"SeasonName"];
-        NSString *divisionId = [dict valueForKey:@"DivisionId"];
-        NSString *divisionName = [dict valueForKey:@"DivisionName"];
-        DLog(@"plist: %@ %@ %@ %@ %@ %@", leagueId, leagueName, seasonId, seasonName, divisionId, divisionName);
-    }
+//    for (NSMutableDictionary *dict in rootArray) {
+//        DLog(@"%@ %@", dict, [dict class]);
+//        NSString *leagueId = [dict valueForKey:@"LeagueId"];
+//        NSString *leagueName = [dict valueForKey:@"LeagueName"];
+//        NSString *seasonId = [dict valueForKey:@"SeasonId"];
+//        NSString *seasonName = [dict valueForKey:@"SeasonName"];
+//        NSString *divisionId = [dict valueForKey:@"DivisionId"];
+//        NSString *divisionName = [dict valueForKey:@"DivisionName"];
+//        DLog(@"plist: %@ %@ %@ %@ %@ %@", leagueId, leagueName, seasonId, seasonName, divisionId, divisionName);
+//    }
     BOOL success = [rootArray writeToFile:[documentsDirectory stringByAppendingPathComponent:@"Saved-Divisions.plist"] atomically:YES];
     
     if (success) {
