@@ -30,6 +30,7 @@
 		4B0E1B4916471EA20010CA22 /* CustomFixtureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E1B4816471EA20010CA22 /* CustomFixtureCell.m */; };
 		4B0E1B4B16473ACB0010CA22 /* CustomResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B0E1B4A16473ACB0010CA22 /* CustomResultCell.xib */; };
 		4B0E1B4E16473B190010CA22 /* CustomResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E1B4D16473B180010CA22 /* CustomResultCell.m */; };
+		4B1E07D41664EF580029BBDA /* selected2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B1E07D31664EF580029BBDA /* selected2.png */; };
 		4B40DB731637DF46008F264C /* League.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B40DB721637DF46008F264C /* League.m */; };
 		4B4C235C16494D0600F5A694 /* LeagueResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C235B16494D0600F5A694 /* LeagueResultsViewController.m */; };
 		4B4C236016494D7A00F5A694 /* Result.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C235F16494D7A00F5A694 /* Result.m */; };
@@ -102,6 +103,7 @@
 		4B0E1B4A16473ACB0010CA22 /* CustomResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomResultCell.xib; path = ../CustomResultCell.xib; sourceTree = "<group>"; };
 		4B0E1B4C16473B180010CA22 /* CustomResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomResultCell.h; sourceTree = "<group>"; };
 		4B0E1B4D16473B180010CA22 /* CustomResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomResultCell.m; sourceTree = "<group>"; };
+		4B1E07D31664EF580029BBDA /* selected2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selected2.png; sourceTree = "<group>"; };
 		4B40DB711637DF46008F264C /* League.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = League.h; sourceTree = "<group>"; };
 		4B40DB721637DF46008F264C /* League.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = League.m; sourceTree = "<group>"; };
 		4B4C235A16494D0600F5A694 /* LeagueResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeagueResultsViewController.h; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 		4B09D8A51632F56900A0A477 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4B1E07D31664EF580029BBDA /* selected2.png */,
 				4B6A21721663F99B004A54C1 /* deselected.png */,
 				4B6A21731663F99C004A54C1 /* selected.png */,
 				4B904FF8166133F9006B1E3B /* 180-stickynote.png */,
@@ -391,6 +394,7 @@
 				4B904FF9166133F9006B1E3B /* 180-stickynote.png in Resources */,
 				4B6A21741663F99C004A54C1 /* deselected.png in Resources */,
 				4B6A21751663F99C004A54C1 /* selected.png in Resources */,
+				4B1E07D41664EF580029BBDA /* selected2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,10 +522,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kinman Li (EGVK8S4UQX)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Results/Results-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"MYDEBUG=1",
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = "Results/Results-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = NELFC;
