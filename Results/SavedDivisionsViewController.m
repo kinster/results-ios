@@ -210,7 +210,7 @@
         NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
         [dict setObject:league.leagueId forKey:@"LeagueId"];
         [dict setObject:league.name forKey:@"LeagueName"];
-        [dict setObject:season.name forKey:@"SeasonId"];
+        [dict setObject:season.seasonId forKey:@"SeasonId"];
         [dict setObject:season.name forKey:@"SeasonName"];
         [dict setObject:division.divisionId forKey:@"DivisionId"];
         [dict setObject:division.name forKey:@"DivisionName"];

@@ -177,7 +177,7 @@
     if ([self isDivisionSaved:division]) {
         // add this to list if not already in selectedDivisions
 //        [self addToSelectedDivisions:division];
-        [cell.radioButton setBackgroundImage:[UIImage imageNamed:@"selected.png"] forState:UIControlStateNormal];
+        [cell.radioButton setBackgroundImage:[UIImage imageNamed:@"selected2.png"] forState:UIControlStateNormal];
     } else {
         [cell.radioButton setBackgroundImage:[UIImage imageNamed:@"deselected.png"] forState:UIControlStateNormal];        
     }
@@ -221,7 +221,7 @@
     } else {
         DLog(@"Selected %@", [division name]);
         [self.selectedDivisions addObject:division];
-        [button setBackgroundImage:[UIImage imageNamed:@"selected.png"] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:@"selected2.png"] forState:UIControlStateNormal];
     }
     DLog(@"Size %d", [selectedDivisions count]);
     [self saveDivisions];

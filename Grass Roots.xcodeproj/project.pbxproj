@@ -23,6 +23,7 @@
 		4B0E1B4916471EA20010CA22 /* CustomFixtureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E1B4816471EA20010CA22 /* CustomFixtureCell.m */; };
 		4B0E1B4B16473ACB0010CA22 /* CustomResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B0E1B4A16473ACB0010CA22 /* CustomResultCell.xib */; };
 		4B0E1B4E16473B190010CA22 /* CustomResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E1B4D16473B180010CA22 /* CustomResultCell.m */; };
+		4B1E07DA1664FA9C0029BBDA /* selected2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B1E07D91664FA9C0029BBDA /* selected2.png */; };
 		4B40DB731637DF46008F264C /* League.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B40DB721637DF46008F264C /* League.m */; };
 		4B4C235C16494D0600F5A694 /* LeagueResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C235B16494D0600F5A694 /* LeagueResultsViewController.m */; };
 		4B4C236016494D7A00F5A694 /* Result.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C235F16494D7A00F5A694 /* Result.m */; };
@@ -96,6 +97,7 @@
 		4B0E1B4A16473ACB0010CA22 /* CustomResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomResultCell.xib; path = ../CustomResultCell.xib; sourceTree = "<group>"; };
 		4B0E1B4C16473B180010CA22 /* CustomResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomResultCell.h; sourceTree = "<group>"; };
 		4B0E1B4D16473B180010CA22 /* CustomResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomResultCell.m; sourceTree = "<group>"; };
+		4B1E07D91664FA9C0029BBDA /* selected2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selected2.png; sourceTree = "<group>"; };
 		4B40DB711637DF46008F264C /* League.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = League.h; sourceTree = "<group>"; };
 		4B40DB721637DF46008F264C /* League.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = League.m; sourceTree = "<group>"; };
 		4B4C235A16494D0600F5A694 /* LeagueResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeagueResultsViewController.h; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 		4B09D8A51632F56900A0A477 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4B1E07D91664FA9C0029BBDA /* selected2.png */,
 				4B6A217F166405CE004A54C1 /* 180-stickynote.png */,
 				4B6A217A16640547004A54C1 /* deselected.png */,
 				4B6A217B16640547004A54C1 /* selected.png */,
@@ -390,6 +393,7 @@
 				4B6A217C16640547004A54C1 /* deselected.png in Resources */,
 				4B6A217D16640547004A54C1 /* selected.png in Resources */,
 				4B6A2180166405CE004A54C1 /* 180-stickynote.png in Resources */,
+				4B1E07DA1664FA9C0029BBDA /* selected2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
