@@ -20,11 +20,9 @@
 
 @end
 
-@implementation LeagueDivisionsViewController {
-    ADBannerView *_bannerView;
-}
+@implementation LeagueDivisionsViewController
 
-@synthesize divisionsList, league, season, divisionsTableView;
+@synthesize divisionsList, league, season, divisionsTableView, _bannerView;
 
 - (void)loadBanner {
     _bannerView = [[ADBannerView alloc] init];

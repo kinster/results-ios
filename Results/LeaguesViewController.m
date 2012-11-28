@@ -17,11 +17,9 @@
 
 @end
 
-@implementation LeaguesViewController {
-    ADBannerView *_bannerView;
-}
+@implementation LeaguesViewController
 
-@synthesize leaguesList, searchBar, sections, leagueTablesView;
+@synthesize leaguesList, searchBar, sections, leagueTablesView, _bannerView;
 
 - (void)loadNetworkExceptionAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -37,7 +35,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadBanner];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -165,6 +162,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
             [self.leagueTablesView reloadData];
+            [self loadBanner];
         });
     });
 }

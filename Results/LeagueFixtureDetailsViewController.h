@@ -24,5 +24,5 @@
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 - (IBAction)navigate:(id)sender;
 @property (retain, nonatomic) MKMapItem *mapItem;
-@property (retain, nonatomic) IBOutlet ADBannerView *bannerView;
+@property (retain, nonatomic) IBOutlet ADBannerView *_bannerView;
 @end

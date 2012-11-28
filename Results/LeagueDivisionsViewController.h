@@ -16,4 +16,5 @@
 @property (weak, nonatomic) League *league;
 @property (weak, nonatomic) Season *season;
 @property (weak, nonatomic) IBOutlet UITableView *divisionsTableView;
+@property (retain, nonatomic) IBOutlet ADBannerView *_bannerView;
 @end

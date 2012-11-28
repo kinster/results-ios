@@ -23,13 +23,13 @@
 
 @implementation LeagueFixtureDetailsViewController
 
-@synthesize league, season, division, team, fixture, mapView, location, mapItem, bannerView;
+@synthesize league, season, division, team, fixture, mapView, location, mapItem, _bannerView;
 
 - (void)loadBanner {
-    bannerView = [[ADBannerView alloc] init];
-    bannerView.delegate = self;
+    _bannerView = [[ADBannerView alloc] init];
+    _bannerView.delegate = self;
 
-    [self.view addSubview:bannerView];
+    [self.view addSubview:_bannerView];
 }
 
 - (void)loadNetworkExceptionAlert {
@@ -150,5 +150,44 @@
     DLog(@"navigate");
     [mapItem openInMapsWithLaunchOptions:nil];
 }
+
+- (void)viewDidLayoutSubviews {
+    [_bannerView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    
+    CGRect contentFrame = self.view.bounds;
+    CGRect bannerFrame = _bannerView.frame;
+    if (_bannerView.bannerLoaded) {
+        contentFrame.size.height -= _bannerView.frame.size.height;
+        bannerFrame.origin.y = contentFrame.size.height;
+    } else {
+        bannerFrame.origin.y = contentFrame.size.height;
+    }
+    _bannerView.frame = bannerFrame;
+}
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+    [UIView animateWithDuration:0.25 animations:^{
+        [self.view setNeedsLayout];
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    [UIView animateWithDuration:0.25 animations:^{
+        [self.view setNeedsLayout];
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionWillBegin" object:self];
+    return YES;
+}
+
+- (void)bannerViewActionDidFinish:(ADBannerView *)banner {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionDidFinish" object:self];
+}
+
 
 @end

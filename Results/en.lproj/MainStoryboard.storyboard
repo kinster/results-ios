@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="kF1-Aj-8Lq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="kF1-Aj-8Lq">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
         <!--League Table View Controller - League Table-->
@@ -1009,29 +1009,13 @@
                                     <outlet property="delegate" destination="vbr-tu-NID" id="N1a-2V-dP6"/>
                                 </connections>
                             </mapView>
-                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="miN-SW-L3y">
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" type="user" id="V26-Hu-tqh"/>
-                                    <constraint firstAttribute="height" constant="50" type="user" id="Xfn-bi-DBk"/>
-                                </constraints>
-                                <requiredContentSizeIdentifiers>
-                                    <string>ADBannerContentSizeLandscape</string>
-                                    <string>ADBannerContentSizePortrait</string>
-                                </requiredContentSizeIdentifiers>
-                                <connections>
-                                    <outlet property="delegate" destination="vbr-tu-NID" id="X61-TZ-21G"/>
-                                </connections>
-                            </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="nEb-er-alD" firstAttribute="bottom" secondItem="wPv-jS-XP5" secondAttribute="bottom" type="default" id="Cmw-h8-lyx"/>
                             <constraint firstItem="nEb-er-alD" firstAttribute="trailing" secondItem="wPv-jS-XP5" secondAttribute="trailing" type="default" id="OwY-26-jgD"/>
-                            <constraint firstItem="miN-SW-L3y" firstAttribute="leading" secondItem="wPv-jS-XP5" secondAttribute="leading" type="default" id="hfb-NE-fOx"/>
                             <constraint firstItem="nEb-er-alD" firstAttribute="top" secondItem="wPv-jS-XP5" secondAttribute="top" type="user" id="l4N-LT-A62"/>
                             <constraint firstItem="nEb-er-alD" firstAttribute="leading" secondItem="wPv-jS-XP5" secondAttribute="leading" type="default" id="mF3-Tk-Zf9"/>
-                            <constraint firstItem="miN-SW-L3y" firstAttribute="top" secondItem="nEb-er-alD" secondAttribute="bottom" constant="-1" type="user" id="ofQ-e4-ylt"/>
-                            <constraint firstItem="miN-SW-L3y" firstAttribute="bottom" secondItem="wPv-jS-XP5" secondAttribute="bottom" type="default" id="wdm-5q-zEv"/>
-                            <constraint firstItem="miN-SW-L3y" firstAttribute="trailing" secondItem="wPv-jS-XP5" secondAttribute="trailing" type="default" id="y7o-02-MBd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Fixture" id="26b-qH-Vsx">
@@ -1042,7 +1026,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bannerView" destination="miN-SW-L3y" id="BQb-na-Kz2"/>
                         <outlet property="mapView" destination="nEb-er-alD" id="WUH-Oi-Q9i"/>
                     </connections>
                 </viewController>
@@ -1498,6 +1481,7 @@
         <class className="LeagueDivisionsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueDivisionsViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="_bannerView" candidateClass="ADBannerView"/>
                 <relationship kind="outlet" name="divisionsTableView" candidateClass="UITableView"/>
             </relationships>
         </class>
@@ -1505,7 +1489,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueFixtureDetailsViewController.h"/>
             <relationships>
                 <relationship kind="action" name="navigate:"/>
-                <relationship kind="outlet" name="bannerView" candidateClass="ADBannerView"/>
+                <relationship kind="outlet" name="_bannerView" candidateClass="ADBannerView"/>
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
             </relationships>
         </class>
@@ -1530,6 +1514,7 @@
         <class className="LeagueSeasonViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueSeasonViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="_bannerView" candidateClass="ADBannerView"/>
                 <relationship kind="outlet" name="seasonsTableView" candidateClass="UITableView"/>
             </relationships>
         </class>
@@ -1546,6 +1531,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LeaguesViewController.h"/>
             <relationships>
                 <relationship kind="action" name="getTop500:"/>
+                <relationship kind="outlet" name="_bannerView" candidateClass="ADBannerView"/>
                 <relationship kind="outlet" name="leagueTablesView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
             </relationships>
