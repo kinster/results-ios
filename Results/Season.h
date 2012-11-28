@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class League;
+
 @interface Season : NSObject
-@property (nonatomic, copy) NSString *seasonId;
-@property (nonatomic, copy) NSString *name;
+@property (strong, nonatomic) League *league;
+@property (copy, nonatomic) NSString *seasonId;
+@property (copy, nonatomic) NSString *name;
 -(id)initWithIdAndName:(NSString *)seasonId AndName:(NSString *)name;
 @end

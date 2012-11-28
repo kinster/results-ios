@@ -19,14 +19,7 @@
 
 @implementation LeagueSeasonViewController
 
-@synthesize league, seasonsList, seasonsTableView, _bannerView;
-
-- (void)loadBanner {
-    _bannerView = [[ADBannerView alloc] init];
-    _bannerView.delegate = self;
-    
-    [self.view addSubview:_bannerView];    
-}
+@synthesize league, seasonsList, seasonsTableView;
 
 - (void)loadNetworkExceptionAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -40,8 +33,6 @@
     
     [self.navigationController.view addSubview:hud];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-
-        [self loadBanner];
 
         @try {
             NSError *error;
@@ -68,6 +59,7 @@
                     DLog(@"name: %@", theName);
                     
                     season = [[Season alloc] initWithIdAndName:theId AndName:theName];
+                    [season setLeague:league];
                     [seasonsList addObject: season];
                 }
             }
@@ -126,48 +118,8 @@
     
     if ([[segue identifier] isEqualToString:@"ShowDivisions"]) {
         LeagueDivisionsViewController *viewController = [segue destinationViewController];
-        [viewController setLeague:league];
         [viewController setSeason:season];
     }
-}
-
-- (void)viewDidLayoutSubviews {
-    [_bannerView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-    
-    CGRect contentFrame = self.view.bounds;
-    CGRect bannerFrame = _bannerView.frame;
-    if (_bannerView.bannerLoaded) {
-        contentFrame.size.height -= _bannerView.frame.size.height;
-        bannerFrame.origin.y = contentFrame.size.height;
-    } else {
-        bannerFrame.origin.y = contentFrame.size.height;
-    }
-    _bannerView.frame = bannerFrame;
-}
-
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner
-{
-    [UIView animateWithDuration:0.25 animations:^{
-        [self.view setNeedsLayout];
-        [self.view layoutIfNeeded];
-    }];
-}
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    DLog(@"Entered didFailToReceiveAdWithError %@", error);
-    [UIView animateWithDuration:0.25 animations:^{
-        [self.view setNeedsLayout];
-        [self.view layoutIfNeeded];
-    }];
-}
-
-- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionWillBegin" object:self];
-    return YES;
-}
-
-- (void)bannerViewActionDidFinish:(ADBannerView *)banner {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionDidFinish" object:self];
 }
 
 /*

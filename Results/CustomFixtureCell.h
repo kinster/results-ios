@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Kinman Li. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface CustomFixtureCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *homeTeam;
 @property (weak, nonatomic) IBOutlet UILabel *awayTeam;

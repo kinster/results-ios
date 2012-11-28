@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class Division;
+
 @interface Result : NSObject
 @property (nonatomic, copy) NSString *type;
 @property (nonatomic, copy) NSString *dateTime;
@@ -17,6 +19,7 @@
 @property (nonatomic, copy) NSString *location;
 @property (nonatomic, copy) NSString *competition;
 @property (nonatomic, copy) NSString *statusNote;
+@property (nonatomic, strong) Division *division;
 
 - (id)initWithType:(NSString *)type AndDateTime:(NSString *)dateTime AndHomeTeam:(NSString *)homeTeam AndScore:(NSString *)score AndAwayTeam:(NSString *)awayTeam AndCompetition:(NSString *)competition AndStatusNote:(NSString *)statusNote;
 

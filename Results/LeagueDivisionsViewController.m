@@ -22,14 +22,7 @@
 
 @implementation LeagueDivisionsViewController
 
-@synthesize divisionsList, league, season, divisionsTableView, _bannerView;
-
-- (void)loadBanner {
-    _bannerView = [[ADBannerView alloc] init];
-    _bannerView.delegate = self;
-    
-    [self.view addSubview:_bannerView];
-}
+@synthesize divisionsList, season, divisionsTableView;
 
 -(UIImage *)getLeagueImage:(NSString *)serverName AndLeagueId:(NSString *)leagueId {
     NSError *error;
@@ -63,18 +56,16 @@
     [self.navigationController.view addSubview:hud];
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-
-        [self loadBanner];
         
         @try {
             NSError *error;
             ServerManager *serverManager = [ServerManager sharedServerManager];
             NSString *serverName = [serverManager serverName];
             
-            UIImage *image = [self getLeagueImage:serverName AndLeagueId:league.leagueId];
-            league.image = image;
+            UIImage *image = [self getLeagueImage:serverName AndLeagueId:[season league].leagueId];
+            [season league].image = image;
             
-            NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@.json", league.leagueId, season.seasonId];
+            NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@.json", [season league].leagueId, season.seasonId];
             DLog(@"%@", urlString);
             
             NSURL *url = [NSURL URLWithString:urlString];
@@ -88,7 +79,7 @@
                 NSString *theId = [entry objectForKey:@"id"];
                 NSString *theName = [entry objectForKey:@"name"];
                 division = [[Division alloc] initWithIdAndName:theId AndName:theName];
-                
+                [division setSeason:season];
                 [divisionsList addObject: division];
             }
         } @catch (NSException *exception) {
@@ -150,60 +141,15 @@
     DLog(@"controllers: %d", [tabBarController.viewControllers count]);
     LeagueTableViewController *viewController0 = [tabBarController.viewControllers objectAtIndex:0];
     DLog(@"controller 0: %@", viewController0);
-    [viewController0 setLeague:league];
-    [viewController0 setSeason:season];
     [viewController0 setDivision:division];
     DLog(@"ShowFixtures");
     LeagueFixturesViewController *viewController1 = [tabBarController.viewControllers objectAtIndex:1];
     DLog(@"controller 1: %@", viewController1);
-    [viewController1 setLeague:league];
-    [viewController1 setSeason:season];
     [viewController1 setDivision:division];
     LeagueResultsViewController *viewController2 = [tabBarController.viewControllers objectAtIndex:2];
     DLog(@"controller 2: %@", viewController2);
-    [viewController2 setLeague:league];
-    [viewController2 setSeason:season];
     [viewController2 setDivision:division];
     DLog(@"end");
-}
-
-- (void)viewDidLayoutSubviews {
-    [_bannerView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-    
-    CGRect contentFrame = self.view.bounds;
-    CGRect bannerFrame = _bannerView.frame;
-    if (_bannerView.bannerLoaded) {
-        contentFrame.size.height -= _bannerView.frame.size.height;
-        bannerFrame.origin.y = contentFrame.size.height;
-    } else {
-        bannerFrame.origin.y = contentFrame.size.height;
-    }
-    _bannerView.frame = bannerFrame;
-}
-
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner
-{
-    [UIView animateWithDuration:0.25 animations:^{
-        [self.view setNeedsLayout];
-        [self.view layoutIfNeeded];
-    }];
-}
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    DLog(@"Entered didFailToReceiveAdWithError %@", error);
-    [UIView animateWithDuration:0.25 animations:^{
-        [self.view setNeedsLayout];
-        [self.view layoutIfNeeded];
-    }];
-}
-
-- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionWillBegin" object:self];
-    return YES;
-}
-
-- (void)bannerViewActionDidFinish:(ADBannerView *)banner {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionDidFinish" object:self];
 }
 
 /*

@@ -19,24 +19,15 @@
 
 @implementation LeaguesViewController
 
-@synthesize leaguesList, searchBar, sections, leagueTablesView, _bannerView;
+@synthesize leaguesList, searchBar, sections, leagueTablesView;
 
 - (void)loadNetworkExceptionAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
 }
 
-- (void)loadBanner {
-    _bannerView = [[ADBannerView alloc] init];
-    DLog(@"banner view pre: %@", _bannerView.delegate);
-    _bannerView.delegate = self;
-    DLog(@"banner view post: %@", _bannerView.delegate);
-    [self.view addSubview:_bannerView];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadBanner];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -222,51 +213,6 @@
     [viewController setLeague:league];
 
     [self.navigationController pushViewController:viewController animated:YES];
-}
-
-- (void)viewDidLayoutSubviews {
-    [_bannerView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-
-    CGRect contentFrame = self.view.bounds;
-    CGRect bannerFrame = _bannerView.frame;
-    if (_bannerView.bannerLoaded) {
-        contentFrame.size.height -= _bannerView.frame.size.height;
-        bannerFrame.origin.y = contentFrame.size.height;
-    } else {
-        bannerFrame.origin.y = contentFrame.size.height;
-    }
-    _bannerView.frame = bannerFrame;
-}
-
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
-    _bannerView.hidden = NO;
-    [UIView animateWithDuration:0.25 animations:^{
-        [self.view setNeedsLayout];
-        [self.view layoutIfNeeded];
-    }];
-}
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    DLog(@"Entered didFailToReceiveAdWithError %@", error);
-    
-    banner.hidden= YES;
-    DLog(@"%@\n", [error localizedDescription] );
-    DLog(@"delegate %@", banner.delegate);
-    if (!banner.hidden) {
-        [UIView animateWithDuration:0.25 animations:^{
-            [self.view setNeedsLayout];
-            [self.view layoutIfNeeded];
-        }];
-    }
-}
-
-- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionWillBegin" object:self];
-    return YES;
-}
-
-- (void)bannerViewActionDidFinish:(ADBannerView *)banner {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionDidFinish" object:self];
 }
 
 - (IBAction)getTop500:(id)sender {

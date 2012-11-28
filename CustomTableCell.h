@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Kinman Li. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface CustomTableCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *position;

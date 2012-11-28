@@ -22,18 +22,9 @@
 @end
 
 
-@implementation LeagueFixturesViewController {
-    ADBannerView *_bannerView;
-}
+@implementation LeagueFixturesViewController
 
-@synthesize fixtureList, league, season, division, fixturesTable, nameLabel, leagueBadge, subtitle;
-
-- (void)loadBanner {
-    _bannerView = [[ADBannerView alloc] init];
-    _bannerView.delegate = self;
-    
-    [self.view addSubview:_bannerView];
-}
+@synthesize fixtureList, division, fixturesTable, nameLabel, leagueBadge, subtitle;
 
 - (void)loadNetworkExceptionAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -45,8 +36,10 @@
         NSError *error;
         
         ServerManager *serverManager = [ServerManager sharedServerManager];
+        
+        Season *season = [division season];
         NSString *serverName = [serverManager serverName];
-        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/fixtures.json", league.leagueId, season.seasonId, division.divisionId];
+        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/fixtures.json", [season league].leagueId, season.seasonId, division.divisionId];
         DLog(@"%@", urlString);
         
         NSURL *url = [NSURL URLWithString:urlString];
@@ -68,7 +61,7 @@
             NSString *fixtureId = [entry objectForKey:@"fixture_id"];
             DLog(@"location %@", location);
             fixture = [[Fixture alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndAwayTeam:awayTeam AndLocation:location AndCompetition:competition AndStatusNote:statusNote AndFixtureId:fixtureId];
-            
+            [fixture setDivision:division];
             [fixtureList addObject:fixture];
         }
     } @catch (NSException *exception) {
@@ -82,9 +75,10 @@
 
     DLog(@"LeagueFixturesViewController");
 
-    nameLabel.text = [NSString stringWithFormat:@"%@", league.name];
+    Season *season = [division season];
+    nameLabel.text = [NSString stringWithFormat:@"%@", [season league].name];
     subtitle.text = [NSString stringWithFormat:@"%@ %@", season.name, division.name];
-    leagueBadge.image = league.image;
+    leagueBadge.image = [season league].image;
     DLog(@"%@", self.nameLabel.text);
     
     [self setNavTitle];
@@ -94,7 +88,6 @@
     
     [self.navigationController.view addSubview:hud];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        [self loadBanner];
         [self loadData];
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
@@ -139,8 +132,6 @@
 
 }
 
-
-
 - (void)setNavTitle {
     self.tabBarController.title = @"League Fixtures";
 }
@@ -179,46 +170,6 @@
     cell.date.text = fixture.dateTime;
     return cell;
 }
-
-- (void)viewDidLayoutSubviews {
-    [_bannerView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-    
-    CGRect contentFrame = self.view.bounds;
-    CGRect bannerFrame = _bannerView.frame;
-    if (_bannerView.bannerLoaded) {
-        contentFrame.size.height -= _bannerView.frame.size.height;
-        bannerFrame.origin.y = contentFrame.size.height;
-    } else {
-        bannerFrame.origin.y = contentFrame.size.height;
-    }
-    _bannerView.frame = bannerFrame;
-}
-
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner
-{
-    [UIView animateWithDuration:0.25 animations:^{
-        [self.view setNeedsLayout];
-        [self.view layoutIfNeeded];
-    }];
-}
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    DLog(@"Entered didFailToReceiveAdWithError %@", error);
-    [UIView animateWithDuration:0.25 animations:^{
-        [self.view setNeedsLayout];
-        [self.view layoutIfNeeded];
-    }];
-}
-
-- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionWillBegin" object:self];
-    return YES;
-}
-
-- (void)bannerViewActionDidFinish:(ADBannerView *)banner {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionDidFinish" object:self];
-}
-
 
 /*
 // Override to support conditional editing of the table view.
@@ -276,9 +227,6 @@
     if ([[segue identifier] isEqualToString:@"ShowFixtureDetails"]) {
         DLog(@"Fixture location: %@", fixture.location);
         DLog(@"%@", segue.destinationViewController);
-        [destinationController setLeague:league];
-        [destinationController setSeason:season];
-        [destinationController setDivision:division];
         [destinationController setFixture:fixture];
     }
 }

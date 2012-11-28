@@ -6,16 +6,11 @@
 //  Copyright (c) 2012 Kinman Li. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <iAd/iAd.h>
+@class CustomTableCell, Division;
 
-@class CustomTableCell, League, Season, Division;
-
-@interface LeagueTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, ADBannerViewDelegate>
+@interface LeagueTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (copy, nonatomic) NSMutableArray *teamList;
 @property (retain, nonatomic) IBOutlet UITableView *leagueTable;
-@property (weak, nonatomic) League *league;
-@property (weak, nonatomic) Season *season;
 @property (weak, nonatomic) Division *division;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *subtitle;

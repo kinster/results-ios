@@ -23,19 +23,9 @@
 
 @end
 
-@implementation LeagueTableViewController {
-    ADBannerView *_bannerView;
-}
+@implementation LeagueTableViewController
 
-@synthesize teamList, league, season, division, nameLabel, subtitle, leagueBadge, leagueTable;
-
-- (void)loadBanner {
-    _bannerView = [[ADBannerView alloc] init];
-    _bannerView.delegate = self;
-    
-    [self.view addSubview:_bannerView];
-    
-}
+@synthesize teamList, division, nameLabel, subtitle, leagueBadge, leagueTable;
 
 - (void)loadNetworkExceptionAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -48,7 +38,9 @@
         
         ServerManager *serverManager = [ServerManager sharedServerManager];
         NSString *serverName = [serverManager serverName];
-        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@.json", league.leagueId, season.seasonId, division.divisionId];
+        
+        Season *season = [division season];
+        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@.json", [season league].leagueId, season.seasonId, division.divisionId];
         DLog(@"%@", urlString);
         
         NSURL *url = [NSURL URLWithString:urlString];
@@ -72,6 +64,7 @@
             NSString *teamId = [entry objectForKey:@"id"];
             
             team = [[Team alloc] initWithTeam:name AndPosition:position AndPlayed:played AndWins:wins AndDraws:draws AndLosses:losses AndGoalsFor:gf AndGoalsAgainst:ga AndGoalDiff:gd AndPoints:points AndTeamId:teamId AndBadge:nil];
+            [team setDivision:division];
             [teamList addObject: team];
         }
     } @catch (NSException *exception) {
@@ -89,9 +82,11 @@
 
     [self setNavTitle];
     
-    nameLabel.text = [NSString stringWithFormat:@"%@", league.name];
+    Season *season = [division season];
+    
+    nameLabel.text = [NSString stringWithFormat:@"%@", [season league].name];
     subtitle.text = [NSString stringWithFormat:@"%@ %@", season.name, division.name];
-    leagueBadge.image = league.image;
+    leagueBadge.image = [season league].image;
     DLog(@"%@", self.nameLabel.text);
 
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
@@ -100,7 +95,6 @@
     [self.navigationController.view addSubview:hud];
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        [self loadBanner];
         [self loadData];
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
@@ -197,16 +191,16 @@
         
         DLog(@"Team: %@ - %d %d", team.name, indexPath.row, teamList.count);
         TeamDetailsViewController *teamDetailsViewController = [tabBarViewController.viewControllers objectAtIndex:0];
-        [teamDetailsViewController setLeague:league];
-        [teamDetailsViewController setSeason:season];
-        [teamDetailsViewController setDivision:division];
+        [teamDetailsViewController setTeam:team];
 
         @try {
             
             NSError *error;
             ServerManager *serverManager = [ServerManager sharedServerManager];
             NSString *serverName = [serverManager serverName];
-            NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@.json", league.leagueId, season.seasonId, division.divisionId, team.teamId];
+            
+            Season *season = [division season];
+            NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@.json", [season league].leagueId, season.seasonId, division.divisionId, team.teamId];
             DLog(@"%@", urlString);
             NSURL *url = [NSURL URLWithString:urlString];
             NSData *data = [NSData dataWithContentsOfURL:url];
@@ -221,59 +215,12 @@
         }
         [teamDetailsViewController setTeam:team];
         TeamFixturesViewController *teamFixturesController = [tabBarViewController.viewControllers objectAtIndex:1];
-        [teamFixturesController setLeague:league];
-        [teamFixturesController setSeason:season];
-        [teamFixturesController setDivision:division];
         [teamFixturesController setTeam:team];
         TeamResultsViewController *teamResultsController = [tabBarViewController.viewControllers objectAtIndex:2];
-        [teamResultsController setLeague:league];
-        [teamResultsController setSeason:season];
-        [teamResultsController setDivision:division];
         [teamResultsController setTeam:team];
-
     }
     DLog(@"end of prepareForSegue");
 }
-
-- (void)viewDidLayoutSubviews {
-    [_bannerView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-    
-    CGRect contentFrame = self.view.bounds;
-    CGRect bannerFrame = _bannerView.frame;
-    if (_bannerView.bannerLoaded) {
-        contentFrame.size.height -= _bannerView.frame.size.height;
-        bannerFrame.origin.y = contentFrame.size.height;
-    } else {
-        bannerFrame.origin.y = contentFrame.size.height;
-    }
-    _bannerView.frame = bannerFrame;
-}
-
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner
-{
-    [UIView animateWithDuration:0.25 animations:^{
-        [self.view setNeedsLayout];
-        [self.view layoutIfNeeded];
-    }];
-}
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    DLog(@"Entered didFailToReceiveAdWithError %@", error);
-    [UIView animateWithDuration:0.25 animations:^{
-        [self.view setNeedsLayout];
-        [self.view layoutIfNeeded];
-    }];
-}
-
-- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionWillBegin" object:self];
-    return YES;
-}
-
-- (void)bannerViewActionDidFinish:(ADBannerView *)banner {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionDidFinish" object:self];
-}
-
 
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 //    return nil;

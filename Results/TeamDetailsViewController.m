@@ -20,18 +20,9 @@
 
 @end
 
-@implementation TeamDetailsViewController {
-    ADBannerView *_bannerView;
-}
+@implementation TeamDetailsViewController
 
-@synthesize name, badge, league, season, division, team, playersTable, playersList, subtitle;
-
-- (void)loadBanner {
-    _bannerView = [[ADBannerView alloc] init];
-    _bannerView.delegate = self;
-    
-    [self.view addSubview:_bannerView];
-}
+@synthesize name, badge, team, playersTable, playersList, subtitle;
 
 - (void)loadNetworkExceptionAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -43,10 +34,12 @@
     
     [self setNavTitle];
 
+    Division *division = [team division];
+    
     DLog(@"team id: %@", team.teamId);
     name.text = [team name];
     
-    subtitle.text = [NSString stringWithFormat:@"%@ %@", season.name, division.name];
+    subtitle.text = [NSString stringWithFormat:@"%@ %@", [division season].name, division.name];
 
     NSURL *imageUrl = [NSURL URLWithString:team.badge];
     NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
@@ -58,14 +51,16 @@
     
     [self.navigationController.view addSubview:hud];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        [self loadBanner];
         @try {
             NSError *error;
             
             ServerManager *serverManager = [ServerManager sharedServerManager];
             NSString *serverName = [serverManager serverName];
             
-            NSString *playersUrlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@/players.json", league.leagueId, season.seasonId, division.divisionId, team.teamId];
+            Division *division = [team division];
+            Season *season = [division season];
+            
+            NSString *playersUrlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@/players.json", [season league].leagueId, season.seasonId, division.divisionId, team.teamId];
             DLog(@"%@", playersUrlString);
             
             NSURL *playersUrl = [NSURL URLWithString:playersUrlString];
@@ -142,45 +137,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)viewDidLayoutSubviews {
-    [_bannerView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-    
-    CGRect contentFrame = self.view.bounds;
-    CGRect bannerFrame = _bannerView.frame;
-    if (_bannerView.bannerLoaded) {
-        contentFrame.size.height -= _bannerView.frame.size.height;
-        bannerFrame.origin.y = contentFrame.size.height;
-    } else {
-        bannerFrame.origin.y = contentFrame.size.height;
-    }
-    _bannerView.frame = bannerFrame;
-}
-
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner
-{
-    [UIView animateWithDuration:0.25 animations:^{
-        [self.view setNeedsLayout];
-        [self.view layoutIfNeeded];
-    }];
-}
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    DLog(@"Entered didFailToReceiveAdWithError %@", error);
-    [UIView animateWithDuration:0.25 animations:^{
-        [self.view setNeedsLayout];
-        [self.view layoutIfNeeded];
-    }];
-}
-
-- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionWillBegin" object:self];
-    return YES;
-}
-
-- (void)bannerViewActionDidFinish:(ADBannerView *)banner {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionDidFinish" object:self];
 }
 
 /*
