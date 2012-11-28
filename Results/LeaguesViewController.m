@@ -28,13 +28,15 @@
 
 - (void)loadBanner {
     _bannerView = [[ADBannerView alloc] init];
+    DLog(@"banner view pre: %@", _bannerView.delegate);
     _bannerView.delegate = self;
-    
+    DLog(@"banner view post: %@", _bannerView.delegate);
     [self.view addSubview:_bannerView];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self loadBanner];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -162,7 +164,6 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
             [self.leagueTablesView reloadData];
-            [self loadBanner];
         });
     });
 }
@@ -237,8 +238,8 @@
     _bannerView.frame = bannerFrame;
 }
 
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner
-{
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    _bannerView.hidden = NO;
     [UIView animateWithDuration:0.25 animations:^{
         [self.view setNeedsLayout];
         [self.view layoutIfNeeded];
@@ -246,10 +247,17 @@
 }
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    [UIView animateWithDuration:0.25 animations:^{
-        [self.view setNeedsLayout];
-        [self.view layoutIfNeeded];
-    }];
+    DLog(@"Entered didFailToReceiveAdWithError %@", error);
+    
+    banner.hidden= YES;
+    DLog(@"%@\n", [error localizedDescription] );
+    DLog(@"delegate %@", banner.delegate);
+    if (!banner.hidden) {
+        [UIView animateWithDuration:0.25 animations:^{
+            [self.view setNeedsLayout];
+            [self.view layoutIfNeeded];
+        }];
+    }
 }
 
 - (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {

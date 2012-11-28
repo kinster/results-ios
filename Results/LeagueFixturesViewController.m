@@ -203,6 +203,7 @@
 }
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    DLog(@"Entered didFailToReceiveAdWithError %@", error);
     [UIView animateWithDuration:0.25 animations:^{
         [self.view setNeedsLayout];
         [self.view layoutIfNeeded];
