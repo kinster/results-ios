@@ -21,18 +21,9 @@
 
 @end
 
-@implementation TeamFixturesViewController {
-    ADBannerView *_bannerView;
-}
+@implementation TeamFixturesViewController
 
-@synthesize fixtureList, division, team, leagueBadge, nameLabel, subtitle, teamFixturesTable;
-
-- (void)loadBanner {
-    _bannerView = [[ADBannerView alloc] init];
-    _bannerView.delegate = self;
-    
-    [self.view addSubview:_bannerView];
-}
+@synthesize fixtureList, team, leagueBadge, nameLabel, subtitle, teamFixturesTable;
 
 - (void)loadNetworkExceptionAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -43,6 +34,7 @@
     @try {
         NSError *error;
         
+        Division *division = [team division];
         Season *season = [division season];
 
         ServerManager *serverManager = [ServerManager sharedServerManager];
@@ -69,7 +61,7 @@
             NSString *fixtureId = [entry objectForKey:@"fixture_id"];
             
             fixture = [[Fixture alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndAwayTeam:awayTeam AndLocation:location AndCompetition:competition AndStatusNote:statusNote AndFixtureId:fixtureId];
-            
+            [fixture setDivision:division];
             [fixtureList addObject:fixture];
         }
     } @catch (NSException *exception) {
@@ -90,7 +82,7 @@
     leagueBadge.image = [[UIImage alloc]initWithData:imageData];
     
     nameLabel.text = [team name];
-    
+    Division *division = [team division];
     subtitle.text = [NSString stringWithFormat:@"%@ %@", [division season].name, division.name];
     
     [self setNavTitle];
@@ -100,7 +92,6 @@
     
     [self.navigationController.view addSubview:hud];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        [self loadBanner];
         [self loadData];
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
@@ -196,47 +187,8 @@
     if ([[segue identifier] isEqualToString:@"ShowFixtureDetails"]) {
         DLog(@"Fixture location: %@", fixture.location);
         DLog(@"%@", segue.destinationViewController);
-        [destinationController setDivision:division];
         [destinationController setFixture:fixture];
     }
-}
-
-- (void)viewDidLayoutSubviews {
-    [_bannerView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-    
-    CGRect contentFrame = self.view.bounds;
-    CGRect bannerFrame = _bannerView.frame;
-    if (_bannerView.bannerLoaded) {
-        contentFrame.size.height -= _bannerView.frame.size.height;
-        bannerFrame.origin.y = contentFrame.size.height;
-    } else {
-        bannerFrame.origin.y = contentFrame.size.height;
-    }
-    _bannerView.frame = bannerFrame;
-}
-
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner
-{
-    [UIView animateWithDuration:0.25 animations:^{
-        [self.view setNeedsLayout];
-        [self.view layoutIfNeeded];
-    }];
-}
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    [UIView animateWithDuration:0.25 animations:^{
-        [self.view setNeedsLayout];
-        [self.view layoutIfNeeded];
-    }];
-}
-
-- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionWillBegin" object:self];
-    return YES;
-}
-
-- (void)bannerViewActionDidFinish:(ADBannerView *)banner {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionDidFinish" object:self];
 }
 
 /*

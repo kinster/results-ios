@@ -21,22 +21,13 @@
 
 #define METERS_PER_MILE 1609.344
 
-@implementation LeagueFixtureDetailsViewController {
-    ADBannerView *_bannerView;
-}
+@implementation LeagueFixtureDetailsViewController
 
-@synthesize division, fixture, mapView, location, mapItem;
+@synthesize fixture, mapView, location, mapItem;
 
 - (void)loadNetworkExceptionAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
-}
-
-- (void)loadBanner {
-    _bannerView = [[ADBannerView alloc] init];
-    _bannerView.delegate = self;
-    
-    [self.view addSubview:_bannerView];
 }
 
 - (void)loadGeocodeExceptionAlert {
@@ -47,7 +38,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNavTitle];
-    [self loadBanner];
 
     if ([fixture.location caseInsensitiveCompare:@"TBA"] == NSOrderedSame) {
         DLog(@"Fixture Details Location length: %d", fixture.location.length);
@@ -64,6 +54,7 @@
                 ServerManager *serverManager = [ServerManager sharedServerManager];
                 NSString *serverName = [serverManager serverName];
                 
+                Division *division = [fixture division];
                 Season *season = [division season];
 
                 NSString *fixtureUrlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/fixtures/%@.json", [season league].leagueId, season.seasonId, division.divisionId, fixture.fixtureId];
@@ -153,44 +144,6 @@
 - (IBAction)navigate:(id)sender {
     DLog(@"navigate");
     [mapItem openInMapsWithLaunchOptions:nil];
-}
-
-- (void)viewDidLayoutSubviews {
-    [_bannerView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-    
-    CGRect contentFrame = self.view.bounds;
-    CGRect bannerFrame = _bannerView.frame;
-    if (_bannerView.bannerLoaded) {
-        contentFrame.size.height -= _bannerView.frame.size.height;
-        bannerFrame.origin.y = contentFrame.size.height;
-    } else {
-        bannerFrame.origin.y = contentFrame.size.height;
-    }
-    _bannerView.frame = bannerFrame;
-}
-
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner
-{
-    [UIView animateWithDuration:0.25 animations:^{
-        [self.view setNeedsLayout];
-        [self.view layoutIfNeeded];
-    }];
-}
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    [UIView animateWithDuration:0.25 animations:^{
-        [self.view setNeedsLayout];
-        [self.view layoutIfNeeded];
-    }];
-}
-
-- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionWillBegin" object:self];
-    return YES;
-}
-
-- (void)bannerViewActionDidFinish:(ADBannerView *)banner {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionDidFinish" object:self];
 }
 
 @end

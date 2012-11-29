@@ -6,12 +6,9 @@
 //  Copyright (c) 2012 Kinman Li. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <iAd/iAd.h>
-
 @class Division;
 
-@interface LeagueFixturesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, ADBannerViewDelegate>
+@interface LeagueFixturesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (copy, nonatomic) NSMutableArray *fixtureList;
 @property (weak, nonatomic) Division *division;
 @property (retain, nonatomic) IBOutlet UITableView *fixturesTable;
