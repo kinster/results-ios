@@ -65,7 +65,7 @@
             NSString *statusNote = [entry objectForKey:@"status_note"];
             
             result = [[Result alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndScore:score AndAwayTeam:awayTeam AndCompetition:competition AndStatusNote:statusNote];
-            
+            [result setDivision:division];
             [resultsList addObject:result];
         }
     } @catch (NSException *exception) {

@@ -6,10 +6,7 @@
 //  Copyright (c) 2012 Kinman Li. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <iAd/iAd.h>
-
-@interface SavedDivisionsViewController : UIViewController <ADBannerViewDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface SavedDivisionsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *divisionsTableView;
 @property (copy, nonatomic) NSMutableArray *divisionsList;
 @end

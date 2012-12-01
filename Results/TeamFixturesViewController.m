@@ -25,7 +25,7 @@
     ADBannerView *_bannerView;
 }
 
-@synthesize fixtureList, division, team, leagueBadge, nameLabel, subtitle, teamFixturesTable;
+@synthesize fixtureList, team, leagueBadge, nameLabel, subtitle, teamFixturesTable;
 
 - (void)loadBanner {
     _bannerView = [[ADBannerView alloc] init];
@@ -43,6 +43,7 @@
     @try {
         NSError *error;
         
+        Division *division = [team division];
         Season *season = [division season];
 
         ServerManager *serverManager = [ServerManager sharedServerManager];
@@ -91,6 +92,7 @@
     
     nameLabel.text = [team name];
     
+    Division *division = [team division];
     subtitle.text = [NSString stringWithFormat:@"%@ %@", [division season].name, division.name];
     
     [self setNavTitle];
@@ -196,7 +198,6 @@
     if ([[segue identifier] isEqualToString:@"ShowFixtureDetails"]) {
         DLog(@"Fixture location: %@", fixture.location);
         DLog(@"%@", segue.destinationViewController);
-        [destinationController setDivision:division];
         [destinationController setFixture:fixture];
     }
 }

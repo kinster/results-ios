@@ -31,6 +31,7 @@
 		4B0E1B4B16473ACB0010CA22 /* CustomResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B0E1B4A16473ACB0010CA22 /* CustomResultCell.xib */; };
 		4B0E1B4E16473B190010CA22 /* CustomResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E1B4D16473B180010CA22 /* CustomResultCell.m */; };
 		4B1E07D41664EF580029BBDA /* selected2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B1E07D31664EF580029BBDA /* selected2.png */; };
+		4B31FE5F1668F31500FAB085 /* ResultDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B31FE5E1668F31400FAB085 /* ResultDetailsViewController.m */; };
 		4B40DB731637DF46008F264C /* League.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B40DB721637DF46008F264C /* League.m */; };
 		4B4C235C16494D0600F5A694 /* LeagueResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C235B16494D0600F5A694 /* LeagueResultsViewController.m */; };
 		4B4C236016494D7A00F5A694 /* Result.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C235F16494D7A00F5A694 /* Result.m */; };
@@ -104,6 +105,8 @@
 		4B0E1B4C16473B180010CA22 /* CustomResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomResultCell.h; sourceTree = "<group>"; };
 		4B0E1B4D16473B180010CA22 /* CustomResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomResultCell.m; sourceTree = "<group>"; };
 		4B1E07D31664EF580029BBDA /* selected2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selected2.png; sourceTree = "<group>"; };
+		4B31FE5D1668F31400FAB085 /* ResultDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultDetailsViewController.h; sourceTree = "<group>"; };
+		4B31FE5E1668F31400FAB085 /* ResultDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultDetailsViewController.m; sourceTree = "<group>"; };
 		4B40DB711637DF46008F264C /* League.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = League.h; sourceTree = "<group>"; };
 		4B40DB721637DF46008F264C /* League.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = League.m; sourceTree = "<group>"; };
 		4B4C235A16494D0600F5A694 /* LeagueResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeagueResultsViewController.h; sourceTree = "<group>"; };
@@ -269,6 +272,8 @@
 				4B79E0E2164D6014009B8389 /* TeamFixturesViewController.m */,
 				4BB2DFD5164ED093000650A0 /* TeamResultsViewController.h */,
 				4BB2DFD6164ED093000650A0 /* TeamResultsViewController.m */,
+				4B31FE5D1668F31400FAB085 /* ResultDetailsViewController.h */,
+				4B31FE5E1668F31400FAB085 /* ResultDetailsViewController.m */,
 				4BE0E2CB16345CF9000D061F /* CustomTableCell.xib */,
 				4BF55D851634A83600926CDC /* CustomTableCell.h */,
 				4BF55D861634A83600926CDC /* CustomTableCell.m */,
@@ -434,6 +439,7 @@
 				4B5987B91656EE8C005FFCCE /* Reachability.m in Sources */,
 				4B806674165E45310092D057 /* CustomDivisionCell.m in Sources */,
 				4B904FFD16613E0A006B1E3B /* SavedDivisionsViewController.m in Sources */,
+				4B31FE5F1668F31500FAB085 /* ResultDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

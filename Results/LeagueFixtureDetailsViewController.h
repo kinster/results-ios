@@ -10,11 +10,10 @@
 #import <iAd/iAd.h>
 #import <MapKit/MapKit.h>
 
-@class Division, Fixture;
+@class Fixture;
 
 @interface LeagueFixtureDetailsViewController : UIViewController<ADBannerViewDelegate, MKMapViewDelegate> {
 }
-@property (weak, nonatomic) Division *division;
 @property (weak, nonatomic) Fixture *fixture;
 @property (weak, nonatomic) NSString *location;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;

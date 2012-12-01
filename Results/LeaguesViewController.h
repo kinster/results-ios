@@ -6,12 +6,9 @@
 //  Copyright (c) 2012 Kinman Li. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <iAd/iAd.h>
 #import "Club.h"
 
-@interface LeaguesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, ADBannerViewDelegate>
-
+@interface LeaguesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (copy, nonatomic) NSMutableArray *leaguesList;
 @property (retain, nonatomic) NSDictionary *sections;
 @property (strong, nonatomic) IBOutlet UITableView *leagueTablesView;

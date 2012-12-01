@@ -70,7 +70,7 @@
             NSString *fixtureId = [entry objectForKey:@"fixture_id"];
             DLog(@"location %@", location);
             fixture = [[Fixture alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndAwayTeam:awayTeam AndLocation:location AndCompetition:competition AndStatusNote:statusNote AndFixtureId:fixtureId];
-            
+            [fixture setDivision:division];
             [fixtureList addObject:fixture];
         }
     } @catch (NSException *exception) {
@@ -276,7 +276,6 @@
     if ([[segue identifier] isEqualToString:@"ShowFixtureDetails"]) {
         DLog(@"Fixture location: %@", fixture.location);
         DLog(@"%@", segue.destinationViewController);
-        [destinationController setDivision:division];
         [destinationController setFixture:fixture];
     }
 }

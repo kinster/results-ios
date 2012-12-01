@@ -15,6 +15,7 @@
 #import "CustomResultCell.h"
 #import "ServerManager.h"
 #import "MBProgressHUD.h"
+#import "ResultDetailsViewController.h"
 
 @interface TeamResultsViewController ()
 
@@ -24,7 +25,7 @@
     ADBannerView *_bannerView;
 }
 
-@synthesize resultsList, division, team, leagueBadge, nameLabel, subtitle, teamResultsTable;
+@synthesize resultsList, team, leagueBadge, nameLabel, subtitle, teamResultsTable;
 
 - (void)loadBanner {
     _bannerView = [[ADBannerView alloc] init];
@@ -42,6 +43,7 @@
     @try {
         NSError *error;
         
+        Division *division = [team division];
         Season *season = [division season];
 
         ServerManager *serverManager = [ServerManager sharedServerManager];
@@ -65,9 +67,12 @@
             NSString *awayTeam = [entry objectForKey:@"away_team"];
             NSString *competition = [entry objectForKey:@"competition"];
             NSString *statusNote = [entry objectForKey:@"status_note"];
+            NSString *resultId = [entry objectForKey:@"result_id"];
             
             result = [[Result alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndScore:score AndAwayTeam:awayTeam AndCompetition:competition AndStatusNote:statusNote];
-            
+            [result setDivision:division];
+            [result setTeam:team];
+            [result setResultId:resultId];
             [resultsList addObject:result];
         }
     } @catch (NSException *exception) {
@@ -85,6 +90,7 @@
     NSURL *imageUrl = [NSURL URLWithString:team.badge];
     NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
     
+    Division *division = [team division];
     leagueBadge.image = [[UIImage alloc]initWithData:imageData];
     nameLabel.text = [team name];
     subtitle.text = [NSString stringWithFormat:@"%@ %@", [division season].name, division.name];
@@ -175,6 +181,21 @@
     cell.date.text = result.dateTime;
     
     return cell;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    DLog(@"In prepareForSegue");
+    
+    NSIndexPath *indexPath = [self.teamResultsTable indexPathForSelectedRow];
+    DLog(@"%d", indexPath.row);
+    Result *result = [resultsList objectAtIndex:indexPath.row];
+    ResultDetailsViewController *destinationController = [segue destinationViewController];
+    
+    if ([[segue identifier] isEqualToString:@"ShowResultDetails"]) {
+        DLog(@"Fixture location: %@", result.location);
+        DLog(@"%@", segue.destinationViewController);
+        [destinationController setResult:result];
+    }
 }
 
 - (void)viewDidLayoutSubviews {

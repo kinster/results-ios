@@ -223,10 +223,8 @@
         TeamDetailsViewController *teamDetailsViewController = [tabBarViewController.viewControllers objectAtIndex:0];
         [teamDetailsViewController setTeam:team];
         TeamFixturesViewController *teamFixturesController = [tabBarViewController.viewControllers objectAtIndex:1];
-        [teamFixturesController setDivision:division];
         [teamFixturesController setTeam:team];
         TeamResultsViewController *teamResultsController = [tabBarViewController.viewControllers objectAtIndex:2];
-        [teamResultsController setDivision:division];
         [teamResultsController setTeam:team];
     }
     DLog(@"end of prepareForSegue");

@@ -13,7 +13,6 @@
 
 @interface TeamFixturesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, ADBannerViewDelegate>
 @property (copy, nonatomic) NSMutableArray *fixtureList;
-@property (weak, nonatomic) Division *division;
 @property (weak, nonatomic) Team *team;
 @property (weak, nonatomic) IBOutlet UIImageView *leagueBadge;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
