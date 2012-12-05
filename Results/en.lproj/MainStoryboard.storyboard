@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="kF1-Aj-8Lq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="CRY-At-1rx">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -9,7 +9,7 @@
             <objects>
                 <viewController title="League Table" id="2" customClass="LeagueTableViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TbS-ft-E4k">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ep2-k7-Dq4" userLabel="Table Bar">
@@ -336,7 +336,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2184" y="-2812"/>
+            <point key="canvasLocation" x="2100" y="-2230"/>
         </scene>
         <!--Team Results View Controller - Team Results-->
         <scene sceneID="jcR-ZA-ZUI">
@@ -494,7 +494,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ssv-a9-tYG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3705" y="-1361"/>
+            <point key="canvasLocation" x="5333" y="-2377"/>
         </scene>
         <!--Team Fixtures View Controller - Team Fixtures-->
         <scene sceneID="6dN-Gy-9nX">
@@ -660,7 +660,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xzk-QI-Den" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4188" y="-1989"/>
+            <point key="canvasLocation" x="4700" y="-2329"/>
         </scene>
         <!--Team Details View Controller - Team Details-->
         <scene sceneID="Pz2-7r-XVW">
@@ -800,14 +800,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MEr-U9-2OR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3817" y="-3176"/>
+            <point key="canvasLocation" x="4807" y="-3328"/>
         </scene>
         <!--League Fixtures View Controller - League Fixtures-->
         <scene sceneID="qMR-t7-ybm">
             <objects>
                 <viewController id="Vpf-d4-xuW" customClass="LeagueFixturesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="s7h-lH-iVJ">
-                        <rect key="frame" x="0.0" y="20" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="b5W-ZF-OmL" userLabel="Fixtures Table View">
@@ -960,20 +960,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="izT-TI-BKg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2704" y="-2115"/>
+            <point key="canvasLocation" x="3480" y="-1549"/>
         </scene>
         <!--Tab Bar Controller - Details-->
         <scene sceneID="2mv-dN-YNo">
             <objects>
                 <tabBarController id="QNM-An-m3I" userLabel="Tab Bar Controller - Details" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="u0g-6L-FnZ">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="Nkp-dT-lgJ">
-                            <connections>
-                                <segue destination="8d3-vd-Jzl" kind="push" identifier="GoBackToLeagues" id="vfM-is-vMH"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="u0g-6L-FnZ"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="4xg-m0-UfO">
@@ -991,14 +985,14 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5tN-Pb-VDt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2779" y="-3426"/>
+            <point key="canvasLocation" x="222" y="-3344"/>
         </scene>
         <!--League Fixture Details View Controller - Fixture-->
         <scene sceneID="Bz0-SB-Bra">
             <objects>
                 <viewController id="vbr-tu-NID" customClass="LeagueFixtureDetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wPv-jS-XP5">
-                        <rect key="frame" x="0.0" y="20" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nEb-er-alD">
@@ -1031,14 +1025,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nzf-bs-MVl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2958" y="-1684"/>
+            <point key="canvasLocation" x="4140" y="-1430"/>
         </scene>
         <!--Leagues View Controller - Leagues-->
         <scene sceneID="8H3-Jq-wN0">
             <objects>
                 <viewController id="8d3-vd-Jzl" customClass="LeaguesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uAl-ph-XNc">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="499"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aH4-3D-3D9">
@@ -1078,9 +1072,8 @@
                             <constraint firstItem="aH4-3D-3D9" firstAttribute="top" secondItem="uAl-ph-XNc" secondAttribute="top" type="default" id="xvE-cH-MVX"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Leagues" image="166-newspaper.png" id="adi-mq-YIh"/>
                     <navigationItem key="navigationItem" title="Leagues" id="VVL-qX-PKr"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="leagueTablesView" destination="aH4-3D-3D9" id="i3S-O3-lFX"/>
                     </connections>
@@ -1095,20 +1088,21 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="167" y="-2641"/>
+            <point key="canvasLocation" x="-269" y="-2635"/>
         </scene>
         <!--League Season View Controller - Seasons-->
         <scene sceneID="V1U-dC-g8b">
             <objects>
-                <viewController id="qdX-ep-6hh" customClass="LeagueSeasonViewController" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="qdX-ep-6hh" customClass="LeagueSeasonViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="klK-mz-Ywe">
-                        <rect key="frame" x="0.0" y="20" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Chx-42-B9b">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="504" type="user" id="T3v-mL-nrH"/>
+                                    <constraint firstAttribute="height" constant="504" id="aMC-v2-du8"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SeasonCell" textLabel="t4c-MG-BVH" style="IBUITableViewCellStyleDefault" id="CcQ-5L-Kuh">
@@ -1143,24 +1137,24 @@
                             <constraint firstItem="Chx-42-B9b" firstAttribute="leading" secondItem="klK-mz-Ywe" secondAttribute="leading" type="default" id="30q-D6-Wc5"/>
                             <constraint firstItem="Chx-42-B9b" firstAttribute="trailing" secondItem="klK-mz-Ywe" secondAttribute="trailing" type="default" id="BE1-qW-nhB"/>
                             <constraint firstItem="Chx-42-B9b" firstAttribute="top" secondItem="klK-mz-Ywe" secondAttribute="top" type="user" id="Ndu-ED-OAI"/>
-                            <constraint firstItem="Chx-42-B9b" firstAttribute="bottom" secondItem="klK-mz-Ywe" secondAttribute="bottom" type="user" id="s5j-id-aao"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Seasons" id="FRc-ww-7gm"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="seasonsTableView" destination="Chx-42-B9b" id="zgk-gf-V2h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X28-hW-IY0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="684" y="-2222"/>
+            <point key="canvasLocation" x="476" y="-2834"/>
         </scene>
         <!--League Divisions View Controller - Divisions-->
         <scene sceneID="3Fy-bW-8pX">
             <objects>
-                <viewController id="KjO-oT-6Bj" customClass="LeagueDivisionsViewController" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="KjO-oT-6Bj" customClass="LeagueDivisionsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hj6-pS-aIZ">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Vov-DP-uWA">
@@ -1198,26 +1192,21 @@
                     </view>
                     <navigationItem key="navigationItem" title="Divisions" id="XHJ-h3-lI5"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="divisionsTableView" destination="Vov-DP-uWA" id="xzu-9j-vO3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQC-l9-wt9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1269" y="-2340"/>
+            <point key="canvasLocation" x="1017" y="-2674"/>
         </scene>
         <!--Tab Bar Controller - Front Screen-->
         <scene sceneID="VxH-ha-kaa">
             <objects>
-                <tabBarController id="kmb-uQ-a1F" userLabel="Tab Bar Controller - Front Screen" sceneMemberID="viewController">
+                <tabBarController hidesBottomBarWhenPushed="YES" id="kmb-uQ-a1F" userLabel="Tab Bar Controller - Front Screen" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="ZPL-y7-JZO">
-                        <barButtonItem key="rightBarButtonItem" title="Leagues" id="dnp-nJ-OnM">
-                            <connections>
-                                <segue destination="MBK-5Z-3g5" kind="push" identifier="GoBackToLeagues" id="qA8-Py-oAo"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="ZPL-y7-JZO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="TpU-ea-kaO">
                         <autoresizingMask key="autoresizingMask"/>
@@ -1231,14 +1220,14 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMa-Ps-y4U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1382" y="-3378"/>
+            <point key="canvasLocation" x="1418" y="-1732"/>
         </scene>
         <!--League Results View Controller - League Results-->
         <scene sceneID="mjw-qr-dY6">
             <objects>
                 <viewController id="Qxt-6v-GEh" customClass="LeagueResultsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8FE-2P-Ahr">
-                        <rect key="frame" x="0.0" y="20" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="inE-DI-3nL">
@@ -1390,45 +1379,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MGa-8J-210" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1751" y="-1848"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="FuX-id-8cL">
-            <objects>
-                <navigationController id="kF1-Aj-8Lq" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sGP-Qu-61c">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="MBK-5Z-3g5" kind="relationship" relationship="rootViewController" id="sbW-Xe-Ium"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8E2-2U-Ovg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1071" y="-2133"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="ZBU-Pp-Bbw">
-            <objects>
-                <tabBarController id="MBK-5Z-3g5" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="XRs-er-7sb"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="Mvz-UD-Xzp">
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="8d3-vd-Jzl" kind="relationship" relationship="viewControllers" id="gbH-UV-pXV"/>
-                        <segue destination="WUt-0u-hqa" kind="relationship" relationship="viewControllers" id="Eff-2f-wd0"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="txG-nn-jzg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-476" y="-2076"/>
+            <point key="canvasLocation" x="3047" y="-1732"/>
         </scene>
         <!--Saved Divisions View Controller - Following-->
         <scene sceneID="JtA-H0-jpq">
@@ -1442,6 +1393,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="455" type="user" id="ax6-VR-NQB"/>
+                                    <constraint firstAttribute="height" constant="455" id="pJ3-DQ-eaa"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SelectedDivisionCell" textLabel="X9u-s9-NLa" detailTextLabel="2da-g9-2iD" style="IBUITableViewCellStyleSubtitle" id="DsD-nP-jSd">
@@ -1480,10 +1432,9 @@
                             <constraint firstItem="Zuq-eb-7er" firstAttribute="trailing" secondItem="9e8-bj-aMd" secondAttribute="trailing" type="default" id="Olk-MA-6ZL"/>
                             <constraint firstItem="Zuq-eb-7er" firstAttribute="top" secondItem="9e8-bj-aMd" secondAttribute="top" type="user" id="bfO-GS-at1"/>
                             <constraint firstItem="Zuq-eb-7er" firstAttribute="leading" secondItem="9e8-bj-aMd" secondAttribute="leading" type="default" id="hHr-IP-Dzo"/>
-                            <constraint firstItem="Zuq-eb-7er" firstAttribute="bottom" secondItem="9e8-bj-aMd" secondAttribute="bottom" type="user" id="ov4-IR-Mfn"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Following" image="180-stickynote.png" id="wG3-Ow-mOJ"/>
+                    <navigationItem key="navigationItem" title="Following" id="EEM-7P-hUl"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="divisionsTableView" destination="Zuq-eb-7er" id="4RF-Rc-gAm"/>
@@ -1491,14 +1442,71 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tr8-d0-ASg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="508" y="-1535"/>
+            <point key="canvasLocation" x="-260" y="-1977"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="QZ6-Iq-aqw">
+            <objects>
+                <tabBarController id="CRY-At-1rx" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="T0D-pQ-PyW"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="adm-Em-ZU0">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="F2K-W3-wg1" kind="relationship" relationship="viewControllers" id="PwM-HU-zL2"/>
+                        <segue destination="ot4-VO-v9f" kind="relationship" relationship="viewControllers" id="jky-bG-Nyg"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vcf-1M-Ene" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1965" y="-2485"/>
+        </scene>
+        <!--Navigation Controller - Leagues-->
+        <scene sceneID="Q1V-Zj-XpX">
+            <objects>
+                <navigationController id="F2K-W3-wg1" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Leagues" id="RiP-6n-bQT"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="g8t-YL-jfV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8d3-vd-Jzl" kind="relationship" relationship="rootViewController" id="Bdf-vH-GCR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I0r-TQ-NeG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-899" y="-2873"/>
+        </scene>
+        <!--Navigation Controller - Following-->
+        <scene sceneID="Ir3-Sr-Dbk">
+            <objects>
+                <navigationController id="ot4-VO-v9f" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Following" id="rch-JM-kOr"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FvX-WU-hhf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="WUt-0u-hqa" kind="relationship" relationship="rootViewController" id="kFy-BI-lda"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w28-kb-FxZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-910" y="-1997"/>
         </scene>
     </scenes>
     <resources>
         <image name="152-rolodex.png" width="26" height="18"/>
         <image name="166-newspaper.png" width="28" height="23"/>
         <image name="179-notepad.png" width="22" height="28"/>
-        <image name="180-stickynote.png" width="22" height="22"/>
         <image name="83-calendar.png" width="23" height="25"/>
     </resources>
     <classes>
@@ -1642,12 +1650,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="gbH-UV-pXV"/>
-        <segue reference="qA8-Py-oAo"/>
-        <segue reference="cQy-f2-IdP"/>
+        <segue reference="Gme-cR-3kr"/>
+        <segue reference="CL0-5O-jH2"/>
         <segue reference="w7Y-6N-5L6"/>
         <segue reference="nlu-6i-a2D"/>
         <segue reference="guz-h0-rin"/>
-        <segue reference="Gme-cR-3kr"/>
     </inferredMetricsTieBreakers>
 </document>
