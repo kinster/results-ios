@@ -31,6 +31,8 @@
 		4B0E1B4B16473ACB0010CA22 /* CustomResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B0E1B4A16473ACB0010CA22 /* CustomResultCell.xib */; };
 		4B0E1B4E16473B190010CA22 /* CustomResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E1B4D16473B180010CA22 /* CustomResultCell.m */; };
 		4B1E07D41664EF580029BBDA /* selected2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B1E07D31664EF580029BBDA /* selected2.png */; };
+		4B30CF30167148E800B886D3 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B30CF2E1671482300B886D3 /* Default@2x.png */; };
+		4B30CF321671491500B886D3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B30CF311671491400B886D3 /* Default.png */; };
 		4B40DB731637DF46008F264C /* League.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B40DB721637DF46008F264C /* League.m */; };
 		4B4C235C16494D0600F5A694 /* LeagueResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C235B16494D0600F5A694 /* LeagueResultsViewController.m */; };
 		4B4C236016494D7A00F5A694 /* Result.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C235F16494D7A00F5A694 /* Result.m */; };
@@ -104,6 +106,8 @@
 		4B0E1B4C16473B180010CA22 /* CustomResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomResultCell.h; sourceTree = "<group>"; };
 		4B0E1B4D16473B180010CA22 /* CustomResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomResultCell.m; sourceTree = "<group>"; };
 		4B1E07D31664EF580029BBDA /* selected2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selected2.png; sourceTree = "<group>"; };
+		4B30CF2E1671482300B886D3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		4B30CF311671491400B886D3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		4B40DB711637DF46008F264C /* League.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = League.h; sourceTree = "<group>"; };
 		4B40DB721637DF46008F264C /* League.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = League.m; sourceTree = "<group>"; };
 		4B4C235A16494D0600F5A694 /* LeagueResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeagueResultsViewController.h; sourceTree = "<group>"; };
@@ -154,8 +158,6 @@
 		4BC86C1416442FC6007B51BE /* LeagueFixturesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeagueFixturesViewController.h; sourceTree = "<group>"; };
 		4BC86C1516442FC6007B51BE /* LeagueFixturesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeagueFixturesViewController.m; sourceTree = "<group>"; };
 		4BCB75F616541CEA009D1132 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		4BCB75F816541CED009D1132 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		4BCB75FA16541CF6009D1132 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		4BCF2AD11645575700C689DD /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
 		4BCF2AD21645575700C689DD /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
 		4BDBEE141645A087001F3F77 /* Fixture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fixture.h; sourceTree = "<group>"; };
@@ -188,14 +190,14 @@
 		4B09D88F1632F56800A0A477 = {
 			isa = PBXGroup;
 			children = (
+				4B30CF311671491400B886D3 /* Default.png */,
+				4B30CF2E1671482300B886D3 /* Default@2x.png */,
 				4B07715E165BAA0A00B926DD /* nel57.png */,
 				4B07715C165BA9CE00B926DD /* nel114.png */,
 				4B91C226165859F600C5DFB5 /* CoreLocation.framework */,
 				4B91C2231658017400C5DFB5 /* MapKit.framework */,
 				4B5987B51656ED70005FFCCE /* SystemConfiguration.framework */,
 				4B5987AA16565556005FFCCE /* iAd.framework */,
-				4BCB75FA16541CF6009D1132 /* Default.png */,
-				4BCB75F816541CED009D1132 /* Default@2x.png */,
 				4BCB75F616541CEA009D1132 /* Default-568h@2x.png */,
 				4B09D8A41632F56900A0A477 /* nel */,
 				4B09D89D1632F56900A0A477 /* Frameworks */,
@@ -395,6 +397,8 @@
 				4B6A21741663F99C004A54C1 /* deselected.png in Resources */,
 				4B6A21751663F99C004A54C1 /* selected.png in Resources */,
 				4B1E07D41664EF580029BBDA /* selected2.png in Resources */,
+				4B30CF30167148E800B886D3 /* Default@2x.png in Resources */,
+				4B30CF321671491500B886D3 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,8 +472,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kinman Li (EGVK8S4UQX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kinman Li (EGVK8S4UQX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -484,8 +488,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "E4929FEA-9032-48FC-8C80-E62EED9EAD39";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E4929FEA-9032-48FC-8C80-E62EED9EAD39";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -499,8 +503,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Kinman Li";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kinman Li";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -508,8 +512,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "9400D4BC-2C95-4F59-ABAA-A7D489C85C9C";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9400D4BC-2C95-4F59-ABAA-A7D489C85C9C";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -518,16 +522,16 @@
 		4B09D8BF1632F56900A0A477 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kinman Li (EGVK8S4UQX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kinman Li (EGVK8S4UQX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Results/Results-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = "Results/Results-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = NELFC;
-				PROVISIONING_PROFILE = "E97D7C17-7092-4A67-97A8-F58B239DAC26";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E97D7C17-7092-4A67-97A8-F58B239DAC26";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -535,13 +539,15 @@
 		4B09D8C01632F56900A0A477 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Results/Results-Prefix.pch";
 				INFOPLIST_FILE = "Results/Results-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = NELFC;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
