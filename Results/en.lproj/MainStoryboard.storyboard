@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="CRY-At-1rx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="CRY-At-1rx">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -1468,7 +1468,7 @@
         <scene sceneID="Q1V-Zj-XpX">
             <objects>
                 <navigationController id="F2K-W3-wg1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Leagues" id="RiP-6n-bQT"/>
+                    <tabBarItem key="tabBarItem" title="Leagues" image="166-newspaper.png" id="RiP-6n-bQT"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="g8t-YL-jfV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1487,7 +1487,7 @@
         <scene sceneID="Ir3-Sr-Dbk">
             <objects>
                 <navigationController id="ot4-VO-v9f" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Following" id="rch-JM-kOr"/>
+                    <tabBarItem key="tabBarItem" title="Following" image="180-stickynote.png" id="rch-JM-kOr"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="FvX-WU-hhf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1507,6 +1507,7 @@
         <image name="152-rolodex.png" width="26" height="18"/>
         <image name="166-newspaper.png" width="28" height="23"/>
         <image name="179-notepad.png" width="22" height="28"/>
+        <image name="180-stickynote.png" width="22" height="22"/>
         <image name="83-calendar.png" width="23" height="25"/>
     </resources>
     <classes>
@@ -1650,9 +1651,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Gme-cR-3kr"/>
-        <segue reference="CL0-5O-jH2"/>
+        <segue reference="cQy-f2-IdP"/>
         <segue reference="w7Y-6N-5L6"/>
+        <segue reference="Gme-cR-3kr"/>
         <segue reference="nlu-6i-a2D"/>
         <segue reference="guz-h0-rin"/>
     </inferredMetricsTieBreakers>

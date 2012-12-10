@@ -44,7 +44,6 @@
 		4B50D404165175E0006A8A41 /* CustomPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B50D403165175DE006A8A41 /* CustomPlayerCell.m */; };
 		4B570083164A9980004BCF9B /* LeaguesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B570082164A9980004BCF9B /* LeaguesViewController.m */; };
 		4B57008A164AA20A004BCF9B /* Division.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B570089164AA20A004BCF9B /* Division.m */; };
-		4B57857616603DEE0075A446 /* insertion_control.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4B57857516603DEE0075A446 /* insertion_control.jpg */; };
 		4B5987AB16565556005FFCCE /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5987AA16565556005FFCCE /* iAd.framework */; };
 		4B5987B61656ED71005FFCCE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5987B51656ED70005FFCCE /* SystemConfiguration.framework */; };
 		4B5987B91656EE8C005FFCCE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5987B81656EE8B005FFCCE /* Reachability.m */; };
@@ -56,7 +55,6 @@
 		4B806674165E45310092D057 /* CustomDivisionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B806673165E45310092D057 /* CustomDivisionCell.m */; };
 		4B84517E164B0E54002EB85F /* Season.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B84517D164B0E54002EB85F /* Season.m */; };
 		4B845182164B0F11002EB85F /* LeagueSeasonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B845181164B0F11002EB85F /* LeagueSeasonViewController.m */; };
-		4B904FF9166133F9006B1E3B /* 180-stickynote.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B904FF8166133F9006B1E3B /* 180-stickynote.png */; };
 		4B904FFD16613E0A006B1E3B /* SavedDivisionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B904FFC16613E09006B1E3B /* SavedDivisionsViewController.m */; };
 		4B91C2241658017500C5DFB5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B91C2231658017400C5DFB5 /* MapKit.framework */; };
 		4B91C227165859F600C5DFB5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B91C226165859F600C5DFB5 /* CoreLocation.framework */; };
@@ -70,6 +68,7 @@
 		4BDBEE1A1645B2CF001F3F77 /* LeagueFixtureDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBEE191645B2CF001F3F77 /* LeagueFixtureDetailsViewController.m */; };
 		4BE0E2CC16345CF9000D061F /* CustomTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BE0E2CB16345CF9000D061F /* CustomTableCell.xib */; };
 		4BF55D871634A83600926CDC /* CustomTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF55D861634A83600926CDC /* CustomTableCell.m */; };
+		A12F08131676805100F2E193 /* 180-stickynote.png in Resources */ = {isa = PBXBuildFile; fileRef = A12F08121676805100F2E193 /* 180-stickynote.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,7 +125,6 @@
 		4B570082164A9980004BCF9B /* LeaguesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaguesViewController.m; sourceTree = "<group>"; };
 		4B570088164AA20A004BCF9B /* Division.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Division.h; sourceTree = "<group>"; };
 		4B570089164AA20A004BCF9B /* Division.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Division.m; sourceTree = "<group>"; };
-		4B57857516603DEE0075A446 /* insertion_control.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = insertion_control.jpg; path = ../../../downloads/insertion_control.jpg; sourceTree = "<group>"; };
 		4B5987AA16565556005FFCCE /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		4B5987B51656ED70005FFCCE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4B5987B71656EE8A005FFCCE /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../../../downloads/Reachability/Classes/Reachability.h; sourceTree = "<group>"; };
@@ -144,7 +142,6 @@
 		4B84517D164B0E54002EB85F /* Season.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Season.m; sourceTree = "<group>"; };
 		4B845180164B0F11002EB85F /* LeagueSeasonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeagueSeasonViewController.h; sourceTree = "<group>"; };
 		4B845181164B0F11002EB85F /* LeagueSeasonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeagueSeasonViewController.m; sourceTree = "<group>"; };
-		4B904FF8166133F9006B1E3B /* 180-stickynote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "180-stickynote.png"; path = "../../../downloads/glyphish-icons/PNG icons/180-stickynote.png"; sourceTree = "<group>"; };
 		4B904FFB16613E09006B1E3B /* SavedDivisionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedDivisionsViewController.h; sourceTree = "<group>"; };
 		4B904FFC16613E09006B1E3B /* SavedDivisionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedDivisionsViewController.m; sourceTree = "<group>"; };
 		4B91C2231658017400C5DFB5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -167,6 +164,7 @@
 		4BE0E2CB16345CF9000D061F /* CustomTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableCell.xib; sourceTree = "<group>"; };
 		4BF55D851634A83600926CDC /* CustomTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomTableCell.h; path = ../CustomTableCell.h; sourceTree = "<group>"; };
 		4BF55D861634A83600926CDC /* CustomTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomTableCell.m; path = ../CustomTableCell.m; sourceTree = "<group>"; };
+		A12F08121676805100F2E193 /* 180-stickynote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "180-stickynote.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,11 +293,10 @@
 		4B09D8A51632F56900A0A477 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A12F08121676805100F2E193 /* 180-stickynote.png */,
 				4B1E07D31664EF580029BBDA /* selected2.png */,
 				4B6A21721663F99B004A54C1 /* deselected.png */,
 				4B6A21731663F99C004A54C1 /* selected.png */,
-				4B904FF8166133F9006B1E3B /* 180-stickynote.png */,
-				4B57857516603DEE0075A446 /* insertion_control.jpg */,
 				4B077168165BAE4000B926DD /* back@2x.png */,
 				4B077169165BAE4000B926DD /* back.png */,
 				4B077160165BACD600B926DD /* menubar-button@2x.png */,
@@ -323,9 +320,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4B09D8991632F56900A0A477 /* nel */ = {
+		4B09D8991632F56900A0A477 /* lcj */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4B09D8BE1632F56900A0A477 /* Build configuration list for PBXNativeTarget "nel" */;
+			buildConfigurationList = 4B09D8BE1632F56900A0A477 /* Build configuration list for PBXNativeTarget "lcj" */;
 			buildPhases = (
 				4B09D8961632F56900A0A477 /* Sources */,
 				4B09D8971632F56900A0A477 /* Frameworks */,
@@ -335,7 +332,7 @@
 			);
 			dependencies = (
 			);
-			name = nel;
+			name = lcj;
 			productName = Results;
 			productReference = 4B09D89A1632F56900A0A477 /* NELFC.app */;
 			productType = "com.apple.product-type.application";
@@ -350,7 +347,7 @@
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Kinman Li";
 			};
-			buildConfigurationList = 4B09D8941632F56800A0A477 /* Build configuration list for PBXProject "nel" */;
+			buildConfigurationList = 4B09D8941632F56800A0A477 /* Build configuration list for PBXProject "lcj" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -362,7 +359,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4B09D8991632F56900A0A477 /* nel */,
+				4B09D8991632F56900A0A477 /* lcj */,
 			);
 		};
 /* End PBXProject section */
@@ -392,13 +389,12 @@
 				4B07716A165BAE4000B926DD /* back@2x.png in Resources */,
 				4B07716B165BAE4000B926DD /* back.png in Resources */,
 				4B806671165E3FB50092D057 /* Saved-Divisions.plist in Resources */,
-				4B57857616603DEE0075A446 /* insertion_control.jpg in Resources */,
-				4B904FF9166133F9006B1E3B /* 180-stickynote.png in Resources */,
 				4B6A21741663F99C004A54C1 /* deselected.png in Resources */,
 				4B6A21751663F99C004A54C1 /* selected.png in Resources */,
 				4B1E07D41664EF580029BBDA /* selected2.png in Resources */,
 				4B30CF30167148E800B886D3 /* Default@2x.png in Resources */,
 				4B30CF321671491500B886D3 /* Default.png in Resources */,
+				A12F08131676805100F2E193 /* 180-stickynote.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,7 +551,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4B09D8941632F56800A0A477 /* Build configuration list for PBXProject "nel" */ = {
+		4B09D8941632F56800A0A477 /* Build configuration list for PBXProject "lcj" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4B09D8BC1632F56900A0A477 /* Debug */,
@@ -564,7 +560,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4B09D8BE1632F56900A0A477 /* Build configuration list for PBXNativeTarget "nel" */ = {
+		4B09D8BE1632F56900A0A477 /* Build configuration list for PBXNativeTarget "lcj" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4B09D8BF1632F56900A0A477 /* Debug */,
