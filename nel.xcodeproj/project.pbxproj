@@ -69,6 +69,7 @@
 		4BDBEE1A1645B2CF001F3F77 /* LeagueFixtureDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBEE191645B2CF001F3F77 /* LeagueFixtureDetailsViewController.m */; };
 		4BE0E2CC16345CF9000D061F /* CustomTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BE0E2CB16345CF9000D061F /* CustomTableCell.xib */; };
 		4BF55D871634A83600926CDC /* CustomTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF55D861634A83600926CDC /* CustomTableCell.m */; };
+		A123584116789810001E2CFB /* 180-stickynote.png in Resources */ = {isa = PBXBuildFile; fileRef = A123584016789810001E2CFB /* 180-stickynote.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -165,6 +166,7 @@
 		4BE0E2CB16345CF9000D061F /* CustomTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableCell.xib; sourceTree = "<group>"; };
 		4BF55D851634A83600926CDC /* CustomTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomTableCell.h; path = ../CustomTableCell.h; sourceTree = "<group>"; };
 		4BF55D861634A83600926CDC /* CustomTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomTableCell.m; path = ../CustomTableCell.m; sourceTree = "<group>"; };
+		A123584016789810001E2CFB /* 180-stickynote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "180-stickynote.png"; path = "../../../Downloads/glyphish-icons/PNG icons/180-stickynote.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,6 +295,7 @@
 		4B09D8A51632F56900A0A477 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A123584016789810001E2CFB /* 180-stickynote.png */,
 				4B1E07D31664EF580029BBDA /* selected2.png */,
 				4B6A21721663F99B004A54C1 /* deselected.png */,
 				4B6A21731663F99C004A54C1 /* selected.png */,
@@ -395,6 +398,7 @@
 				4B1E07D41664EF580029BBDA /* selected2.png in Resources */,
 				4B30CF30167148E800B886D3 /* Default@2x.png in Resources */,
 				4B30CF321671491500B886D3 /* Default.png in Resources */,
+				A123584116789810001E2CFB /* 180-stickynote.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
