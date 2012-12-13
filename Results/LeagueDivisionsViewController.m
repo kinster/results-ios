@@ -55,8 +55,8 @@
             division = [[Division alloc] initWithIdAndName:divisionId AndName:divisionName];
             
             [division setSeason:newSeason];
+            [selectedDivisions addObject:division];
         }
-        [selectedDivisions addObject:division];
         
         DLog(@"plist: %@ %@ %@ %@", [[season league] leagueId], [season seasonId], [division divisionId], [division name]);
     }
@@ -125,7 +125,7 @@
             Division *division = nil;
             
             for (NSDictionary *entry in jsonData) {
-                NSString *theId = [entry objectForKey:@"id"];
+                NSString *theId = [entry objectForKey:@"division_id"];
                 NSString *theName = [entry objectForKey:@"name"];
                 division = [[Division alloc] initWithIdAndName:theId AndName:theName];
                 [division setSeason:newSeason];

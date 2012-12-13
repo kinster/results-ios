@@ -53,7 +53,7 @@
                 NSLog(@"%@", error);
             } else {
                 for (NSDictionary *entry in jsonData) {
-                    NSString *theId = [entry objectForKey:@"id"];
+                    NSString *theId = [entry objectForKey:@"season_id"];
                     NSString *theName = [entry objectForKey:@"name"];
                     DLog(@"id: %@", theId);
                     DLog(@"name: %@", theName);

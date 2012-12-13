@@ -49,8 +49,8 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>clubId</key>
-	<string>1</string>
+	<string>11</string>
 	<key>jsonServer</key>
-	<string>http://footie.me</string>
+	<string>http://localhost:3000</string>
 </dict>
 </plist>
