@@ -6,7 +6,10 @@
 //  Copyright (c) 2012 Kinman Li. All rights reserved.
 //
 
-@interface LeaguesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate>
+#import <UIKit/UIKit.h>
+#import <iAd/iAd.h>
+
+@interface LeaguesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate, ADBannerViewDelegate>
 
 @property (copy, nonatomic) NSMutableArray *leaguesList;
 @property (retain, nonatomic) IBOutlet UISearchBar *searchBar;
