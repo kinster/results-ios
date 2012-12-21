@@ -17,30 +17,75 @@
 
 @end
 
-@implementation LeaguesViewController {
-    ADBannerView *_bannerView;
-}
+@implementation LeaguesViewController
 
-@synthesize leaguesList, searchBar, sections, leagueTablesView;
+@synthesize leaguesList, searchBar, sections, leagueTablesView, bannerIsVisible;
 
 - (void)loadBanner {
     _bannerView = [[ADBannerView alloc] initWithFrame:CGRectZero];
-
-    CGRect bannerFrame = _bannerView.frame;
-    bannerFrame.origin.y = self.view.frame.size.height;
-    _bannerView.frame = bannerFrame;
-    
+    _bannerView.frame = CGRectOffset(_bannerView.frame, 0, self.view.bounds.size.height-100);
+//    _bannerView.requiredContentSizeIdentifiers = [NSSet setWithObject:ADBannerContentSizeIdentifierPortrait];
+//    _bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
+//    CGRect adFrame = _bannerView.frame;
+//    adFrame.origin.y = self.view.frame.size.height - _bannerView.frame.size.height;
+//    _bannerView.frame = adFrame;
+    [self.view addSubview:_bannerView];
     _bannerView.delegate = self;
+    
 //    _bannerView.requiredContentSizeIdentifiers = [NSSet setWithObjects:ADBannerContentSizeIdentifierPortrait, ADBannerContentSizeIdentifierLandscape, nil];
 
-    if ([_bannerView isBannerLoaded]) {
-        CGRect contentFrame = self.view.bounds;
-        // knock the banner off screen when not loaded
-        contentFrame.size.height -= _bannerView.frame.size.height;
-        self.view.frame = contentFrame;
-        DLog(@"LeaguesViewController viewDidLoad banner %f", self.view.bounds.size.height);
-    }
-    [self.view addSubview:_bannerView];
+//    if ([_bannerView isBannerLoaded]) {
+//        CGRect contentFrame = self.view.bounds;
+//        // knock the banner off screen when not loaded
+//        contentFrame.size.height -= _bannerView.frame.size.height;
+//        self.view.frame = contentFrame;
+//        DLog(@"LeaguesViewController viewDidLoad banner %f", self.view.bounds.size.height);
+//    }
+//    [self.view addSubview:_bannerView];
+    DLog(@"loadBanner done");
+}
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    DLog(@"bannerViewDidLoadAd loaded %d", banner.isBannerLoaded);
+    banner.hidden = NO;
+    NSLog(@"Has ad, showing");
+    // decrease table height
+    
+    CGRect tableFrame = self.view.bounds;
+
+    DLog(@"bannerViewDidLoadAd content height %f", tableFrame.size.height);
+
+    tableFrame.size.height -= banner.bounds.size.height;
+    leagueTablesView.frame = tableFrame;
+    
+//    if (![self bannerIsVisible]) {
+//        [UIView beginAnimations:@"animateAdBannerOn" context:NULL];
+//        banner.frame = CGRectOffset(banner.frame, 0, -50.0f);
+//        [UIView commitAnimations];
+//        self.bannerIsVisible = YES;
+//        DLog(@"bannerViewDidLoadAd banner.frame %f", banner.frame.size.height);
+//    }
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    DLog(@"didFailToReceiveAdWithError loaded %d", _bannerView.isBannerLoaded);
+    _bannerView.hidden = YES;
+    NSLog(@"Has no ads, hiding");
+    // increase table height
+    CGRect tableFrame = self.view.bounds;
+
+    DLog(@"didFailToReceiveAdWithError content height %f", tableFrame.size.height);
+    tableFrame.size.height += banner.bounds.size.height;
+//    leagueTablesView.frame = tableFrame;
+
+//    if ([self bannerIsVisible]) {
+//        [UIView beginAnimations:@"animateAdBannerOff" context:NULL];
+//        banner.frame = CGRectOffset(banner.frame, 0, 50.0f);
+//        [UIView commitAnimations];
+//        self.bannerIsVisible = NO;
+//        DLog(@"didFailToReceiveAdWithError banner.frame %f", banner.frame.size.height);
+//
+//    }
 }
 
 - (void)loadNetworkExceptionAlert {
@@ -50,8 +95,8 @@
 
 - (void)viewDidLoad {
     DLog(@"LeaguesViewController viewDidLoad %f", self.view.bounds.size.height);
-    [super viewDidLoad];
     [self loadBanner];
+    [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -118,7 +163,9 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self layoutAnimated:NO];
+    DLog(@"viewDidAppear start");
+//    [self layoutAnimated:NO];
+    DLog(@"viewDidAppear end");
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
@@ -265,53 +312,51 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
             [self.leagueTablesView reloadData];
-            [self layoutAnimated:YES];
+//            [self layoutAnimated:YES];
         });
     });
 }
 
-- (void)layoutAnimated:(BOOL)animated
-{
-    // As of iOS 6.0, the banner will automatically resize itself based on its width.
-    // To support iOS 5.0 however, we continue to set the currentContentSizeIdentifier appropriately.
-    CGRect contentFrame = self.view.bounds;
-    if (contentFrame.size.width < contentFrame.size.height) {
-        _bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
-    } else {
-        _bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierLandscape;
-    }
-    
-    CGRect bannerFrame = _bannerView.frame;
-    if (_bannerView.bannerLoaded) {
-        contentFrame.size.height -= _bannerView.frame.size.height;
-        bannerFrame.origin.y = contentFrame.size.height;
-    } else {
-        bannerFrame.origin.y = contentFrame.size.height;
-    }
-    
-    [UIView animateWithDuration:animated ? 0.25 : 0.0 animations:^{
-//        self.view.frame = contentFrame;
-//        [self.view layoutIfNeeded];
-        _bannerView.frame = bannerFrame;
-    }];
-    DLog(@"layoutAnimated: %d %f %f", _bannerView.bannerLoaded, self.view.bounds.size.height, _bannerView.frame.size.height);
-}
-
-- (void)viewDidLayoutSubviews {
-    [self layoutAnimated:[UIView areAnimationsEnabled]];
-}
-
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
-    DLog(@"bannerViewDidLoadAd: %d %f %f", banner.bannerLoaded, self.view.bounds.size.height, banner.frame.size.height);
-    [self layoutAnimated:YES];
-}
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    DLog(@"didFailToReceiveAdWithError banner not shown: %f", self.view.bounds.size.height);
-    [self layoutAnimated:YES];
-    DLog(@"didFailToReceiveAdWithError NO AD: %d %f %f", banner.bannerLoaded, self.view.bounds.size.height, banner.frame.size.height);
-}
-
+//- (void)layoutAnimated:(BOOL)animated {
+//    // As of iOS 6.0, the banner will automatically resize itself based on its width.
+//    // To support iOS 5.0 however, we continue to set the currentContentSizeIdentifier appropriately.
+//    CGRect contentFrame = self.view.bounds;
+//    if (contentFrame.size.width < contentFrame.size.height) {
+//        _bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
+//    } else {
+//        _bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierLandscape;
+//    }
+//    
+//    CGRect bannerFrame = _bannerView.frame;
+//    if (_bannerView.bannerLoaded) {
+//        contentFrame.size.height -= _bannerView.frame.size.height;
+//        bannerFrame.origin.y = contentFrame.size.height;
+//    } else {
+//        bannerFrame.origin.y = contentFrame.size.height;
+//    }
+//    DLog(@"ON %d %f", _bannerView.bannerLoaded, contentFrame.size.height);
+//    
+//    [UIView animateWithDuration:animated ? 0.25 : 0.0 animations:^{
+//        contentView.frame = contentFrame;
+//        [contentView layoutIfNeeded];
+//        _bannerView.frame = bannerFrame;
+//    }];
+//}
+//- (void)viewDidLayoutSubviews {
+//    [self layoutAnimated:[UIView areAnimationsEnabled]];
+//    DLog(@"viewDidLayoutSubviews");
+//}
+//
+//- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+//    [self layoutAnimated:YES];
+//    DLog(@"bannerViewDidLoadAd");
+//}
+//
+//- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+//    [self layoutAnimated:YES];
+//    DLog(@"didFailToReceiveAdWithError");
+//}
+//
 /*
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

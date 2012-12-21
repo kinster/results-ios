@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <iAd/iAd.h>
 
-@interface LeaguesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate, ADBannerViewDelegate>
+@interface LeaguesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate, ADBannerViewDelegate> {
+    ADBannerView *_bannerView;
+}
 
 @property (copy, nonatomic) NSMutableArray *leaguesList;
 @property (retain, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (retain, nonatomic) NSDictionary *sections;
 @property (strong, nonatomic) IBOutlet UITableView *leagueTablesView;
+@property (assign, nonatomic) BOOL bannerIsVisible;
 - (IBAction)getTop500:(id)sender;
 @end
