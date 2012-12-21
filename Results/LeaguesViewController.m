@@ -23,12 +23,7 @@
 
 - (void)loadBanner {
     _bannerView = [[ADBannerView alloc] initWithFrame:CGRectZero];
-    _bannerView.frame = CGRectOffset(_bannerView.frame, 0, self.view.bounds.size.height-100);
-//    _bannerView.requiredContentSizeIdentifiers = [NSSet setWithObject:ADBannerContentSizeIdentifierPortrait];
-//    _bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
-//    CGRect adFrame = _bannerView.frame;
-//    adFrame.origin.y = self.view.frame.size.height - _bannerView.frame.size.height;
-//    _bannerView.frame = adFrame;
+    _bannerView.frame = CGRectOffset(_bannerView.frame, 0, 250);
     [self.view addSubview:_bannerView];
     _bannerView.delegate = self;
     
@@ -45,18 +40,26 @@
     DLog(@"loadBanner done");
 }
 
+- (void)toggleBanner:(ADBannerView *)banner {
+    CGRect bannerFrame = _bannerView.frame;
+    CGRect tableFrame = self.view.bounds;
+    if ([banner isBannerLoaded]) {
+        DLog(@"Has ad, showing");
+        tableFrame.size.height = tableFrame.size.height - banner.bounds.size.height;
+        bannerFrame.origin.y = tableFrame.size.height;
+    } else {
+        DLog(@"No ad, hiding");
+//        tableFrame.size.height += banner.bounds.size.height;
+        bannerFrame.origin.y = tableFrame.size.height;
+    }
+    _bannerView.frame = bannerFrame;
+//    leagueTablesView.frame = tableFrame;
+}
+
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner {
     DLog(@"bannerViewDidLoadAd loaded %d", banner.isBannerLoaded);
     banner.hidden = NO;
-    NSLog(@"Has ad, showing");
-    // decrease table height
-    
-    CGRect tableFrame = self.view.bounds;
-
-    DLog(@"bannerViewDidLoadAd content height %f", tableFrame.size.height);
-
-    tableFrame.size.height -= banner.bounds.size.height;
-    leagueTablesView.frame = tableFrame;
+    [self toggleBanner:banner];
     
 //    if (![self bannerIsVisible]) {
 //        [UIView beginAnimations:@"animateAdBannerOn" context:NULL];
@@ -70,12 +73,8 @@
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
     DLog(@"didFailToReceiveAdWithError loaded %d", _bannerView.isBannerLoaded);
     _bannerView.hidden = YES;
-    NSLog(@"Has no ads, hiding");
-    // increase table height
-    CGRect tableFrame = self.view.bounds;
+    [self toggleBanner:_bannerView];
 
-    DLog(@"didFailToReceiveAdWithError content height %f", tableFrame.size.height);
-    tableFrame.size.height += banner.bounds.size.height;
 //    leagueTablesView.frame = tableFrame;
 
 //    if ([self bannerIsVisible]) {
@@ -164,7 +163,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     DLog(@"viewDidAppear start");
-//    [self layoutAnimated:NO];
+//    [self toggleBanner:_bannerView];
     DLog(@"viewDidAppear end");
 }
 
