@@ -1043,6 +1043,10 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aH4-3D-3D9">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="361" type="user" id="wma-t5-P3W"/>
+                                    <constraint firstAttribute="height" constant="361" id="zEW-B6-5C2"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="LeagueCell" textLabel="FgT-yV-zpn" style="IBUITableViewCellStyleDefault" id="8og-V6-HXx">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
@@ -1070,21 +1074,35 @@
                                 </connections>
                             </tableView>
                             <searchBar contentMode="redraw" text="" placeholder="Type first 3 letters of League name here" translatesAutoresizingMaskIntoConstraints="NO" id="zya-kl-abu">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" type="user" id="G3E-BA-zJj"/>
+                                </constraints>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="8d3-vd-Jzl" id="ZfE-Jd-rg3"/>
                                 </connections>
                             </searchBar>
+                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="hfs-mw-bUe">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Rlh-8G-zkF"/>
+                                </constraints>
+                                <requiredContentSizeIdentifiers>
+                                    <string>ADBannerContentSizeLandscape</string>
+                                    <string>ADBannerContentSizePortrait</string>
+                                </requiredContentSizeIdentifiers>
+                            </adBannerView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="hfs-mw-bUe" firstAttribute="leading" secondItem="uAl-ph-XNc" secondAttribute="leading" type="default" id="1BJ-Rn-PRy"/>
+                            <constraint firstItem="hfs-mw-bUe" firstAttribute="bottom" secondItem="uAl-ph-XNc" secondAttribute="bottom" type="default" id="5nd-zc-9nc"/>
                             <constraint firstItem="aH4-3D-3D9" firstAttribute="leading" secondItem="uAl-ph-XNc" secondAttribute="leading" type="default" id="9Qr-vZ-mvs"/>
-                            <constraint firstItem="zya-kl-abu" firstAttribute="top" secondItem="uAl-ph-XNc" secondAttribute="top" type="default" id="CHZ-Xy-Z6W"/>
                             <constraint firstItem="aH4-3D-3D9" firstAttribute="trailing" secondItem="uAl-ph-XNc" secondAttribute="trailing" type="default" id="EzZ-6E-BMp"/>
                             <constraint firstItem="zya-kl-abu" firstAttribute="trailing" secondItem="uAl-ph-XNc" secondAttribute="trailing" type="default" id="KdG-wc-Kbt"/>
                             <constraint firstItem="zya-kl-abu" firstAttribute="leading" secondItem="uAl-ph-XNc" secondAttribute="leading" type="default" id="USx-wf-dbu"/>
-                            <constraint firstItem="aH4-3D-3D9" firstAttribute="bottom" secondItem="uAl-ph-XNc" secondAttribute="bottom" type="default" id="bu2-Hl-UOX"/>
-                            <constraint firstItem="zya-kl-abu" firstAttribute="bottom" secondItem="aH4-3D-3D9" secondAttribute="top" type="default" id="pyb-t6-XLx"/>
+                            <constraint firstItem="aH4-3D-3D9" firstAttribute="top" secondItem="zya-kl-abu" secondAttribute="bottom" type="default" id="qJr-ov-uWO"/>
+                            <constraint firstItem="hfs-mw-bUe" firstAttribute="trailing" secondItem="uAl-ph-XNc" secondAttribute="trailing" type="default" id="uSD-Dt-gal"/>
+                            <constraint firstItem="zya-kl-abu" firstAttribute="top" secondItem="uAl-ph-XNc" secondAttribute="top" type="user" id="wem-qD-FBA"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Leagues" id="VVL-qX-PKr">
@@ -1095,6 +1113,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="adBannerView" destination="hfs-mw-bUe" id="oZb-D9-SOt"/>
                         <outlet property="leagueTablesView" destination="aH4-3D-3D9" id="i3S-O3-lFX"/>
                         <outlet property="searchBar" destination="zya-kl-abu" id="81l-hp-rf2"/>
                     </connections>
@@ -1122,7 +1141,7 @@
                             <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Chx-42-B9b">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="504" type="user" id="T3v-mL-nrH"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="405" type="user" id="0UJ-Yh-IUP"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SeasonCell" textLabel="t4c-MG-BVH" style="IBUITableViewCellStyleDefault" id="CcQ-5L-Kuh">
@@ -1151,17 +1170,30 @@
                                     <outlet property="delegate" destination="qdX-ep-6hh" id="cZ2-aM-OoT"/>
                                 </connections>
                             </tableView>
+                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="20T-h8-Hd5">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" type="user" id="GC9-gB-YXf"/>
+                                </constraints>
+                                <requiredContentSizeIdentifiers>
+                                    <string>ADBannerContentSizeLandscape</string>
+                                    <string>ADBannerContentSizePortrait</string>
+                                </requiredContentSizeIdentifiers>
+                            </adBannerView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Chx-42-B9b" firstAttribute="leading" secondItem="klK-mz-Ywe" secondAttribute="leading" type="default" id="30q-D6-Wc5"/>
                             <constraint firstItem="Chx-42-B9b" firstAttribute="trailing" secondItem="klK-mz-Ywe" secondAttribute="trailing" type="default" id="BE1-qW-nhB"/>
-                            <constraint firstItem="Chx-42-B9b" firstAttribute="top" secondItem="klK-mz-Ywe" secondAttribute="top" type="user" id="Ndu-ED-OAI"/>
-                            <constraint firstItem="Chx-42-B9b" firstAttribute="bottom" secondItem="klK-mz-Ywe" secondAttribute="bottom" type="user" id="s5j-id-aao"/>
+                            <constraint firstItem="20T-h8-Hd5" firstAttribute="trailing" secondItem="klK-mz-Ywe" secondAttribute="trailing" type="default" id="CpV-B7-3b5"/>
+                            <constraint firstItem="20T-h8-Hd5" firstAttribute="top" secondItem="Chx-42-B9b" secondAttribute="bottom" type="user" id="OqS-81-tI9"/>
+                            <constraint firstItem="Chx-42-B9b" firstAttribute="top" secondItem="klK-mz-Ywe" secondAttribute="top" type="user" id="QQV-Uw-gMb"/>
+                            <constraint firstItem="20T-h8-Hd5" firstAttribute="leading" secondItem="klK-mz-Ywe" secondAttribute="leading" type="default" id="Qq6-j1-VEm"/>
+                            <constraint firstItem="20T-h8-Hd5" firstAttribute="bottom" secondItem="klK-mz-Ywe" secondAttribute="bottom" type="user" id="Tzn-ba-2qf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Seasons" id="FRc-ww-7gm"/>
                     <connections>
+                        <outlet property="adBannerView" destination="20T-h8-Hd5" id="Wj8-DW-mTb"/>
                         <outlet property="seasonsTableView" destination="Chx-42-B9b" id="zgk-gf-V2h"/>
                     </connections>
                 </viewController>
@@ -1512,6 +1544,7 @@
         <class className="LeagueSeasonViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueSeasonViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="adBannerView" candidateClass="ADBannerView"/>
                 <relationship kind="outlet" name="seasonsTableView" candidateClass="UITableView"/>
             </relationships>
         </class>
@@ -1528,6 +1561,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LeaguesViewController.h"/>
             <relationships>
                 <relationship kind="action" name="getTop500:"/>
+                <relationship kind="outlet" name="adBannerView" candidateClass="ADBannerView"/>
                 <relationship kind="outlet" name="leagueTablesView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
             </relationships>

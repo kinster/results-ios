@@ -66,7 +66,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4B09D89A1632F56900A0A477 /* Grass Roots.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Grass Roots.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B09D89A1632F56900A0A477 /* GS Free.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GS Free.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B09D89E1632F56900A0A477 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4B09D8A01632F56900A0A477 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4B09D8A21632F56900A0A477 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -192,7 +192,7 @@
 		4B09D89B1632F56900A0A477 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4B09D89A1632F56900A0A477 /* Grass Roots.app */,
+				4B09D89A1632F56900A0A477 /* GS Free.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -312,7 +312,7 @@
 			);
 			name = "Grass Roots";
 			productName = Results;
-			productReference = 4B09D89A1632F56900A0A477 /* Grass Roots.app */;
+			productReference = 4B09D89A1632F56900A0A477 /* GS Free.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -490,7 +490,7 @@
 		4B09D8BF1632F56900A0A477 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kinman Li (EGVK8S4UQX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kinman Li (EGVK8S4UQX)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Results/Results-Prefix.pch";
@@ -500,9 +500,9 @@
 				);
 				INFOPLIST_FILE = "Results/Results-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3645E8C5-0399-4258-91A7-7CE9DD979CC1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D442E1B9-74ED-46C1-BA74-029070C10457";
+				PRODUCT_NAME = "GS Free";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3645E8C5-0399-4258-91A7-7CE9DD979CC1";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -510,14 +510,14 @@
 		4B09D8C01632F56900A0A477 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Kinman Li";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kinman Li";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Results/Results-Prefix.pch";
 				INFOPLIST_FILE = "Results/Results-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9400D4BC-2C95-4F59-ABAA-A7D489C85C9C";
+				PRODUCT_NAME = "GS Free";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9400D4BC-2C95-4F59-ABAA-A7D489C85C9C";
 				WRAPPER_EXTENSION = app;
 			};

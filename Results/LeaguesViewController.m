@@ -19,84 +19,16 @@
 
 @implementation LeaguesViewController
 
-@synthesize leaguesList, searchBar, sections, leagueTablesView, bannerIsVisible;
-
-- (void)loadBanner {
-    _bannerView = [[ADBannerView alloc] initWithFrame:CGRectZero];
-    _bannerView.frame = CGRectOffset(_bannerView.frame, 0, 250);
-    [self.view addSubview:_bannerView];
-    _bannerView.delegate = self;
-    
-//    _bannerView.requiredContentSizeIdentifiers = [NSSet setWithObjects:ADBannerContentSizeIdentifierPortrait, ADBannerContentSizeIdentifierLandscape, nil];
-
-//    if ([_bannerView isBannerLoaded]) {
-//        CGRect contentFrame = self.view.bounds;
-//        // knock the banner off screen when not loaded
-//        contentFrame.size.height -= _bannerView.frame.size.height;
-//        self.view.frame = contentFrame;
-//        DLog(@"LeaguesViewController viewDidLoad banner %f", self.view.bounds.size.height);
-//    }
-//    [self.view addSubview:_bannerView];
-    DLog(@"loadBanner done");
-}
-
-- (void)toggleBanner:(ADBannerView *)banner {
-    CGRect bannerFrame = _bannerView.frame;
-    CGRect tableFrame = self.view.bounds;
-    if ([banner isBannerLoaded]) {
-        DLog(@"Has ad, showing");
-        tableFrame.size.height = tableFrame.size.height - banner.bounds.size.height;
-        bannerFrame.origin.y = tableFrame.size.height;
-    } else {
-        DLog(@"No ad, hiding");
-//        tableFrame.size.height += banner.bounds.size.height;
-        bannerFrame.origin.y = tableFrame.size.height;
-    }
-    _bannerView.frame = bannerFrame;
-//    leagueTablesView.frame = tableFrame;
-}
-
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
-    DLog(@"bannerViewDidLoadAd loaded %d", banner.isBannerLoaded);
-    banner.hidden = NO;
-    [self toggleBanner:banner];
-    
-//    if (![self bannerIsVisible]) {
-//        [UIView beginAnimations:@"animateAdBannerOn" context:NULL];
-//        banner.frame = CGRectOffset(banner.frame, 0, -50.0f);
-//        [UIView commitAnimations];
-//        self.bannerIsVisible = YES;
-//        DLog(@"bannerViewDidLoadAd banner.frame %f", banner.frame.size.height);
-//    }
-}
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    DLog(@"didFailToReceiveAdWithError loaded %d", _bannerView.isBannerLoaded);
-    _bannerView.hidden = YES;
-    [self toggleBanner:_bannerView];
-
-//    leagueTablesView.frame = tableFrame;
-
-//    if ([self bannerIsVisible]) {
-//        [UIView beginAnimations:@"animateAdBannerOff" context:NULL];
-//        banner.frame = CGRectOffset(banner.frame, 0, 50.0f);
-//        [UIView commitAnimations];
-//        self.bannerIsVisible = NO;
-//        DLog(@"didFailToReceiveAdWithError banner.frame %f", banner.frame.size.height);
-//
-//    }
-}
-
-- (void)loadNetworkExceptionAlert {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [alert show];
-}
+@synthesize leaguesList, searchBar, sections, leagueTablesView, adBannerView;
 
 - (void)viewDidLoad {
     DLog(@"LeaguesViewController viewDidLoad %f", self.view.bounds.size.height);
-    [self loadBanner];
     [super viewDidLoad];
 
+    adBannerView.delegate = self;
+
+    DLog(@"banner height %f", adBannerView.frame.size.height);
+//    [self toggleBanner:adBannerView];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -104,7 +36,42 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void)toggleBanner:(ADBannerView *)banner {
+    CGRect bannerFrame = banner.frame;
+    CGRect contentFrame = self.view.frame;
+    DLog(@"Content height %f", contentFrame.size.height);
+    if ([banner isBannerLoaded]) {
+        DLog(@"Has ad, showing");
+        contentFrame.size.height -= banner.bounds.size.height;
+        bannerFrame.origin.y = contentFrame.size.height;
+    } else {
+        DLog(@"No ad, hiding");
+        bannerFrame.origin.y = contentFrame.size.height;
+    }
+    banner.frame = bannerFrame;
+    self.leagueTablesView.frame = CGRectMake(leagueTablesView.frame.origin.x,leagueTablesView.frame.origin.y,leagueTablesView.frame.size.width,contentFrame.size.height-banner.frame.size.height+6);
+
+    DLog(@"New content height %f %f %f %f %f", contentFrame.size.height, banner.frame.origin.y, adBannerView.frame.origin.y, leagueTablesView.frame.size.height, leagueTablesView.contentSize.height);
+}
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    DLog(@"bannerViewDidLoadAd loaded %d", banner.isBannerLoaded);
+    [self toggleBanner:banner];    
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    DLog(@"didFailToReceiveAdWithError loaded %d", banner.isBannerLoaded);
+//    _bannerView.hidden = YES;
+    [self toggleBanner:banner];
+}
+
+- (void)loadNetworkExceptionAlert {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alert show];
+}
+
 - (void)viewDidUnload {
+    [self setAdBannerView:nil];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 //    self.leagueTablesView = nil;
@@ -163,7 +130,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     DLog(@"viewDidAppear start");
-//    [self toggleBanner:_bannerView];
+    [self toggleBanner:adBannerView];
     DLog(@"viewDidAppear end");
 }
 

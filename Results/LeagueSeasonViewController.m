@@ -19,15 +19,44 @@
 
 @implementation LeagueSeasonViewController
 
-@synthesize league, seasonsList, seasonsTableView;
+@synthesize league, seasonsList, seasonsTableView, adBannerView;
 
 - (void)loadNetworkExceptionAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
 }
 
+- (void)toggleBanner:(ADBannerView *)banner {
+    CGRect bannerFrame = banner.frame;
+    CGRect contentFrame = self.view.frame;
+    if ([banner isBannerLoaded]) {
+        DLog(@"Has ad, showing");
+        contentFrame.size.height -= banner.bounds.size.height;
+        bannerFrame.origin.y = contentFrame.size.height;
+    } else {
+        DLog(@"No ad, hiding");
+        bannerFrame.origin.y = contentFrame.size.height;
+    }
+    banner.frame = bannerFrame;
+    self.seasonsTableView.frame = CGRectMake(seasonsTableView.frame.origin.x,seasonsTableView.frame.origin.y,seasonsTableView.frame.size.width,contentFrame.size.height-banner.frame.size.height);
+}
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    DLog(@"bannerViewDidLoadAd loaded %d", banner.isBannerLoaded);
+    [self toggleBanner:banner];
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    DLog(@"didFailToReceiveAdWithError loaded %d", banner.isBannerLoaded);
+    //    _bannerView.hidden = YES;
+    [self toggleBanner:banner];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    adBannerView.delegate = self;
+
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Searching...";
     
@@ -158,4 +187,8 @@
 }
 */
 
+- (void)viewDidUnload {
+    [self setAdBannerView:nil];
+    [super viewDidUnload];
+}
 @end
