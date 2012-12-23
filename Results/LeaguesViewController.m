@@ -12,6 +12,7 @@
 #import "MBProgressHUD.h"
 #import "ServerManager.h"
 #import "Reachability.h"
+#import "AppDelegate.h"
 
 @interface LeaguesViewController ()
 
@@ -24,7 +25,9 @@
 - (void)viewDidLoad {
     DLog(@"LeaguesViewController viewDidLoad %f", self.view.bounds.size.height);
     [super viewDidLoad];
-
+    DLog(@"LeaguesViewController viewDidLoad before %@", adBannerView);
+    adBannerView = [AppDelegate adBannerView];
+    DLog(@"LeaguesViewController viewDidLoad after%@", adBannerView);
     adBannerView.delegate = self;
 
     DLog(@"banner height %f", adBannerView.frame.size.height);
@@ -42,7 +45,7 @@
     DLog(@"Content height %f", contentFrame.size.height);
     if ([banner isBannerLoaded]) {
         DLog(@"Has ad, showing");
-        contentFrame.size.height -= banner.bounds.size.height;
+        contentFrame.size.height -= banner.frame.size.height;
         bannerFrame.origin.y = contentFrame.size.height;
     } else {
         DLog(@"No ad, hiding");
@@ -51,17 +54,18 @@
     banner.frame = bannerFrame;
     self.leagueTablesView.frame = CGRectMake(leagueTablesView.frame.origin.x,leagueTablesView.frame.origin.y,leagueTablesView.frame.size.width,contentFrame.size.height-banner.frame.size.height+6);
 
-    DLog(@"New content height %f %f %f %f %f", contentFrame.size.height, banner.frame.origin.y, adBannerView.frame.origin.y, leagueTablesView.frame.size.height, leagueTablesView.contentSize.height);
+    DLog(@"New content height %@ %f %f %f %f %f", banner, contentFrame.size.height, banner.frame.origin.y, adBannerView.frame.origin.y, leagueTablesView.frame.size.height, leagueTablesView.contentSize.height);
 }
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner {
     DLog(@"bannerViewDidLoadAd loaded %d", banner.isBannerLoaded);
-    [self toggleBanner:banner];    
+    [banner setHidden:NO];
+    [self toggleBanner:banner];
 }
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
     DLog(@"didFailToReceiveAdWithError loaded %d", banner.isBannerLoaded);
-//    _bannerView.hidden = YES;
+    [banner setHidden:YES];
     [self toggleBanner:banner];
 }
 

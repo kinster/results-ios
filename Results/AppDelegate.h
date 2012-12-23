@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <iAd/iAd.h>
 
 @class Reachability;
 
-@interface AppDelegate : UIResponder {
+@interface AppDelegate : UIResponder<UIApplicationDelegate,ADBannerViewDelegate> {
     Reachability *internetReach;
 }
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic) BOOL internetActive;
+@property (retain, nonatomic) ADBannerView *iAdBannerView;
++ (AppDelegate *) sharedApplication;
++ (ADBannerView *) adBannerView;
 @end

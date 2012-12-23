@@ -15,7 +15,7 @@
 
 @implementation AppDelegate
 
-@synthesize internetActive;
+@synthesize internetActive, iAdBannerView;
 
 - (void)customizeAppearance {
     // Create resizable images
@@ -41,14 +41,34 @@
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
 
     // Override point for customization after application launch.
-    [self customizeAppearance];
+
+    iAdBannerView = [[ADBannerView alloc] initWithFrame:CGRectZero];
+    iAdBannerView.delegate = self;
+    DLog(@"didFinishLaunchingWithOptions %@", iAdBannerView);
+    //    iAdBannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
+    //    iAdBannerView.backgroundColor = [UIColor clearColor];
+    //    iAdBannerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin;
+
+    
     UIViewController *leaguesViewController = [[LeaguesViewController alloc] init];
     [self.window addSubview:[leaguesViewController view]];
     [self.window makeKeyAndVisible];
     [self customizeAppearance];
     return YES;
 }
-							
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    DLog(@"bannerViewDidLoadAd loaded %d", banner.isBannerLoaded);
+    [banner setHidden:NO];
+    //    [self toggleBanner:banner];
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    DLog(@"didFailToReceiveAdWithError loaded %d", banner.isBannerLoaded);
+    [banner setHidden:YES];
+    //    [self toggleBanner:banner];
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -102,6 +122,21 @@
 	
     NetworkStatus networkStatus = [curReach currentReachabilityStatus];
     [self checkNetworkStatus:networkStatus];
+}
+
++ (AppDelegate *) sharedApplication {
+    id result = [[UIApplication sharedApplication] delegate];
+    
+    if (![result isMemberOfClass:[AppDelegate class]]) {
+        result = nil;
+    }
+    return result;
+}
+
++ (ADBannerView *) adBannerView {
+    ADBannerView *adBannerView = [self sharedApplication].iAdBannerView;
+    DLog(@"adBannerView %@", adBannerView);
+    return adBannerView;
 }
 
 @end

@@ -12,6 +12,7 @@
 #import "Season.h"
 #import "ServerManager.h"
 #import "MBProgressHUD.h"
+#import "AppDelegate.h"
 
 @interface LeagueSeasonViewController ()
 
@@ -39,6 +40,7 @@
     }
     banner.frame = bannerFrame;
     self.seasonsTableView.frame = CGRectMake(seasonsTableView.frame.origin.x,seasonsTableView.frame.origin.y,seasonsTableView.frame.size.width,contentFrame.size.height-banner.frame.size.height);
+    DLog(@"toggleBanner %@", adBannerView);
 }
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner {
@@ -54,7 +56,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    adBannerView = [AppDelegate adBannerView];
     adBannerView.delegate = self;
 
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
