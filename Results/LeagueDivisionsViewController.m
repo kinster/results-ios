@@ -15,6 +15,7 @@
 #import "Division.h"
 #import "ServerManager.h"
 #import "MBProgressHUD.h"
+#import "AppDelegate.h"
 
 @interface LeagueDivisionsViewController ()
 
@@ -22,7 +23,7 @@
 
 @implementation LeagueDivisionsViewController
 
-@synthesize divisionsList, season, divisionsTableView;
+@synthesize divisionsList, season, divisionsTableView, adBannerView;
 
 -(UIImage *)getLeagueImage:(NSString *)serverName AndLeagueId:(NSString *)leagueId {
     NSError *error;
@@ -47,8 +48,78 @@
     [alert show];
 }
 
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    DLog(@"bannerViewDidLoadAd loaded %d", banner.isBannerLoaded);
+    banner.hidden = NO;
+    [self toggleBanner:banner];
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    DLog(@"didFailToReceiveAdWithError loaded %d", banner.isBannerLoaded);
+    banner.hidden = YES;
+    [self toggleBanner:banner];
+}
+
+- (void)toggleBanner:(ADBannerView *)banner {
+    CGRect bannerFrame = banner.frame;
+    CGRect contentFrame = self.view.frame;
+    if ([banner isBannerLoaded]) {
+        DLog(@"Has ad, showing");
+        contentFrame.size.height -= banner.bounds.size.height;
+    } else {
+        DLog(@"No ad, hiding");
+    }
+    bannerFrame.origin.y = contentFrame.size.height;
+    banner.frame = bannerFrame;
+    self.divisionsTableView.frame = CGRectMake(divisionsTableView.frame.origin.x,divisionsTableView.frame.origin.y,divisionsTableView.frame.size.width,contentFrame.size.height);
+    DLog(@"toggleBanner %@", adBannerView);
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self setAdBannerView:AppDelegate.adBannerView];
+    DLog(@"LeagueDivisionsViewController viewWillAppear %@", self.adBannerView);
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.adBannerView setDelegate:nil];
+    [self setAdBannerView:nil];
+    [self.adBannerView removeFromSuperview];
+    DLog(@"LeagueDivisionsViewController viewWillDisappear %@", self.adBannerView);
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self setAdBannerView:AppDelegate.adBannerView];
+    DLog(@"viewDidAppear %@", adBannerView);
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self.adBannerView setDelegate:nil];
+    [self setAdBannerView:nil];
+    [self.adBannerView removeFromSuperview];
+    DLog(@"LeagueDivisionsViewController viewDidDisappear %@", self.adBannerView);
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    adBannerView = [AppDelegate adBannerView];
+    adBannerView.delegate = self;
+    adBannerView.hidden = YES;
+    
+    [self toggleBanner:adBannerView];
+
+    //    CGRect bannerFrame = adBannerView.frame;
+//    bannerFrame.origin.y = self.view.frame.size.height;
+//    
+//    self.adBannerView.frame = bannerFrame;
+//    [self.view addSubview:adBannerView];
+    
+    adBannerView = [AppDelegate adBannerView];
+    adBannerView.delegate = self;
+
 
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Searching...";
@@ -199,4 +270,8 @@
      */
 }
 
+- (void)viewDidUnload {
+    [self setAdBannerView:nil];
+    [super viewDidUnload];
+}
 @end

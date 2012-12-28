@@ -23,15 +23,14 @@
 @synthesize leaguesList, searchBar, sections, leagueTablesView, adBannerView;
 
 - (void)viewDidLoad {
-    DLog(@"LeaguesViewController viewDidLoad %f", self.view.bounds.size.height);
     [super viewDidLoad];
-    DLog(@"LeaguesViewController viewDidLoad before %@", adBannerView);
-    adBannerView = [AppDelegate adBannerView];
     DLog(@"LeaguesViewController viewDidLoad after%@", adBannerView);
+//    [self setAdBannerView:AppDelegate.adBannerView];
+    adBannerView = [AppDelegate adBannerView];
     adBannerView.delegate = self;
-
-    DLog(@"banner height %f", adBannerView.frame.size.height);
+    adBannerView.hidden = YES;
 //    [self toggleBanner:adBannerView];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -42,7 +41,7 @@
 - (void)toggleBanner:(ADBannerView *)banner {
     CGRect bannerFrame = banner.frame;
     CGRect contentFrame = self.view.frame;
-    DLog(@"Content height %f", contentFrame.size.height);
+    DLog(@"Content height %f %@", contentFrame.size.height, banner);
     if ([banner isBannerLoaded]) {
         DLog(@"Has ad, showing");
         contentFrame.size.height -= banner.frame.size.height;
@@ -52,21 +51,72 @@
         bannerFrame.origin.y = contentFrame.size.height;
     }
     banner.frame = bannerFrame;
-    self.leagueTablesView.frame = CGRectMake(leagueTablesView.frame.origin.x,leagueTablesView.frame.origin.y,leagueTablesView.frame.size.width,contentFrame.size.height-banner.frame.size.height+6);
+    self.leagueTablesView.frame = CGRectMake(leagueTablesView.frame.origin.x,leagueTablesView.frame.origin.y,leagueTablesView.frame.size.width,contentFrame.size.height-banner.frame.size.height+5);
 
     DLog(@"New content height %@ %f %f %f %f %f", banner, contentFrame.size.height, banner.frame.origin.y, adBannerView.frame.origin.y, leagueTablesView.frame.size.height, leagueTablesView.contentSize.height);
 }
 
+//-(void)hideBanner {
+//    // Grow the tableview to occupy space left by banner
+//    CGFloat fullViewHeight = self.view.frame.size.height;
+//    CGRect tableFrame = self.leagueTablesView.frame;
+//    tableFrame.size.height = fullViewHeight;
+//    
+//    // Move the banner view offscreen
+//    CGRect bannerFrame = self.adBannerView.frame;
+//    bannerFrame.origin.y = fullViewHeight;
+//
+//    self.leagueTablesView.frame = tableFrame;
+//    self.adBannerView.frame = bannerFrame;
+//
+//    DLog(@"hide banner: %f %f %f", fullViewHeight, leagueTablesView.frame.size.height, bannerFrame.origin.y);
+//}
+//
+//-(void)showBanner {
+//    CGFloat fullViewHeight = self.view.frame.size.height;
+//    CGRect tableFrame = self.leagueTablesView.frame;
+//    CGRect bannerFrame = self.adBannerView.frame;
+//    
+//    // Shrink the tableview to create space for banner
+//    tableFrame.size.height -= bannerFrame.size.height;
+//    
+//    // Move banner onscreen
+//    bannerFrame.origin.y = fullViewHeight - bannerFrame.size.height;
+//    
+//    [UIView beginAnimations:@"showBanner" context:NULL];
+//    self.leagueTablesView.frame = CGRectMake(leagueTablesView.frame.origin.x,leagueTablesView.frame.origin.y,leagueTablesView.frame.size.width,fullViewHeight);
+//    self.adBannerView.frame = bannerFrame;
+//    [UIView commitAnimations];
+//    DLog(@"show banner: %f %f %f", fullViewHeight, leagueTablesView.frame.size.height, bannerFrame.origin.y);
+//}
+
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner {
     DLog(@"bannerViewDidLoadAd loaded %d", banner.isBannerLoaded);
-    [banner setHidden:NO];
+    banner.hidden = NO;
     [self toggleBanner:banner];
+//    CGRect bannerFrame = banner.frame;
+//    CGRect contentFrame = self.view.frame;
+//    DLog(@"Content height %f %@", contentFrame.size.height, banner);
+//    DLog(@"Has ad, showing");
+//    contentFrame.size.height -= banner.frame.size.height;
+//    bannerFrame.origin.y = contentFrame.size.height;
+//    banner.frame = bannerFrame;
+//    self.leagueTablesView.frame = CGRectMake(leagueTablesView.frame.origin.x,leagueTablesView.frame.origin.y,leagueTablesView.frame.size.width,contentFrame.size.height-banner.frame.size.height+5);
+//    DLog(@"New content height %@ %f %f %f %f %f", banner, contentFrame.size.height, banner.frame.origin.y, adBannerView.frame.origin.y, leagueTablesView.frame.size.height, leagueTablesView.contentSize.height);
 }
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
     DLog(@"didFailToReceiveAdWithError loaded %d", banner.isBannerLoaded);
-    [banner setHidden:YES];
+    banner.hidden = YES;
     [self toggleBanner:banner];
+//    CGRect bannerFrame = banner.frame;
+//    CGRect contentFrame = self.view.frame;
+//    DLog(@"Content height %f %@", contentFrame.size.height, banner);
+//    DLog(@"No ad, hiding");
+//    bannerFrame.origin.y = contentFrame.size.height;
+//    banner.frame = bannerFrame;
+//    self.leagueTablesView.frame = CGRectMake(leagueTablesView.frame.origin.x,leagueTablesView.frame.origin.y,leagueTablesView.frame.size.width,contentFrame.size.height-banner.frame.size.height+5);
+//    DLog(@"New content height %@ %f %f %f %f %f", banner, contentFrame.size.height, banner.frame.origin.y, adBannerView.frame.origin.y, leagueTablesView.frame.size.height, leagueTablesView.contentSize.height);
 }
 
 - (void)loadNetworkExceptionAlert {
@@ -75,16 +125,46 @@
 }
 
 - (void)viewDidUnload {
+    [super viewDidUnload];
+    [self.adBannerView setDelegate:nil];
     [self setAdBannerView:nil];
+    [self setLeagueTablesView:nil];
+    DLog(@"LeaguesViewController viewDidUnload %@", self.adBannerView);
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-//    self.leagueTablesView = nil;
 
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-//    DLog(@"LeaguesViewController viewWillAppear %f", self.view.bounds.size.height);
+    [super viewWillAppear:animated];
+    [self setAdBannerView:AppDelegate.adBannerView];
+//    [self toggleBanner:adBannerView];
+    DLog(@"LeaguesViewController viewWillAppear %@", self.adBannerView);
 }
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.adBannerView setDelegate:nil];
+    [self setAdBannerView:nil];
+    [self.adBannerView removeFromSuperview];
+    DLog(@"LeaguesViewController viewWillDisappear %@", self.adBannerView);
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self setAdBannerView:AppDelegate.adBannerView];
+//    [self toggleBanner:adBannerView];
+    DLog(@"viewDidAppear %@", adBannerView);
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self.adBannerView setDelegate:nil];
+    [self setAdBannerView:nil];
+    [self.adBannerView removeFromSuperview];
+    DLog(@"LeaguesViewController viewDidDisappear %@", self.adBannerView);
+}
+
 
 -(void)createTableSections:(NSString *)urlString AndServerName:(NSString *)serverName {
     NSError *error;
@@ -131,13 +211,6 @@
 -(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text {
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    DLog(@"viewDidAppear start");
-    [self toggleBanner:adBannerView];
-    DLog(@"viewDidAppear end");
-}
-
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     [self.searchBar setShowsCancelButton:YES animated:YES];
 }
@@ -148,10 +221,6 @@
     [self.searchBar resignFirstResponder];
     
     self.leagueTablesView.scrollEnabled = YES;
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)theSearchBar {

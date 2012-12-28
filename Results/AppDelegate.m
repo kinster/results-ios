@@ -59,15 +59,18 @@
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner {
     DLog(@"bannerViewDidLoadAd loaded %d", banner.isBannerLoaded);
-    [banner setHidden:NO];
-    //    [self toggleBanner:banner];
+//    [self toggleBanner:banner];
 }
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
     DLog(@"didFailToReceiveAdWithError loaded %d", banner.isBannerLoaded);
-    [banner setHidden:YES];
-    //    [self toggleBanner:banner];
-}
+    //    _bannerView.hidden = YES;
+//    [self toggleBanner:banner];
+    [UIView beginAnimations:@"animateAdBannerOff" context:NULL];
+     // Assumes the banner view is placed at the bottom of the screen.
+     banner.frame = CGRectOffset(banner.frame, 0, banner.frame.size.height);
+     [UIView commitAnimations];
+ }
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
