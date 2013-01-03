@@ -16,6 +16,7 @@
 #import "CustomFixtureCell.h"
 #import "ServerManager.h"
 #import "MBProgressHUD.h"
+#import "AppDelegate.h"
 
 @interface LeagueFixturesViewController ()
 
@@ -24,7 +25,7 @@
 
 @implementation LeagueFixturesViewController
 
-@synthesize fixtureList, division, fixturesTable, nameLabel, leagueBadge, subtitle;
+@synthesize fixtureList, division, fixturesTable, nameLabel, leagueBadge, subtitle, adBannerView;
 
 - (void)loadNetworkExceptionAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -70,8 +71,82 @@
     }    
 }
 
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    DLog(@"bannerViewDidLoadAd loaded %d", banner.isBannerLoaded);
+    banner.hidden = NO;
+    [self toggleBanner:banner];
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    DLog(@"didFailToReceiveAdWithError loaded %d", banner.isBannerLoaded);
+    banner.hidden = YES;
+    [self toggleBanner:banner];
+}
+
+- (void)toggleBanner:(ADBannerView *)banner {
+    CGRect bannerFrame = banner.frame;
+    CGRect contentFrame = self.view.frame;
+    DLog(@"Content height %f %@", contentFrame.size.height, banner);
+    if ([banner isBannerLoaded]) {
+        DLog(@"Has ad, showing");
+        contentFrame.size.height -= banner.frame.size.height;
+        bannerFrame.origin.y = contentFrame.size.height;
+    } else {
+        DLog(@"No ad, hiding");
+        bannerFrame.origin.y = contentFrame.size.height;
+    }
+    banner.frame = bannerFrame;
+    self.fixturesTable.frame = CGRectMake(fixturesTable.frame.origin.x,fixturesTable.frame.origin.y,fixturesTable.frame.size.width,contentFrame.size.height-banner.frame.size.height-(bannerFrame.size.height-15));
+    
+    DLog(@"New content height %@ %f %f %f %f %f", banner, contentFrame.size.height, banner.frame.origin.y, adBannerView.frame.origin.y, fixturesTable.frame.size.height, fixturesTable.contentSize.height);
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self setNavTitle];
+    [self setAdBannerView:AppDelegate.adBannerView];
+    DLog(@"LeagueFixturesViewController viewWillAppear %@", self.adBannerView);
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self setNavTitle];
+    [self setAdBannerView:AppDelegate.adBannerView];
+    DLog(@"LeagueFixturesViewController viewDidAppear %@", adBannerView);
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.adBannerView setDelegate:nil];
+    [self setAdBannerView:nil];
+    [self.adBannerView removeFromSuperview];
+    DLog(@"LeagueFixturesViewController viewWillDisappear %@", self.adBannerView);
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self.adBannerView setDelegate:nil];
+    [self setAdBannerView:nil];
+    [self.adBannerView removeFromSuperview];
+    DLog(@"LeagueFixturesViewController viewDidDisappear %@", self.adBannerView);
+}
+
+- (void)viewDidUnload {
+    [super viewDidUnload];
+    [self.adBannerView setDelegate:nil];
+    [self setAdBannerView:nil];
+    [self setFixturesTable:nil];
+    DLog(@"LeagueFixturesViewController viewDidUnload %@", self.adBannerView);
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    adBannerView.delegate = self;
+    adBannerView.hidden = YES;
 
     DLog(@"LeagueFixturesViewController");
 
@@ -134,11 +209,6 @@
 
 - (void)setNavTitle {
     self.tabBarController.title = @"League Fixtures";
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    DLog(@"table appeared");
-    [self setNavTitle];
 }
 
 - (void)didReceiveMemoryWarning {

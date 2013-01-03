@@ -6,13 +6,17 @@
 //  Copyright (c) 2012 Kinman Li. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
+#import <iAd/iAd.h>
+
 @class Team;
 
-@interface TeamFixturesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface TeamFixturesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, ADBannerViewDelegate>
 @property (copy, nonatomic) NSMutableArray *fixtureList;
 @property (weak, nonatomic) Team *team;
 @property (weak, nonatomic) IBOutlet UIImageView *leagueBadge;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (retain, nonatomic) IBOutlet UITableView *teamFixturesTable;
 @property (weak, nonatomic) IBOutlet UILabel *subtitle;
+@property (weak, nonatomic) IBOutlet ADBannerView *adBannerView;
 @end

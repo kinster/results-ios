@@ -6,9 +6,12 @@
 //  Copyright (c) 2012 Kinman Li. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
+#import <iAd/iAd.h>
+
 @class Division;
 
-@interface LeagueResultsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface LeagueResultsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, ADBannerViewDelegate>
 @property (copy, nonatomic) NSMutableArray *resultsList;
 @property (weak, nonatomic) Division *division;
 @property (weak, nonatomic) IBOutlet UIImageView *leagueBadge;

@@ -111,7 +111,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="25" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8L3-DS-B2W">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="254" type="user" id="gVa-do-pDK"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="254" type="user" id="YUC-Gh-cU8"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="CustomCellRestorationId" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CustomTableCell" rowHeight="25" id="Dwl-Iw-EaS" userLabel="Team Cell" customClass="CustomTableCell">
@@ -305,16 +305,29 @@
                                     <constraint firstAttribute="height" constant="25" type="user" id="xyB-yk-Pea"/>
                                 </constraints>
                             </view>
+                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="nh9-oW-nd0">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="GXX-fD-gax"/>
+                                </constraints>
+                                <requiredContentSizeIdentifiers>
+                                    <string>ADBannerContentSizeLandscape</string>
+                                    <string>ADBannerContentSizePortrait</string>
+                                </requiredContentSizeIdentifiers>
+                                <connections>
+                                    <outlet property="delegate" destination="2" id="9cV-Sv-64C"/>
+                                </connections>
+                            </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ZAP-LR-fMd" firstAttribute="leading" secondItem="TbS-ft-E4k" secondAttribute="leading" type="default" id="A1p-qf-tDy"/>
-                            <constraint firstItem="8L3-DS-B2W" firstAttribute="trailing" secondItem="TbS-ft-E4k" secondAttribute="trailing" type="default" id="GNm-bq-TXO"/>
+                            <constraint firstItem="nh9-oW-nd0" firstAttribute="trailing" secondItem="TbS-ft-E4k" secondAttribute="trailing" type="default" id="Dyb-Bx-G6z"/>
+                            <constraint firstItem="8L3-DS-B2W" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="TbS-ft-E4k" secondAttribute="trailing" type="user" id="GNm-bq-TXO"/>
+                            <constraint firstItem="8L3-DS-B2W" firstAttribute="trailing" secondItem="TbS-ft-E4k" secondAttribute="trailing" type="default" id="Gv3-dE-zLB"/>
                             <constraint firstItem="ep2-k7-Dq4" firstAttribute="trailing" secondItem="TbS-ft-E4k" secondAttribute="trailing" type="default" id="NKI-74-zWo"/>
-                            <constraint firstItem="8L3-DS-B2W" firstAttribute="bottom" secondItem="TbS-ft-E4k" secondAttribute="bottom" type="user" id="Ru7-NB-ZRQ"/>
                             <constraint firstItem="ep2-k7-Dq4" firstAttribute="top" secondItem="TbS-ft-E4k" secondAttribute="top" constant="87" type="user" id="S0J-ru-bzu"/>
                             <constraint firstItem="ep2-k7-Dq4" firstAttribute="leading" secondItem="TbS-ft-E4k" secondAttribute="leading" type="default" id="SWK-gE-HDJ"/>
-                            <constraint firstItem="8L3-DS-B2W" firstAttribute="top" secondItem="ep2-k7-Dq4" secondAttribute="bottom" constant="1" type="user" id="YTe-PK-FAh"/>
+                            <constraint firstItem="8L3-DS-B2W" firstAttribute="top" secondItem="ep2-k7-Dq4" secondAttribute="bottom" constant="1" type="user" id="Yri-yL-73d"/>
                             <constraint firstItem="ZAP-LR-fMd" firstAttribute="top" secondItem="TbS-ft-E4k" secondAttribute="top" type="user" id="ZLL-On-70U"/>
                             <constraint firstItem="Fj0-Ni-sCR" firstAttribute="leading" secondItem="TbS-ft-E4k" secondAttribute="leading" type="default" id="fMU-2V-h3h"/>
                             <constraint firstItem="Fj0-Ni-sCR" firstAttribute="top" secondItem="TbS-ft-E4k" secondAttribute="top" constant="61" type="user" id="fUO-gF-sHy"/>
@@ -322,12 +335,15 @@
                             <constraint firstItem="Fj0-Ni-sCR" firstAttribute="top" secondItem="ZAP-LR-fMd" secondAttribute="bottom" constant="1" type="user" id="gnT-AV-qMh"/>
                             <constraint firstItem="Fj0-Ni-sCR" firstAttribute="top" secondItem="ZAP-LR-fMd" secondAttribute="bottom" constant="1" type="user" id="hTD-ca-yaG"/>
                             <constraint firstItem="8L3-DS-B2W" firstAttribute="leading" secondItem="TbS-ft-E4k" secondAttribute="leading" type="default" id="nTf-e1-xiQ"/>
-                            <constraint firstItem="8L3-DS-B2W" firstAttribute="top" secondItem="ep2-k7-Dq4" secondAttribute="bottom" constant="1" type="user" id="uK9-GZ-mBv"/>
+                            <constraint firstItem="nh9-oW-nd0" firstAttribute="leading" secondItem="TbS-ft-E4k" secondAttribute="leading" type="default" id="p6k-Km-i4b"/>
+                            <constraint firstItem="8L3-DS-B2W" firstAttribute="bottom" secondItem="TbS-ft-E4k" secondAttribute="bottom" type="default" id="q5i-pi-p9f"/>
+                            <constraint firstItem="nh9-oW-nd0" firstAttribute="top" secondItem="TbS-ft-E4k" secondAttribute="top" constant="455" id="qHx-KM-Rc6"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" tag="1" title="Table" image="152-rolodex.png" id="336-79-yAO"/>
                     <navigationItem key="navigationItem" title="League Table" id="KQp-Y1-tBG"/>
                     <connections>
+                        <outlet property="adBannerView" destination="nh9-oW-nd0" id="ZmJ-C6-Cki"/>
                         <outlet property="leagueBadge" destination="uDK-SJ-8xN" id="pMq-eY-bA4"/>
                         <outlet property="leagueTable" destination="8L3-DS-B2W" id="G4z-91-zj3"/>
                         <outlet property="nameLabel" destination="SYq-AU-HFt" id="kcT-WT-tO1"/>
@@ -349,8 +365,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="N0L-SW-Fna">
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="368" type="user" id="QkV-p0-fdX"/>
-                                    <constraint firstAttribute="height" constant="368" id="Thc-Dc-c4J"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="368" type="user" id="U36-dn-1Hq"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="CustomCellRestorationId" selectionStyle="none" indentationWidth="10" reuseIdentifier="CustomResultCell" rowHeight="42" id="h5h-wh-Qow" userLabel="Result Cell Grouped" customClass="CustomResultCell">
@@ -469,23 +484,39 @@
                                     <constraint firstItem="sIy-db-Eex" firstAttribute="top" secondItem="CeB-Ri-3lM" secondAttribute="top" constant="4" id="tGQ-Mc-9c3"/>
                                 </constraints>
                             </view>
+                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="fw5-SZ-dA2">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="7Fy-9y-ffQ"/>
+                                </constraints>
+                                <requiredContentSizeIdentifiers>
+                                    <string>ADBannerContentSizeLandscape</string>
+                                    <string>ADBannerContentSizePortrait</string>
+                                </requiredContentSizeIdentifiers>
+                                <connections>
+                                    <outlet property="delegate" destination="U8H-Vy-qma" id="oop-vg-pLE"/>
+                                </connections>
+                            </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="CeB-Ri-3lM" firstAttribute="top" secondItem="s3C-4P-krx" secondAttribute="top" type="user" id="3nf-rG-1dY"/>
                             <constraint firstItem="CeB-Ri-3lM" firstAttribute="trailing" secondItem="s3C-4P-krx" secondAttribute="trailing" type="default" id="5Ad-2B-Z5s"/>
-                            <constraint firstItem="N0L-SW-Fna" firstAttribute="trailing" secondItem="s3C-4P-krx" secondAttribute="trailing" type="default" id="7gZ-Bz-RES"/>
+                            <constraint firstItem="N0L-SW-Fna" firstAttribute="leading" secondItem="s3C-4P-krx" secondAttribute="leading" type="default" id="5p4-Ji-HKM"/>
+                            <constraint firstItem="CeB-Ri-3lM" firstAttribute="top" secondItem="s3C-4P-krx" secondAttribute="top" type="user" id="7ZI-lZ-Nij"/>
+                            <constraint firstItem="fw5-SZ-dA2" firstAttribute="top" secondItem="s3C-4P-krx" secondAttribute="top" constant="456" id="7zg-Nu-DAN"/>
                             <constraint firstItem="0aq-ol-25I" firstAttribute="top" secondItem="CeB-Ri-3lM" secondAttribute="bottom" constant="1" type="user" id="Jmh-dA-w0z"/>
-                            <constraint firstItem="N0L-SW-Fna" firstAttribute="top" secondItem="0aq-ol-25I" secondAttribute="bottom" constant="1" type="user" id="KZv-bl-FPT"/>
                             <constraint firstItem="CeB-Ri-3lM" firstAttribute="leading" secondItem="s3C-4P-krx" secondAttribute="leading" type="default" id="Mib-6n-Sc0"/>
                             <constraint firstItem="0aq-ol-25I" firstAttribute="leading" secondItem="s3C-4P-krx" secondAttribute="leading" type="default" id="Udd-xc-pz4"/>
-                            <constraint firstItem="N0L-SW-Fna" firstAttribute="leading" secondItem="s3C-4P-krx" secondAttribute="leading" type="default" id="hNw-2I-sGc"/>
-                            <constraint firstItem="0aq-ol-25I" firstAttribute="top" secondItem="s3C-4P-krx" secondAttribute="top" constant="61" type="user" id="jNP-Du-pyI"/>
+                            <constraint firstItem="N0L-SW-Fna" firstAttribute="bottom" secondItem="s3C-4P-krx" secondAttribute="bottom" type="default" id="Uye-Co-kQo"/>
+                            <constraint firstItem="N0L-SW-Fna" firstAttribute="trailing" secondItem="s3C-4P-krx" secondAttribute="trailing" type="default" id="cyl-Kf-MVr"/>
+                            <constraint firstItem="fw5-SZ-dA2" firstAttribute="trailing" secondItem="s3C-4P-krx" secondAttribute="trailing" type="default" id="hoZ-91-fcr"/>
+                            <constraint firstItem="N0L-SW-Fna" firstAttribute="top" secondItem="0aq-ol-25I" secondAttribute="bottom" constant="1" type="user" id="lfP-MM-aJX"/>
+                            <constraint firstItem="fw5-SZ-dA2" firstAttribute="leading" secondItem="s3C-4P-krx" secondAttribute="leading" type="default" id="sey-To-0Jt"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Results" image="179-notepad.png" id="ehm-kn-Aff"/>
                     <navigationItem key="navigationItem" title="Team Results" id="Kl7-Ir-idN"/>
                     <connections>
+                        <outlet property="adBannerView" destination="fw5-SZ-dA2" id="X5d-tI-uM5"/>
                         <outlet property="leagueBadge" destination="2cD-6m-CwQ" id="Vvo-sH-9dZ"/>
                         <outlet property="nameLabel" destination="sIy-db-Eex" id="mBq-ZJ-hzr"/>
                         <outlet property="subtitle" destination="ZsM-6u-eyH" id="2eg-lH-CJy"/>
@@ -506,10 +537,6 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="NKc-Hb-bxJ">
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="368" type="user" id="Hxa-bu-i5L"/>
-                                    <constraint firstAttribute="height" constant="368" id="u4m-bB-41p"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="CustomCellRestorationId" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CustomFixtureCell" rowHeight="42" id="PeB-YP-08g" userLabel="Fixture Cell Wide Grouped" customClass="CustomFixtureCell">
                                         <rect key="frame" x="0.0" y="46" width="320" height="44"/>
@@ -633,25 +660,42 @@
                                     <constraint firstAttribute="width" constant="320" type="user" id="gaY-Wo-heh"/>
                                 </constraints>
                             </view>
+                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="Au7-AL-eaZ">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" type="user" id="9NX-mg-T91"/>
+                                </constraints>
+                                <requiredContentSizeIdentifiers>
+                                    <string>ADBannerContentSizeLandscape</string>
+                                    <string>ADBannerContentSizePortrait</string>
+                                </requiredContentSizeIdentifiers>
+                                <connections>
+                                    <outlet property="delegate" destination="obT-85-3Sz" id="t9J-jY-avP"/>
+                                </connections>
+                            </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="yCF-4m-hdW" firstAttribute="leading" secondItem="Fjv-bO-iaM" secondAttribute="leading" type="default" id="2aL-yT-kie"/>
+                            <constraint firstItem="NKc-Hb-bxJ" firstAttribute="top" secondItem="vrl-Me-cB0" secondAttribute="bottom" constant="1" type="user" id="3hQ-MT-GaS"/>
                             <constraint firstItem="vrl-Me-cB0" firstAttribute="top" secondItem="yCF-4m-hdW" secondAttribute="bottom" constant="1" type="user" id="4I9-Db-nGn"/>
                             <constraint firstItem="NKc-Hb-bxJ" firstAttribute="trailing" secondItem="Fjv-bO-iaM" secondAttribute="trailing" type="default" id="5E4-6p-8yP"/>
-                            <constraint firstItem="NKc-Hb-bxJ" firstAttribute="top" secondItem="vrl-Me-cB0" secondAttribute="bottom" constant="1" type="user" id="6gz-ya-vG5"/>
+                            <constraint firstItem="NKc-Hb-bxJ" firstAttribute="bottom" secondItem="Fjv-bO-iaM" secondAttribute="bottom" type="default" id="BHo-Vj-pIT"/>
                             <constraint firstItem="Pix-hh-AXm" firstAttribute="trailing" secondItem="Fjv-bO-iaM" secondAttribute="trailing" type="default" id="CGy-nI-i8N"/>
                             <constraint firstItem="Pix-hh-AXm" firstAttribute="leading" secondItem="Fjv-bO-iaM" secondAttribute="leading" type="default" id="HCG-VG-4YY"/>
                             <constraint firstItem="yCF-4m-hdW" firstAttribute="trailing" secondItem="Fjv-bO-iaM" secondAttribute="trailing" type="default" id="NfQ-SU-dZL"/>
                             <constraint firstItem="vrl-Me-cB0" firstAttribute="leading" secondItem="Fjv-bO-iaM" secondAttribute="leading" type="default" id="RBZ-Zr-ACu"/>
+                            <constraint firstItem="yCF-4m-hdW" firstAttribute="top" secondItem="Fjv-bO-iaM" secondAttribute="top" type="default" id="SE0-sp-PLc"/>
                             <constraint firstItem="NKc-Hb-bxJ" firstAttribute="leading" secondItem="Fjv-bO-iaM" secondAttribute="leading" type="default" id="UYa-Bk-hzZ"/>
-                            <constraint firstItem="yCF-4m-hdW" firstAttribute="top" secondItem="Fjv-bO-iaM" secondAttribute="top" type="user" id="Vcl-BZ-yhz"/>
+                            <constraint firstItem="Au7-AL-eaZ" firstAttribute="top" secondItem="Fjv-bO-iaM" secondAttribute="top" constant="455" id="ZuY-fO-gth"/>
+                            <constraint firstItem="Au7-AL-eaZ" firstAttribute="trailing" secondItem="Fjv-bO-iaM" secondAttribute="trailing" type="default" id="aRg-JS-pGg"/>
                             <constraint firstItem="Pix-hh-AXm" firstAttribute="top" secondItem="Fjv-bO-iaM" secondAttribute="top" constant="80" id="kKD-lJ-3do"/>
+                            <constraint firstItem="Au7-AL-eaZ" firstAttribute="leading" secondItem="Fjv-bO-iaM" secondAttribute="leading" type="default" id="n7M-IT-Tua"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Fixtures" image="83-calendar.png" id="GmF-Ez-5qs"/>
                     <navigationItem key="navigationItem" title="Team Fixtures" id="3fj-3I-jYG"/>
                     <connections>
+                        <outlet property="adBannerView" destination="Au7-AL-eaZ" id="bcQ-PT-krO"/>
                         <outlet property="leagueBadge" destination="82m-5x-1Mi" id="lpK-7B-Uco"/>
                         <outlet property="nameLabel" destination="sad-Mx-O7Z" id="Hsl-ac-VhW"/>
                         <outlet property="subtitle" destination="H6w-RV-7PG" id="GL6-LM-qnb"/>
@@ -672,6 +716,9 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="7kq-j3-k9v">
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="368" type="user" id="pAC-sZ-i7D"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="CustomCellRestorationId" selectionStyle="none" indentationWidth="10" reuseIdentifier="CustomPlayerCell" rowHeight="42" id="Rm3-k1-0te" userLabel="Player Cell" customClass="CustomPlayerCell">
                                         <rect key="frame" x="0.0" y="46" width="320" height="44"/>
@@ -772,18 +819,33 @@
                                     <constraint firstItem="b3z-qQ-Nog" firstAttribute="top" secondItem="J1g-m4-pqX" secondAttribute="top" constant="4" id="Mm6-pj-L8o"/>
                                 </constraints>
                             </view>
+                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="qSq-tu-KLW">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="yy7-Sh-YKw"/>
+                                </constraints>
+                                <requiredContentSizeIdentifiers>
+                                    <string>ADBannerContentSizeLandscape</string>
+                                    <string>ADBannerContentSizePortrait</string>
+                                </requiredContentSizeIdentifiers>
+                                <connections>
+                                    <outlet property="delegate" destination="bl9-Jn-mfe" id="VSs-N5-OXW"/>
+                                </connections>
+                            </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="7kq-j3-k9v" firstAttribute="top" secondItem="J1g-m4-pqX" secondAttribute="bottom" constant="1" type="user" id="377-3w-yMW"/>
                             <constraint firstItem="sYT-3e-aPM" firstAttribute="trailing" secondItem="a8L-7u-bal" secondAttribute="trailing" type="default" id="7Zx-4w-LMy"/>
                             <constraint firstItem="6PQ-m5-ivR" firstAttribute="top" secondItem="a8L-7u-bal" secondAttribute="top" type="default" id="8xz-9b-gyq"/>
-                            <constraint firstItem="7kq-j3-k9v" firstAttribute="top" secondItem="J1g-m4-pqX" secondAttribute="bottom" constant="1" type="user" id="9bT-5r-oB2"/>
+                            <constraint firstItem="qSq-tu-KLW" firstAttribute="trailing" secondItem="a8L-7u-bal" secondAttribute="trailing" type="default" id="BBc-zr-zHl"/>
                             <constraint firstItem="7kq-j3-k9v" firstAttribute="trailing" secondItem="a8L-7u-bal" secondAttribute="trailing" type="default" id="BTz-Ds-lXN"/>
-                            <constraint firstItem="7kq-j3-k9v" firstAttribute="bottom" secondItem="a8L-7u-bal" secondAttribute="bottom" type="default" id="IeK-Ab-JBh"/>
+                            <constraint firstItem="qSq-tu-KLW" firstAttribute="top" secondItem="a8L-7u-bal" secondAttribute="top" constant="455" id="JGi-EK-IdF"/>
                             <constraint firstItem="7kq-j3-k9v" firstAttribute="leading" secondItem="a8L-7u-bal" secondAttribute="leading" type="default" id="OpD-yG-Ofw"/>
                             <constraint firstItem="6PQ-m5-ivR" firstAttribute="trailing" secondItem="a8L-7u-bal" secondAttribute="trailing" type="default" id="SSw-xs-JP9"/>
                             <constraint firstItem="sYT-3e-aPM" firstAttribute="top" secondItem="a8L-7u-bal" secondAttribute="top" constant="80" id="UVJ-Gh-ype"/>
                             <constraint firstItem="J1g-m4-pqX" firstAttribute="top" secondItem="a8L-7u-bal" secondAttribute="top" constant="61" type="user" id="bAG-3c-e2O"/>
+                            <constraint firstItem="7kq-j3-k9v" firstAttribute="bottom" secondItem="a8L-7u-bal" secondAttribute="bottom" type="default" id="pCY-9e-i8K"/>
+                            <constraint firstItem="qSq-tu-KLW" firstAttribute="leading" secondItem="a8L-7u-bal" secondAttribute="leading" type="default" id="qnI-hb-cmt"/>
                             <constraint firstItem="J1g-m4-pqX" firstAttribute="leading" secondItem="a8L-7u-bal" secondAttribute="leading" type="default" id="qzS-Hy-9zH"/>
                             <constraint firstItem="sYT-3e-aPM" firstAttribute="leading" secondItem="a8L-7u-bal" secondAttribute="leading" type="default" id="yR3-y5-XAJ"/>
                             <constraint firstItem="6PQ-m5-ivR" firstAttribute="leading" secondItem="a8L-7u-bal" secondAttribute="leading" type="default" id="z3d-nJ-Cgt"/>
@@ -792,6 +854,7 @@
                     <tabBarItem key="tabBarItem" title="Details" image="166-newspaper.png" id="8s5-Bi-GuG"/>
                     <navigationItem key="navigationItem" title="Team Details" id="suH-Ef-pLW"/>
                     <connections>
+                        <outlet property="adBannerView" destination="qSq-tu-KLW" id="11E-fP-Ytx"/>
                         <outlet property="badge" destination="Elc-DD-obY" id="CBQ-dA-8Ye"/>
                         <outlet property="name" destination="89d-dM-FiL" id="5bb-17-hJa"/>
                         <outlet property="playersTable" destination="7kq-j3-k9v" id="GAA-D9-BQK"/>
@@ -812,10 +875,6 @@
                         <subviews>
                             <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="b5W-ZF-OmL" userLabel="Fixtures Table View">
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="368" id="Ylj-QK-QP5"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="368" type="user" id="m3f-i3-e06"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="CustomCellRestorationId" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CustomFixtureCell" rowHeight="42" id="YCK-VT-Tiq" userLabel="Fixture Cell Wide" customClass="CustomFixtureCell">
                                         <rect key="frame" x="0.0" y="46" width="320" height="44"/>
@@ -933,25 +992,42 @@
                                     <constraint firstItem="N4A-1j-ulE" firstAttribute="top" secondItem="JKE-eF-YZb" secondAttribute="top" constant="4" id="zjr-hf-ALW"/>
                                 </constraints>
                             </view>
+                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="0tq-9J-rED">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="9sQ-RU-hLF"/>
+                                </constraints>
+                                <requiredContentSizeIdentifiers>
+                                    <string>ADBannerContentSizeLandscape</string>
+                                    <string>ADBannerContentSizePortrait</string>
+                                </requiredContentSizeIdentifiers>
+                                <connections>
+                                    <outlet property="delegate" destination="Vpf-d4-xuW" id="EPv-kg-egz"/>
+                                </connections>
+                            </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="0tq-9J-rED" firstAttribute="leading" secondItem="s7h-lH-iVJ" secondAttribute="leading" type="default" id="1TU-cZ-Ill"/>
+                            <constraint firstItem="JKE-eF-YZb" firstAttribute="top" secondItem="s7h-lH-iVJ" secondAttribute="top" type="default" id="42O-BK-8Cb"/>
                             <constraint firstItem="UoO-ZL-3Fa" firstAttribute="leading" secondItem="s7h-lH-iVJ" secondAttribute="leading" type="user" id="4gv-Zg-7aB"/>
-                            <constraint firstItem="JKE-eF-YZb" firstAttribute="top" secondItem="s7h-lH-iVJ" secondAttribute="top" type="user" id="6kN-Tn-GD4"/>
+                            <constraint firstItem="0tq-9J-rED" firstAttribute="trailing" secondItem="s7h-lH-iVJ" secondAttribute="trailing" type="default" id="BSI-55-RwP"/>
                             <constraint firstItem="JKE-eF-YZb" firstAttribute="leading" secondItem="s7h-lH-iVJ" secondAttribute="leading" type="default" id="GGb-Js-ePH"/>
                             <constraint firstItem="UoO-ZL-3Fa" firstAttribute="top" secondItem="JKE-eF-YZb" secondAttribute="bottom" constant="1" type="user" id="HVC-Mw-vcr"/>
                             <constraint firstItem="b5W-ZF-OmL" firstAttribute="trailing" secondItem="s7h-lH-iVJ" secondAttribute="trailing" type="default" id="JNe-tz-c9v"/>
                             <constraint firstItem="UoO-ZL-3Fa" firstAttribute="top" secondItem="JKE-eF-YZb" secondAttribute="bottom" constant="1" type="user" id="KoA-vO-t37"/>
                             <constraint firstItem="JKE-eF-YZb" firstAttribute="trailing" secondItem="s7h-lH-iVJ" secondAttribute="trailing" type="default" id="LAT-M6-g1W"/>
                             <constraint firstItem="b5W-ZF-OmL" firstAttribute="leading" secondItem="s7h-lH-iVJ" secondAttribute="leading" type="default" id="ObQ-YC-BI0"/>
+                            <constraint firstItem="b5W-ZF-OmL" firstAttribute="top" secondItem="UoO-ZL-3Fa" secondAttribute="bottom" constant="1" type="user" id="a0H-le-HVE"/>
                             <constraint firstItem="UoO-ZL-3Fa" firstAttribute="trailing" secondItem="s7h-lH-iVJ" secondAttribute="trailing" type="user" id="eWV-Pp-BQz"/>
-                            <constraint firstItem="b5W-ZF-OmL" firstAttribute="top" secondItem="UoO-ZL-3Fa" secondAttribute="bottom" constant="1" type="user" id="lhn-ha-dhm"/>
+                            <constraint firstItem="0tq-9J-rED" firstAttribute="top" secondItem="s7h-lH-iVJ" secondAttribute="top" constant="456" id="o7Y-XO-Hny"/>
+                            <constraint firstItem="b5W-ZF-OmL" firstAttribute="bottom" secondItem="s7h-lH-iVJ" secondAttribute="bottom" type="default" id="teS-qr-PvB"/>
                             <constraint firstItem="UoO-ZL-3Fa" firstAttribute="top" secondItem="JKE-eF-YZb" secondAttribute="bottom" constant="1" type="user" id="zCT-ul-Be9"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Fixtures" image="83-calendar.png" id="vfR-an-B5r"/>
                     <navigationItem key="navigationItem" title="League Fixtures" id="HIl-xv-1f2"/>
                     <connections>
+                        <outlet property="adBannerView" destination="0tq-9J-rED" id="Bd5-4C-EMN"/>
                         <outlet property="fixturesTable" destination="b5W-ZF-OmL" id="LZY-QB-s6g"/>
                         <outlet property="leagueBadge" destination="XzC-mz-cvM" id="z3c-js-n0v"/>
                         <outlet property="nameLabel" destination="N4A-1j-ulE" id="Zv1-mh-WO2"/>
@@ -1003,19 +1079,34 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nEb-er-alD">
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="318" type="user" id="YAD-zA-K58"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="455" type="user" id="lTZ-Wd-RZw"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="vbr-tu-NID" id="N1a-2V-dP6"/>
                                 </connections>
                             </mapView>
+                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="Fnp-A1-gIO">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" type="user" id="9Uz-Rw-LpW"/>
+                                </constraints>
+                                <requiredContentSizeIdentifiers>
+                                    <string>ADBannerContentSizeLandscape</string>
+                                    <string>ADBannerContentSizePortrait</string>
+                                </requiredContentSizeIdentifiers>
+                                <connections>
+                                    <outlet property="delegate" destination="vbr-tu-NID" id="AaE-gQ-qXy"/>
+                                </connections>
+                            </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="nEb-er-alD" firstAttribute="bottom" secondItem="wPv-jS-XP5" secondAttribute="bottom" type="default" id="Cmw-h8-lyx"/>
+                            <constraint firstItem="nEb-er-alD" firstAttribute="top" secondItem="wPv-jS-XP5" secondAttribute="top" type="user" id="Kop-t3-nYb"/>
                             <constraint firstItem="nEb-er-alD" firstAttribute="trailing" secondItem="wPv-jS-XP5" secondAttribute="trailing" type="default" id="OwY-26-jgD"/>
-                            <constraint firstItem="nEb-er-alD" firstAttribute="top" secondItem="wPv-jS-XP5" secondAttribute="top" type="user" id="l4N-LT-A62"/>
+                            <constraint firstItem="nEb-er-alD" firstAttribute="bottom" secondItem="wPv-jS-XP5" secondAttribute="bottom" type="user" id="a2z-kg-XEF"/>
+                            <constraint firstItem="Fnp-A1-gIO" firstAttribute="top" secondItem="wPv-jS-XP5" secondAttribute="top" constant="455" id="m8W-ug-bBz"/>
                             <constraint firstItem="nEb-er-alD" firstAttribute="leading" secondItem="wPv-jS-XP5" secondAttribute="leading" type="default" id="mF3-Tk-Zf9"/>
+                            <constraint firstItem="Fnp-A1-gIO" firstAttribute="trailing" secondItem="wPv-jS-XP5" secondAttribute="trailing" type="default" id="qBY-Hj-KVR"/>
+                            <constraint firstItem="Fnp-A1-gIO" firstAttribute="leading" secondItem="wPv-jS-XP5" secondAttribute="leading" type="default" id="tlz-qd-SMW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Fixture" id="26b-qH-Vsx">
@@ -1311,7 +1402,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="368" type="user" id="4cy-Ve-zom"/>
-                                    <constraint firstAttribute="height" constant="368" id="g6T-3h-hFP"/>
+                                    <constraint firstAttribute="height" constant="319" type="user" id="fIi-ID-QTg"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="CustomCellRestorationId" selectionStyle="none" indentationWidth="10" reuseIdentifier="CustomResultCell" rowHeight="42" id="UaL-nS-MoF" userLabel="Result Cell" customClass="CustomResultCell">
@@ -1430,14 +1521,26 @@
                                     <constraint firstItem="zOf-9A-PAo" firstAttribute="top" secondItem="vrL-e9-S2s" secondAttribute="top" constant="4" id="n7E-wa-y7F"/>
                                 </constraints>
                             </view>
+                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="Cbw-00-bAW">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="9mx-I9-c2b"/>
+                                </constraints>
+                                <requiredContentSizeIdentifiers>
+                                    <string>ADBannerContentSizeLandscape</string>
+                                    <string>ADBannerContentSizePortrait</string>
+                                </requiredContentSizeIdentifiers>
+                            </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="inE-DI-3nL" firstAttribute="top" secondItem="vrL-e9-S2s" secondAttribute="bottom" constant="1" type="user" id="5Lv-w5-ahl"/>
+                            <constraint firstItem="tqE-D5-zFN" firstAttribute="top" secondItem="8FE-2P-Ahr" secondAttribute="top" type="default" id="7Vc-DV-7GL"/>
+                            <constraint firstItem="Cbw-00-bAW" firstAttribute="top" secondItem="8FE-2P-Ahr" secondAttribute="top" constant="456" id="9AW-pi-qbB"/>
                             <constraint firstItem="tqE-D5-zFN" firstAttribute="trailing" secondItem="8FE-2P-Ahr" secondAttribute="trailing" type="default" id="Ceq-Nb-C6D"/>
+                            <constraint firstItem="Cbw-00-bAW" firstAttribute="leading" secondItem="8FE-2P-Ahr" secondAttribute="leading" type="default" id="DaT-hs-2io"/>
                             <constraint firstItem="inE-DI-3nL" firstAttribute="trailing" secondItem="8FE-2P-Ahr" secondAttribute="trailing" type="default" id="GXq-kC-FP5"/>
                             <constraint firstItem="inE-DI-3nL" firstAttribute="leading" secondItem="8FE-2P-Ahr" secondAttribute="leading" type="user" id="PfK-3J-Hy2"/>
-                            <constraint firstItem="tqE-D5-zFN" firstAttribute="top" secondItem="8FE-2P-Ahr" secondAttribute="top" type="user" id="QmW-7M-iid"/>
+                            <constraint firstItem="Cbw-00-bAW" firstAttribute="trailing" secondItem="8FE-2P-Ahr" secondAttribute="trailing" type="default" id="VX7-uq-DIM"/>
                             <constraint firstItem="inE-DI-3nL" firstAttribute="top" secondItem="vrL-e9-S2s" secondAttribute="bottom" constant="1" type="user" id="b9i-Li-Cd6"/>
                             <constraint firstItem="tqE-D5-zFN" firstAttribute="leading" secondItem="8FE-2P-Ahr" secondAttribute="leading" type="default" id="eIs-Gf-66e"/>
                             <constraint firstItem="vrL-e9-S2s" firstAttribute="leading" secondItem="8FE-2P-Ahr" secondAttribute="leading" type="default" id="gDZ-fM-qCo"/>
@@ -1483,16 +1586,150 @@
         <image name="179-notepad.png" width="22" height="28"/>
         <image name="83-calendar.png" width="23" height="25"/>
     </resources>
+    <classes>
+        <class className="CustomFixtureCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomFixtureCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="awayTeam" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="date" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="homeTeam" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="CustomPlayerCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomPlayerCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="CustomResultCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomResultCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="awayTeam" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="date" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="homeTeam" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="score" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="CustomTableCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomTableCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="draws" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="goalDiff" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="goalsAgainst" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="goalsFor" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="losses" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="played" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="points" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="position" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="team" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="wins" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="LeagueDivisionsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueDivisionsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="adBannerView" candidateClass="ADBannerView"/>
+                <relationship kind="outlet" name="divisionsTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="LeagueFixtureDetailsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueFixtureDetailsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="navigate:"/>
+                <relationship kind="outlet" name="adBannerView" candidateClass="ADBannerView"/>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
+        <class className="LeagueFixturesViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueFixturesViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="adBannerView" candidateClass="ADBannerView"/>
+                <relationship kind="outlet" name="fixturesTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="LeagueResultsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueResultsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="resultsTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="LeagueSeasonViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueSeasonViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="adBannerView" candidateClass="ADBannerView"/>
+                <relationship kind="outlet" name="seasonsTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="LeagueTableViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="adBannerView" candidateClass="ADBannerView"/>
+                <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="leagueTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="LeaguesViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeaguesViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="getTop500:"/>
+                <relationship kind="outlet" name="adBannerView" candidateClass="ADBannerView"/>
+                <relationship kind="outlet" name="leagueTablesView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="TeamDetailsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeamDetailsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="adBannerView" candidateClass="ADBannerView"/>
+                <relationship kind="outlet" name="badge" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="playersTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TeamFixturesViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeamFixturesViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="adBannerView" candidateClass="ADBannerView"/>
+                <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="teamFixturesTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TeamResultsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeamResultsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="adBannerView" candidateClass="ADBannerView"/>
+                <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="teamResultsTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Gme-cR-3kr"/>
         <segue reference="vfM-is-vMH"/>
-        <segue reference="w7Y-6N-5L6"/>
+        <segue reference="Gme-cR-3kr"/>
         <segue reference="guz-h0-rin"/>
         <segue reference="nlu-6i-a2D"/>
+        <segue reference="w7Y-6N-5L6"/>
     </inferredMetricsTieBreakers>
 </document>

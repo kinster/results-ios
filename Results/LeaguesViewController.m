@@ -25,11 +25,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     DLog(@"LeaguesViewController viewDidLoad after%@", adBannerView);
-//    [self setAdBannerView:AppDelegate.adBannerView];
-    adBannerView = [AppDelegate adBannerView];
     adBannerView.delegate = self;
     adBannerView.hidden = YES;
-//    [self toggleBanner:adBannerView];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -142,19 +139,19 @@
     DLog(@"LeaguesViewController viewWillAppear %@", self.adBannerView);
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self setAdBannerView:AppDelegate.adBannerView];
+//    [self toggleBanner:adBannerView];
+    DLog(@"viewDidAppear %@", adBannerView);
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.adBannerView setDelegate:nil];
     [self setAdBannerView:nil];
     [self.adBannerView removeFromSuperview];
     DLog(@"LeaguesViewController viewWillDisappear %@", self.adBannerView);
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self setAdBannerView:AppDelegate.adBannerView];
-//    [self toggleBanner:adBannerView];
-    DLog(@"viewDidAppear %@", adBannerView);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

@@ -15,6 +15,7 @@
 #import "ServerManager.h"
 #import "CustomPlayerCell.h"
 #import "MBProgressHUD.h"
+#import "AppDelegate.h"
 
 @interface TeamDetailsViewController ()
 
@@ -22,17 +23,89 @@
 
 @implementation TeamDetailsViewController
 
-@synthesize name, badge, team, playersTable, playersList, subtitle;
+@synthesize name, badge, team, playersTable, playersList, subtitle, adBannerView;
 
 - (void)loadNetworkExceptionAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    DLog(@"bannerViewDidLoadAd loaded %d", banner.isBannerLoaded);
+    banner.hidden = NO;
+    [self toggleBanner:banner];
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    DLog(@"didFailToReceiveAdWithError loaded %d", banner.isBannerLoaded);
+    banner.hidden = YES;
+    [self toggleBanner:banner];
+}
+
+- (void)toggleBanner:(ADBannerView *)banner {
+    CGRect bannerFrame = banner.frame;
+    CGRect contentFrame = self.view.frame;
+    DLog(@"Content height %f %@", contentFrame.size.height, banner);
+    if ([banner isBannerLoaded]) {
+        DLog(@"Has ad, showing");
+        contentFrame.size.height -= banner.frame.size.height;
+        bannerFrame.origin.y = contentFrame.size.height;
+    } else {
+        DLog(@"No ad, hiding");
+        bannerFrame.origin.y = contentFrame.size.height;
+    }
+    banner.frame = bannerFrame;
+    self.playersTable.frame = CGRectMake(playersTable.frame.origin.x,playersTable.frame.origin.y,playersTable.frame.size.width,contentFrame.size.height-banner.frame.size.height-(bannerFrame.size.height-15));
     
+    DLog(@"New content height %@ %f %f %f %f %f", banner, contentFrame.size.height, banner.frame.origin.y, adBannerView.frame.origin.y, playersTable.frame.size.height, playersTable.contentSize.height);
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self setNavTitle];
+    [self setAdBannerView:AppDelegate.adBannerView];
+    DLog(@"TeamDetailsViewController viewWillAppear %@", self.adBannerView);
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self setNavTitle];
+    [self setAdBannerView:AppDelegate.adBannerView];
+    DLog(@"TeamDetailsViewController viewDidAppear %@", adBannerView);
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.adBannerView setDelegate:nil];
+    [self setAdBannerView:nil];
+    [self.adBannerView removeFromSuperview];
+    DLog(@"TeamDetailsViewController viewWillDisappear %@", self.adBannerView);
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self.adBannerView setDelegate:nil];
+    [self setAdBannerView:nil];
+    [self.adBannerView removeFromSuperview];
+    DLog(@"TeamDetailsViewController viewDidDisappear %@", self.adBannerView);
+}
+
+- (void)viewDidUnload {
+    [super viewDidUnload];
+    [self.adBannerView setDelegate:nil];
+    [self setAdBannerView:nil];
+    [self setPlayersTable:nil];
+    DLog(@"TeamDetailsViewController viewDidUnload %@", self.adBannerView);
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];    
+    [self setNavTitle];
+
+    adBannerView.delegate = self;
+    adBannerView.hidden = YES;
 
     Division *division = [team division];
     
@@ -94,11 +167,6 @@
 
 - (void)setNavTitle {
     self.tabBarController.title = @"Team Details";
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    DLog(@"table appeared");
-    [self setNavTitle];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

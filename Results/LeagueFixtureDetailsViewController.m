@@ -14,6 +14,7 @@
 #import "Fixture.h"
 #import "ServerManager.h"
 #import "MBProgressHUD.h"
+#import "AppDelegate.h"
 
 @interface LeagueFixtureDetailsViewController ()
 
@@ -23,7 +24,7 @@
 
 @implementation LeagueFixtureDetailsViewController
 
-@synthesize fixture, mapView, location, mapItem;
+@synthesize fixture, mapView, location, mapItem, adBannerView;
 
 - (void)loadNetworkExceptionAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -35,9 +36,82 @@
     [alert show];
 }
 
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    DLog(@"bannerViewDidLoadAd loaded %d", banner.isBannerLoaded);
+    banner.hidden = NO;
+    [self toggleBanner:banner];
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    DLog(@"didFailToReceiveAdWithError loaded %d", banner.isBannerLoaded);
+    banner.hidden = YES;
+    [self toggleBanner:banner];
+}
+
+- (void)toggleBanner:(ADBannerView *)banner {
+    CGRect bannerFrame = banner.frame;
+    CGRect contentFrame = self.view.frame;
+    DLog(@"Content height %f %@", contentFrame.size.height, banner);
+    if ([banner isBannerLoaded]) {
+        DLog(@"Has ad, showing");
+        contentFrame.size.height -= banner.frame.size.height;
+        bannerFrame.origin.y = contentFrame.size.height;
+    } else {
+        DLog(@"No ad, hiding");
+        bannerFrame.origin.y = contentFrame.size.height;
+    }
+    banner.frame = bannerFrame;
+    self.mapView.frame = CGRectMake(mapView.frame.origin.x,mapView.frame.origin.y,mapView.frame.size.width,contentFrame.size.height);
+    
+    DLog(@"New content height %@ %f %f %f %f", banner, contentFrame.size.height, banner.frame.origin.y, adBannerView.frame.origin.y, mapView.frame.size.height);
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self setNavTitle];
+    [self setAdBannerView:AppDelegate.adBannerView];
+    DLog(@"LeagueFixtureDetailsViewController viewWillAppear %@", self.adBannerView);
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self setNavTitle];
+    [self setAdBannerView:AppDelegate.adBannerView];
+    DLog(@"LeagueFixtureDetailsViewController viewDidAppear %@", adBannerView);
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.adBannerView setDelegate:nil];
+    [self setAdBannerView:nil];
+    [self.adBannerView removeFromSuperview];
+    DLog(@"LeagueFixtureDetailsViewController viewWillDisappear %@", self.adBannerView);
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self.adBannerView setDelegate:nil];
+    [self setAdBannerView:nil];
+    [self.adBannerView removeFromSuperview];
+    DLog(@"LeagueFixtureDetailsViewController viewDidDisappear %@", self.adBannerView);
+}
+
+- (void)viewDidUnload {
+    [super viewDidUnload];
+    [self.adBannerView setDelegate:nil];
+    [self setAdBannerView:nil];
+    DLog(@"LeagueFixtureDetailsViewController viewDidUnload %@", self.adBannerView);
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNavTitle];
+
+    adBannerView.delegate = self;
+    adBannerView.hidden = YES;
+
     
     if ([fixture.location caseInsensitiveCompare:@"TBA"] == NSOrderedSame) {
         DLog(@"Fixture Details Location length: %d", fixture.location.length);
@@ -132,9 +206,6 @@
     self.tabBarController.title = @"Fixture Details";
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [self setNavTitle];
-}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

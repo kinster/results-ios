@@ -56,11 +56,9 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    //    if (self.adBannerView) {
-    //        [self setAdBannerView:nil];
-    //        [adBannerView setDelegate:nil];
-    //    }
-    //    [self setLeagueTablesView:nil];
+    [self.adBannerView setDelegate:nil];
+    [self setAdBannerView:nil];
+    [self setSeasonsTableView:nil];
     DLog(@"LeagueSeasonsViewController viewDidUnload %@", self.adBannerView);
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -73,32 +71,35 @@
     DLog(@"LeagueSeasonsViewController viewWillAppear %@", self.adBannerView);
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [self setAdBannerView:nil];
-    DLog(@"LeagueSeasonsViewController viewWillDisappear %@", self.adBannerView);
-}
-
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self setAdBannerView:AppDelegate.adBannerView];
     DLog(@"viewDidAppear %@", adBannerView);
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.adBannerView setDelegate:nil];
+    [self setAdBannerView:nil];
+    [self.adBannerView removeFromSuperview];
+    DLog(@"LeagueSeasonsViewController viewWillDisappear %@", self.adBannerView);
+}
+
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
+    [self.adBannerView setDelegate:nil];
     [self setAdBannerView:nil];
+    [self.adBannerView removeFromSuperview];
     DLog(@"LeagueSeasonsViewController viewDidDisappear %@", self.adBannerView);
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    adBannerView = [AppDelegate adBannerView];
     adBannerView.delegate = self;
     adBannerView.hidden = YES;
     
-    [self toggleBanner:adBannerView];
+//    [self toggleBanner:adBannerView];
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Searching...";

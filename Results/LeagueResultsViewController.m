@@ -14,6 +14,7 @@
 #import "CustomResultCell.h"
 #import "ServerManager.h"
 #import "MBProgressHUD.h"
+#import "AppDelegate.h"
 
 @interface LeagueResultsViewController ()
 
