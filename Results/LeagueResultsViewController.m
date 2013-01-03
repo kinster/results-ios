@@ -22,7 +22,7 @@
 
 @implementation LeagueResultsViewController
 
-@synthesize resultsList, division, nameLabel, leagueBadge, subtitle, resultsTable;
+@synthesize resultsList, division, nameLabel, leagueBadge, subtitle, resultsTable, adBannerView;
 
 - (void)loadNetworkExceptionAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -69,9 +69,82 @@
     }    
 }
 
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    DLog(@"bannerViewDidLoadAd loaded %d", banner.isBannerLoaded);
+    banner.hidden = NO;
+    [self toggleBanner:banner];
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    DLog(@"didFailToReceiveAdWithError loaded %d", banner.isBannerLoaded);
+    banner.hidden = YES;
+    [self toggleBanner:banner];
+}
+
+- (void)toggleBanner:(ADBannerView *)banner {
+    CGRect bannerFrame = banner.frame;
+    CGRect contentFrame = self.view.frame;
+    DLog(@"Content height %f %@", contentFrame.size.height, banner);
+    if ([banner isBannerLoaded]) {
+        DLog(@"Has ad, showing");
+        contentFrame.size.height -= banner.frame.size.height;
+        bannerFrame.origin.y = contentFrame.size.height;
+    } else {
+        DLog(@"No ad, hiding");
+        bannerFrame.origin.y = contentFrame.size.height;
+    }
+    banner.frame = bannerFrame;
+    self.resultsTable.frame = CGRectMake(resultsTable.frame.origin.x,resultsTable.frame.origin.y,resultsTable.frame.size.width,contentFrame.size.height-banner.frame.size.height-(bannerFrame.size.height-15));
+    
+    DLog(@"New content height %@ %f %f %f %f %f", banner, contentFrame.size.height, banner.frame.origin.y, adBannerView.frame.origin.y, resultsTable.frame.size.height, resultsTable.contentSize.height);
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self setNavTitle];
+    [self setAdBannerView:AppDelegate.adBannerView];
+    DLog(@"LeagueResultsViewController viewWillAppear %@", self.adBannerView);
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self setNavTitle];
+    [self setAdBannerView:AppDelegate.adBannerView];
+    DLog(@"LeagueResultsViewController viewDidAppear %@", adBannerView);
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.adBannerView setDelegate:nil];
+    [self setAdBannerView:nil];
+    [self.adBannerView removeFromSuperview];
+    DLog(@"LeagueResultsViewController viewWillDisappear %@", self.adBannerView);
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self.adBannerView setDelegate:nil];
+    [self setAdBannerView:nil];
+    [self.adBannerView removeFromSuperview];
+    DLog(@"LeagueResultsViewController viewDidDisappear %@", self.adBannerView);
+}
+
+- (void)viewDidUnload {
+    [super viewDidUnload];
+    [self.adBannerView setDelegate:nil];
+    [self setAdBannerView:nil];
+    [self setResultsTable:nil];
+    DLog(@"LeagueResultsViewController viewDidUnload %@", self.adBannerView);
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
+    adBannerView.delegate = self;
+    adBannerView.hidden = YES;
+
     DLog(@"LeagueResultsViewController");
     
     Season *season = [division season];
@@ -132,11 +205,6 @@
 
 - (void)setNavTitle {
     self.tabBarController.title = @"League Results";
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    DLog(@"table appeared");
-    [self setNavTitle];
 }
 
 - (void)didReceiveMemoryWarning {

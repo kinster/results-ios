@@ -18,4 +18,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *subtitle;
 @property (weak, nonatomic) IBOutlet UITableView *resultsTable;
+@property (weak, nonatomic) IBOutlet ADBannerView *adBannerView;
 @end
