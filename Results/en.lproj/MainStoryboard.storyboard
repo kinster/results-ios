@@ -985,7 +985,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5tN-Pb-VDt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="222" y="-3344"/>
+            <point key="canvasLocation" x="386" y="-3086"/>
         </scene>
         <!--League Fixture Details View Controller - Fixture-->
         <scene sceneID="Bz0-SB-Bra">
@@ -1147,7 +1147,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X28-hW-IY0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="476" y="-2834"/>
+            <point key="canvasLocation" x="464" y="-2382"/>
         </scene>
         <!--League Divisions View Controller - Divisions-->
         <scene sceneID="3Fy-bW-8pX">
@@ -1220,7 +1220,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMa-Ps-y4U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1418" y="-1732"/>
+            <point key="canvasLocation" x="1372" y="-1930"/>
         </scene>
         <!--League Results View Controller - League Results-->
         <scene sceneID="mjw-qr-dY6">
