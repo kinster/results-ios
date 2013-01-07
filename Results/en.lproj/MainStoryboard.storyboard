@@ -1220,7 +1220,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMa-Ps-y4U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1372" y="-1930"/>
+            <point key="canvasLocation" x="1386" y="-1836"/>
         </scene>
         <!--League Results View Controller - League Results-->
         <scene sceneID="mjw-qr-dY6">
@@ -1559,6 +1559,7 @@
         <class className="LeagueDivisionsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueDivisionsViewController.h"/>
             <relationships>
+                <relationship kind="action" name="radioButtonSelected:"/>
                 <relationship kind="outlet" name="divisionsTableView" candidateClass="UITableView"/>
             </relationships>
         </class>
@@ -1652,9 +1653,9 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="CL0-5O-jH2"/>
-        <segue reference="Gme-cR-3kr"/>
-        <segue reference="nlu-6i-a2D"/>
-        <segue reference="guz-h0-rin"/>
         <segue reference="w7Y-6N-5L6"/>
+        <segue reference="Gme-cR-3kr"/>
+        <segue reference="guz-h0-rin"/>
+        <segue reference="nlu-6i-a2D"/>
     </inferredMetricsTieBreakers>
 </document>
