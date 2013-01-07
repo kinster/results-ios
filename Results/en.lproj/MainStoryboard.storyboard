@@ -1199,7 +1199,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQC-l9-wt9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1017" y="-2674"/>
+            <point key="canvasLocation" x="953" y="-2540"/>
         </scene>
         <!--Tab Bar Controller - Front Screen-->
         <scene sceneID="VxH-ha-kaa">
@@ -1651,10 +1651,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Gme-cR-3kr"/>
         <segue reference="CL0-5O-jH2"/>
-        <segue reference="w7Y-6N-5L6"/>
+        <segue reference="Gme-cR-3kr"/>
         <segue reference="nlu-6i-a2D"/>
         <segue reference="guz-h0-rin"/>
+        <segue reference="w7Y-6N-5L6"/>
     </inferredMetricsTieBreakers>
 </document>
