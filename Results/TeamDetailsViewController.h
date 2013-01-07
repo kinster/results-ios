@@ -6,12 +6,9 @@
 //  Copyright (c) 2012 Kinman Li. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <iAd/iAd.h>
-
 @class League, Season, Division, Team;
 
-@interface TeamDetailsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, ADBannerViewDelegate>
+@interface TeamDetailsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) Team *team;
 @property (copy, nonatomic) NSMutableArray *playersList;
 @property (weak, nonatomic) IBOutlet UIImageView *badge;

@@ -6,15 +6,11 @@
 //  Copyright (c) 2012 Kinman Li. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <iAd/iAd.h>
 #import <MapKit/MapKit.h>
 
 @class Division, Fixture;
 
-@interface LeagueFixtureDetailsViewController : UIViewController<ADBannerViewDelegate, MKMapViewDelegate> {
-    ADBannerView *bannerView;
-}
+@interface LeagueFixtureDetailsViewController : UIViewController<MKMapViewDelegate>
 @property (weak, nonatomic) Division *division;
 @property (weak, nonatomic) Fixture *fixture;
 @property (weak, nonatomic) NSString *location;

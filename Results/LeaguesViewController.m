@@ -17,9 +17,7 @@
 
 @end
 
-@implementation LeaguesViewController {
-    ADBannerView *_bannerView;
-}
+@implementation LeaguesViewController
 
 @synthesize leaguesList, searchBar, sections, leagueTablesView;
 
@@ -28,16 +26,8 @@
     [alert show];
 }
 
-- (void)loadBanner {
-    _bannerView = [[ADBannerView alloc] init];
-    _bannerView.delegate = self;
-    
-    [self.view addSubview:_bannerView];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadBanner];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -100,7 +90,6 @@
     DLog(@"table appeared");
     [self setNavTitle];
     self.tabBarController.navigationItem.rightBarButtonItem = nil;
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -108,8 +97,6 @@
     UIBarButtonItem *top500 = [[UIBarButtonItem alloc] initWithTitle:@"Top 500" style:(UIBarButtonItemStylePlain) target:self action:@selector(getTop500:)];
     top500.title = @"Top 500";
     [self.tabBarController.navigationItem setRightBarButtonItem:top500];
-
-
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
@@ -120,7 +107,6 @@
     self.searchBar.text=@"";
     [self.searchBar setShowsCancelButton:NO animated:YES];
     [self.searchBar resignFirstResponder];
-    
     self.leagueTablesView.scrollEnabled = YES;
 }
 
@@ -235,44 +221,6 @@
     [viewController setLeague:league];
 
     [self.navigationController pushViewController:viewController animated:YES];
-}
-
-- (void)viewDidLayoutSubviews {
-    [_bannerView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-
-    CGRect contentFrame = self.view.bounds;
-    CGRect bannerFrame = _bannerView.frame;
-    if (_bannerView.bannerLoaded) {
-        contentFrame.size.height -= _bannerView.frame.size.height;
-        bannerFrame.origin.y = contentFrame.size.height;
-    } else {
-        bannerFrame.origin.y = contentFrame.size.height;
-    }
-    _bannerView.frame = bannerFrame;
-}
-
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner
-{
-    [UIView animateWithDuration:0.25 animations:^{
-        [self.view setNeedsLayout];
-        [self.view layoutIfNeeded];
-    }];
-}
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    [UIView animateWithDuration:0.25 animations:^{
-        [self.view setNeedsLayout];
-        [self.view layoutIfNeeded];
-    }];
-}
-
-- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionWillBegin" object:self];
-    return YES;
-}
-
-- (void)bannerViewActionDidFinish:(ADBannerView *)banner {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"BannerViewActionDidFinish" object:self];
 }
 
 - (IBAction)getTop500:(id)sender {

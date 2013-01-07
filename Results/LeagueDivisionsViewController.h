@@ -6,12 +6,9 @@
 //  Copyright (c) 2012 Kinman Li. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <iAd/iAd.h>
-
 @class Season;
 
-@interface LeagueDivisionsViewController : UIViewController<ADBannerViewDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface LeagueDivisionsViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 @property (copy, nonatomic) NSMutableArray *divisionsList;
 @property (weak, nonatomic) Season *season;
 @property (weak, nonatomic) IBOutlet UITableView *divisionsTableView;
