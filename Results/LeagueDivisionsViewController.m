@@ -62,52 +62,45 @@
 
 - (void)toggleBanner:(ADBannerView *)banner {
     CGRect bannerFrame = banner.frame;
-    CGRect contentFrame = self.view.frame;
+    CGRect contentFrame = [UIScreen mainScreen].bounds;
+    
+    CGFloat height = contentFrame.size.height-64;
+    DLog(@"Content height %f %@", height, banner);
     if ([banner isBannerLoaded]) {
         DLog(@"Has ad, showing");
-        contentFrame.size.height -= banner.bounds.size.height;
+        height -= banner.frame.size.height;
+        bannerFrame.origin.y = height;
     } else {
         DLog(@"No ad, hiding");
+        bannerFrame.origin.y = height;
     }
-    bannerFrame.origin.y = contentFrame.size.height;
     banner.frame = bannerFrame;
-    self.divisionsTableView.frame = CGRectMake(divisionsTableView.frame.origin.x,divisionsTableView.frame.origin.y,divisionsTableView.frame.size.width,contentFrame.size.height);
+    self.divisionsTableView.frame = CGRectMake(divisionsTableView.frame.origin.x,divisionsTableView.frame.origin.y,divisionsTableView.frame.size.width,height);
     DLog(@"toggleBanner %@", adBannerView);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self setAdBannerView:AppDelegate.adBannerView];
     DLog(@"LeagueDivisionsViewController viewWillAppear %@", self.adBannerView);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self setAdBannerView:AppDelegate.adBannerView];
     DLog(@"viewDidAppear %@", adBannerView);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.adBannerView setDelegate:nil];
-    [self setAdBannerView:nil];
-    [self.adBannerView removeFromSuperview];
     DLog(@"LeagueDivisionsViewController viewWillDisappear %@", self.adBannerView);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [self.adBannerView setDelegate:nil];
-    [self setAdBannerView:nil];
-    [self.adBannerView removeFromSuperview];
     DLog(@"LeagueDivisionsViewController viewDidDisappear %@", self.adBannerView);
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    [self.adBannerView setDelegate:nil];
-    [self setAdBannerView:nil];
-    [self setDivisionsTableView:nil];
     DLog(@"LeagueDivisionsViewController viewDidUnload %@", self.adBannerView);
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -115,17 +108,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self setAdBannerView:AppDelegate.adBannerView];
     adBannerView.delegate = self;
-    adBannerView.hidden = YES;
-    
-//    [self toggleBanner:adBannerView];
-
-    //    CGRect bannerFrame = adBannerView.frame;
-//    bannerFrame.origin.y = self.view.frame.size.height;
-//    
-//    self.adBannerView.frame = bannerFrame;
-//    [self.view addSubview:adBannerView];
-    
+    [self toggleBanner:adBannerView];
 
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Searching...";

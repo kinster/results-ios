@@ -29,16 +29,20 @@
 
 - (void)toggleBanner:(ADBannerView *)banner {
     CGRect bannerFrame = banner.frame;
-    CGRect contentFrame = self.view.frame;
+    CGRect contentFrame = [UIScreen mainScreen].bounds;
+    
+    CGFloat height = contentFrame.size.height-65;
+    DLog(@"Content height %f %@", height, banner);
     if ([banner isBannerLoaded]) {
         DLog(@"Has ad, showing");
-        contentFrame.size.height -= banner.bounds.size.height;
+        height -= banner.frame.size.height;
+        bannerFrame.origin.y = height;
     } else {
         DLog(@"No ad, hiding");
+        bannerFrame.origin.y = height;
     }
-    bannerFrame.origin.y = contentFrame.size.height;
     banner.frame = bannerFrame;
-    self.seasonsTableView.frame = CGRectMake(seasonsTableView.frame.origin.x,seasonsTableView.frame.origin.y,seasonsTableView.frame.size.width,contentFrame.size.height);
+    self.seasonsTableView.frame = CGRectMake(seasonsTableView.frame.origin.x,seasonsTableView.frame.origin.y,seasonsTableView.frame.size.width,height);
     DLog(@"toggleBanner %@", adBannerView);
 }
 
@@ -47,8 +51,7 @@
     banner.hidden = NO;
     [self toggleBanner:banner];
 }
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+- (void) bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
     DLog(@"didFailToReceiveAdWithError loaded %d", banner.isBannerLoaded);
     banner.hidden = YES;
     [self toggleBanner:banner];
@@ -56,9 +59,6 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    [self.adBannerView setDelegate:nil];
-    [self setAdBannerView:nil];
-    [self setSeasonsTableView:nil];
     DLog(@"LeagueSeasonsViewController viewDidUnload %@", self.adBannerView);
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -67,40 +67,31 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self setAdBannerView:AppDelegate.adBannerView];
     DLog(@"LeagueSeasonsViewController viewWillAppear %@", self.adBannerView);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self setAdBannerView:AppDelegate.adBannerView];
     DLog(@"viewDidAppear %@", adBannerView);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.adBannerView setDelegate:nil];
-    [self setAdBannerView:nil];
-    [self.adBannerView removeFromSuperview];
     DLog(@"LeagueSeasonsViewController viewWillDisappear %@", self.adBannerView);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [self.adBannerView setDelegate:nil];
-    [self setAdBannerView:nil];
-    [self.adBannerView removeFromSuperview];
     DLog(@"LeagueSeasonsViewController viewDidDisappear %@", self.adBannerView);
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self setAdBannerView:AppDelegate.adBannerView];
     adBannerView.delegate = self;
-    adBannerView.hidden = YES;
-    
-//    [self toggleBanner:adBannerView];
-    
+    [self toggleBanner:adBannerView];
+
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Searching...";
     

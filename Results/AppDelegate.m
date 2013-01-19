@@ -43,11 +43,7 @@
     // Override point for customization after application launch.
 
     iAdBannerView = [[ADBannerView alloc] initWithFrame:CGRectZero];
-    iAdBannerView.delegate = self;
     DLog(@"didFinishLaunchingWithOptions %@", iAdBannerView);
-    //    iAdBannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
-    //    iAdBannerView.backgroundColor = [UIColor clearColor];
-    //    iAdBannerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin;
 
     
     UIViewController *leaguesViewController = [[LeaguesViewController alloc] init];
@@ -56,21 +52,6 @@
     [self customizeAppearance];
     return YES;
 }
-
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
-    DLog(@"bannerViewDidLoadAd loaded %d", banner.isBannerLoaded);
-//    [self toggleBanner:banner];
-}
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    DLog(@"didFailToReceiveAdWithError loaded %d", banner.isBannerLoaded);
-    //    _bannerView.hidden = YES;
-//    [self toggleBanner:banner];
-    [UIView beginAnimations:@"animateAdBannerOff" context:NULL];
-     // Assumes the banner view is placed at the bottom of the screen.
-     banner.frame = CGRectOffset(banner.frame, 0, banner.frame.size.height);
-     [UIView commitAnimations];
- }
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

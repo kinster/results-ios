@@ -85,18 +85,20 @@
 
 - (void)toggleBanner:(ADBannerView *)banner {
     CGRect bannerFrame = banner.frame;
-    CGRect contentFrame = self.view.frame;
-    DLog(@"Content height %f %@", contentFrame.size.height, banner);
+    CGRect contentFrame = [UIScreen mainScreen].bounds;
+    
+    CGFloat height = contentFrame.size.height-112;
+    DLog(@"Content height %f %@", height, banner);
     if ([banner isBannerLoaded]) {
         DLog(@"Has ad, showing");
-        contentFrame.size.height -= banner.frame.size.height;
-        bannerFrame.origin.y = contentFrame.size.height;
+        height -= banner.frame.size.height;
+        bannerFrame.origin.y = height;
     } else {
         DLog(@"No ad, hiding");
-        bannerFrame.origin.y = contentFrame.size.height;
+        bannerFrame.origin.y = height;
     }
     banner.frame = bannerFrame;
-    self.fixturesTable.frame = CGRectMake(fixturesTable.frame.origin.x,fixturesTable.frame.origin.y,fixturesTable.frame.size.width,contentFrame.size.height-banner.frame.size.height-(bannerFrame.size.height-15));
+    self.fixturesTable.frame = CGRectMake(fixturesTable.frame.origin.x,fixturesTable.frame.origin.y,fixturesTable.frame.size.width,height-85);
     
     DLog(@"New content height %@ %f %f %f %f %f", banner, contentFrame.size.height, banner.frame.origin.y, adBannerView.frame.origin.y, fixturesTable.frame.size.height, fixturesTable.contentSize.height);
 }
@@ -104,49 +106,37 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self setNavTitle];
-    [self setAdBannerView:AppDelegate.adBannerView];
     DLog(@"LeagueFixturesViewController viewWillAppear %@", self.adBannerView);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self setNavTitle];
-    [self setAdBannerView:AppDelegate.adBannerView];
     DLog(@"LeagueFixturesViewController viewDidAppear %@", adBannerView);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.adBannerView setDelegate:nil];
-    [self setAdBannerView:nil];
-    [self.adBannerView removeFromSuperview];
     DLog(@"LeagueFixturesViewController viewWillDisappear %@", self.adBannerView);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [self.adBannerView setDelegate:nil];
-    [self setAdBannerView:nil];
-    [self.adBannerView removeFromSuperview];
     DLog(@"LeagueFixturesViewController viewDidDisappear %@", self.adBannerView);
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    [self.adBannerView setDelegate:nil];
-    [self setAdBannerView:nil];
-    [self setFixturesTable:nil];
     DLog(@"LeagueFixturesViewController viewDidUnload %@", self.adBannerView);
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [self setAdBannerView:AppDelegate.adBannerView];
     adBannerView.delegate = self;
-    adBannerView.hidden = YES;
 
     DLog(@"LeagueFixturesViewController");
 
@@ -171,7 +161,7 @@
             refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
             [refreshControl addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
             [self.fixturesTable addSubview:refreshControl];
-
+//            [self toggleBanner:adBannerView];
         });
     });
     

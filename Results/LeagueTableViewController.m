@@ -80,9 +80,9 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     DLog(@"LeagueTableViewController");
-
+    
+    [self setAdBannerView:AppDelegate.adBannerView];
     adBannerView.delegate = self;
-    adBannerView.hidden = YES;
 
     [self setNavTitle];
     
@@ -107,6 +107,7 @@
             refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
             [refreshControl addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
             [self.leagueTable addSubview:refreshControl];
+//            [self toggleBanner:adBannerView];
         });
     });        
 }
@@ -125,57 +126,48 @@
 
 - (void)toggleBanner:(ADBannerView *)banner {
     CGRect bannerFrame = banner.frame;
-    CGRect contentFrame = self.view.frame;
-    DLog(@"Content height %f %@", contentFrame.size.height, banner);
+    CGRect contentFrame = [UIScreen mainScreen].bounds;
+    
+    CGFloat height = contentFrame.size.height-115;
+    DLog(@"Content height %f %@", height, banner);
     if ([banner isBannerLoaded]) {
         DLog(@"Has ad, showing");
-        contentFrame.size.height -= banner.frame.size.height;
-        bannerFrame.origin.y = contentFrame.size.height;
+        height -= banner.frame.size.height;
+        bannerFrame.origin.y = height;
     } else {
         DLog(@"No ad, hiding");
-        bannerFrame.origin.y = contentFrame.size.height;
+        bannerFrame.origin.y = height;
     }
     banner.frame = bannerFrame;
-    self.leagueTable.frame = CGRectMake(leagueTable.frame.origin.x,leagueTable.frame.origin.y,leagueTable.frame.size.width,contentFrame.size.height-banner.frame.size.height-(bannerFrame.size.height+10));
-    
+    self.leagueTable.frame = CGRectMake(leagueTable.frame.origin.x,leagueTable.frame.origin.y,leagueTable.frame.size.width,height-110);
+
     DLog(@"New content height %@ %f %f %f %f %f", banner, contentFrame.size.height, banner.frame.origin.y, adBannerView.frame.origin.y, leagueTable.frame.size.height, leagueTable.contentSize.height);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self setAdBannerView:AppDelegate.adBannerView];
     DLog(@"LeagueDivisionsViewController viewWillAppear %@", self.adBannerView);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self setNavTitle];
-    [self setAdBannerView:AppDelegate.adBannerView];
-    DLog(@"viewDidAppear %@", adBannerView);
+    DLog(@"LeagueTableViewController %@", adBannerView);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.adBannerView setDelegate:nil];
-    [self setAdBannerView:nil];
-    [self.adBannerView removeFromSuperview];
-    DLog(@"LeagueDivisionsViewController viewWillDisappear %@", self.adBannerView);
+    DLog(@"LeagueTableViewController viewWillDisappear %@", self.adBannerView);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [self.adBannerView setDelegate:nil];
-    [self setAdBannerView:nil];
-    [self.adBannerView removeFromSuperview];
-    DLog(@"LeagueDivisionsViewController viewDidDisappear %@", self.adBannerView);
+    DLog(@"LeagueTableViewController viewDidDisappear %@", self.adBannerView);
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    [self.adBannerView setDelegate:nil];
-    [self setAdBannerView:nil];
-    [self setLeagueTable:nil];
-    DLog(@"LeagueDivisionsViewController viewDidUnload %@", self.adBannerView);
+    DLog(@"LeagueTableViewController viewDidUnload %@", self.adBannerView);
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }

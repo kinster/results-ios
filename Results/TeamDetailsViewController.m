@@ -44,18 +44,20 @@
 
 - (void)toggleBanner:(ADBannerView *)banner {
     CGRect bannerFrame = banner.frame;
-    CGRect contentFrame = self.view.frame;
-    DLog(@"Content height %f %@", contentFrame.size.height, banner);
+    CGRect contentFrame = [UIScreen mainScreen].bounds;
+    
+    CGFloat height = contentFrame.size.height-112;
+    DLog(@"Content height %f %@", height, banner);
     if ([banner isBannerLoaded]) {
         DLog(@"Has ad, showing");
-        contentFrame.size.height -= banner.frame.size.height;
-        bannerFrame.origin.y = contentFrame.size.height;
+        height -= banner.frame.size.height;
+        bannerFrame.origin.y = height;
     } else {
         DLog(@"No ad, hiding");
-        bannerFrame.origin.y = contentFrame.size.height;
+        bannerFrame.origin.y = height;
     }
     banner.frame = bannerFrame;
-    self.playersTable.frame = CGRectMake(playersTable.frame.origin.x,playersTable.frame.origin.y,playersTable.frame.size.width,contentFrame.size.height-banner.frame.size.height-(bannerFrame.size.height-15));
+    self.playersTable.frame = CGRectMake(playersTable.frame.origin.x,playersTable.frame.origin.y,playersTable.frame.size.width,height-85);
     
     DLog(@"New content height %@ %f %f %f %f %f", banner, contentFrame.size.height, banner.frame.origin.y, adBannerView.frame.origin.y, playersTable.frame.size.height, playersTable.contentSize.height);
 }
@@ -63,38 +65,27 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self setNavTitle];
-    [self setAdBannerView:AppDelegate.adBannerView];
     DLog(@"TeamDetailsViewController viewWillAppear %@", self.adBannerView);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self setNavTitle];
-    [self setAdBannerView:AppDelegate.adBannerView];
     DLog(@"TeamDetailsViewController viewDidAppear %@", adBannerView);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.adBannerView setDelegate:nil];
-    [self setAdBannerView:nil];
-    [self.adBannerView removeFromSuperview];
     DLog(@"TeamDetailsViewController viewWillDisappear %@", self.adBannerView);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [self.adBannerView setDelegate:nil];
-    [self setAdBannerView:nil];
-    [self.adBannerView removeFromSuperview];
     DLog(@"TeamDetailsViewController viewDidDisappear %@", self.adBannerView);
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    [self.adBannerView setDelegate:nil];
-    [self setAdBannerView:nil];
-    [self setPlayersTable:nil];
     DLog(@"TeamDetailsViewController viewDidUnload %@", self.adBannerView);
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -104,8 +95,8 @@
     [super viewDidLoad];    
     [self setNavTitle];
 
+    [self setAdBannerView:AppDelegate.adBannerView];
     adBannerView.delegate = self;
-    adBannerView.hidden = YES;
 
     Division *division = [team division];
     
@@ -156,6 +147,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
             [self.playersTable reloadData];
+            [self toggleBanner:adBannerView];
         });
     });
     // Uncomment the following line to preserve selection between presentations.

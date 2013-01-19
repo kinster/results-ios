@@ -11,7 +11,7 @@
 
 @class Reachability;
 
-@interface AppDelegate : UIResponder<UIApplicationDelegate,ADBannerViewDelegate> {
+@interface AppDelegate : UIResponder<UIApplicationDelegate> {
     Reachability *internetReach;
 }
 @property (strong, nonatomic) UIWindow *window;

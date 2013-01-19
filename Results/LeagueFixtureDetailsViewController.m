@@ -50,18 +50,20 @@
 
 - (void)toggleBanner:(ADBannerView *)banner {
     CGRect bannerFrame = banner.frame;
-    CGRect contentFrame = self.view.frame;
-    DLog(@"Content height %f %@", contentFrame.size.height, banner);
+    CGRect contentFrame = [UIScreen mainScreen].bounds;
+    
+    CGFloat height = contentFrame.size.height-64;
+    DLog(@"Content height %f %@", height, banner);
     if ([banner isBannerLoaded]) {
         DLog(@"Has ad, showing");
-        contentFrame.size.height -= banner.frame.size.height;
-        bannerFrame.origin.y = contentFrame.size.height;
+        height -= banner.frame.size.height;
+        bannerFrame.origin.y = height;
     } else {
         DLog(@"No ad, hiding");
-        bannerFrame.origin.y = contentFrame.size.height;
+        bannerFrame.origin.y = height;
     }
     banner.frame = bannerFrame;
-    self.mapView.frame = CGRectMake(mapView.frame.origin.x,mapView.frame.origin.y,mapView.frame.size.width,contentFrame.size.height);
+    self.mapView.frame = CGRectMake(mapView.frame.origin.x,mapView.frame.origin.y,mapView.frame.size.width,height);
     
     DLog(@"New content height %@ %f %f %f %f", banner, contentFrame.size.height, banner.frame.origin.y, adBannerView.frame.origin.y, mapView.frame.size.height);
 }
@@ -69,37 +71,27 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self setNavTitle];
-    [self setAdBannerView:AppDelegate.adBannerView];
     DLog(@"LeagueFixtureDetailsViewController viewWillAppear %@", self.adBannerView);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self setNavTitle];
-    [self setAdBannerView:AppDelegate.adBannerView];
     DLog(@"LeagueFixtureDetailsViewController viewDidAppear %@", adBannerView);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.adBannerView setDelegate:nil];
-    [self setAdBannerView:nil];
-    [self.adBannerView removeFromSuperview];
     DLog(@"LeagueFixtureDetailsViewController viewWillDisappear %@", self.adBannerView);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [self.adBannerView setDelegate:nil];
-    [self setAdBannerView:nil];
-    [self.adBannerView removeFromSuperview];
     DLog(@"LeagueFixtureDetailsViewController viewDidDisappear %@", self.adBannerView);
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    [self.adBannerView setDelegate:nil];
-    [self setAdBannerView:nil];
     DLog(@"LeagueFixtureDetailsViewController viewDidUnload %@", self.adBannerView);
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -109,9 +101,8 @@
     [super viewDidLoad];
     [self setNavTitle];
 
+    [self setAdBannerView:AppDelegate.adBannerView];
     adBannerView.delegate = self;
-    adBannerView.hidden = YES;
-
     
     if ([fixture.location caseInsensitiveCompare:@"TBA"] == NSOrderedSame) {
         DLog(@"Fixture Details Location length: %d", fixture.location.length);
@@ -122,7 +113,6 @@
         hud.labelText = @"Searching...";
         [self.navigationController.view addSubview:hud];
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-    //        [self loadBanner];
             @try {
                 NSError *error;
                 
@@ -182,6 +172,7 @@
             }
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                [self toggleBanner:adBannerView];
             });
         });
     }
