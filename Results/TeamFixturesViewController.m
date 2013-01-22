@@ -131,7 +131,7 @@
 
     [self setAdBannerView:AppDelegate.adBannerView];
     adBannerView.delegate = self;
-
+    
     DLog(@"TeamFixturesViewController");
     
     DLog(@"Fixtures badge: %@", team.badge);

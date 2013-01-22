@@ -26,7 +26,7 @@
 
 @implementation LeagueTableViewController
 
-@synthesize teamList, division, nameLabel, subtitle, leagueBadge, leagueTable, adBannerView;
+@synthesize teamList, division, nameLabel, subtitle, leagueBadge, leagueTable;
 
 - (void)loadNetworkExceptionAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -81,9 +81,6 @@
     
     DLog(@"LeagueTableViewController");
     
-    [self setAdBannerView:AppDelegate.adBannerView];
-    adBannerView.delegate = self;
-
     [self setNavTitle];
     
     Season *season = [division season];
@@ -93,81 +90,43 @@
     leagueBadge.image = [season league].image;
     DLog(@"%@", self.nameLabel.text);
 
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tabBarController.view animated:YES];
     hud.labelText = @"Searching...";
     
-    [self.navigationController.view addSubview:hud];
+    [self.tabBarController.view addSubview:hud];
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         [self loadData];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+            [MBProgressHUD hideHUDForView:self.tabBarController.view animated:YES];
             [self.leagueTable reloadData];
             UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
             refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
             [refreshControl addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
             [self.leagueTable addSubview:refreshControl];
-//            [self toggleBanner:adBannerView];
         });
     });        
 }
 
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
-    DLog(@"bannerViewDidLoadAd loaded %d", banner.isBannerLoaded);
-    banner.hidden = NO;
-    [self toggleBanner:banner];
-}
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    DLog(@"didFailToReceiveAdWithError loaded %d", banner.isBannerLoaded);
-    banner.hidden = YES;
-    [self toggleBanner:banner];
-}
-
-- (void)toggleBanner:(ADBannerView *)banner {
-    CGRect bannerFrame = banner.frame;
-    CGRect contentFrame = [UIScreen mainScreen].bounds;
-    
-    CGFloat height = contentFrame.size.height-115;
-    DLog(@"Content height %f %@", height, banner);
-    if ([banner isBannerLoaded]) {
-        DLog(@"Has ad, showing");
-        height -= banner.frame.size.height;
-        bannerFrame.origin.y = height;
-    } else {
-        DLog(@"No ad, hiding");
-        bannerFrame.origin.y = height;
-    }
-    banner.frame = bannerFrame;
-    self.leagueTable.frame = CGRectMake(leagueTable.frame.origin.x,leagueTable.frame.origin.y,leagueTable.frame.size.width,height-110);
-
-    DLog(@"New content height %@ %f %f %f %f %f", banner, contentFrame.size.height, banner.frame.origin.y, adBannerView.frame.origin.y, leagueTable.frame.size.height, leagueTable.contentSize.height);
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    DLog(@"LeagueDivisionsViewController viewWillAppear %@", self.adBannerView);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self setNavTitle];
-    DLog(@"LeagueTableViewController %@", adBannerView);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    DLog(@"LeagueTableViewController viewWillDisappear %@", self.adBannerView);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    DLog(@"LeagueTableViewController viewDidDisappear %@", self.adBannerView);
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    DLog(@"LeagueTableViewController viewDidUnload %@", self.adBannerView);
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -278,6 +237,8 @@
         [teamFixturesController setTeam:team];
         TeamResultsViewController *teamResultsController = [tabBarViewController.viewControllers objectAtIndex:2];
         [teamResultsController setTeam:team];
+        
+        
     }
     DLog(@"end of prepareForSegue");
 }

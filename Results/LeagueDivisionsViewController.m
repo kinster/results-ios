@@ -16,6 +16,7 @@
 #import "ServerManager.h"
 #import "MBProgressHUD.h"
 #import "AppDelegate.h"
+#import "BannerViewController.h"
 
 @interface LeagueDivisionsViewController ()
 
@@ -23,7 +24,7 @@
 
 @implementation LeagueDivisionsViewController
 
-@synthesize divisionsList, season, divisionsTableView, adBannerView;
+@synthesize divisionsList, season, divisionsTableView;
 
 -(UIImage *)getLeagueImage:(NSString *)serverName AndLeagueId:(NSString *)leagueId {
     NSError *error;
@@ -48,60 +49,24 @@
     [alert show];
 }
 
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
-    DLog(@"bannerViewDidLoadAd loaded %d", banner.isBannerLoaded);
-    banner.hidden = NO;
-    [self toggleBanner:banner];
-}
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    DLog(@"didFailToReceiveAdWithError loaded %d", banner.isBannerLoaded);
-    banner.hidden = YES;
-    [self toggleBanner:banner];
-}
-
-- (void)toggleBanner:(ADBannerView *)banner {
-    CGRect bannerFrame = banner.frame;
-    CGRect contentFrame = [UIScreen mainScreen].bounds;
-    
-    CGFloat height = contentFrame.size.height-64;
-    DLog(@"Content height %f %@", height, banner);
-    if ([banner isBannerLoaded]) {
-        DLog(@"Has ad, showing");
-        height -= banner.frame.size.height;
-        bannerFrame.origin.y = height;
-    } else {
-        DLog(@"No ad, hiding");
-        bannerFrame.origin.y = height;
-    }
-    banner.frame = bannerFrame;
-    self.divisionsTableView.frame = CGRectMake(divisionsTableView.frame.origin.x,divisionsTableView.frame.origin.y,divisionsTableView.frame.size.width,height);
-    DLog(@"toggleBanner %@", adBannerView);
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    DLog(@"LeagueDivisionsViewController viewWillAppear %@", self.adBannerView);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    DLog(@"viewDidAppear %@", adBannerView);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    DLog(@"LeagueDivisionsViewController viewWillDisappear %@", self.adBannerView);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    DLog(@"LeagueDivisionsViewController viewDidDisappear %@", self.adBannerView);
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    DLog(@"LeagueDivisionsViewController viewDidUnload %@", self.adBannerView);
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -109,9 +74,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setAdBannerView:AppDelegate.adBannerView];
-    adBannerView.delegate = self;
-    [self toggleBanner:adBannerView];
 
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Searching...";
@@ -196,22 +158,31 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     DLog(@"LeagueDivisionsViewController prepareForSegue");
-    
+
     NSIndexPath *indexPath = [self.divisionsTableView indexPathForSelectedRow];
     DLog(@"%d", indexPath.row);
     Division *division = [divisionsList objectAtIndex:indexPath.row];
     UITabBarController *tabBarController = [segue destinationViewController];
-    DLog(@"controllers: %d", [tabBarController.viewControllers count]);
+    
     LeagueTableViewController *viewController0 = [tabBarController.viewControllers objectAtIndex:0];
     DLog(@"controller 0: %@", viewController0);
     [viewController0 setDivision:division];
+
     DLog(@"ShowFixtures");
     LeagueFixturesViewController *viewController1 = [tabBarController.viewControllers objectAtIndex:1];
     DLog(@"controller 1: %@", viewController1);
+
     [viewController1 setDivision:division];
     LeagueResultsViewController *viewController2 = [tabBarController.viewControllers objectAtIndex:2];
     DLog(@"controller 2: %@", viewController2);
     [viewController2 setDivision:division];
+    
+//    tabBarController.viewControllers = @[
+//        [[BannerViewController alloc] initWithContentViewController:viewController0],
+//        [[BannerViewController alloc] initWithContentViewController:viewController1],
+//        [[BannerViewController alloc] initWithContentViewController:viewController2],
+//    ];
+    
     DLog(@"end");
 }
 

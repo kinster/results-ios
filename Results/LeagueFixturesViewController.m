@@ -25,7 +25,7 @@
 
 @implementation LeagueFixturesViewController
 
-@synthesize fixtureList, division, fixturesTable, nameLabel, leagueBadge, subtitle, adBannerView;
+@synthesize fixtureList, division, fixturesTable, nameLabel, leagueBadge, subtitle;
 
 - (void)loadNetworkExceptionAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -71,72 +71,32 @@
     }    
 }
 
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
-    DLog(@"bannerViewDidLoadAd loaded %d", banner.isBannerLoaded);
-    banner.hidden = NO;
-    [self toggleBanner:banner];
-}
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    DLog(@"didFailToReceiveAdWithError loaded %d", banner.isBannerLoaded);
-    banner.hidden = YES;
-    [self toggleBanner:banner];
-}
-
-- (void)toggleBanner:(ADBannerView *)banner {
-    CGRect bannerFrame = banner.frame;
-    CGRect contentFrame = [UIScreen mainScreen].bounds;
-    
-    CGFloat height = contentFrame.size.height-112;
-    DLog(@"Content height %f %@", height, banner);
-    if ([banner isBannerLoaded]) {
-        DLog(@"Has ad, showing");
-        height -= banner.frame.size.height;
-        bannerFrame.origin.y = height;
-    } else {
-        DLog(@"No ad, hiding");
-        bannerFrame.origin.y = height;
-    }
-    banner.frame = bannerFrame;
-    self.fixturesTable.frame = CGRectMake(fixturesTable.frame.origin.x,fixturesTable.frame.origin.y,fixturesTable.frame.size.width,height-85);
-    
-    DLog(@"New content height %@ %f %f %f %f %f", banner, contentFrame.size.height, banner.frame.origin.y, adBannerView.frame.origin.y, fixturesTable.frame.size.height, fixturesTable.contentSize.height);
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self setNavTitle];
-    DLog(@"LeagueFixturesViewController viewWillAppear %@", self.adBannerView);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self setNavTitle];
-    DLog(@"LeagueFixturesViewController viewDidAppear %@", adBannerView);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    DLog(@"LeagueFixturesViewController viewWillDisappear %@", self.adBannerView);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    DLog(@"LeagueFixturesViewController viewDidDisappear %@", self.adBannerView);
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    DLog(@"LeagueFixturesViewController viewDidUnload %@", self.adBannerView);
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    [self setAdBannerView:AppDelegate.adBannerView];
-    adBannerView.delegate = self;
 
     DLog(@"LeagueFixturesViewController");
 
@@ -148,14 +108,14 @@
     
     [self setNavTitle];
     
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tabBarController.view animated:YES];
     hud.labelText = @"Searching...";
     
-    [self.navigationController.view addSubview:hud];
+    [self.tabBarController.view addSubview:hud];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         [self loadData];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+            [MBProgressHUD hideHUDForView:self.tabBarController.view animated:YES];
             [self.fixturesTable reloadData];
             UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
             refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];

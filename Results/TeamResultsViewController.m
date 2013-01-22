@@ -128,7 +128,7 @@
 
     [self setAdBannerView:AppDelegate.adBannerView];
     adBannerView.delegate = self;
-
+    
     DLog(@"TeamResultsViewController");
 
     [self setNavTitle];

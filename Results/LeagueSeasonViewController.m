@@ -13,6 +13,7 @@
 #import "ServerManager.h"
 #import "MBProgressHUD.h"
 #import "AppDelegate.h"
+#import "BannerViewController.h"
 
 @interface LeagueSeasonViewController ()
 
@@ -20,46 +21,15 @@
 
 @implementation LeagueSeasonViewController
 
-@synthesize league, seasonsList, seasonsTableView, adBannerView;
+@synthesize league, seasonsList, seasonsTableView;
 
 - (void)loadNetworkExceptionAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
 }
 
-- (void)toggleBanner:(ADBannerView *)banner {
-    CGRect bannerFrame = banner.frame;
-    CGRect contentFrame = [UIScreen mainScreen].bounds;
-    
-    CGFloat height = contentFrame.size.height-65;
-    DLog(@"Content height %f %@", height, banner);
-    if ([banner isBannerLoaded]) {
-        DLog(@"Has ad, showing");
-        height -= banner.frame.size.height;
-        bannerFrame.origin.y = height;
-    } else {
-        DLog(@"No ad, hiding");
-        bannerFrame.origin.y = height;
-    }
-    banner.frame = bannerFrame;
-    self.seasonsTableView.frame = CGRectMake(seasonsTableView.frame.origin.x,seasonsTableView.frame.origin.y,seasonsTableView.frame.size.width,height);
-    DLog(@"toggleBanner %@", adBannerView);
-}
-
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
-    DLog(@"bannerViewDidLoadAd loaded %d", banner.isBannerLoaded);
-    banner.hidden = NO;
-    [self toggleBanner:banner];
-}
-- (void) bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    DLog(@"didFailToReceiveAdWithError loaded %d", banner.isBannerLoaded);
-    banner.hidden = YES;
-    [self toggleBanner:banner];
-}
-
 - (void)viewDidUnload {
     [super viewDidUnload];
-    DLog(@"LeagueSeasonsViewController viewDidUnload %@", self.adBannerView);
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     
@@ -67,30 +37,22 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    DLog(@"LeagueSeasonsViewController viewWillAppear %@", self.adBannerView);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    DLog(@"viewDidAppear %@", adBannerView);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    DLog(@"LeagueSeasonsViewController viewWillDisappear %@", self.adBannerView);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    DLog(@"LeagueSeasonsViewController viewDidDisappear %@", self.adBannerView);
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self setAdBannerView:AppDelegate.adBannerView];
-    adBannerView.delegate = self;
-    [self toggleBanner:adBannerView];
 
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Searching...";

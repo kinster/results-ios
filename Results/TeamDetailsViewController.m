@@ -23,70 +23,33 @@
 
 @implementation TeamDetailsViewController
 
-@synthesize name, badge, team, playersTable, playersList, subtitle, adBannerView;
+@synthesize name, badge, team, playersTable, playersList, subtitle;
 
 - (void)loadNetworkExceptionAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
 }
 
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
-    DLog(@"bannerViewDidLoadAd loaded %d", banner.isBannerLoaded);
-    banner.hidden = NO;
-    [self toggleBanner:banner];
-}
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    DLog(@"didFailToReceiveAdWithError loaded %d", banner.isBannerLoaded);
-    banner.hidden = YES;
-    [self toggleBanner:banner];
-}
-
-- (void)toggleBanner:(ADBannerView *)banner {
-    CGRect bannerFrame = banner.frame;
-    CGRect contentFrame = [UIScreen mainScreen].bounds;
-    
-    CGFloat height = contentFrame.size.height-112;
-    DLog(@"Content height %f %@", height, banner);
-    if ([banner isBannerLoaded]) {
-        DLog(@"Has ad, showing");
-        height -= banner.frame.size.height;
-        bannerFrame.origin.y = height;
-    } else {
-        DLog(@"No ad, hiding");
-        bannerFrame.origin.y = height;
-    }
-    banner.frame = bannerFrame;
-    self.playersTable.frame = CGRectMake(playersTable.frame.origin.x,playersTable.frame.origin.y,playersTable.frame.size.width,height-85);
-    
-    DLog(@"New content height %@ %f %f %f %f %f", banner, contentFrame.size.height, banner.frame.origin.y, adBannerView.frame.origin.y, playersTable.frame.size.height, playersTable.contentSize.height);
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self setNavTitle];
-    DLog(@"TeamDetailsViewController viewWillAppear %@", self.adBannerView);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self setNavTitle];
-    DLog(@"TeamDetailsViewController viewDidAppear %@", adBannerView);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    DLog(@"TeamDetailsViewController viewWillDisappear %@", self.adBannerView);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    DLog(@"TeamDetailsViewController viewDidDisappear %@", self.adBannerView);
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    DLog(@"TeamDetailsViewController viewDidUnload %@", self.adBannerView);
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -94,9 +57,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];    
     [self setNavTitle];
-
-    [self setAdBannerView:AppDelegate.adBannerView];
-    adBannerView.delegate = self;
 
     Division *division = [team division];
     
@@ -110,10 +70,10 @@
     
     badge.image = [[UIImage alloc]initWithData:imageData];
 
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tabBarController.view animated:YES];
     hud.labelText = @"Searching...";
     
-    [self.navigationController.view addSubview:hud];
+    [self.tabBarController.view addSubview:hud];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         @try {
             NSError *error;
@@ -145,9 +105,8 @@
             [self loadNetworkExceptionAlert];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+            [MBProgressHUD hideHUDForView:self.tabBarController.view animated:YES];
             [self.playersTable reloadData];
-            [self toggleBanner:adBannerView];
         });
     });
     // Uncomment the following line to preserve selection between presentations.

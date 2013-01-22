@@ -24,7 +24,7 @@
 
 @implementation LeagueFixtureDetailsViewController
 
-@synthesize fixture, mapView, location, mapItem, adBannerView;
+@synthesize fixture, mapView, location, mapItem;
 
 - (void)loadNetworkExceptionAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -36,63 +36,26 @@
     [alert show];
 }
 
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
-    DLog(@"bannerViewDidLoadAd loaded %d", banner.isBannerLoaded);
-    banner.hidden = NO;
-    [self toggleBanner:banner];
-}
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    DLog(@"didFailToReceiveAdWithError loaded %d", banner.isBannerLoaded);
-    banner.hidden = YES;
-    [self toggleBanner:banner];
-}
-
-- (void)toggleBanner:(ADBannerView *)banner {
-    CGRect bannerFrame = banner.frame;
-    CGRect contentFrame = [UIScreen mainScreen].bounds;
-    
-    CGFloat height = contentFrame.size.height-64;
-    DLog(@"Content height %f %@", height, banner);
-    if ([banner isBannerLoaded]) {
-        DLog(@"Has ad, showing");
-        height -= banner.frame.size.height;
-        bannerFrame.origin.y = height;
-    } else {
-        DLog(@"No ad, hiding");
-        bannerFrame.origin.y = height;
-    }
-    banner.frame = bannerFrame;
-    self.mapView.frame = CGRectMake(mapView.frame.origin.x,mapView.frame.origin.y,mapView.frame.size.width,height);
-    
-    DLog(@"New content height %@ %f %f %f %f", banner, contentFrame.size.height, banner.frame.origin.y, adBannerView.frame.origin.y, mapView.frame.size.height);
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self setNavTitle];
-    DLog(@"LeagueFixtureDetailsViewController viewWillAppear %@", self.adBannerView);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self setNavTitle];
-    DLog(@"LeagueFixtureDetailsViewController viewDidAppear %@", adBannerView);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    DLog(@"LeagueFixtureDetailsViewController viewWillDisappear %@", self.adBannerView);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    DLog(@"LeagueFixtureDetailsViewController viewDidDisappear %@", self.adBannerView);
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    DLog(@"LeagueFixtureDetailsViewController viewDidUnload %@", self.adBannerView);
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -101,17 +64,14 @@
     [super viewDidLoad];
     [self setNavTitle];
 
-    [self setAdBannerView:AppDelegate.adBannerView];
-    adBannerView.delegate = self;
-    
     if ([fixture.location caseInsensitiveCompare:@"TBA"] == NSOrderedSame) {
         DLog(@"Fixture Details Location length: %d", fixture.location.length);
         [self loadGeocodeExceptionAlert];
         return;
     } else {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tabBarController.view animated:YES];
         hud.labelText = @"Searching...";
-        [self.navigationController.view addSubview:hud];
+        [self.tabBarController.view addSubview:hud];
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             @try {
                 NSError *error;
@@ -172,7 +132,6 @@
             }
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-                [self toggleBanner:adBannerView];
             });
         });
     }

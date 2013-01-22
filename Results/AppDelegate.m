@@ -9,11 +9,15 @@
 #import "AppDelegate.h"
 #import "LeaguesViewController.h"
 #import "LeagueTableViewController.h"
+#import "LeagueResultsViewController.h"
 #import "LeagueFixturesViewController.h"
 #import "ServerManager.h"
 #import "Reachability.h"
+#import "BannerViewController.h"
 
-@implementation AppDelegate
+@implementation AppDelegate {
+    BannerViewController *_bannerViewController;
+}
 
 @synthesize internetActive, iAdBannerView;
 
@@ -42,12 +46,30 @@
 
     // Override point for customization after application launch.
 
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+
     iAdBannerView = [[ADBannerView alloc] initWithFrame:CGRectZero];
     DLog(@"didFinishLaunchingWithOptions %@", iAdBannerView);
 
-    
-    UIViewController *leaguesViewController = [[LeaguesViewController alloc] init];
-    [self.window addSubview:[leaguesViewController view]];
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    UINavigationController *mainNav = [storyBoard instantiateViewControllerWithIdentifier:@"UINavMainController"];
+
+    _bannerViewController = [[BannerViewController alloc] initWithContentViewController:mainNav];
+
+//    UITabBarController *tabBar = [storyBoard instantiateViewControllerWithIdentifier:@"TableTabBarController"];
+//
+//    LeagueTableViewController *viewController0 = [tabBar.viewControllers objectAtIndex:0];
+//    LeagueFixturesViewController *viewController1 = [tabBar.viewControllers objectAtIndex:1];
+//    LeagueResultsViewController *viewController2 = [tabBar.viewControllers objectAtIndex:2];
+//
+//    tabBar.viewControllers = @[
+//        [[BannerViewController alloc] initWithContentViewController:viewController0],
+//        [[BannerViewController alloc] initWithContentViewController:viewController1],
+//        [[BannerViewController alloc] initWithContentViewController:viewController2],
+//    ];
+
+    self.window.rootViewController = _bannerViewController;
+
     [self.window makeKeyAndVisible];
     [self customizeAppearance];
     return YES;

@@ -63,6 +63,7 @@
 		4BDBEE1A1645B2CF001F3F77 /* LeagueFixtureDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBEE191645B2CF001F3F77 /* LeagueFixtureDetailsViewController.m */; };
 		4BE0E2CC16345CF9000D061F /* CustomTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BE0E2CB16345CF9000D061F /* CustomTableCell.xib */; };
 		4BF55D871634A83600926CDC /* CustomTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF55D861634A83600926CDC /* CustomTableCell.m */; };
+		A1FB39AE16AD785700439B42 /* BannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1FB39AD16AD785700439B42 /* BannerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -151,6 +152,8 @@
 		4BE0E2CB16345CF9000D061F /* CustomTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableCell.xib; sourceTree = "<group>"; };
 		4BF55D851634A83600926CDC /* CustomTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomTableCell.h; path = ../CustomTableCell.h; sourceTree = "<group>"; };
 		4BF55D861634A83600926CDC /* CustomTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomTableCell.m; path = ../CustomTableCell.m; sourceTree = "<group>"; };
+		A1FB39AC16AD785700439B42 /* BannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerViewController.h; sourceTree = "<group>"; };
+		A1FB39AD16AD785700439B42 /* BannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +238,8 @@
 				4B09D8AD1632F56900A0A477 /* AppDelegate.h */,
 				4B09D8AE1632F56900A0A477 /* AppDelegate.m */,
 				4B09D8B61632F56900A0A477 /* MainStoryboard.storyboard */,
+				A1FB39AC16AD785700439B42 /* BannerViewController.h */,
+				A1FB39AD16AD785700439B42 /* BannerViewController.m */,
 				4B570081164A9980004BCF9B /* LeaguesViewController.h */,
 				4B570082164A9980004BCF9B /* LeaguesViewController.m */,
 				4B845180164B0F11002EB85F /* LeagueSeasonViewController.h */,
@@ -406,6 +411,7 @@
 				4B50D3F816515C3A006A8A41 /* ServerManager.m in Sources */,
 				4B50D404165175E0006A8A41 /* CustomPlayerCell.m in Sources */,
 				4B5987B91656EE8C005FFCCE /* Reachability.m in Sources */,
+				A1FB39AE16AD785700439B42 /* BannerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,6 +13,7 @@
 #import "ServerManager.h"
 #import "Reachability.h"
 #import "AppDelegate.h"
+#import "BannerViewController.h"
 
 @interface LeaguesViewController ()
 
@@ -20,51 +21,16 @@
 
 @implementation LeaguesViewController
 
-@synthesize leaguesList, searchBar, sections, leagueTablesView, adBannerView;
+@synthesize leaguesList, searchBar, sections, leagueTablesView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    DLog(@"LeaguesViewController viewDidLoad after%@", adBannerView);
-    [self setAdBannerView:AppDelegate.adBannerView];
-    adBannerView.delegate = self;
-    adBannerView.hidden = YES;
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)toggleBanner:(ADBannerView *)banner {
-    CGRect bannerFrame = banner.frame;
-    CGRect contentFrame = [UIScreen mainScreen].bounds;
-
-    CGFloat height = contentFrame.size.height-65;
-    DLog(@"Content height %f %@", height, banner);
-    if ([banner isBannerLoaded]) {
-        DLog(@"Has ad, showing");
-        height -= banner.frame.size.height;
-        bannerFrame.origin.y = height;
-    } else {
-        DLog(@"No ad, hiding");
-        bannerFrame.origin.y = height;
-    }
-    banner.frame = bannerFrame;
-    self.leagueTablesView.frame = CGRectMake(leagueTablesView.frame.origin.x,leagueTablesView.frame.origin.y,leagueTablesView.frame.size.width,height-banner.frame.size.height+15);
-
-    DLog(@"New content height %@ %f %f %f %f %f", banner, height, banner.frame.origin.y, adBannerView.frame.origin.y, leagueTablesView.frame.size.height, leagueTablesView.contentSize.height);
-}
-
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
-    DLog(@"bannerViewDidLoadAd loaded %d", banner.isBannerLoaded);
-    banner.hidden = NO;
-    [self toggleBanner:banner];
-}
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    DLog(@"didFailToReceiveAdWithError loaded %d", banner.isBannerLoaded);
-    banner.hidden = YES;
-    [self toggleBanner:banner];
 }
 
 - (void)loadNetworkExceptionAlert {
@@ -74,7 +40,6 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    DLog(@"LeaguesViewController viewDidUnload %@", self.adBannerView);
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 
@@ -82,22 +47,18 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    DLog(@"LeaguesViewController viewWillAppear %@", self.adBannerView);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    DLog(@"viewDidAppear %@", adBannerView);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    DLog(@"LeaguesViewController viewWillDisappear %@", self.adBannerView);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    DLog(@"LeaguesViewController viewDidDisappear %@", self.adBannerView);
 }
 
 
@@ -256,6 +217,9 @@
         league = [[sections valueForKey:[[[sections allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
         DLog(@"league: %@", league.leagueId);
         [viewController setLeague:league];
+//        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+//        BannerViewController *bannerViewController = [storyBoard instantiateViewControllerWithIdentifier:@"BannerViewController"];
+//        NSLog(@"bannerViewController %@", bannerViewController);
     }
 }
 
@@ -286,51 +250,10 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
             [self.leagueTablesView reloadData];
-//            [self layoutAnimated:YES];
         });
     });
 }
 
-//- (void)layoutAnimated:(BOOL)animated {
-//    // As of iOS 6.0, the banner will automatically resize itself based on its width.
-//    // To support iOS 5.0 however, we continue to set the currentContentSizeIdentifier appropriately.
-//    CGRect contentFrame = self.view.bounds;
-//    if (contentFrame.size.width < contentFrame.size.height) {
-//        _bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
-//    } else {
-//        _bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierLandscape;
-//    }
-//    
-//    CGRect bannerFrame = _bannerView.frame;
-//    if (_bannerView.bannerLoaded) {
-//        contentFrame.size.height -= _bannerView.frame.size.height;
-//        bannerFrame.origin.y = contentFrame.size.height;
-//    } else {
-//        bannerFrame.origin.y = contentFrame.size.height;
-//    }
-//    DLog(@"ON %d %f", _bannerView.bannerLoaded, contentFrame.size.height);
-//    
-//    [UIView animateWithDuration:animated ? 0.25 : 0.0 animations:^{
-//        contentView.frame = contentFrame;
-//        [contentView layoutIfNeeded];
-//        _bannerView.frame = bannerFrame;
-//    }];
-//}
-//- (void)viewDidLayoutSubviews {
-//    [self layoutAnimated:[UIView areAnimationsEnabled]];
-//    DLog(@"viewDidLayoutSubviews");
-//}
-//
-//- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
-//    [self layoutAnimated:YES];
-//    DLog(@"bannerViewDidLoadAd");
-//}
-//
-//- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-//    [self layoutAnimated:YES];
-//    DLog(@"didFailToReceiveAdWithError");
-//}
-//
 /*
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

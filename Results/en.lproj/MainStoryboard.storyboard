@@ -9,7 +9,7 @@
             <objects>
                 <viewController title="League Table" id="2" customClass="LeagueTableViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TbS-ft-E4k">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ep2-k7-Dq4" userLabel="Table Bar">
@@ -305,23 +305,10 @@
                                     <constraint firstAttribute="height" constant="25" type="user" id="xyB-yk-Pea"/>
                                 </constraints>
                             </view>
-                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="nh9-oW-nd0">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="GXX-fD-gax"/>
-                                </constraints>
-                                <requiredContentSizeIdentifiers>
-                                    <string>ADBannerContentSizeLandscape</string>
-                                    <string>ADBannerContentSizePortrait</string>
-                                </requiredContentSizeIdentifiers>
-                                <connections>
-                                    <outlet property="delegate" destination="2" id="9cV-Sv-64C"/>
-                                </connections>
-                            </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ZAP-LR-fMd" firstAttribute="leading" secondItem="TbS-ft-E4k" secondAttribute="leading" type="default" id="A1p-qf-tDy"/>
-                            <constraint firstItem="nh9-oW-nd0" firstAttribute="trailing" secondItem="TbS-ft-E4k" secondAttribute="trailing" type="default" id="Dyb-Bx-G6z"/>
                             <constraint firstItem="8L3-DS-B2W" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="TbS-ft-E4k" secondAttribute="trailing" type="user" id="GNm-bq-TXO"/>
                             <constraint firstItem="8L3-DS-B2W" firstAttribute="trailing" secondItem="TbS-ft-E4k" secondAttribute="trailing" type="default" id="Gv3-dE-zLB"/>
                             <constraint firstItem="ep2-k7-Dq4" firstAttribute="trailing" secondItem="TbS-ft-E4k" secondAttribute="trailing" type="default" id="NKI-74-zWo"/>
@@ -335,15 +322,12 @@
                             <constraint firstItem="Fj0-Ni-sCR" firstAttribute="top" secondItem="ZAP-LR-fMd" secondAttribute="bottom" constant="1" type="user" id="gnT-AV-qMh"/>
                             <constraint firstItem="Fj0-Ni-sCR" firstAttribute="top" secondItem="ZAP-LR-fMd" secondAttribute="bottom" constant="1" type="user" id="hTD-ca-yaG"/>
                             <constraint firstItem="8L3-DS-B2W" firstAttribute="leading" secondItem="TbS-ft-E4k" secondAttribute="leading" type="default" id="nTf-e1-xiQ"/>
-                            <constraint firstItem="nh9-oW-nd0" firstAttribute="leading" secondItem="TbS-ft-E4k" secondAttribute="leading" type="default" id="p6k-Km-i4b"/>
                             <constraint firstItem="8L3-DS-B2W" firstAttribute="bottom" secondItem="TbS-ft-E4k" secondAttribute="bottom" type="default" id="q5i-pi-p9f"/>
-                            <constraint firstItem="nh9-oW-nd0" firstAttribute="top" secondItem="TbS-ft-E4k" secondAttribute="top" constant="455" id="qHx-KM-Rc6"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" tag="1" title="Table" image="152-rolodex.png" id="336-79-yAO"/>
                     <navigationItem key="navigationItem" title="League Table" id="KQp-Y1-tBG"/>
                     <connections>
-                        <outlet property="adBannerView" destination="nh9-oW-nd0" id="ZmJ-C6-Cki"/>
                         <outlet property="leagueBadge" destination="uDK-SJ-8xN" id="pMq-eY-bA4"/>
                         <outlet property="leagueTable" destination="8L3-DS-B2W" id="G4z-91-zj3"/>
                         <outlet property="nameLabel" destination="SYq-AU-HFt" id="kcT-WT-tO1"/>
@@ -359,7 +343,7 @@
             <objects>
                 <viewController id="U8H-Vy-qma" customClass="TeamResultsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="s3C-4P-krx">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="N0L-SW-Fna">
@@ -532,7 +516,7 @@
             <objects>
                 <viewController id="obT-85-3Sz" customClass="TeamFixturesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fjv-bO-iaM">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="NKc-Hb-bxJ">
@@ -711,7 +695,7 @@
             <objects>
                 <viewController id="bl9-Jn-mfe" customClass="TeamDetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a8L-7u-bal">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="7kq-j3-k9v">
@@ -870,7 +854,7 @@
             <objects>
                 <viewController id="Vpf-d4-xuW" customClass="LeagueFixturesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="s7h-lH-iVJ">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="b5W-ZF-OmL" userLabel="Fixtures Table View">
@@ -992,25 +976,11 @@
                                     <constraint firstItem="N4A-1j-ulE" firstAttribute="top" secondItem="JKE-eF-YZb" secondAttribute="top" constant="4" id="zjr-hf-ALW"/>
                                 </constraints>
                             </view>
-                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="0tq-9J-rED">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="9sQ-RU-hLF"/>
-                                </constraints>
-                                <requiredContentSizeIdentifiers>
-                                    <string>ADBannerContentSizeLandscape</string>
-                                    <string>ADBannerContentSizePortrait</string>
-                                </requiredContentSizeIdentifiers>
-                                <connections>
-                                    <outlet property="delegate" destination="Vpf-d4-xuW" id="EPv-kg-egz"/>
-                                </connections>
-                            </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="0tq-9J-rED" firstAttribute="leading" secondItem="s7h-lH-iVJ" secondAttribute="leading" type="default" id="1TU-cZ-Ill"/>
                             <constraint firstItem="JKE-eF-YZb" firstAttribute="top" secondItem="s7h-lH-iVJ" secondAttribute="top" type="default" id="42O-BK-8Cb"/>
                             <constraint firstItem="UoO-ZL-3Fa" firstAttribute="leading" secondItem="s7h-lH-iVJ" secondAttribute="leading" type="user" id="4gv-Zg-7aB"/>
-                            <constraint firstItem="0tq-9J-rED" firstAttribute="trailing" secondItem="s7h-lH-iVJ" secondAttribute="trailing" type="default" id="BSI-55-RwP"/>
                             <constraint firstItem="JKE-eF-YZb" firstAttribute="leading" secondItem="s7h-lH-iVJ" secondAttribute="leading" type="default" id="GGb-Js-ePH"/>
                             <constraint firstItem="UoO-ZL-3Fa" firstAttribute="top" secondItem="JKE-eF-YZb" secondAttribute="bottom" constant="1" type="user" id="HVC-Mw-vcr"/>
                             <constraint firstItem="b5W-ZF-OmL" firstAttribute="trailing" secondItem="s7h-lH-iVJ" secondAttribute="trailing" type="default" id="JNe-tz-c9v"/>
@@ -1019,7 +989,6 @@
                             <constraint firstItem="b5W-ZF-OmL" firstAttribute="leading" secondItem="s7h-lH-iVJ" secondAttribute="leading" type="default" id="ObQ-YC-BI0"/>
                             <constraint firstItem="b5W-ZF-OmL" firstAttribute="top" secondItem="UoO-ZL-3Fa" secondAttribute="bottom" constant="1" type="user" id="a0H-le-HVE"/>
                             <constraint firstItem="UoO-ZL-3Fa" firstAttribute="trailing" secondItem="s7h-lH-iVJ" secondAttribute="trailing" type="user" id="eWV-Pp-BQz"/>
-                            <constraint firstItem="0tq-9J-rED" firstAttribute="top" secondItem="s7h-lH-iVJ" secondAttribute="top" constant="456" id="o7Y-XO-Hny"/>
                             <constraint firstItem="b5W-ZF-OmL" firstAttribute="bottom" secondItem="s7h-lH-iVJ" secondAttribute="bottom" type="default" id="teS-qr-PvB"/>
                             <constraint firstItem="UoO-ZL-3Fa" firstAttribute="top" secondItem="JKE-eF-YZb" secondAttribute="bottom" constant="1" type="user" id="zCT-ul-Be9"/>
                         </constraints>
@@ -1027,7 +996,6 @@
                     <tabBarItem key="tabBarItem" title="Fixtures" image="83-calendar.png" id="vfR-an-B5r"/>
                     <navigationItem key="navigationItem" title="League Fixtures" id="HIl-xv-1f2"/>
                     <connections>
-                        <outlet property="adBannerView" destination="0tq-9J-rED" id="Bd5-4C-EMN"/>
                         <outlet property="fixturesTable" destination="b5W-ZF-OmL" id="LZY-QB-s6g"/>
                         <outlet property="leagueBadge" destination="XzC-mz-cvM" id="z3c-js-n0v"/>
                         <outlet property="nameLabel" destination="N4A-1j-ulE" id="Zv1-mh-WO2"/>
@@ -1074,20 +1042,17 @@
             <objects>
                 <viewController id="vbr-tu-NID" customClass="LeagueFixtureDetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wPv-jS-XP5">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nEb-er-alD">
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="455" type="user" id="lTZ-Wd-RZw"/>
-                                </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="vbr-tu-NID" id="N1a-2V-dP6"/>
                                 </connections>
                             </mapView>
                             <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="Fnp-A1-gIO">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" type="user" id="9Uz-Rw-LpW"/>
+                                    <constraint firstAttribute="height" constant="50" id="Oam-iC-CCA"/>
                                 </constraints>
                                 <requiredContentSizeIdentifiers>
                                     <string>ADBannerContentSizeLandscape</string>
@@ -1127,9 +1092,9 @@
         <!--Leagues View Controller - Leagues-->
         <scene sceneID="8H3-Jq-wN0">
             <objects>
-                <viewController id="8d3-vd-Jzl" customClass="LeaguesViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LeaguesViewController" id="8d3-vd-Jzl" customClass="LeaguesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uAl-ph-XNc">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aH4-3D-3D9">
@@ -1169,31 +1134,16 @@
                                     <outlet property="delegate" destination="8d3-vd-Jzl" id="ZfE-Jd-rg3"/>
                                 </connections>
                             </searchBar>
-                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="hfs-mw-bUe">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" type="user" id="Rlh-8G-zkF"/>
-                                </constraints>
-                                <requiredContentSizeIdentifiers>
-                                    <string>ADBannerContentSizeLandscape</string>
-                                    <string>ADBannerContentSizePortrait</string>
-                                </requiredContentSizeIdentifiers>
-                                <connections>
-                                    <outlet property="delegate" destination="8d3-vd-Jzl" id="Jyt-nY-FWM"/>
-                                </connections>
-                            </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="hfs-mw-bUe" firstAttribute="leading" secondItem="uAl-ph-XNc" secondAttribute="leading" type="default" id="1BJ-Rn-PRy"/>
                             <constraint firstItem="aH4-3D-3D9" firstAttribute="leading" secondItem="uAl-ph-XNc" secondAttribute="leading" type="default" id="9Qr-vZ-mvs"/>
                             <constraint firstItem="aH4-3D-3D9" firstAttribute="trailing" secondItem="uAl-ph-XNc" secondAttribute="trailing" type="default" id="EzZ-6E-BMp"/>
                             <constraint firstItem="zya-kl-abu" firstAttribute="trailing" secondItem="uAl-ph-XNc" secondAttribute="trailing" type="default" id="KdG-wc-Kbt"/>
                             <constraint firstItem="aH4-3D-3D9" firstAttribute="top" secondItem="zya-kl-abu" secondAttribute="bottom" type="default" id="Qg5-hi-dbM"/>
                             <constraint firstItem="zya-kl-abu" firstAttribute="top" secondItem="uAl-ph-XNc" secondAttribute="top" type="default" id="RIs-lL-MIz"/>
                             <constraint firstItem="zya-kl-abu" firstAttribute="leading" secondItem="uAl-ph-XNc" secondAttribute="leading" type="default" id="USx-wf-dbu"/>
-                            <constraint firstItem="hfs-mw-bUe" firstAttribute="top" secondItem="uAl-ph-XNc" secondAttribute="top" constant="455" id="XmN-HJ-YrU"/>
                             <constraint firstItem="aH4-3D-3D9" firstAttribute="bottom" secondItem="uAl-ph-XNc" secondAttribute="bottom" type="default" id="XqA-aR-gwT"/>
-                            <constraint firstItem="hfs-mw-bUe" firstAttribute="trailing" secondItem="uAl-ph-XNc" secondAttribute="trailing" type="default" id="uSD-Dt-gal"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Leagues" id="VVL-qX-PKr">
@@ -1204,7 +1154,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="adBannerView" destination="hfs-mw-bUe" id="oZb-D9-SOt"/>
                         <outlet property="leagueTablesView" destination="aH4-3D-3D9" id="i3S-O3-lFX"/>
                         <outlet property="searchBar" destination="zya-kl-abu" id="81l-hp-rf2"/>
                     </connections>
@@ -1224,9 +1173,9 @@
         <!--League Season View Controller - Seasons-->
         <scene sceneID="V1U-dC-g8b">
             <objects>
-                <viewController id="qdX-ep-6hh" customClass="LeagueSeasonViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LeagueSeasonViewController" id="qdX-ep-6hh" customClass="LeagueSeasonViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="klK-mz-Ywe">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Chx-42-B9b">
@@ -1258,33 +1207,17 @@
                                     <outlet property="delegate" destination="qdX-ep-6hh" id="cZ2-aM-OoT"/>
                                 </connections>
                             </tableView>
-                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="20T-h8-Hd5">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" type="user" id="ST2-lH-mtJ"/>
-                                </constraints>
-                                <requiredContentSizeIdentifiers>
-                                    <string>ADBannerContentSizeLandscape</string>
-                                    <string>ADBannerContentSizePortrait</string>
-                                </requiredContentSizeIdentifiers>
-                                <connections>
-                                    <outlet property="delegate" destination="qdX-ep-6hh" id="MLe-jx-Wlt"/>
-                                </connections>
-                            </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Chx-42-B9b" firstAttribute="leading" secondItem="klK-mz-Ywe" secondAttribute="leading" type="default" id="30q-D6-Wc5"/>
-                            <constraint firstItem="20T-h8-Hd5" firstAttribute="top" secondItem="klK-mz-Ywe" secondAttribute="top" constant="455" id="3Ja-YE-5dZ"/>
                             <constraint firstItem="Chx-42-B9b" firstAttribute="trailing" secondItem="klK-mz-Ywe" secondAttribute="trailing" type="default" id="BE1-qW-nhB"/>
-                            <constraint firstItem="20T-h8-Hd5" firstAttribute="trailing" secondItem="klK-mz-Ywe" secondAttribute="trailing" type="default" id="CpV-B7-3b5"/>
                             <constraint firstItem="Chx-42-B9b" firstAttribute="top" secondItem="klK-mz-Ywe" secondAttribute="top" type="default" id="DpS-N5-YOE"/>
-                            <constraint firstItem="20T-h8-Hd5" firstAttribute="leading" secondItem="klK-mz-Ywe" secondAttribute="leading" type="default" id="Qq6-j1-VEm"/>
                             <constraint firstItem="Chx-42-B9b" firstAttribute="bottom" secondItem="klK-mz-Ywe" secondAttribute="bottom" type="default" id="V25-In-pJL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Seasons" id="FRc-ww-7gm"/>
                     <connections>
-                        <outlet property="adBannerView" destination="20T-h8-Hd5" id="Wj8-DW-mTb"/>
                         <outlet property="seasonsTableView" destination="Chx-42-B9b" id="zgk-gf-V2h"/>
                     </connections>
                 </viewController>
@@ -1292,12 +1225,26 @@
             </objects>
             <point key="canvasLocation" x="188" y="-2150"/>
         </scene>
+        <!--Banner View Controller-->
+        <scene sceneID="4XX-UV-lEy">
+            <objects>
+                <viewController storyboardIdentifier="BannerViewController" id="057-lW-MWH" customClass="BannerViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cwn-uO-qeZ">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="APg-si-STd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="23" y="-1328"/>
+        </scene>
         <!--League Divisions View Controller - Divisions-->
         <scene sceneID="3Fy-bW-8pX">
             <objects>
                 <viewController id="KjO-oT-6Bj" customClass="LeagueDivisionsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hj6-pS-aIZ">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Vov-DP-uWA">
@@ -1329,18 +1276,6 @@
                                     <outlet property="delegate" destination="KjO-oT-6Bj" id="8vI-sp-Vm8"/>
                                 </connections>
                             </tableView>
-                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="lVc-Aw-eSr">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" type="user" id="H1d-4c-cPj"/>
-                                </constraints>
-                                <requiredContentSizeIdentifiers>
-                                    <string>ADBannerContentSizeLandscape</string>
-                                    <string>ADBannerContentSizePortrait</string>
-                                </requiredContentSizeIdentifiers>
-                                <connections>
-                                    <outlet property="delegate" destination="KjO-oT-6Bj" id="BSJ-Ji-lwx"/>
-                                </connections>
-                            </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1348,14 +1283,10 @@
                             <constraint firstItem="Vov-DP-uWA" firstAttribute="top" secondItem="Hj6-pS-aIZ" secondAttribute="top" type="default" id="ExY-Ha-ZIf"/>
                             <constraint firstItem="Vov-DP-uWA" firstAttribute="trailing" secondItem="Hj6-pS-aIZ" secondAttribute="trailing" type="default" id="UMs-Lg-86H"/>
                             <constraint firstItem="Vov-DP-uWA" firstAttribute="bottom" secondItem="Hj6-pS-aIZ" secondAttribute="bottom" type="default" id="Ymp-jK-tMu"/>
-                            <constraint firstItem="lVc-Aw-eSr" firstAttribute="trailing" secondItem="Hj6-pS-aIZ" secondAttribute="trailing" type="default" id="fpS-7Q-Fsj"/>
-                            <constraint firstItem="lVc-Aw-eSr" firstAttribute="leading" secondItem="Hj6-pS-aIZ" secondAttribute="leading" type="default" id="h6M-gD-m7s"/>
-                            <constraint firstItem="lVc-Aw-eSr" firstAttribute="top" secondItem="Hj6-pS-aIZ" secondAttribute="top" constant="455" id="ln0-de-c6N"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Divisions" id="XHJ-h3-lI5"/>
                     <connections>
-                        <outlet property="adBannerView" destination="lVc-Aw-eSr" id="D2H-k1-rsO"/>
                         <outlet property="divisionsTableView" destination="Vov-DP-uWA" id="xzu-9j-vO3"/>
                     </connections>
                 </viewController>
@@ -1366,7 +1297,7 @@
         <!--Tab Bar Controller - Front Screen-->
         <scene sceneID="VxH-ha-kaa">
             <objects>
-                <tabBarController id="kmb-uQ-a1F" userLabel="Tab Bar Controller - Front Screen" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TableTabBarController" id="kmb-uQ-a1F" userLabel="Tab Bar Controller - Front Screen" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="ZPL-y7-JZO">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="dnp-nJ-OnM">
@@ -1395,7 +1326,7 @@
             <objects>
                 <viewController id="Qxt-6v-GEh" customClass="LeagueResultsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8FE-2P-Ahr">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="inE-DI-3nL">
@@ -1520,29 +1451,14 @@
                                     <constraint firstItem="zOf-9A-PAo" firstAttribute="top" secondItem="vrL-e9-S2s" secondAttribute="top" constant="4" id="n7E-wa-y7F"/>
                                 </constraints>
                             </view>
-                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="Cbw-00-bAW">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="9mx-I9-c2b"/>
-                                </constraints>
-                                <requiredContentSizeIdentifiers>
-                                    <string>ADBannerContentSizeLandscape</string>
-                                    <string>ADBannerContentSizePortrait</string>
-                                </requiredContentSizeIdentifiers>
-                                <connections>
-                                    <outlet property="delegate" destination="Qxt-6v-GEh" id="h3I-il-8Fm"/>
-                                </connections>
-                            </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="inE-DI-3nL" firstAttribute="top" secondItem="vrL-e9-S2s" secondAttribute="bottom" constant="1" type="user" id="5Lv-w5-ahl"/>
                             <constraint firstItem="tqE-D5-zFN" firstAttribute="top" secondItem="8FE-2P-Ahr" secondAttribute="top" type="default" id="7Vc-DV-7GL"/>
-                            <constraint firstItem="Cbw-00-bAW" firstAttribute="top" secondItem="8FE-2P-Ahr" secondAttribute="top" constant="456" id="9AW-pi-qbB"/>
                             <constraint firstItem="tqE-D5-zFN" firstAttribute="trailing" secondItem="8FE-2P-Ahr" secondAttribute="trailing" type="default" id="Ceq-Nb-C6D"/>
-                            <constraint firstItem="Cbw-00-bAW" firstAttribute="leading" secondItem="8FE-2P-Ahr" secondAttribute="leading" type="default" id="DaT-hs-2io"/>
                             <constraint firstItem="inE-DI-3nL" firstAttribute="trailing" secondItem="8FE-2P-Ahr" secondAttribute="trailing" type="default" id="GXq-kC-FP5"/>
                             <constraint firstItem="inE-DI-3nL" firstAttribute="leading" secondItem="8FE-2P-Ahr" secondAttribute="leading" type="user" id="PfK-3J-Hy2"/>
-                            <constraint firstItem="Cbw-00-bAW" firstAttribute="trailing" secondItem="8FE-2P-Ahr" secondAttribute="trailing" type="default" id="VX7-uq-DIM"/>
                             <constraint firstItem="inE-DI-3nL" firstAttribute="top" secondItem="vrL-e9-S2s" secondAttribute="bottom" constant="1" type="user" id="b9i-Li-Cd6"/>
                             <constraint firstItem="tqE-D5-zFN" firstAttribute="leading" secondItem="8FE-2P-Ahr" secondAttribute="leading" type="default" id="eIs-Gf-66e"/>
                             <constraint firstItem="vrL-e9-S2s" firstAttribute="leading" secondItem="8FE-2P-Ahr" secondAttribute="leading" type="default" id="gDZ-fM-qCo"/>
@@ -1554,7 +1470,6 @@
                     <tabBarItem key="tabBarItem" title="Results" image="179-notepad.png" id="ac4-Ya-WDf"/>
                     <navigationItem key="navigationItem" title="League Results" id="dbe-pK-A7h"/>
                     <connections>
-                        <outlet property="adBannerView" destination="Cbw-00-bAW" id="yoK-QE-06S"/>
                         <outlet property="leagueBadge" destination="C1w-SZ-pE2" id="ibp-JN-9Gj"/>
                         <outlet property="nameLabel" destination="OEd-NS-laD" id="kbh-Rw-JlF"/>
                         <outlet property="resultsTable" destination="inE-DI-3nL" id="xhy-E4-hZV"/>
@@ -1568,7 +1483,7 @@
         <!--Navigation Controller-->
         <scene sceneID="FuX-id-8cL">
             <objects>
-                <navigationController id="kF1-Aj-8Lq" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="UINavMainController" id="kF1-Aj-8Lq" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sGP-Qu-61c">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1591,6 +1506,12 @@
         <image name="83-calendar.png" width="23" height="25"/>
     </resources>
     <classes>
+        <class className="BannerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BannerViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="adBannerView" candidateClass="ADBannerView"/>
+            </relationships>
+        </class>
         <class className="CustomFixtureCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomFixtureCell.h"/>
             <relationships>
@@ -1633,7 +1554,6 @@
         <class className="LeagueDivisionsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueDivisionsViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="adBannerView" candidateClass="ADBannerView"/>
                 <relationship kind="outlet" name="divisionsTableView" candidateClass="UITableView"/>
             </relationships>
         </class>
@@ -1641,14 +1561,12 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueFixtureDetailsViewController.h"/>
             <relationships>
                 <relationship kind="action" name="navigate:"/>
-                <relationship kind="outlet" name="adBannerView" candidateClass="ADBannerView"/>
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
             </relationships>
         </class>
         <class className="LeagueFixturesViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueFixturesViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="adBannerView" candidateClass="ADBannerView"/>
                 <relationship kind="outlet" name="fixturesTable" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
@@ -1658,7 +1576,6 @@
         <class className="LeagueResultsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueResultsViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="adBannerView" candidateClass="ADBannerView"/>
                 <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="resultsTable" candidateClass="UITableView"/>
@@ -1668,14 +1585,12 @@
         <class className="LeagueSeasonViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueSeasonViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="adBannerView" candidateClass="ADBannerView"/>
                 <relationship kind="outlet" name="seasonsTableView" candidateClass="UITableView"/>
             </relationships>
         </class>
         <class className="LeagueTableViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueTableViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="adBannerView" candidateClass="ADBannerView"/>
                 <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="leagueTable" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
@@ -1686,7 +1601,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LeaguesViewController.h"/>
             <relationships>
                 <relationship kind="action" name="getTop500:"/>
-                <relationship kind="outlet" name="adBannerView" candidateClass="ADBannerView"/>
                 <relationship kind="outlet" name="leagueTablesView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
             </relationships>
@@ -1697,7 +1611,6 @@
         <class className="TeamDetailsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TeamDetailsViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="adBannerView" candidateClass="ADBannerView"/>
                 <relationship kind="outlet" name="badge" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="name" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="playersTable" candidateClass="UITableView"/>
@@ -1728,13 +1641,13 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="vfM-is-vMH"/>
-        <segue reference="Gme-cR-3kr"/>
         <segue reference="guz-h0-rin"/>
-        <segue reference="nlu-6i-a2D"/>
+        <segue reference="tYH-qn-cIh"/>
         <segue reference="w7Y-6N-5L6"/>
+        <segue reference="Gme-cR-3kr"/>
+        <segue reference="nlu-6i-a2D"/>
     </inferredMetricsTieBreakers>
 </document>
