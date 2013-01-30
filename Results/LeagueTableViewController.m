@@ -90,15 +90,15 @@
     leagueBadge.image = [season league].image;
     DLog(@"%@", self.nameLabel.text);
 
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tabBarController.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"Searching...";
     
-    [self.tabBarController.view addSubview:hud];
+    [self.view addSubview:hud];
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         [self loadData];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.tabBarController.view animated:YES];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self.leagueTable reloadData];
             UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
             refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];

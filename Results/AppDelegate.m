@@ -15,9 +15,7 @@
 #import "Reachability.h"
 #import "BannerViewController.h"
 
-@implementation AppDelegate {
-    BannerViewController *_bannerViewController;
-}
+@implementation AppDelegate
 
 @synthesize internetActive, iAdBannerView;
 
@@ -49,26 +47,23 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     iAdBannerView = [[ADBannerView alloc] initWithFrame:CGRectZero];
-    DLog(@"didFinishLaunchingWithOptions %@", iAdBannerView);
+    NSLog(@"didFinishLaunchingWithOptions %@", iAdBannerView);
 
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    UINavigationController *mainNav = [storyBoard instantiateViewControllerWithIdentifier:@"UINavMainController"];
+    UINavigationController *navigationController = [storyBoard instantiateViewControllerWithIdentifier:@"UINavMainController"];
 
-    _bannerViewController = [[BannerViewController alloc] initWithContentViewController:mainNav];
+    BannerViewController *bannerViewController = [[BannerViewController alloc] initWithContentViewController:navigationController];
 
+//    navigationController.viewControllers = @[
+//        [[BannerViewController alloc] initWithContentViewController:[navigationController.viewControllers objectAtIndex:0]
+//     ]];
 //    UITabBarController *tabBar = [storyBoard instantiateViewControllerWithIdentifier:@"TableTabBarController"];
 //
 //    LeagueTableViewController *viewController0 = [tabBar.viewControllers objectAtIndex:0];
 //    LeagueFixturesViewController *viewController1 = [tabBar.viewControllers objectAtIndex:1];
 //    LeagueResultsViewController *viewController2 = [tabBar.viewControllers objectAtIndex:2];
 //
-//    tabBar.viewControllers = @[
-//        [[BannerViewController alloc] initWithContentViewController:viewController0],
-//        [[BannerViewController alloc] initWithContentViewController:viewController1],
-//        [[BannerViewController alloc] initWithContentViewController:viewController2],
-//    ];
-
-    self.window.rootViewController = _bannerViewController;
+    self.window.rootViewController = bannerViewController;
 
     [self.window makeKeyAndVisible];
     [self customizeAppearance];
@@ -130,6 +125,11 @@
     [self checkNetworkStatus:networkStatus];
 }
 
+- (void)tabController:(UITabBarController *)tabController didSelectViewController:
+(UIViewController *)viewController {
+
+}
+
 + (AppDelegate *) sharedApplication {
     id result = [[UIApplication sharedApplication] delegate];
     
@@ -145,4 +145,7 @@
     return adBannerView;
 }
 
++ (void) setBannerForTabbedViewController {
+    NSLog(@"setBannerForTabbedViewController");
+}
 @end

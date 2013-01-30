@@ -28,6 +28,10 @@
     [alert show];
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -53,7 +57,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willBeginBannerViewActionNotification:) name:BannerViewActionWillBegin object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishBannerViewActionNotification:) name:BannerViewActionDidFinish object:nil];
+    
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Searching...";
     

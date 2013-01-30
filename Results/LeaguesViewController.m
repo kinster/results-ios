@@ -23,8 +23,14 @@
 
 @synthesize leaguesList, searchBar, sections, leagueTablesView;
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willBeginBannerViewActionNotification:) name:BannerViewActionWillBegin object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishBannerViewActionNotification:) name:BannerViewActionDidFinish object:nil];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -217,6 +223,9 @@
         league = [[sections valueForKey:[[[sections allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
         DLog(@"league: %@", league.leagueId);
         [viewController setLeague:league];
+        
+//        BannerViewController *bannerViewController = [[BannerViewController alloc] initWithContentViewController:viewController];
+
 //        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
 //        BannerViewController *bannerViewController = [storyBoard instantiateViewControllerWithIdentifier:@"BannerViewController"];
 //        NSLog(@"bannerViewController %@", bannerViewController);
@@ -293,17 +302,19 @@
  }
  */
 
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+//    LeagueSeasonViewController *leagueSeasonViewController = [storyBoard instantiateViewControllerWithIdentifier:@"LeagueSeasonViewController"];
+//
+//    NSLog(@"LeaguesViewController indexPath: %d", indexPath.row);
+//    League *league = nil;
+//    league = [[sections valueForKey:[[[sections allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+//    NSLog(@"league: %@", league.leagueId);
+//    [leagueSeasonViewController setLeague:league];
+//    
+//    BannerViewController *bannerViewController = [[BannerViewController alloc] initWithContentViewController:leagueSeasonViewController];
+//
+//    [self.navigationController pushViewController:bannerViewController animated:YES];
 }
 
 @end

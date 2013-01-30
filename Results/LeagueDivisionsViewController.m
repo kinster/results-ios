@@ -177,12 +177,15 @@
     DLog(@"controller 2: %@", viewController2);
     [viewController2 setDivision:division];
     
-//    tabBarController.viewControllers = @[
+    [AppDelegate setBannerForTabbedViewController];
+//    self.tabBarController.viewControllers = @[
 //        [[BannerViewController alloc] initWithContentViewController:viewController0],
 //        [[BannerViewController alloc] initWithContentViewController:viewController1],
 //        [[BannerViewController alloc] initWithContentViewController:viewController2],
 //    ];
-    
+//
+//    [self.navigationController pushViewController:tabBarController animated:YES];
+
     DLog(@"end");
 }
 

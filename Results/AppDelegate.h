@@ -19,4 +19,5 @@
 @property (retain, nonatomic) ADBannerView *iAdBannerView;
 + (AppDelegate *) sharedApplication;
 + (ADBannerView *) adBannerView;
++ (void)setBannerForTabbedViewController;
 @end

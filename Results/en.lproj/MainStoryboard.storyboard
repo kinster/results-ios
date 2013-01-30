@@ -7,9 +7,9 @@
         <!--League Table View Controller - League Table-->
         <scene sceneID="5">
             <objects>
-                <viewController title="League Table" id="2" customClass="LeagueTableViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LeagueTableViewController" title="League Table" id="2" customClass="LeagueTableViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TbS-ft-E4k">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ep2-k7-Dq4" userLabel="Table Bar">
@@ -110,9 +110,6 @@
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="25" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8L3-DS-B2W">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="254" type="user" id="YUC-Gh-cU8"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="CustomCellRestorationId" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CustomTableCell" rowHeight="25" id="Dwl-Iw-EaS" userLabel="Team Cell" customClass="CustomTableCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="25"/>
@@ -309,7 +306,6 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ZAP-LR-fMd" firstAttribute="leading" secondItem="TbS-ft-E4k" secondAttribute="leading" type="default" id="A1p-qf-tDy"/>
-                            <constraint firstItem="8L3-DS-B2W" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="TbS-ft-E4k" secondAttribute="trailing" type="user" id="GNm-bq-TXO"/>
                             <constraint firstItem="8L3-DS-B2W" firstAttribute="trailing" secondItem="TbS-ft-E4k" secondAttribute="trailing" type="default" id="Gv3-dE-zLB"/>
                             <constraint firstItem="ep2-k7-Dq4" firstAttribute="trailing" secondItem="TbS-ft-E4k" secondAttribute="trailing" type="default" id="NKI-74-zWo"/>
                             <constraint firstItem="ep2-k7-Dq4" firstAttribute="top" secondItem="TbS-ft-E4k" secondAttribute="top" constant="87" type="user" id="S0J-ru-bzu"/>
@@ -852,7 +848,7 @@
         <!--League Fixtures View Controller - League Fixtures-->
         <scene sceneID="qMR-t7-ybm">
             <objects>
-                <viewController id="Vpf-d4-xuW" customClass="LeagueFixturesViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LeagueFixturesViewController" id="Vpf-d4-xuW" customClass="LeagueFixturesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="s7h-lH-iVJ">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1168,7 +1164,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-235" y="-2451"/>
+            <point key="canvasLocation" x="-392" y="-2463"/>
         </scene>
         <!--League Season View Controller - Seasons-->
         <scene sceneID="V1U-dC-g8b">
@@ -1324,7 +1320,7 @@
         <!--League Results View Controller - League Results-->
         <scene sceneID="mjw-qr-dY6">
             <objects>
-                <viewController id="Qxt-6v-GEh" customClass="LeagueResultsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LeagueResultsViewController" id="Qxt-6v-GEh" customClass="LeagueResultsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8FE-2P-Ahr">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1333,6 +1329,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="368" type="user" id="4cy-Ve-zom"/>
+                                    <constraint firstAttribute="height" constant="368" id="vOy-cb-MeQ"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="CustomCellRestorationId" selectionStyle="none" indentationWidth="10" reuseIdentifier="CustomResultCell" rowHeight="42" id="UaL-nS-MoF" userLabel="Result Cell" customClass="CustomResultCell">
@@ -1463,7 +1460,6 @@
                             <constraint firstItem="tqE-D5-zFN" firstAttribute="leading" secondItem="8FE-2P-Ahr" secondAttribute="leading" type="default" id="eIs-Gf-66e"/>
                             <constraint firstItem="vrL-e9-S2s" firstAttribute="leading" secondItem="8FE-2P-Ahr" secondAttribute="leading" type="default" id="gDZ-fM-qCo"/>
                             <constraint firstItem="vrL-e9-S2s" firstAttribute="top" secondItem="tqE-D5-zFN" secondAttribute="bottom" constant="1" type="user" id="iS1-h9-DaJ"/>
-                            <constraint firstItem="inE-DI-3nL" firstAttribute="bottom" secondItem="8FE-2P-Ahr" secondAttribute="bottom" type="default" id="jhn-Zz-UzB"/>
                             <constraint firstItem="vrL-e9-S2s" firstAttribute="top" secondItem="tqE-D5-zFN" secondAttribute="bottom" constant="1" type="user" id="wwD-Fi-xmz"/>
                         </constraints>
                     </view>
@@ -1508,9 +1504,6 @@
     <classes>
         <class className="BannerViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/BannerViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="adBannerView" candidateClass="ADBannerView"/>
-            </relationships>
         </class>
         <class className="CustomFixtureCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomFixtureCell.h"/>
@@ -1644,10 +1637,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="guz-h0-rin"/>
-        <segue reference="tYH-qn-cIh"/>
-        <segue reference="w7Y-6N-5L6"/>
-        <segue reference="Gme-cR-3kr"/>
         <segue reference="nlu-6i-a2D"/>
+        <segue reference="LpR-ns-O5m"/>
+        <segue reference="w7Y-6N-5L6"/>
+        <segue reference="guz-h0-rin"/>
+        <segue reference="Gme-cR-3kr"/>
     </inferredMetricsTieBreakers>
 </document>
