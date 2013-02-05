@@ -26,6 +26,11 @@
 
 @synthesize fixture, mapView, location, mapItem;
 
+- (void)setupNavBar {
+    self.parentViewController.navigationItem.title = self.navigationItem.title;
+    [self.parentViewController.navigationItem setRightBarButtonItem:self.navigationItem.rightBarButtonItem];
+}
+
 - (void)loadNetworkExceptionAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
@@ -62,6 +67,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupNavBar];
     [self setNavTitle];
 
     if ([fixture.location caseInsensitiveCompare:@"TBA"] == NSOrderedSame) {
@@ -69,9 +75,9 @@
         [self loadGeocodeExceptionAlert];
         return;
     } else {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tabBarController.view animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.labelText = @"Searching...";
-        [self.tabBarController.view addSubview:hud];
+        [self.view addSubview:hud];
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             @try {
                 NSError *error;
@@ -131,7 +137,7 @@
                 [self loadNetworkExceptionAlert];
             }
             dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
             });
         });
     }

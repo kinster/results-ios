@@ -6,9 +6,6 @@
 //  Copyright (c) 2012 Kinman Li. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <iAd/iAd.h>
-
 @class Division;
 
 @interface LeagueResultsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>

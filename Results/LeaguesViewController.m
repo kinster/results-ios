@@ -23,20 +23,14 @@
 
 @synthesize leaguesList, searchBar, sections, leagueTablesView;
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+- (void)setupNavBar {
+    self.parentViewController.navigationItem.title = self.navigationItem.title;
+    [self.parentViewController.navigationItem setRightBarButtonItem:self.navigationItem.rightBarButtonItem];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willBeginBannerViewActionNotification:) name:BannerViewActionWillBegin object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishBannerViewActionNotification:) name:BannerViewActionDidFinish object:nil];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self setupNavBar];
 }
 
 - (void)loadNetworkExceptionAlert {
@@ -152,10 +146,10 @@
     if (whiteSpaceRange.location != NSNotFound) {
     }
 
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"Searching...";
     
-    [self.navigationController.view addSubview:hud];
+    [self.view addSubview:hud];
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         // Do something...
@@ -172,7 +166,7 @@
         }
         // done
         dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self.leagueTablesView reloadData];
         });
     });
@@ -233,18 +227,18 @@
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-    LeagueSeasonViewController *viewController = [[LeagueSeasonViewController alloc] init];
-    League *league = [[sections valueForKey:[[[sections allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
-    [viewController setLeague:league];
-
-    [self.navigationController pushViewController:viewController animated:YES];
+//    LeagueSeasonViewController *viewController = [[LeagueSeasonViewController alloc] init];
+//    League *league = [[sections valueForKey:[[[sections allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+//    [viewController setLeague:league];
+//
+//    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 - (IBAction)getTop500:(id)sender {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"Searching...";
     
-    [self.navigationController.view addSubview:hud];
+    [self.view addSubview:hud];
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         @try {
@@ -257,7 +251,7 @@
             [self loadNetworkExceptionAlert];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self.leagueTablesView reloadData];
         });
     });
@@ -303,18 +297,16 @@
  */
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-//    LeagueSeasonViewController *leagueSeasonViewController = [storyBoard instantiateViewControllerWithIdentifier:@"LeagueSeasonViewController"];
-//
-//    NSLog(@"LeaguesViewController indexPath: %d", indexPath.row);
-//    League *league = nil;
-//    league = [[sections valueForKey:[[[sections allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
-//    NSLog(@"league: %@", league.leagueId);
-//    [leagueSeasonViewController setLeague:league];
-//    
-//    BannerViewController *bannerViewController = [[BannerViewController alloc] initWithContentViewController:leagueSeasonViewController];
-//
-//    [self.navigationController pushViewController:bannerViewController animated:YES];
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    LeagueSeasonViewController *viewController = [storyBoard instantiateViewControllerWithIdentifier:@"LeagueSeasonViewController"];
+
+    League *league = nil;
+    league = [[sections valueForKey:[[[sections allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+    [viewController setLeague:league];
+    
+    BannerViewController *bannerViewController = [[BannerViewController alloc] initWithContentViewController:viewController];
+
+    [self.navigationController pushViewController:bannerViewController animated:YES];
 }
 
 @end

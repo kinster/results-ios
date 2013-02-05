@@ -17,6 +17,7 @@
 #import "ServerManager.h"
 #import "MBProgressHUD.h"
 #import "AppDelegate.h"
+#import "BannerViewController.h"
 
 @interface LeagueFixturesViewController ()
 
@@ -26,6 +27,11 @@
 @implementation LeagueFixturesViewController
 
 @synthesize fixtureList, division, fixturesTable, nameLabel, leagueBadge, subtitle;
+
+- (void)setupNavBar {
+    self.parentViewController.navigationItem.title = self.navigationItem.title;
+    [self.parentViewController.navigationItem setRightBarButtonItem:self.navigationItem.rightBarButtonItem];
+}
 
 - (void)loadNetworkExceptionAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -97,7 +103,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    [self setupNavBar];
     DLog(@"LeagueFixturesViewController");
 
     Season *season = [division season];
@@ -226,16 +232,6 @@
 }
 */
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     DLog(@"In prepareForSegue");
     
@@ -250,5 +246,25 @@
         [destinationController setFixture:fixture];
     }
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Navigation logic may go here. Create and push another view controller.
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    LeagueFixtureDetailsViewController *leagueFixtureDetailsViewController = [storyBoard instantiateViewControllerWithIdentifier:@"LeagueFixtureDetailsViewController"];
+    
+    DLog(@"%d", indexPath.row);
+    Fixture *fixture = [fixtureList objectAtIndex:indexPath.row];
+    
+    DLog(@"Fixture location: %@", fixture.location);
+    DLog(@"%@", segue.destinationViewController);
+    [leagueFixtureDetailsViewController setFixture:fixture];
+    
+    BannerViewController *bannerViewController = [[BannerViewController alloc] initWithContentViewController:leagueFixtureDetailsViewController];
+    
+    [self.navigationController pushViewController:bannerViewController animated:YES];
+    
+    DLog(@"end");
+}
+
 
 @end

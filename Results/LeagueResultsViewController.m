@@ -24,6 +24,11 @@
 
 @synthesize resultsList, division, nameLabel, leagueBadge, subtitle, resultsTable;
 
+- (void)setupNavBar {
+    self.parentViewController.navigationItem.title = self.navigationItem.title;
+    [self.parentViewController.navigationItem setRightBarButtonItem:self.navigationItem.rightBarButtonItem];
+}
+
 - (void)loadNetworkExceptionAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
@@ -95,7 +100,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    [self setupNavBar];
     Season *season = [division season];
     
     nameLabel.text = [NSString stringWithFormat:@"%@", [season league].name];

@@ -17,7 +17,7 @@
 
 @implementation AppDelegate
 
-@synthesize internetActive, iAdBannerView;
+@synthesize internetActive;
 
 - (void)customizeAppearance {
     // Create resizable images
@@ -46,24 +46,20 @@
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    iAdBannerView = [[ADBannerView alloc] initWithFrame:CGRectZero];
-    NSLog(@"didFinishLaunchingWithOptions %@", iAdBannerView);
-
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
     UINavigationController *navigationController = [storyBoard instantiateViewControllerWithIdentifier:@"UINavMainController"];
+    LeaguesViewController *leaguesViewController = [navigationController.viewControllers objectAtIndex:0];
+    
+    BannerViewController *bannerViewController = [[BannerViewController alloc] initWithContentViewController:leaguesViewController];
 
-    BannerViewController *bannerViewController = [[BannerViewController alloc] initWithContentViewController:navigationController];
-
-//    navigationController.viewControllers = @[
-//        [[BannerViewController alloc] initWithContentViewController:[navigationController.viewControllers objectAtIndex:0]
-//     ]];
+    navigationController.viewControllers = @[bannerViewController];
 //    UITabBarController *tabBar = [storyBoard instantiateViewControllerWithIdentifier:@"TableTabBarController"];
 //
 //    LeagueTableViewController *viewController0 = [tabBar.viewControllers objectAtIndex:0];
 //    LeagueFixturesViewController *viewController1 = [tabBar.viewControllers objectAtIndex:1];
 //    LeagueResultsViewController *viewController2 = [tabBar.viewControllers objectAtIndex:2];
-//
-    self.window.rootViewController = bannerViewController;
+
+    self.window.rootViewController = navigationController;
 
     [self.window makeKeyAndVisible];
     [self customizeAppearance];
@@ -125,27 +121,4 @@
     [self checkNetworkStatus:networkStatus];
 }
 
-- (void)tabController:(UITabBarController *)tabController didSelectViewController:
-(UIViewController *)viewController {
-
-}
-
-+ (AppDelegate *) sharedApplication {
-    id result = [[UIApplication sharedApplication] delegate];
-    
-    if (![result isMemberOfClass:[AppDelegate class]]) {
-        result = nil;
-    }
-    return result;
-}
-
-+ (ADBannerView *) adBannerView {
-    ADBannerView *adBannerView = [self sharedApplication].iAdBannerView;
-    DLog(@"adBannerView %@", adBannerView);
-    return adBannerView;
-}
-
-+ (void) setBannerForTabbedViewController {
-    NSLog(@"setBannerForTabbedViewController");
-}
 @end

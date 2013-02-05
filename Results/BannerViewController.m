@@ -50,25 +50,12 @@
 NSString * const BannerViewActionWillBegin = @"BannerViewActionWillBegin";
 NSString * const BannerViewActionDidFinish = @"BannerViewActionDidFinish";
 
-@interface BannerViewController ()
-
-// This method is used by BannerViewSingletonController to inform instances of BannerViewController that the banner has loaded/unloaded.
-- (void)updateLayout;
-
-@end
-
-@interface BannerViewManager : NSObject <ADBannerViewDelegate>
-
-@property (nonatomic, readonly) ADBannerView *bannerView;
-
-+ (BannerViewManager *)sharedInstance;
-
-- (void)addBannerViewController:(BannerViewController *)controller;
-- (void)removeBannerViewController:(BannerViewController *)controller;
+@interface BannerViewController () <ADBannerViewDelegate>
 
 @end
 
 @implementation BannerViewController {
+    ADBannerView *_bannerView;
     UIViewController *_contentController;
 }
 
@@ -76,20 +63,23 @@ NSString * const BannerViewActionDidFinish = @"BannerViewActionDidFinish";
 {
     self = [super init];
     if (self != nil) {
+        // On iOS 6 ADBannerView introduces a new initializer, use it when available.
+        if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)]) {
+            _bannerView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
+        } else {
+            _bannerView = [[ADBannerView alloc] init];
+        }
+        _bannerView.delegate = self;
         _contentController = contentController;
-        [[BannerViewManager sharedInstance] addBannerViewController:self];
+        self.tabBarItem = _contentController.tabBarItem;
     }
     return self;
-}
-
-- (void)dealloc
-{
-    [[BannerViewManager sharedInstance] removeBannerViewController:self];
 }
 
 - (void)loadView
 {
     UIView *contentView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [contentView addSubview:_bannerView];
     [self addChildViewController:_contentController];
     [contentView addSubview:_contentController.view];
     [_contentController didMoveToParentViewController:self];
@@ -116,45 +106,33 @@ NSString * const BannerViewActionDidFinish = @"BannerViewActionDidFinish";
 - (void)viewDidLayoutSubviews
 {
     CGRect contentFrame = self.view.bounds, bannerFrame = CGRectZero;
-    ADBannerView *bannerView = [BannerViewManager sharedInstance].bannerView;
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
-    NSString *contentSizeIdentifier;
     // If configured to support iOS <6.0, then we need to set the currentContentSizeIdentifier in order to resize the banner properly.
     // This continues to work on iOS 6.0, so we won't need to do anything further to resize the banner.
     if (contentFrame.size.width < contentFrame.size.height) {
-        contentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
+        _bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
     } else {
-        contentSizeIdentifier = ADBannerContentSizeIdentifierLandscape;
+        _bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierLandscape;
     }
-    bannerFrame.size = [ADBannerView sizeFromBannerContentSizeIdentifier:contentSizeIdentifier];
+    bannerFrame = _bannerView.frame;
 #else
     // If configured to support iOS >= 6.0 only, then we want to avoid currentContentSizeIdentifier as it is deprecated.
     // Fortunately all we need to do is ask the banner for a size that fits into the layout area we are using.
     // At this point in this method contentFrame=self.view.bounds, so we'll use that size for the layout.
-    bannerFrame.size = [bannerView sizeThatFits:contentFrame.size];
+    bannerFrame.size = [_bannerView sizeThatFits:contentFrame.size];
 #endif
     
-    if (bannerView.bannerLoaded) {
+    if (_bannerView.bannerLoaded) {
         contentFrame.size.height -= bannerFrame.size.height;
         bannerFrame.origin.y = contentFrame.size.height;
     } else {
         bannerFrame.origin.y = contentFrame.size.height;
     }
-    
-    NSLog(@"_contentController %@", _contentController);
     _contentController.view.frame = contentFrame;
-    // We only want to modify the banner view itself if this view controller is actually visible to the user.
-    // This prevents us from modifying it while it is being displayed elsewhere.
-    if (self.isViewLoaded && (self.view.window != nil)) {
-        [self.view addSubview:bannerView];
-        bannerView.frame = bannerFrame;
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
-        bannerView.currentContentSizeIdentifier = contentSizeIdentifier;
-#endif
-    }
+    _bannerView.frame = bannerFrame;
 }
 
-- (void)updateLayout
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner
 {
     [UIView animateWithDuration:0.25 animations:^{
         [self.view setNeedsLayout];
@@ -162,72 +140,12 @@ NSString * const BannerViewActionDidFinish = @"BannerViewActionDidFinish";
     }];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.view addSubview:[BannerViewManager sharedInstance].bannerView];
-}
-
-- (NSString *)title
-{
-    return _contentController.title;
-}
-
-@end
-
-@implementation BannerViewManager {
-    ADBannerView *_bannerView;
-    NSMutableSet *_bannerViewControllers;
-}
-
-+ (BannerViewManager *)sharedInstance
-{
-    static BannerViewManager *sharedInstance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [[BannerViewManager alloc] init];
-    });
-    return sharedInstance;
-}
-
-- (instancetype)init
-{
-    self = [super init];
-    if (self != nil) {
-        // On iOS 6 ADBannerView introduces a new initializer, use it when available.
-        if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)]) {
-            _bannerView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
-        } else {
-            _bannerView = [[ADBannerView alloc] init];
-        }
-        _bannerView.delegate = self;
-        _bannerViewControllers = [[NSMutableSet alloc] init];
-    }
-    return self;
-}
-
-- (void)addBannerViewController:(BannerViewController *)controller
-{
-    [_bannerViewControllers addObject:controller];
-}
-
-- (void)removeBannerViewController:(BannerViewController *)controller
-{
-    [_bannerViewControllers removeObject:controller];
-}
-
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner
-{
-    for (BannerViewController *bvc in _bannerViewControllers) {
-        [bvc updateLayout];
-    }
-}
-
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
 {
-    for (BannerViewController *bvc in _bannerViewControllers) {
-        [bvc updateLayout];
-    }
+    [UIView animateWithDuration:0.25 animations:^{
+        [self.view setNeedsLayout];
+        [self.view layoutIfNeeded];
+    }];
 }
 
 - (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
@@ -240,6 +158,5 @@ NSString * const BannerViewActionDidFinish = @"BannerViewActionDidFinish";
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:BannerViewActionDidFinish object:self];
 }
-
 
 @end

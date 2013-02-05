@@ -17,6 +17,7 @@
 #import "ServerManager.h"
 #import "MBProgressHUD.h"
 #import "AppDelegate.h"
+#import "BannerViewController.h"
 
 @interface TeamFixturesViewController ()
 
@@ -24,7 +25,12 @@
 
 @implementation TeamFixturesViewController
 
-@synthesize fixtureList, team, leagueBadge, nameLabel, subtitle, teamFixturesTable, adBannerView;
+@synthesize fixtureList, team, leagueBadge, nameLabel, subtitle, teamFixturesTable;
+
+- (void)setupNavBar {
+    self.parentViewController.navigationItem.title = self.navigationItem.title;
+    [self.parentViewController.navigationItem setRightBarButtonItem:self.navigationItem.rightBarButtonItem];
+}
 
 - (void)loadNetworkExceptionAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -72,38 +78,6 @@
     }
 }
 
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
-    DLog(@"bannerViewDidLoadAd loaded %d", banner.isBannerLoaded);
-    banner.hidden = NO;
-    [self toggleBanner:banner];
-}
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    DLog(@"didFailToReceiveAdWithError loaded %d", banner.isBannerLoaded);
-    banner.hidden = YES;
-    [self toggleBanner:banner];
-}
-
-- (void)toggleBanner:(ADBannerView *)banner {
-    CGRect bannerFrame = banner.frame;
-    CGRect contentFrame = [UIScreen mainScreen].bounds;
-    
-    CGFloat height = contentFrame.size.height-112;
-    DLog(@"Content height %f %@", height, banner);
-    if ([banner isBannerLoaded]) {
-        DLog(@"Has ad, showing");
-        height -= banner.frame.size.height;
-        bannerFrame.origin.y = height;
-    } else {
-        DLog(@"No ad, hiding");
-        bannerFrame.origin.y = height;
-    }
-    banner.frame = bannerFrame;
-    self.teamFixturesTable.frame = CGRectMake(teamFixturesTable.frame.origin.x,teamFixturesTable.frame.origin.y,teamFixturesTable.frame.size.width,height-85);
-    
-    DLog(@"New content height %@ %f %f %f %f %f", banner, contentFrame.size.height, banner.frame.origin.y, adBannerView.frame.origin.y, teamFixturesTable.frame.size.height, teamFixturesTable.contentSize.height);
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self setNavTitle];
@@ -128,10 +102,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    [self setAdBannerView:AppDelegate.adBannerView];
-    adBannerView.delegate = self;
-    
+    [self setupNavBar];
     DLog(@"TeamFixturesViewController");
     
     DLog(@"Fixtures badge: %@", team.badge);
@@ -161,7 +132,6 @@
             refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
             [refreshControl addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
             [self.teamFixturesTable addSubview:refreshControl];
-            [self toggleBanner:adBannerView];
         });
     });
 
@@ -247,6 +217,25 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Navigation logic may go here. Create and push another view controller.
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    LeagueFixtureDetailsViewController *leagueFixtureDetailsViewController = [storyBoard instantiateViewControllerWithIdentifier:@"LeagueFixtureDetailsViewController"];
+    
+    DLog(@"%d", indexPath.row);
+    Fixture *fixture = [fixtureList objectAtIndex:indexPath.row];
+    
+    DLog(@"Fixture location: %@", fixture.location);
+    DLog(@"%@", segue.destinationViewController);
+    [leagueFixtureDetailsViewController setFixture:fixture];
+    
+    BannerViewController *bannerViewController = [[BannerViewController alloc] initWithContentViewController:leagueFixtureDetailsViewController];
+    
+    [self.navigationController pushViewController:bannerViewController animated:YES];
+    
+    DLog(@"end");
+}
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -282,20 +271,7 @@
 }
 */
 
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
-}
-
 - (void)viewDidUnload {
-    [self setAdBannerView:nil];
     [super viewDidUnload];
 }
 @end

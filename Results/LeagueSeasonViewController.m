@@ -23,20 +23,20 @@
 
 @synthesize league, seasonsList, seasonsTableView;
 
+- (void)setupNavBar {
+    self.parentViewController.navigationItem.title = self.navigationItem.title;
+    [self.parentViewController.navigationItem setRightBarButtonItem:self.navigationItem.rightBarButtonItem];
+}
+
 - (void)loadNetworkExceptionAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
-}
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -57,9 +57,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willBeginBannerViewActionNotification:) name:BannerViewActionWillBegin object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishBannerViewActionNotification:) name:BannerViewActionDidFinish object:nil];
-    
+    [self setupNavBar];
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Searching...";
     
@@ -152,6 +150,19 @@
         LeagueDivisionsViewController *viewController = [segue destinationViewController];
         [viewController setSeason:season];
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    LeagueDivisionsViewController *viewController = [storyBoard instantiateViewControllerWithIdentifier:@"LeagueDivisionsViewController"];
+    
+    DLog(@"%d", indexPath.row);
+    Season *season = [seasonsList objectAtIndex:indexPath.row];
+    [viewController setSeason:season];
+  
+    BannerViewController *bannerViewController = [[BannerViewController alloc] initWithContentViewController:viewController];
+    
+    [self.navigationController pushViewController:bannerViewController animated:YES];
 }
 
 /*

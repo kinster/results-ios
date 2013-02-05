@@ -26,6 +26,11 @@
 
 @synthesize divisionsList, season, divisionsTableView;
 
+- (void)setupNavBar {
+    self.parentViewController.navigationItem.title = self.navigationItem.title;
+    [self.parentViewController.navigationItem setRightBarButtonItem:self.navigationItem.rightBarButtonItem];
+}
+
 -(UIImage *)getLeagueImage:(NSString *)serverName AndLeagueId:(NSString *)leagueId {
     NSError *error;
     NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@.json", leagueId];
@@ -73,7 +78,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self setupNavBar];
 
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Searching...";
@@ -177,7 +182,6 @@
     DLog(@"controller 2: %@", viewController2);
     [viewController2 setDivision:division];
     
-    [AppDelegate setBannerForTabbedViewController];
 //    self.tabBarController.viewControllers = @[
 //        [[BannerViewController alloc] initWithContentViewController:viewController0],
 //        [[BannerViewController alloc] initWithContentViewController:viewController1],
@@ -224,16 +228,32 @@
  }
  */
 
-#pragma mark - Table view delegate
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    UITabBarController *tabBarController = [storyBoard instantiateViewControllerWithIdentifier:@"TableTabBarController"];
+
+    DLog(@"%d", indexPath.row);
+    Division *division = [divisionsList objectAtIndex:indexPath.row];
+    
+    LeagueTableViewController *viewController0 = [tabBarController.viewControllers objectAtIndex:0];
+    [viewController0 setDivision:division];
+    
+    DLog(@"ShowFixtures");
+    LeagueFixturesViewController *viewController1 = [tabBarController.viewControllers objectAtIndex:1];
+    
+    [viewController1 setDivision:division];
+    LeagueResultsViewController *viewController2 = [tabBarController.viewControllers objectAtIndex:2];
+    [viewController2 setDivision:division];
+    
+    tabBarController.viewControllers = @[
+        [[BannerViewController alloc] initWithContentViewController:viewController0],
+        [[BannerViewController alloc] initWithContentViewController:viewController1],
+        [[BannerViewController alloc] initWithContentViewController:viewController2],
+    ];
+    [self.navigationController pushViewController:tabBarController animated:YES];
+    
+    DLog(@"end");
 }
 
 @end

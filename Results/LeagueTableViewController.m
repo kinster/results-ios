@@ -19,6 +19,7 @@
 #import "MBProgressHUD.h"
 #import "LeaguesViewController.h"
 #import "AppDelegate.h"
+#import "BannerViewController.h"
 
 @interface LeagueTableViewController ()
 
@@ -27,6 +28,11 @@
 @implementation LeagueTableViewController
 
 @synthesize teamList, division, nameLabel, subtitle, leagueBadge, leagueTable;
+
+- (void)setupNavBar {
+    self.parentViewController.navigationItem.title = self.navigationItem.title;
+    [self.parentViewController.navigationItem setRightBarButtonItem:self.navigationItem.rightBarButtonItem];
+}
 
 - (void)loadNetworkExceptionAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -77,7 +83,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    [self setupNavBar];
     
     DLog(@"LeagueTableViewController");
     
@@ -110,6 +116,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self setNavTitle];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -242,6 +249,56 @@
     }
     DLog(@"end of prepareForSegue");
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Navigation logic may go here. Create and push another view controller.
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    UITabBarController *tabBarViewController = [storyBoard instantiateViewControllerWithIdentifier:@"DetailsTabBarController"];
+
+    Team *team = [teamList objectAtIndex:indexPath.row];
+    
+    DLog(@"Team: %@ - %d %d", team.name, indexPath.row, teamList.count);
+    TeamDetailsViewController *teamDetailsViewController = [tabBarViewController.viewControllers objectAtIndex:0];
+    [teamDetailsViewController setTeam:team];
+    
+    @try {
+        
+        NSError *error;
+        ServerManager *serverManager = [ServerManager sharedServerManager];
+        NSString *serverName = [serverManager serverName];
+        
+        Season *season = [division season];
+        NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@.json", [season league].leagueId, season.seasonId, division.divisionId, team.teamId];
+        DLog(@"%@", urlString);
+        NSURL *url = [NSURL URLWithString:urlString];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        NSArray *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+        DLog(@"%@", jsonData);
+        NSString *image = [jsonData[0] objectForKey:@"image_url"];
+        team.badge = image;
+        DLog(@"image: %@", image);
+    } @catch (NSException *exception) {
+        NSLog(@"Exception: %@ %@", [exception name], [exception reason]);
+        [self loadNetworkExceptionAlert];
+    }
+    [teamDetailsViewController setTeam:team];
+    TeamFixturesViewController *teamFixturesController = [tabBarViewController.viewControllers objectAtIndex:1];
+    [teamFixturesController setTeam:team];
+    TeamResultsViewController *teamResultsController = [tabBarViewController.viewControllers objectAtIndex:2];
+    [teamResultsController setTeam:team];
+    
+    tabBarViewController.viewControllers = @[
+                                         [[BannerViewController alloc] initWithContentViewController:teamDetailsViewController],
+                                         [[BannerViewController alloc] initWithContentViewController:teamFixturesController],
+                                         [[BannerViewController alloc] initWithContentViewController:teamResultsController],
+                                         ];
+    
+    [self.navigationController pushViewController:tabBarViewController animated:YES];
+
+    DLog(@"end");
+}
+
+
 
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 //    return nil;

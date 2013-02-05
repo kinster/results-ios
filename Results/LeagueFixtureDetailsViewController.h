@@ -7,6 +7,7 @@
 //
 
 #import <MapKit/MapKit.h>
+
 @class Fixture;
 
 @interface LeagueFixtureDetailsViewController : UIViewController<MKMapViewDelegate>
