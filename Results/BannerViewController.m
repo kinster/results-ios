@@ -64,7 +64,7 @@ NSString * const BannerViewActionDidFinish = @"BannerViewActionDidFinish";
     self = [super init];
     if (self != nil) {
         NSString *model = [[UIDevice currentDevice] model];
-        NSLog(@"%@", model);
+//        NSLog(@"%@", model);
 //        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         if ([model hasPrefix:@"iPhone"]) {
             // On iOS 6 ADBannerView introduces a new initializer, use it when available.
