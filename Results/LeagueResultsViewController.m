@@ -25,7 +25,7 @@
 @synthesize resultsList, division, nameLabel, leagueBadge, subtitle, resultsTable;
 
 - (void)setupNavBar {
-    self.parentViewController.navigationItem.title = self.navigationItem.title;
+    self.parentViewController.navigationItem.title = self.tabBarController.title;
     [self.parentViewController.navigationItem setRightBarButtonItem:self.navigationItem.rightBarButtonItem];
 }
 
@@ -160,6 +160,7 @@
 
 - (void)setNavTitle {
     self.tabBarController.title = @"League Results";
+    self.parentViewController.navigationItem.title = self.tabBarController.title;
 }
 
 - (void)didReceiveMemoryWarning {

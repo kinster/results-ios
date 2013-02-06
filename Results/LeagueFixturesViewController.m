@@ -29,7 +29,7 @@
 @synthesize fixtureList, division, fixturesTable, nameLabel, leagueBadge, subtitle;
 
 - (void)setupNavBar {
-    self.parentViewController.navigationItem.title = self.navigationItem.title;
+    self.parentViewController.navigationItem.title = self.tabBarController.title;
     [self.parentViewController.navigationItem setRightBarButtonItem:self.navigationItem.rightBarButtonItem];
 }
 
@@ -165,6 +165,7 @@
 
 - (void)setNavTitle {
     self.tabBarController.title = @"League Fixtures";
+    self.parentViewController.navigationItem.title = self.tabBarController.title;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -26,7 +26,7 @@
 @synthesize name, badge, team, playersTable, playersList, subtitle;
 
 - (void)setupNavBar {
-    self.parentViewController.navigationItem.title = self.navigationItem.title;
+    self.parentViewController.navigationItem.title = self.tabBarController.title;
     [self.parentViewController.navigationItem setRightBarButtonItem:self.navigationItem.rightBarButtonItem];
 }
 

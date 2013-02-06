@@ -28,7 +28,7 @@
 @synthesize fixtureList, team, leagueBadge, nameLabel, subtitle, teamFixturesTable;
 
 - (void)setupNavBar {
-    self.parentViewController.navigationItem.title = self.navigationItem.title;
+    self.parentViewController.navigationItem.title = self.tabBarController.title;
     [self.parentViewController.navigationItem setRightBarButtonItem:self.navigationItem.rightBarButtonItem];
 }
 

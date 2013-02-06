@@ -30,7 +30,7 @@
 @synthesize teamList, division, nameLabel, subtitle, leagueBadge, leagueTable;
 
 - (void)setupNavBar {
-    self.parentViewController.navigationItem.title = self.navigationItem.title;
+    self.parentViewController.parentViewController.navigationItem.title = self.tabBarController.title;
     [self.parentViewController.navigationItem setRightBarButtonItem:self.navigationItem.rightBarButtonItem];
 }
 
@@ -83,10 +83,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupNavBar];
-    
-    DLog(@"LeagueTableViewController");
-    
+   [self setupNavBar];
     [self setNavTitle];
     
     Season *season = [division season];
@@ -165,6 +162,9 @@
 
 - (void)setNavTitle {
     self.tabBarController.title = @"League Table";
+    self.parentViewController.navigationItem.title = self.tabBarController.title;
+    self.parentViewController.parentViewController.navigationItem.title = self.tabBarController.title;
+    NSLog(@"setNavTitle %@", self.tabBarController.title);
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
