@@ -63,13 +63,18 @@ NSString * const BannerViewActionDidFinish = @"BannerViewActionDidFinish";
 {
     self = [super init];
     if (self != nil) {
-        // On iOS 6 ADBannerView introduces a new initializer, use it when available.
-        if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)]) {
-            _bannerView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
-        } else {
-            _bannerView = [[ADBannerView alloc] init];
+        NSString *model = [[UIDevice currentDevice] model];
+        NSLog(@"%@", model);
+//        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        if ([model hasPrefix:@"iPhone"]) {
+            // On iOS 6 ADBannerView introduces a new initializer, use it when available.
+            if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)]) {
+                _bannerView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
+            } else {
+                _bannerView = [[ADBannerView alloc] init];
+            }
+            _bannerView.delegate = self;
         }
-        _bannerView.delegate = self;
         _contentController = contentController;
         self.tabBarItem = _contentController.tabBarItem;
     }
