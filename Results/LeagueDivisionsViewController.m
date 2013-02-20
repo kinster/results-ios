@@ -23,7 +23,7 @@
 
 @implementation LeagueDivisionsViewController
 
-@synthesize divisionsList, season, divisionsTableView, selectedDivisions;
+@synthesize divisionsList, season, divisionsTableView, selectedDivisions, otherDivisions;
 
 - (void) readInSavedDivisions {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -33,6 +33,9 @@
     
     NSMutableArray *divisions = [[NSMutableArray alloc] initWithContentsOfFile:path];
     
+    selectedDivisions = [[NSMutableArray alloc] init];
+    otherDivisions = [[NSMutableArray alloc] init];
+    
     League *newLeague = nil;
     Season *newSeason = nil;
     Division *division = nil;
@@ -41,24 +44,31 @@
         NSString *leagueName = [dict objectForKey:@"LeagueName"];
         NSString *seasonId = [dict objectForKey:@"SeasonId"];
         NSString *seasonName = [dict objectForKey:@"SeasonName"];
-        
         BOOL isLeague = [[NSString stringWithFormat:@"%@", leagueId] isEqualToString:[NSString stringWithFormat:@"%@", [season league].leagueId]];
         BOOL isSeason = [[NSString stringWithFormat:@"%@", seasonId] isEqualToString:[NSString stringWithFormat:@"%@", season.seasonId]];
 
+        NSString *divisionId = [dict objectForKey:@"DivisionId"];
+        NSString *divisionName = [dict objectForKey:@"DivisionName"];
+        newLeague = [[League alloc] initWithIdAndName:leagueId AndName:leagueName];
+        newSeason = [[Season alloc] initWithIdAndName:seasonId AndName:seasonName];
+        [newSeason setLeague:newLeague];
+        division = [[Division alloc] initWithIdAndName:divisionId AndName:divisionName];
+        
+        [division setSeason:newSeason];
+
         if (isLeague && isSeason) {
-            NSString *divisionId = [dict objectForKey:@"DivisionId"];
-            NSString *divisionName = [dict objectForKey:@"DivisionName"];
-            newLeague = [[League alloc] initWithIdAndName:leagueId AndName:leagueName];
-            newSeason = [[Season alloc] initWithIdAndName:seasonId AndName:seasonName];
-            [newSeason setLeague:newLeague];
-            division = [[Division alloc] initWithIdAndName:divisionId AndName:divisionName];
-
-            [division setSeason:newSeason];
+            DLog(@"selectedDivisions %@ %@", selectedDivisions, division);
+            [selectedDivisions addObject:division];
         }
-        [selectedDivisions addObject:division];
+        else {
+            [otherDivisions addObject:division];
+        }
+        DLog(@"seasonName: %@", [division.season name]);
 
+        DLog(@"selectedDivisions: %@ otherDivisions: %@", selectedDivisions, otherDivisions);
         DLog(@"plist: %@ %@ %@ %@", [[season league] leagueId], [season seasonId], [division divisionId], [division name]);
     }
+    DLog(@"selectedDivisions: %@ otherDivisions: %@", selectedDivisions, otherDivisions);
 }
 
 -(UIImage *)getLeagueImage:(NSString *)serverName AndLeagueId:(NSString *)leagueId {
@@ -90,10 +100,10 @@
     selectedDivisions = [[NSMutableArray alloc] init];
     [self readInSavedDivisions];
 
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"Searching...";
     
-    [self.navigationController.view addSubview:hud];
+    [self.view addSubview:hud];
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
 
@@ -134,7 +144,7 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self.divisionsTableView reloadData];
         });
     });
@@ -269,21 +279,22 @@
         [dict setObject:[season name] forKey:@"SeasonName"];
         [dict setObject:division.divisionId forKey:@"DivisionId"];
         [dict setObject:division.name forKey:@"DivisionName"];
+        DLog(@"seasonName: %@", [division.season name]);
+        [array addObject:dict];
+    }
+    for (Division *division in otherDivisions) {
+        dict = [[NSMutableDictionary alloc] init];
+        [dict setObject:[division.season league].leagueId forKey:@"LeagueId"];
+        [dict setObject:[division.season league].name forKey:@"LeagueName"];
+        [dict setObject:[season seasonId] forKey:@"SeasonId"];
+        [dict setObject:[season name] forKey:@"SeasonName"];
+        [dict setObject:division.divisionId forKey:@"DivisionId"];
+        [dict setObject:division.name forKey:@"DivisionName"];
+        DLog(@"seasonName: %@", [division.season name]);
         [array addObject:dict];
     }
     DLog(@"Array size %d", [array count]);
-    
-    //    for (NSMutableDictionary *dict in array) {
-    //        DLog(@"%@ %@", dict, [dict class]);
-    //        NSString *leagueId = [dict valueForKey:@"LeagueId"];
-    //        NSString *leagueName = [dict valueForKey:@"LeagueName"];
-    //        NSString *seasonId = [dict valueForKey:@"SeasonId"];
-    //        NSString *seasonName = [dict valueForKey:@"SeasonName"];
-    //        NSString *divisionId = [dict valueForKey:@"DivisionId"];
-    //        NSString *divisionName = [dict valueForKey:@"DivisionName"];
-    //        DLog(@"plist: %@ %@ %@ %@ %@ %@", leagueId, leagueName, seasonId, seasonName, divisionId, divisionName);
-    //    }
-    
+        
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     

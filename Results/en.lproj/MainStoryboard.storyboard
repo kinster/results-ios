@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="arA-7S-civ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="arA-7S-civ">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
         <!--League Table View Controller - League Table-->
@@ -1450,7 +1450,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="Vq3-lG-rjw">
             <objects>
-                <tabBarController id="arA-7S-civ" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="InitialTabBarController" id="arA-7S-civ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="pzM-C2-XXg"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -1513,144 +1513,6 @@
         <image name="180-stickynote.png" width="22" height="22"/>
         <image name="83-calendar.png" width="23" height="25"/>
     </resources>
-    <classes>
-        <class className="CustomDivisionCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomDivisionCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="radioButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="CustomFixtureCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomFixtureCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="awayTeam" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="date" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="homeTeam" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="CustomPlayerCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomPlayerCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="CustomResultCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomResultCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="awayTeam" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="date" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="homeTeam" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="score" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="CustomTableCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomTableCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="draws" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="goalDiff" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="goalsAgainst" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="goalsFor" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="losses" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="played" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="points" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="position" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="team" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="wins" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="LeagueDivisionsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueDivisionsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="radioButtonSelected:"/>
-                <relationship kind="outlet" name="divisionsTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="LeagueFixtureDetailsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueFixtureDetailsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="navigate:"/>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-            </relationships>
-        </class>
-        <class className="LeagueFixturesViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueFixturesViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="fixturesTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="LeagueResultsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueResultsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="resultsTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="LeagueSeasonViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueSeasonViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="seasonsTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="LeagueTableViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="leagueTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="LeaguesViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeaguesViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="getTop500:"/>
-                <relationship kind="outlet" name="leagueTablesView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="SavedDivisionsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SavedDivisionsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="divisionsTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="TeamDetailsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeamDetailsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="badge" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="playersTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="TeamFixturesViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeamFixturesViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="teamFixturesTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="TeamResultsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeamResultsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="teamResultsTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

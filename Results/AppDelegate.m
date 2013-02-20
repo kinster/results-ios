@@ -42,8 +42,9 @@
 
     // Override point for customization after application launch.
     [self customizeAppearance];
-    UIViewController *leaguesViewController = [[LeaguesViewController alloc] init];
-    [self.window addSubview:[leaguesViewController view]];
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    UITabBarController *tabBarController = [storyBoard instantiateViewControllerWithIdentifier:@"InitialTabBarController"];
+    self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];
     [self customizeAppearance];
     return YES;
