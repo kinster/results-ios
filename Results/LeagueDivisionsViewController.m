@@ -275,8 +275,8 @@
         dict = [[NSMutableDictionary alloc] init];
         [dict setObject:[division.season league].leagueId forKey:@"LeagueId"];
         [dict setObject:[division.season league].name forKey:@"LeagueName"];
-        [dict setObject:[season seasonId] forKey:@"SeasonId"];
-        [dict setObject:[season name] forKey:@"SeasonName"];
+        [dict setObject:[division.season seasonId] forKey:@"SeasonId"];
+        [dict setObject:[division.season name] forKey:@"SeasonName"];
         [dict setObject:division.divisionId forKey:@"DivisionId"];
         [dict setObject:division.name forKey:@"DivisionName"];
         DLog(@"seasonName: %@", [division.season name]);
@@ -286,8 +286,8 @@
         dict = [[NSMutableDictionary alloc] init];
         [dict setObject:[division.season league].leagueId forKey:@"LeagueId"];
         [dict setObject:[division.season league].name forKey:@"LeagueName"];
-        [dict setObject:[season seasonId] forKey:@"SeasonId"];
-        [dict setObject:[season name] forKey:@"SeasonName"];
+        [dict setObject:[division.season seasonId] forKey:@"SeasonId"];
+        [dict setObject:[division.season name] forKey:@"SeasonName"];
         [dict setObject:division.divisionId forKey:@"DivisionId"];
         [dict setObject:division.name forKey:@"DivisionName"];
         DLog(@"seasonName: %@", [division.season name]);
