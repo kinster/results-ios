@@ -139,6 +139,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     DLog(@"table appeared");
     [self setNavTitle];
+    NSIndexPath *selectedIndexPath = [self.leagueTable indexPathForSelectedRow];
+    [self.leagueTable deselectRowAtIndexPath:selectedIndexPath animated:YES];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
