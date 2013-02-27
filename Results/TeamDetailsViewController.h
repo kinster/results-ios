@@ -11,7 +11,7 @@
 @interface TeamDetailsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) Team *team;
 @property (copy, nonatomic) NSMutableArray *playersList;
-@property (weak, nonatomic) IBOutlet UIImageView *badge;
+@property (retain, nonatomic) IBOutlet UIImageView *badge;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (retain, nonatomic) IBOutlet UITableView *playersTable;
 @property (weak, nonatomic) IBOutlet UILabel *subtitle;

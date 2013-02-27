@@ -39,7 +39,7 @@
         ServerManager *serverManager = [ServerManager sharedServerManager];
         NSString *serverName = [serverManager serverName];
         NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@/fixtures.json", [season league].leagueId, [season seasonId], division.divisionId, team.teamId];
-        DLog(@"%@", urlString);
+        NSLog(@"%@", urlString);
         
         NSURL *url = [NSURL URLWithString:urlString];
         NSData *data = [NSData dataWithContentsOfURL:url];
@@ -86,14 +86,14 @@
     
     [self setNavTitle];
     
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"Searching...";
     
-    [self.navigationController.view addSubview:hud];
+    [self.view addSubview:hud];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         [self loadData];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self.teamFixturesTable reloadData];
             UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
             refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];

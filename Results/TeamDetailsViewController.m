@@ -7,6 +7,7 @@
 //
 
 #import "TeamDetailsViewController.h"
+#import "TeamFixturesViewController.h"
 #import "League.h"
 #import "Season.h"
 #import "Division.h"
@@ -31,7 +32,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self setNavTitle];
 
     Division *division = [team division];
@@ -40,17 +40,13 @@
     
     subtitle.text = [NSString stringWithFormat:@"%@ %@", [division season].name, division.name];
 
-    NSURL *imageUrl = [NSURL URLWithString:team.badge];
-    NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
-    
-    badge.image = [[UIImage alloc]initWithData:imageData];
-
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"Searching...";
     
-    [self.navigationController.view addSubview:hud];
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         @try {
+            [self.view addSubview:hud];
+            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+
             NSError *error;
             
             ServerManager *serverManager = [ServerManager sharedServerManager];
@@ -65,22 +61,35 @@
 
             playersList = [[NSMutableArray alloc] init];
 
+            NSURL *imageUrl = [NSURL URLWithString:team.badge];
+            
+            if (playersJsonData.count > 0) {
+                imageUrl = [NSURL URLWithString:[playersJsonData[0] objectForKey:@"badge"]];
+            }
+            DLog(@"imageUrl %@", imageUrl);
+            NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageUrl];
+            DLog(@"viewDidLoad %@", badge.image);
             Player *player = nil;
             for (NSDictionary *playerJson in playersJsonData) {
                 player = [[Player alloc] initPlayer:[playerJson objectForKey:@"name"]];
                 [playersList addObject:player];
             }
-            
-            // done
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self.playersTable reloadData];
+                badge.image = [[UIImage alloc]initWithData:imageData];
+                [team setBadge:imageUrl.absoluteString];
+                NSLog(@"team badge %@:", team.badge);
+            });
+        });
+
+        
         } @catch (NSException *exception) {
             NSLog(@"Exception: %@ %@", [exception name], [exception reason]);
             [self loadNetworkExceptionAlert];
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-            [self.playersTable reloadData];
-        });
-    });
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -95,6 +104,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     DLog(@"table appeared");
     [self setNavTitle];
+    DLog(@"viewWillAppear %@", badge.image);
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

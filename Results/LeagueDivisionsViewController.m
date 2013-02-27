@@ -112,6 +112,7 @@
             ServerManager *serverManager = [ServerManager sharedServerManager];
             NSString *serverName = [serverManager serverName];
             
+            // TODO: TUNE
             UIImage *image = [self getLeagueImage:serverName AndLeagueId:[season league].leagueId];
             [season league].image = image;
             

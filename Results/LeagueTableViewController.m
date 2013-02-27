@@ -191,26 +191,6 @@
         Team *team = [teamList objectAtIndex:indexPath.row];
         UITabBarController *tabBarViewController = [segue destinationViewController];
         
-        @try {
-            
-            Season *season = [division season];
-            
-            NSError *error;
-            ServerManager *serverManager = [ServerManager sharedServerManager];
-            NSString *serverName = [serverManager serverName];
-            NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@.json", [season league].leagueId, season.seasonId, division.divisionId, team.teamId];
-            DLog(@"%@", urlString);
-            NSURL *url = [NSURL URLWithString:urlString];
-            NSData *data = [NSData dataWithContentsOfURL:url];
-            NSArray *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-            DLog(@"%@", jsonData);
-            NSString *image = [jsonData[0] objectForKey:@"image_url"];
-            team.badge = image;
-            DLog(@"image: %@", image);
-        } @catch (NSException *exception) {
-            NSLog(@"Exception: %@ %@", [exception name], [exception reason]);
-            [self loadNetworkExceptionAlert];
-        }
         TeamDetailsViewController *teamDetailsViewController = [tabBarViewController.viewControllers objectAtIndex:0];
         [teamDetailsViewController setTeam:team];
         TeamFixturesViewController *teamFixturesController = [tabBarViewController.viewControllers objectAtIndex:1];
