@@ -80,7 +80,6 @@
                 [self.playersTable reloadData];
                 badge.image = [[UIImage alloc]initWithData:imageData];
                 [team setBadge:imageUrl.absoluteString];
-                NSLog(@"team badge %@:", team.badge);
             });
         });
 

@@ -39,7 +39,6 @@
         ServerManager *serverManager = [ServerManager sharedServerManager];
         NSString *serverName = [serverManager serverName];
         NSString *urlString = [serverName stringByAppendingFormat:@"/leagues/%@/seasons/%@/divisions/%@/teams/%@/fixtures.json", [season league].leagueId, [season seasonId], division.divisionId, team.teamId];
-        NSLog(@"%@", urlString);
         
         NSURL *url = [NSURL URLWithString:urlString];
         NSData *data = [NSData dataWithContentsOfURL:url];
