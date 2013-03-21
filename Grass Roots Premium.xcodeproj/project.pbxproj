@@ -326,9 +326,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4B09D8991632F56900A0A477 /* Grass-Roots-Premium */ = {
+		4B09D8991632F56900A0A477 /* Grass Roots Premium */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4B09D8BE1632F56900A0A477 /* Build configuration list for PBXNativeTarget "Grass-Roots-Premium" */;
+			buildConfigurationList = 4B09D8BE1632F56900A0A477 /* Build configuration list for PBXNativeTarget "Grass Roots Premium" */;
 			buildPhases = (
 				4B09D8961632F56900A0A477 /* Sources */,
 				4B09D8971632F56900A0A477 /* Frameworks */,
@@ -338,7 +338,7 @@
 			);
 			dependencies = (
 			);
-			name = "Grass-Roots-Premium";
+			name = "Grass Roots Premium";
 			productName = Results;
 			productReference = 4B09D89A1632F56900A0A477 /* GR Extra Time.app */;
 			productType = "com.apple.product-type.application";
@@ -353,7 +353,7 @@
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Kinman Li";
 			};
-			buildConfigurationList = 4B09D8941632F56800A0A477 /* Build configuration list for PBXProject "Grass-Roots-Premium" */;
+			buildConfigurationList = 4B09D8941632F56800A0A477 /* Build configuration list for PBXProject "Grass Roots Premium" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -365,7 +365,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4B09D8991632F56900A0A477 /* Grass-Roots-Premium */,
+				4B09D8991632F56900A0A477 /* Grass Roots Premium */,
 			);
 		};
 /* End PBXProject section */
@@ -476,7 +476,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kinman Li (EGVK8S4UQX)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -492,7 +492,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "3E6A45BC-E874-4D4E-8AE2-B409595C524A";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
@@ -507,7 +507,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kinman Li (EGVK8S4UQX)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -516,7 +516,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "3E6A45BC-E874-4D4E-8AE2-B409595C524A";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -526,7 +526,7 @@
 		4B09D8BF1632F56900A0A477 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Results/Results-Prefix.pch";
@@ -534,8 +534,6 @@
 				INFOPLIST_FILE = "Results/Results-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "GR Extra Time";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -543,15 +541,13 @@
 		4B09D8C01632F56900A0A477 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Results/Results-Prefix.pch";
 				INFOPLIST_FILE = "Results/Results-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "GR Extra Time";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -559,7 +555,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4B09D8941632F56800A0A477 /* Build configuration list for PBXProject "Grass-Roots-Premium" */ = {
+		4B09D8941632F56800A0A477 /* Build configuration list for PBXProject "Grass Roots Premium" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4B09D8BC1632F56900A0A477 /* Debug */,
@@ -568,7 +564,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4B09D8BE1632F56900A0A477 /* Build configuration list for PBXNativeTarget "Grass-Roots-Premium" */ = {
+		4B09D8BE1632F56900A0A477 /* Build configuration list for PBXNativeTarget "Grass Roots Premium" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4B09D8BF1632F56900A0A477 /* Debug */,
