@@ -17,7 +17,13 @@
 @property (nonatomic, copy) NSString *location;
 @property (nonatomic, copy) NSString *competition;
 @property (nonatomic, copy) NSString *statusNote;
+@property (nonatomic, copy) NSString *resultId;
 
-- (id)initWithType:(NSString *)type AndDateTime:(NSString *)dateTime AndHomeTeam:(NSString *)homeTeam AndScore:(NSString *)score AndAwayTeam:(NSString *)awayTeam AndCompetition:(NSString *)competition AndStatusNote:(NSString *)statusNote;
+@property (nonatomic, copy) NSString *homeBadge;
+@property (nonatomic, copy) NSString *awayBadge;
+@property (nonatomic, copy) NSString *homeId;
+@property (nonatomic, copy) NSString *awayId;
+@property (nonatomic, copy) NSMutableArray *reports;
 
+- (id)initWithType:(NSString *)type AndDateTime:(NSString *)dateTime AndHomeTeam:(NSString *)homeTeam AndScore:(NSString *)score AndAwayTeam:(NSString *)awayTeam AndCompetition:(NSString *)competition AndStatusNote:(NSString *)statusNote AndResultId:(NSString *)resultId;
 @end

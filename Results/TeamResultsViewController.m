@@ -56,8 +56,9 @@
             NSString *awayTeam = [entry objectForKey:@"away_team"];
             NSString *competition = [entry objectForKey:@"competition"];
             NSString *statusNote = [entry objectForKey:@"status_note"];
+            NSString *resultId = [entry objectForKey:@"result_id"];
             
-            result = [[Result alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndScore:score AndAwayTeam:awayTeam AndCompetition:competition AndStatusNote:statusNote];
+            result = [[Result alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndScore:score AndAwayTeam:awayTeam AndCompetition:competition AndStatusNote:statusNote AndResultId:resultId];
             
             [resultsList addObject:result];
         }

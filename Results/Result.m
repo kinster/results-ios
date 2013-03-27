@@ -10,7 +10,9 @@
 
 @implementation Result
 
-- (id)initWithType:(NSString *)type AndDateTime:(NSString *)dateTime AndHomeTeam:(NSString *)homeTeam AndScore:(NSString *)score AndAwayTeam:(NSString *)awayTeam AndCompetition:(NSString *)competition AndStatusNote:(NSString *)statusNote {
+@synthesize homeBadge, awayBadge, homeId, awayId;
+
+- (id)initWithType:(NSString *)type AndDateTime:(NSString *)dateTime AndHomeTeam:(NSString *)homeTeam AndScore:(NSString *)score AndAwayTeam:(NSString *)awayTeam AndCompetition:(NSString *)competition AndStatusNote:(NSString *)statusNote AndResultId:(NSString *)resultId {
     if (self = [super init]) {
         _type = type;
         _dateTime = dateTime;
@@ -19,6 +21,7 @@
         _awayTeam = awayTeam;
         _competition = competition;
         _statusNote = statusNote;
+        _resultId = resultId;
     }
     return self;
 }

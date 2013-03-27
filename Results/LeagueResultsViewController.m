@@ -7,6 +7,7 @@
 //
 
 #import "LeagueResultsViewController.h"
+#import "ReportsViewController.h"
 #import "League.h"
 #import "Season.h"
 #import "Division.h"
@@ -54,8 +55,9 @@
             NSString *awayTeam = [entry objectForKey:@"away_team"];
             NSString *competition = [entry objectForKey:@"competition"];
             NSString *statusNote = [entry objectForKey:@"status_note"];
+            NSString *resultId = [entry objectForKey:@"result_id"];
             
-            result = [[Result alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndScore:score AndAwayTeam:awayTeam AndCompetition:competition AndStatusNote:statusNote];
+            result = [[Result alloc] initWithType:type AndDateTime:dateTime AndHomeTeam:homeTeam AndScore:score AndAwayTeam:awayTeam AndCompetition:competition AndStatusNote:statusNote AndResultId:resultId];
             
             [resultsList addObject:result];
         }
@@ -166,6 +168,23 @@
     cell.awayTeam.text = result.awayTeam;
     
     return cell;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    DLog(@"In prepareForSegue");
+    if ([[segue identifier] isEqualToString:@"ShowReports"]) {
+        NSIndexPath *indexPath = [self.resultsTable indexPathForSelectedRow];
+        Result *result = [resultsList objectAtIndex:indexPath.row];
+        ReportsViewController *destinationController = [segue destinationViewController];
+        
+        if ([[segue identifier] isEqualToString:@"ShowReports"]) {
+            DLog(@"Fixture location: %@", fixture.location);
+            DLog(@"%@", segue.destinationViewController);
+            [destinationController setDivision:division];
+            [destinationController setResult:result];
+        }
+    }
+    DLog(@"end of prepareForSegue");
 }
 
 /*

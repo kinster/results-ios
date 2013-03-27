@@ -71,6 +71,8 @@
 		4BF55D871634A83600926CDC /* CustomTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF55D861634A83600926CDC /* CustomTableCell.m */; };
 		A19EE67316D6BD2D0070B433 /* 114icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A19EE67216D6BD2D0070B433 /* 114icon.png */; };
 		A19EE67516D6BD510070B433 /* 57icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A19EE67416D6BD510070B433 /* 57icon.png */; };
+		A1FDF76717023F56005EBFE2 /* ReportsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1FDF76617023F56005EBFE2 /* ReportsViewController.m */; };
+		A1FDF76A17031FF1005EBFE2 /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = A1FDF76917031FF1005EBFE2 /* Report.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -169,6 +171,10 @@
 		4BF55D861634A83600926CDC /* CustomTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomTableCell.m; path = ../CustomTableCell.m; sourceTree = "<group>"; };
 		A19EE67216D6BD2D0070B433 /* 114icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 114icon.png; sourceTree = "<group>"; };
 		A19EE67416D6BD510070B433 /* 57icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57icon.png; sourceTree = "<group>"; };
+		A1FDF76517023F56005EBFE2 /* ReportsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportsViewController.h; sourceTree = "<group>"; };
+		A1FDF76617023F56005EBFE2 /* ReportsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportsViewController.m; sourceTree = "<group>"; };
+		A1FDF76817031FF1005EBFE2 /* Report.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Report.h; sourceTree = "<group>"; };
+		A1FDF76917031FF1005EBFE2 /* Report.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Report.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +236,7 @@
 		4B09D8A41632F56900A0A477 /* Grass Roots */ = {
 			isa = PBXGroup;
 			children = (
+				4B09D8B61632F56900A0A477 /* MainStoryboard.storyboard */,
 				4B5987B71656EE8A005FFCCE /* Reachability.h */,
 				4B5987B81656EE8B005FFCCE /* Reachability.m */,
 				4BC65360165011FF00049309 /* MBProgressHUD.h */,
@@ -250,11 +257,12 @@
 				4B09D8C71632F65100A0A477 /* Club.m */,
 				4B09D8C11632F62D00A0A477 /* Player.h */,
 				4B09D8C21632F62E00A0A477 /* Player.m */,
+				A1FDF76817031FF1005EBFE2 /* Report.h */,
+				A1FDF76917031FF1005EBFE2 /* Report.m */,
 				4B50D3F616515C39006A8A41 /* ServerManager.h */,
 				4B50D3F716515C39006A8A41 /* ServerManager.m */,
 				4B09D8AD1632F56900A0A477 /* AppDelegate.h */,
 				4B09D8AE1632F56900A0A477 /* AppDelegate.m */,
-				4B09D8B61632F56900A0A477 /* MainStoryboard.storyboard */,
 				4B570081164A9980004BCF9B /* LeaguesViewController.h */,
 				4B570082164A9980004BCF9B /* LeaguesViewController.m */,
 				4B845180164B0F11002EB85F /* LeagueSeasonViewController.h */,
@@ -277,6 +285,8 @@
 				4BB2DFD6164ED093000650A0 /* TeamResultsViewController.m */,
 				4B6A218416640E8D004A54C1 /* SavedDivisionsViewController.h */,
 				4B6A218516640E8D004A54C1 /* SavedDivisionsViewController.m */,
+				A1FDF76517023F56005EBFE2 /* ReportsViewController.h */,
+				A1FDF76617023F56005EBFE2 /* ReportsViewController.m */,
 				4BE0E2CB16345CF9000D061F /* CustomTableCell.xib */,
 				4BF55D851634A83600926CDC /* CustomTableCell.h */,
 				4BF55D861634A83600926CDC /* CustomTableCell.m */,
@@ -442,6 +452,8 @@
 				4B5987B91656EE8C005FFCCE /* Reachability.m in Sources */,
 				4B6A218316640C97004A54C1 /* CustomDivisionCell.m in Sources */,
 				4B6A218616640E8E004A54C1 /* SavedDivisionsViewController.m in Sources */,
+				A1FDF76717023F56005EBFE2 /* ReportsViewController.m in Sources */,
+				A1FDF76A17031FF1005EBFE2 /* Report.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

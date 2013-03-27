@@ -346,11 +346,11 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="280" type="user" id="LTD-dx-4m6"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="CustomCellRestorationId" selectionStyle="none" indentationWidth="10" reuseIdentifier="CustomResultCell" rowHeight="42" id="h5h-wh-Qow" userLabel="Result Cell Grouped" customClass="CustomResultCell">
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="CustomCellRestorationId" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CustomResultCell" rowHeight="42" id="h5h-wh-Qow" userLabel="Result Cell Grouped" customClass="CustomResultCell">
                                         <rect key="frame" x="0.0" y="46" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="300" height="41"/>
+                                            <rect key="frame" x="10" y="1" width="280" height="41"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date Time" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="61" translatesAutoresizingMaskIntoConstraints="NO" id="zGo-tT-DIz" userLabel="Date">
@@ -390,13 +390,13 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="r8P-Je-kGC" secondAttribute="trailing" constant="105" id="4Mf-XB-BtS"/>
-                                            <constraint firstItem="hKm-k6-U7v" firstAttribute="leading" secondItem="h5h-wh-Qow" secondAttribute="leading" constant="75" id="AVs-Xo-D0z"/>
                                             <constraint firstItem="hKm-k6-U7v" firstAttribute="baseline" secondItem="zGo-tT-DIz" secondAttribute="baseline" type="default" id="PHK-y5-F8l"/>
+                                            <constraint firstItem="hKm-k6-U7v" firstAttribute="leading" secondItem="h5h-wh-Qow" secondAttribute="leading" constant="60" id="QEL-dS-FuX"/>
                                             <constraint firstItem="r8P-Je-kGC" firstAttribute="baseline" secondItem="hKm-k6-U7v" secondAttribute="baseline" type="default" id="UHs-ov-aoP"/>
+                                            <constraint firstAttribute="trailing" secondItem="49n-kM-Aqs" secondAttribute="trailing" constant="31" id="a3s-rm-x2P"/>
                                             <constraint firstItem="49n-kM-Aqs" firstAttribute="top" secondItem="r8P-Je-kGC" secondAttribute="top" type="default" id="hES-9o-nzG"/>
                                             <constraint firstItem="zGo-tT-DIz" firstAttribute="leading" secondItem="h5h-wh-Qow" secondAttribute="leading" constant="13" id="iRS-wK-O6r"/>
-                                            <constraint firstAttribute="trailing" secondItem="49n-kM-Aqs" secondAttribute="trailing" constant="16" id="ne2-ca-XwG"/>
+                                            <constraint firstItem="r8P-Je-kGC" firstAttribute="leading" secondItem="h5h-wh-Qow" secondAttribute="leading" constant="149" id="tDz-2w-I9p"/>
                                             <constraint firstItem="zGo-tT-DIz" firstAttribute="top" secondItem="hKm-k6-U7v" secondAttribute="top" type="default" id="tPZ-7b-Fwj"/>
                                             <constraint firstItem="r8P-Je-kGC" firstAttribute="centerY" secondItem="h5h-wh-Qow" secondAttribute="centerY" type="default" id="uBY-an-n4f"/>
                                             <constraint firstItem="hKm-k6-U7v" firstAttribute="top" secondItem="r8P-Je-kGC" secondAttribute="top" type="default" id="xbN-rm-Go1"/>
@@ -407,6 +407,7 @@
                                             <outlet property="date" destination="zGo-tT-DIz" id="T0a-5R-5sk"/>
                                             <outlet property="homeTeam" destination="hKm-k6-U7v" id="hvU-xb-pxW"/>
                                             <outlet property="score" destination="r8P-Je-kGC" id="YuA-WI-qDE"/>
+                                            <segue destination="0e8-9O-qdp" kind="push" identifier="ShowReports" id="F6S-f5-Thl"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -653,7 +654,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xzk-QI-Den" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4714" y="-1989"/>
+            <point key="canvasLocation" x="4592" y="-2483"/>
         </scene>
         <!--Team Details View Controller - Team Details-->
         <scene sceneID="Pz2-7r-XVW">
@@ -951,7 +952,55 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="izT-TI-BKg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3000" y="-1843"/>
+            <point key="canvasLocation" x="2968" y="-2141"/>
+        </scene>
+        <!--Reports View Controller - Reports-->
+        <scene sceneID="QPV-vi-WAb">
+            <objects>
+                <viewController title="Reports" id="0e8-9O-qdp" customClass="ReportsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7El-HG-5DT">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ebr-2t-KR7">
+                                <subviews>
+                                    <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Des-h2-XbH">
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="0e8-9O-qdp" id="uN1-ut-XsF"/>
+                                        </connections>
+                                    </webView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Des-h2-XbH" firstAttribute="trailing" secondItem="ebr-2t-KR7" secondAttribute="trailing" type="default" id="NkO-hU-fmu"/>
+                                    <constraint firstItem="Des-h2-XbH" firstAttribute="centerX" secondItem="ebr-2t-KR7" secondAttribute="centerX" type="default" id="Pwa-1i-SQK"/>
+                                    <constraint firstItem="Des-h2-XbH" firstAttribute="top" secondItem="ebr-2t-KR7" secondAttribute="top" type="default" id="XQV-lX-mJV"/>
+                                    <constraint firstItem="Des-h2-XbH" firstAttribute="leading" secondItem="ebr-2t-KR7" secondAttribute="leading" type="default" id="a5Z-QU-vnd"/>
+                                    <constraint firstItem="Des-h2-XbH" firstAttribute="bottom" secondItem="ebr-2t-KR7" secondAttribute="bottom" type="default" id="atr-KD-iBH"/>
+                                    <constraint firstItem="Des-h2-XbH" firstAttribute="centerY" secondItem="ebr-2t-KR7" secondAttribute="centerY" type="default" id="b9s-u8-6NP"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="0e8-9O-qdp" id="Ur4-RL-sqy"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ebr-2t-KR7" firstAttribute="top" secondItem="7El-HG-5DT" secondAttribute="top" type="default" id="9iz-wk-LNg"/>
+                            <constraint firstItem="ebr-2t-KR7" firstAttribute="bottom" secondItem="7El-HG-5DT" secondAttribute="bottom" type="default" id="Z7I-bJ-tvs"/>
+                            <constraint firstItem="ebr-2t-KR7" firstAttribute="trailing" secondItem="7El-HG-5DT" secondAttribute="trailing" type="default" id="bYa-ke-ewC"/>
+                            <constraint firstItem="ebr-2t-KR7" firstAttribute="leading" secondItem="7El-HG-5DT" secondAttribute="leading" type="default" id="iLf-yI-DRU"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Reports" id="iWO-NC-a0w"/>
+                    <connections>
+                        <outlet property="detailView" destination="Des-h2-XbH" id="XsD-Mj-ss4"/>
+                        <outlet property="scrollView" destination="ebr-2t-KR7" id="ccd-tk-4oz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hQI-rf-M9V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4399" y="-1161"/>
         </scene>
         <!--Tab Bar Controller - Details-->
         <scene sceneID="2mv-dN-YNo">
@@ -983,7 +1032,7 @@
             <objects>
                 <viewController id="vbr-tu-NID" customClass="LeagueFixtureDetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wPv-jS-XP5">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nEb-er-alD">
@@ -1301,11 +1350,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="inE-DI-3nL">
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="CustomCellRestorationId" selectionStyle="none" indentationWidth="10" reuseIdentifier="CustomResultCell" rowHeight="42" id="UaL-nS-MoF" userLabel="Result Cell" customClass="CustomResultCell">
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="CustomCellRestorationId" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CustomResultCell" rowHeight="42" id="UaL-nS-MoF" userLabel="Result Cell" customClass="CustomResultCell">
                                         <rect key="frame" x="0.0" y="46" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="300" height="41"/>
+                                            <rect key="frame" x="10" y="1" width="280" height="41"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date Time" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="61" translatesAutoresizingMaskIntoConstraints="NO" id="v6i-x9-yjn" userLabel="Date">
@@ -1349,19 +1398,20 @@
                                             <constraint firstItem="v6i-x9-yjn" firstAttribute="leading" secondItem="UaL-nS-MoF" secondAttribute="leading" constant="13" id="8P6-2n-1bd"/>
                                             <constraint firstItem="P6A-MT-B7G" firstAttribute="baseline" secondItem="c2d-E3-d4H" secondAttribute="baseline" type="default" id="CD0-jF-T2t"/>
                                             <constraint firstItem="1us-zf-qOw" firstAttribute="baseline" secondItem="v6i-x9-yjn" secondAttribute="baseline" type="default" id="CLk-Lq-rp9"/>
-                                            <constraint firstItem="1us-zf-qOw" firstAttribute="centerY" secondItem="UaL-nS-MoF" secondAttribute="centerY" type="default" id="JfG-lE-get"/>
+                                            <constraint firstItem="c2d-E3-d4H" firstAttribute="leading" secondItem="UaL-nS-MoF" secondAttribute="leading" constant="149" id="FDf-a8-RjP"/>
+                                            <constraint firstItem="c2d-E3-d4H" firstAttribute="centerY" secondItem="UaL-nS-MoF" secondAttribute="centerY" type="default" id="O3n-xu-HE0"/>
+                                            <constraint firstItem="1us-zf-qOw" firstAttribute="leading" secondItem="UaL-nS-MoF" secondAttribute="leading" constant="60" id="Tce-o3-SnW"/>
                                             <constraint firstItem="1us-zf-qOw" firstAttribute="top" secondItem="v6i-x9-yjn" secondAttribute="top" type="default" id="Vq1-Nx-MfG"/>
                                             <constraint firstItem="c2d-E3-d4H" firstAttribute="top" secondItem="1us-zf-qOw" secondAttribute="top" type="default" id="XMQ-jv-Wog"/>
-                                            <constraint firstAttribute="trailing" secondItem="P6A-MT-B7G" secondAttribute="trailing" constant="16" id="a4V-k5-8d0"/>
-                                            <constraint firstAttribute="trailing" secondItem="c2d-E3-d4H" secondAttribute="trailing" constant="105" id="jf6-nF-CJu"/>
+                                            <constraint firstAttribute="trailing" secondItem="P6A-MT-B7G" secondAttribute="trailing" constant="31" id="fOg-LS-jF9"/>
                                             <constraint firstItem="c2d-E3-d4H" firstAttribute="top" secondItem="P6A-MT-B7G" secondAttribute="top" type="default" id="tDY-RK-FG4"/>
-                                            <constraint firstItem="1us-zf-qOw" firstAttribute="leading" secondItem="UaL-nS-MoF" secondAttribute="leading" constant="75" id="wiT-Jn-lkR"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="awayTeam" destination="P6A-MT-B7G" id="aCY-TE-iHI"/>
                                             <outlet property="date" destination="v6i-x9-yjn" id="mLi-SY-elG"/>
                                             <outlet property="homeTeam" destination="1us-zf-qOw" id="ybW-YN-zgk"/>
                                             <outlet property="score" destination="c2d-E3-d4H" id="VbR-Wb-JM7"/>
+                                            <segue destination="0e8-9O-qdp" kind="push" identifier="ShowReports" id="W9f-ID-zOb"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1513,6 +1563,151 @@
         <image name="180-stickynote.png" width="22" height="22"/>
         <image name="83-calendar.png" width="23" height="25"/>
     </resources>
+    <classes>
+        <class className="CustomDivisionCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomDivisionCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="radioButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="CustomFixtureCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomFixtureCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="awayTeam" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="date" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="homeTeam" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="CustomPlayerCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomPlayerCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="CustomResultCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomResultCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="awayTeam" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="date" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="homeTeam" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="score" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="CustomTableCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomTableCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="draws" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="goalDiff" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="goalsAgainst" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="goalsFor" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="losses" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="played" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="points" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="position" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="team" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="wins" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="LeagueDivisionsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueDivisionsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="radioButtonSelected:"/>
+                <relationship kind="outlet" name="divisionsTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="LeagueFixtureDetailsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueFixtureDetailsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="navigate:"/>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
+        <class className="LeagueFixturesViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueFixturesViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="fixturesTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="LeagueResultsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueResultsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="resultsTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="LeagueSeasonViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueSeasonViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="seasonsTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="LeagueTableViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeagueTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="leagueTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="LeaguesViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeaguesViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="getTop500:"/>
+                <relationship kind="outlet" name="leagueTablesView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="ReportsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ReportsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="detailView" candidateClass="UIWebView"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="SavedDivisionsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SavedDivisionsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="divisionsTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TeamDetailsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeamDetailsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="badge" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="playersTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TeamFixturesViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeamFixturesViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="teamFixturesTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TeamResultsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeamResultsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="leagueBadge" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="subtitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="teamResultsTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
@@ -1520,9 +1715,10 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="bG6-oO-bYX"/>
-        <segue reference="Gme-cR-3kr"/>
         <segue reference="nlu-6i-a2D"/>
         <segue reference="guz-h0-rin"/>
-        <segue reference="BBh-dp-TyZ"/>
+        <segue reference="Gme-cR-3kr"/>
+        <segue reference="F6S-f5-Thl"/>
+        <segue reference="w7Y-6N-5L6"/>
     </inferredMetricsTieBreakers>
 </document>
