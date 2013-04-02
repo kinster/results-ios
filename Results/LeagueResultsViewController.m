@@ -7,7 +7,7 @@
 //
 
 #import "LeagueResultsViewController.h"
-#import "ReportsViewController.h"
+#import "TeamLinksViewController.h"
 #import "League.h"
 #import "Season.h"
 #import "Division.h"
@@ -172,17 +172,13 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     DLog(@"In prepareForSegue");
-    if ([[segue identifier] isEqualToString:@"ShowReports"]) {
+    if ([[segue identifier] isEqualToString:@"ShowTeamLinks"]) {
         NSIndexPath *indexPath = [self.resultsTable indexPathForSelectedRow];
         Result *result = [resultsList objectAtIndex:indexPath.row];
-        ReportsViewController *destinationController = [segue destinationViewController];
-        
-        if ([[segue identifier] isEqualToString:@"ShowReports"]) {
-            DLog(@"Fixture location: %@", fixture.location);
-            DLog(@"%@", segue.destinationViewController);
-            [destinationController setDivision:division];
-            [destinationController setResult:result];
-        }
+        TeamLinksViewController *destinationController = [segue destinationViewController];        
+        DLog(@"%@", segue.destinationViewController);
+        [destinationController setDivision:division];
+        [destinationController setResult:result];
     }
     DLog(@"end of prepareForSegue");
 }

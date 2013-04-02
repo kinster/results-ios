@@ -9,9 +9,14 @@
 #import "Report.h"
 
 @implementation Report
--(id)initDetails:(NSString *)details {
+
+@synthesize type;
+
+-(id)initSummary:(NSString *)summary AndTeamLink:(NSString *)teamLink AndTeamName:(NSString *)teamName {
     if (self = [super init]) {
-        _details = details;
+        _summary = summary;
+        _teamLink = teamLink;
+        _teamName = teamName;
     }
     return self;
 }

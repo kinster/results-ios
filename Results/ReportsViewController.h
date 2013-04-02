@@ -6,13 +6,10 @@
 //  Copyright (c) 2013 Kinman Li. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
-@class Division, Result;
+@class Division, Result, Report;
 
 @interface ReportsViewController : UIViewController <UIWebViewDelegate>
-@property (weak, nonatomic) Division *division;
-@property (weak, nonatomic) Result *result;
+@property (weak, nonatomic) Report *report;
 @property (weak, nonatomic) IBOutlet UIWebView *detailView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @end

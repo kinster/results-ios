@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface Report : NSObject
-@property (nonatomic, copy) NSString *details;
-- (id)initDetails:(NSString *)details;
+@property (nonatomic, copy) NSString *type;
+@property (nonatomic, copy) NSString *teamName;
+@property (nonatomic, copy) NSString *teamLink;
+@property (nonatomic, copy) NSString *summary;
+- (id)initSummary:(NSString *)summary AndTeamLink:(NSString *)teamLink AndTeamName:(NSString *)teamName;
 @end

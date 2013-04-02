@@ -7,6 +7,7 @@
 //
 
 #import "TeamResultsViewController.h"
+#import "TeamLinksViewController.h"
 #import "League.h"
 #import "Season.h"
 #import "Division.h"
@@ -166,6 +167,19 @@
     cell.date.text = result.dateTime;
     
     return cell;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    DLog(@"In prepareForSegue");
+    if ([[segue identifier] isEqualToString:@"ShowTeamLinks"]) {
+        NSIndexPath *indexPath = [self.teamResultsTable indexPathForSelectedRow];
+        Result *result = [resultsList objectAtIndex:indexPath.row];
+        TeamLinksViewController *destinationController = [segue destinationViewController];
+        DLog(@"%@", segue.destinationViewController);
+        [destinationController setDivision:division];
+        [destinationController setResult:result];
+    }
+    DLog(@"end of prepareForSegue");
 }
 
 /*
