@@ -94,7 +94,7 @@
 }
 
 - (void)setNavTitle {
-    self.title = @"Team Websites";
+    self.title = @"Match Reports";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
